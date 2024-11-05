@@ -1,12 +1,29 @@
 -- Keymappings
+--
+-- TODO: <leader>
+-- bd: close buffer
+-- relative Number
+-- ft: terminal
+-- | or -: split window
+-- wm: maximize
+-- <tab> to swich/close buffer
+-- [b next buf.
+-- ]b prev buf.
+--
+vim.g.mapleader = ' '		-- Space as the leader key
 
 -- (mode, KeyMap, function [, options])
 local function map(mode, lhs, rhs)
-    vim.keymap.set(mode, lhs, rhs, { silent = true })
+    vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true })
 end
 
 -- general
 map("n", "<leader>w", "<CMD>update<CR>")	--save
+map("v", "<C-c>", '"+y')					--copy (v)
+map("n", "<C-c>", '"+yy')					--copy line
+map("n", "<C-v>", "<C-q>")
+
+--vim.api.nvim_del_keymap('n', '<C-v>')		-- delete a mapping
 
 -- FileManager
 map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>")
