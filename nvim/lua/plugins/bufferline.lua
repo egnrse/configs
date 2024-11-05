@@ -4,9 +4,9 @@ return {
 	version = "*",
 	dependencies = {
 		'nvim-tree/nvim-web-devicons',
---		'nvim-tree/nvim-tree.lua',
 	},
 	config = function()
+		vim.opt.termguicolors = true
 		require("bufferline").setup {
 			options = {
 				offsets = {
