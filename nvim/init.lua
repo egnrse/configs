@@ -1,15 +1,16 @@
-vim.cmd('source ~/.vimrc')
+vim.cmd('source ~/.vimrc')		-- import some settings from vim
 
---vim.opt.guifont = "DejaVuSansM Nerd Font Mono:h10"
+-- General Settings
+vim.o.number = true				-- line numbers
+vim.o.relativenumber = true		-- Enable relative line numbers
+vim.o.tabstop = 4				-- Number of spaces a tab represents
+vim.o.shiftwidth = 4			-- Number of spaces for each indentation
+vim.o.smartindent = true		-- Automatically indent new lines
+vim.o.wrap = false				-- Disable line wrapping
+vim.o.cursorline = true			-- Highlight the current line
+vim.o.termguicolors = true		-- Enable 24-bit RGB colors
 
-if vim.fn.has("gui_running") then
-  vim.cmd("set guifont=DejaVuSansM\\ Nerd\\ Font\\ Mono:h32")
---vim.opt.guifont = "JetBrainsMono\\ NFM:h10"
-end
-
-language = en_US
+vim.api.nvim_exec ('language en_US', true)
 
 require("config.lazy")	--plugins
-vim.opt.termguicolors = true
-
 require("maps")			--keymappings
