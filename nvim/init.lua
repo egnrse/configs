@@ -16,7 +16,7 @@ vim.o.visualbell = true
 vim.o.cursorline = true			-- highlight the current line
 vim.o.termguicolors = true		-- enable 24-bit RGB colors
 
-vim.api.nvim_exec ('language en_US', true)
+vim.env.LANG = "en_US.UTF-8"
 
 require("config.lazy")	--plugins
 require("maps")			--keymappings
