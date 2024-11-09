@@ -14,7 +14,7 @@ end
 map("n", "<leader>w", "<CMD>update<CR>")	--save (n)
 map("v", "<C-c>", '"+y')					--copy clipboard (v)
 map("n", "<C-c>", '"+yy')					--copy line (n)
-map("i", "<C-v>", '<C-r>+')					--inset clipboard (i)
+map("i", "<C-v>", '<C-r>+')					--insert clipboard (i)
 map("n", "<C-v>", "<C-q>")					--visual block mode (n)
 
 --vim.api.nvim_del_keymap('n', '<C-v>')		-- delete a mapping
