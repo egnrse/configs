@@ -11,9 +11,11 @@ git branch --set-upstream-to=origin/main main
 ```
 
 
-
-
-
+#### .git/info/exlude:
+```
+/*/
+!/nvim/
+```
 ### other useful (git) commands:
 `git config core.core.sparseCheckoutCone true` : can also add single files to the sparsity (not only directories)  
 `git config --global core.editor "nvim"`  
