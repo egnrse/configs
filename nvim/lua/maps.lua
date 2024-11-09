@@ -42,7 +42,7 @@ if vim.fn.has('win64') == 1 then
 end
 map("n", "<leader>th", ":belowright split | terminal " .. term .."<CR>")	--open terminal horizontal
 map("n", "<leader>tv", ":belowright vsplit | terminal " .. term .."<CR>")	--open terminal vertical
-map("t", "<Esc>", "<C-\\><C-n>")			-- swtch from terminal-mode to normal-mode
+map("t", "<Esc><Esc>", "<C-\\><C-n>")			-- swtch from terminal-mode to normal-mode
 
 -- Navigation
 map("n", "<C-h>", "<C-w>h")
