@@ -12,7 +12,9 @@ git branch --set-upstream-to=origin/main main
 
 
 #### .git/info/exlude:
+all files and folders, except /nvim/
 ```
+*
 /*/
 !/nvim/
 ```
