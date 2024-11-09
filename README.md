@@ -4,7 +4,7 @@ win:  C:\Users\\\<USERNAME>\AppData\Local
 ```
 git init
 git remote add origin https://github.com/egnrse/configs
-git config core.core.sparseCheckoutCone true
+git config core.sparseCheckoutCone true
 git sparse-checkout set nvim
 git pull origin main
 git branch --set-upstream-to=origin/main main
