@@ -2,6 +2,8 @@
 --
 -- TODO: <leader>
 -- relative Number toggle
+-- understand fix cmp
+-- add linting
 
 vim.g.mapleader = ' '		-- Space as the leader key
 
