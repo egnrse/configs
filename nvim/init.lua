@@ -1,4 +1,6 @@
-vim.cmd('source ~/.vimrc')		-- import some settings from vim
+if vim.fn.filereadable("~/.vimrc") == 1 then
+	vim.cmd('source ~/.vimrc')	-- import some settings from vim
+end
 
 -- General Settings
 vim.o.number = true				-- line numbers
@@ -17,6 +19,10 @@ vim.o.cursorline = true			-- highlight the current line
 vim.o.termguicolors = true		-- enable 24-bit RGB colors
 
 vim.env.LANG = "en_US.UTF-8"
+-- use alacritty if it exists
+if vim.fn.executable("alacritty") == 1 then
+	vim.env.TERMINAL = "alacritty"
+end
 
 require("config.lazy")	--plugins
 require("maps")			--keymappings
