@@ -83,6 +83,12 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
 
 ### alacritty
 *(/alacritty/) (Linux)*  
+in win10 add: (does not work yet)  
+```
+[general]
+import = ["../../Local/alacritty/alacritty.toml"]
+```
+to `%APPDATA%\alacritty\alacritty.toml`  
 
 ### hyprland
 *(/hypr/) (Linux)*  
@@ -111,7 +117,7 @@ or install it over pacman: `ttf-dejavu-nerd`
 
 ## Appendix
 ### other useful (git) commands:
-`git config core.core.sparseCheckoutCone true` : can also add single files to the sparsity (not only directories)  
+`git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
 `git config --global core.editor "nvim"`  
 `git config status.showUntrackedFiles no`  
 `git sparse-checkout list`  
