@@ -1,5 +1,9 @@
 # alias files
-# run by ~/.bashrc
+# 
+# put this in your ~/.bashrc :
+# if [ -f ~/.config/.bash_aliases ]; then
+# 	. ~/.config/.bash_aliases
+# fi
 export TERMINAL=alacritty
 export EDITOR=nvim
 
