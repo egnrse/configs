@@ -19,6 +19,8 @@ map("n", "<C-c>", '"+yy')					--copy line (n)
 map("i", "<C-v>", '<C-r>+')					--insert clipboard (i)
 map("n", "<C-v>", "<C-q>")					--visual block mode (n)
 
+map("c", "<Tab>", "<C-z>")					--tab-autocompletation in commands (c)
+
 --vim.api.nvim_del_keymap('n', '<C-v>')		-- delete a mapping
 
 

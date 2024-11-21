@@ -11,7 +11,7 @@ alias v=$EDITOR
 
 # commands
 alias cd..='cd ..'
-alias cls='clear && ls'
+alias cls='clear'
 alias clsa='clear && ls -a'
 alias clsA='clear && ls -all'
 alias lsa='ls -a'
