@@ -30,7 +30,7 @@ git branch --set-upstream-to=origin/main main
 #### setup git exlude
 `./.git/info/exlude`  
 Is a file to exclude local files/folders from git.
-Copy the content (that u need) of the file */other/exclude* to *./.git/info/exclude*   
+Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`     
 
 ## Synced configs:
 - vim:    (/other/.vimrc)  
