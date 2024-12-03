@@ -17,6 +17,6 @@
 !/waybar/
 !/waybar/**
 
-# files
+# don't exclude the following files
 !/egnrseTheme.css
 !/.bash_aliases
