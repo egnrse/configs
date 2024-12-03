@@ -18,7 +18,7 @@ git config core.sparseCheckoutCone true
 ```
 Choose the folders that u want:
 ```
-git sparse-checkout set nvim alacritty hypr
+git sparse-checkout set nvim alacritty hypr waybar
 ```
 Finish the setup:
 ```
@@ -29,23 +29,8 @@ git branch --set-upstream-to=origin/main main
 
 #### setup git exlude
 `./.git/info/exlude`  
-Put the following in this file to exclude all files and folders, except some specific ones.  
-```
-*    # all files in ./
-/*/  # all subfolders and files
-
-# exclude the following folders and their content
-!/nvim/ 
-!/nvim/*
-!/hypr/
-!/hypr/*
-!/alacritty/
-!/alacritty/*
-
-# exclude the following files
-!/egnrseTheme.css
-!/.bash_aliases
-```
+Is a file to exclude local files/folders from git.
+Copy the content (that u need) of the file */other/exclude* to *./.git/info/exclude*   
 
 ## Synced configs:
 - vim:    (/other/.vimrc)  
