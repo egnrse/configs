@@ -1,0 +1,22 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+
+# all files in ./
+*
+# all subfolders and files
+/*/
+
+# don't exclude folders with: '!/example/'
+# don't exclude all files and subfolders of a folder with: '!/example/**'
+!/nvim/
+!/nvim/**
+!/hypr/
+!/hypr/**
+!/alacritty/
+!/alacritty/**
+!/waybar/
+!/waybar/**
+
+# files
+!/egnrseTheme.css
+!/.bash_aliases
