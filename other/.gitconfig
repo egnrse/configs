@@ -1,0 +1,8 @@
+[init]
+	defaultBranch = main
+[user]
+	email = {email}
+	name = {computerName}
+[alias]
+	lg = log --oneline
+	s = status
