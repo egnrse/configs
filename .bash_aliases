@@ -19,3 +19,9 @@ alias cd..='cd ..'
 alias cls='clear'
 alias clsa='clear && lsa'
 alias clsA='clear && lsA'
+
+# git
+alias gits='git status'
+alias gitlg='git log --stat'
+alias gitlog='git log'
+alias gitbr='git branch'
