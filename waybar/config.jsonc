@@ -100,9 +100,10 @@
 
 	  "~": "  Terminal",
 	  "zsh": "  Terminal",
-	  "kitty": "  Terminal",
-	  "elia@15cn1xxx:(.*)": "  Terminal",
-	  "(.*)elia@15cn1xxx:~": "  Terminal",
+	  "class<alacritty>": "  Terminal",
+	  "alacritty": "  Terminal",
+	  //"elia@15cn1xxx:(.*)": "  Terminal",
+	  //"(.*)elia@15cn1xxx:~": "  Terminal",
 
 	  // == Browser ==
 
@@ -263,7 +264,7 @@
 		"tooltip": true,
 		//"on-click": "~/.config/waybar/scripts/wifimenu.sh &",
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
-		"on-click-right": "alacritty -e nmtui",
+		"on-click-right": "$TERM_RUN nmtui",
 		"interval": 1,
 		"min-length": 2,
 		"max-length": 2
@@ -297,7 +298,7 @@
 		"return-type": "json",
 		"format": "{}",
 		"on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
-		"interval": 60,
+		"interval": 3600,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
 		"min-length": 2,
@@ -378,11 +379,15 @@
 
   "custom/paddw": {
 	  "format": " ",
-	  "tooltip": false
+	  "tooltip": false,
+	  "min-length": 1,
+	  "max-length": 1
   },
 
   "custom/paddc": {
 	  "format": " ",
-	  "tooltip": false
+	  "tooltip": false,
+	  "min-length": 1,
+	  "max-length": 1
   },
 }
