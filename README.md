@@ -33,12 +33,13 @@ Is a file to exclude local files/folders from git.
 Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`     
 
 ## Synced configs:
-- vim:    (/other/.vimrc)  
+- vim:    (/other/.vimrc)
 - neovim: (/nvim/)  
 - alacritty: (/alacritty/)  
 - hyprland: (/hypr/)  
 - partially bash:  (.bash_aliases)  
 - general Theme: (egnrseTheme.css)
+- git:    (/other/.gitconfig)
 - Nerd-Font: (/other/DejaVuSansMono.zip)
 
 wanting to add:
@@ -95,6 +96,10 @@ Some info in the file.
 ### general Theme
 *(egnrseTheme.css) (Linux)*  
 still a work in progress
+
+### git
+*(/other/.gitconfig)*  
+copy the file to `~/.gitconfig`. It has some usefull aliases  
 
 ### [Nerd-Font](https://www.nerdfonts.com)
 (/other/DejaVuSansMono.zip)  
