@@ -36,7 +36,7 @@
 
 		"bluetooth",            // bluetooth
 
-		//"custom/paddc",
+		"custom/paddc",
 		"custom/update"        // system update
 	],
 
@@ -260,9 +260,8 @@
 	"custom/wifi": {
 		"exec": "~/.config/waybar/scripts/wifiinfo.sh",
 		"return-type": "json",
-		"format": "{}",
+		"format": "{}",	//󰤨
 		"tooltip": true,
-		//"on-click": "~/.config/waybar/scripts/wifimenu.sh &",
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
 		"on-click-right": "$TERM_RUN nmtui",
 		"interval": 1,
@@ -379,15 +378,15 @@
 
   "custom/paddw": {
 	  "format": " ",
-	  "tooltip": false,
-	  "min-length": 1,
-	  "max-length": 1
+	  "tooltip": false//,
+	  //"min-length": 1,
+	  //"max-length": 1
   },
 
   "custom/paddc": {
 	  "format": " ",
-	  "tooltip": false,
-	  "min-length": 1,
-	  "max-length": 1
+	  "tooltip": false//,
+	  //"min-length": 1,
+	  //"max-length": 1
   },
 }
