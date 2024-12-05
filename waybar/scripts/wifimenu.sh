@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-$TERMINAL -e nmtui
+# start the ui utility of networkmanager
+hyprctl dispatch exec "alacritty -e nmtui"

@@ -33,9 +33,10 @@
 		"clock#date",           // date
 
 		"custom/wifi",          // wi-fi
-		"custom/paddc",
+
 		"bluetooth",            // bluetooth
-		"custom/paddc",
+
+		//"custom/paddc",
 		"custom/update"        // system update
 	],
 
@@ -260,11 +261,12 @@
 		"return-type": "json",
 		"format": "{}",
 		"tooltip": true,
+		//"on-click": "~/.config/waybar/scripts/wifimenu.sh &",
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
-		"on-click-right": "kitty bash -c nmtui",
+		"on-click-right": "alacritty -e nmtui",
 		"interval": 1,
-		"min-length": 1,
-		"max-length": 1
+		"min-length": 2,
+		"max-length": 2
 	},
 
 	"bluetooth": {
@@ -286,8 +288,8 @@
 
 		"on-click": "blueman-manager",
 		"interval": 1,
-		"min-length": 1,
-		"max-length": 1
+		"min-length": 2,
+		"max-length": 2
 	},
 
 	"custom/update": {
@@ -298,8 +300,8 @@
 		"interval": 60,
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
-		"min-length": 1,
-		"max-length": 1
+		"min-length": 2,
+		"max-length": 2
 	},
 
 	"custom/media": {
