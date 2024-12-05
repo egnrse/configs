@@ -5,4 +5,7 @@
 	name = {computerName}
 [alias]
 	lg = log --oneline
+	logg = log --stat	# show simple diffs
+	loggg = log -p		# show diffs
 	s = status
+	br = branch
