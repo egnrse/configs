@@ -3,6 +3,8 @@
 [user]
 	email = {email}
 	name = {computerName}
+[core]
+	editor = nvim
 [alias]
 	lg = log --oneline
 	logg = log --stat	# show simple diffs
