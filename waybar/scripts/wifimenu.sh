@@ -9,15 +9,9 @@
 # - Rofi: A window switcher/launcher (for UI).
 # - nmcli: A command-line tool for managing NetworkManager.
 # - hyprctl & jq: For getting focused monitor resolution.
-
-# Get monitor resolution and calculate center position
-# This determines where the Rofi window will appear.
-#readarray -t monitor_res < <(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width,.height,.scale')
 #
-#monitor_res[2]="${monitor_res[2]//./}"
-#monitor_res[0]=$((monitor_res[0] * 100 / monitor_res[2]))
-#monitor_res[1]=$((monitor_res[1] * 100 / monitor_res[2]))
-#
+# for debugging
+#set -x
 
 # Rofi configuration
 config="$HOME/.config/rofi/wifi.rasi"
@@ -25,7 +19,7 @@ config="$HOME/.config/rofi/wifi.rasi"
 override="window { anchor: center; }"
 
 # Init notification
-notify-send "Searching for available Wi-Fi networks..."
+notify-send -t 2500 "Searching for available Wi-Fi networks..."
 
 while true; do
 

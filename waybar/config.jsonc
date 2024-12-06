@@ -100,10 +100,10 @@
 
 	  "~": "  Terminal",
 	  "zsh": "  Terminal",
-	  "class<alacritty>": "  Terminal",
-	  "alacritty": "  Terminal",
-	  //"elia@15cn1xxx:(.*)": "  Terminal",
-	  //"(.*)elia@15cn1xxx:~": "  Terminal",
+	  "class<Alacritty>": "  Terminal",
+	  "Alacritty": "  Terminal",
+	  "elia@15cn1xxx:(.*)": "  Terminal",
+	  "(.*)elia@15cn1xxx:~": "  Terminal",
 
 	  // == Browser ==
 
