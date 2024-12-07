@@ -1,4 +1,4 @@
-# starting for a .bashrc
+# ~/.bashrc: executed by bash(1) for non-login shells.
 
 # If not running interactively, don't do anything
 case $- in
@@ -21,10 +21,8 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# add custom alias definitions (from ~/.config/.bash_aliases, if the file exists)
+# you may want to put all your additions into a separate file
 if [ -f ~/.config/.bash_aliases ]; then
 	. ~/.config/.bash_aliases
 fi
@@ -32,10 +30,6 @@ fi
 # make variables usable in cd calls
 shopt -s cdable_vars
 # set some custom paths
-export cDocs=/mnt/
-export dTU=/mnt/
-export dDocs=/mnt/
-
-# some more custom paths
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export cDocs=/mnt/c
+export dTU=/mnt/d
+export dDocs=/mnt/d/Dokumente2
