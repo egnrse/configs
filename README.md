@@ -37,7 +37,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - neovim: (/nvim/)  
 - alacritty: (/alacritty/)  
 - hyprland: (/hypr/)  
-- partially bash:  (.bash_aliases)  
+- partially bash:  (.bash_aliases, /other/.bashrc)  
 - general Theme: (egnrseTheme.css)
 - git:    (/other/.gitconfig)
 - Nerd-Font: (/other/DejaVuSansMono.zip)
@@ -85,17 +85,21 @@ might not (fully) work without some other (not yet here) stuff (eg. wofi, waybar
 
 ### bash
 *(.bash_aliases) (Linux)*  
-add this to your `~/.bashrc` (or similar):  
+add this to your `~/.bashrc` (or similar) to fetch it automatically (mine already has it):  
 ```
 if [ -f ~/.config/.bash_aliases ]; then
  	. ~/.config/.bash_aliases
 fi
 ```
-Some info in the file.
+Some more info is in the file.  
+
+*(/other/.bashrc) (Linux)*  
+copy the file to `~/.bashrc` (! this might replace your old config !) or copy the parts that u like. 
 
 ### general Theme
 *(egnrseTheme.css) (Linux)*  
-still a work in progress
+still a work in progress  
+The Idea is to have one file where I can change all the color of all the apps/packages I use.
 
 ### git
 *(/other/.gitconfig)*  
