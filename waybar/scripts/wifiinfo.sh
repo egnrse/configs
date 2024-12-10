@@ -59,6 +59,8 @@
 #   6).  Example: "802.11ac" indicates you're using the 5 GHz band with
 #   a modern high-speed standard.
 
+
+
 if ! command -v nmcli &>/dev/null; then
   echo "{\"text\": \"󰤮 Wi-Fi\", \"tooltip\": \"nmcli utility is missing\"}"
   exit 1
@@ -97,7 +99,8 @@ else
 
   active_device=$(nmcli -t -f DEVICE,STATE device status |
     grep -w "connected" |
-    grep -v -E "^(dummy|lo:)" |
+	grep -v -E "^(dummy|lo:)" |
+	grep -v -E "(externally)" |
     awk -F: '{print $1}')
 
   if [ -n "$active_device" ]; then
