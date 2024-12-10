@@ -20,20 +20,13 @@
 	],
 
 	"modules-center": [
-		"custom/paddc",
-		"custom/cpuinfo",       // temperature
+		"custom/cpuinfo",		// temperature
+		"memory",				// memory
+		"custom/cpu",			// cpu
 
-		"memory",               // memory
-
-		"custom/cpu",           // cpu
-
-		"idle_inhibitor",       // distro icon
-
-		"clock#time",           // time
-		"clock#date",           // date
+		"clock#timeDate",		 // time/date
 
 		"custom/wifi",          // wi-fi
-
 		"bluetooth",            // bluetooth
 
 		"custom/paddc",
@@ -43,16 +36,10 @@
 	"modules-right": [
 		"custom/media",         // media info
 
-		"custom/left6",
 		"pulseaudio",           // output device
 
-		"custom/left7",
 		"custom/backlight",     // brightness
-
-		"custom/left8",
 		"battery",              // battery
-
-		"custom/leftin2",
 		"custom/power"          // power button
 	],
 
@@ -78,7 +65,6 @@
 			"2": [],
 			"3": [],
 			"4": [],
-			"5": []
 		}
 	},
 
@@ -88,99 +74,100 @@
 		"min-length": 5,
 		"max-length": 45,
 
-	// === Window Titles ===
+		// === Window Titles ===
 
-	"rewrite": {
-	  // == Desktop ==
+		"rewrite": {
+			// == Desktop ==
 
-	  "": 
-	  "<span foreground='#89b4fa'> </span> Hyprland",
+			"": 
+			"<span foreground='#89b4fa'> </span> Hyprland",
 
-	  // == Terminal ==
+	 		// == Terminal ==
 
-	  "~": "  Terminal",
-	  "zsh": "  Terminal",
-	  "class<Alacritty>": "  Terminal",
-	  "Alacritty": "  Terminal",
-	  "elia@15cn1xxx:(.*)": "  Terminal",
-	  "(.*)elia@15cn1xxx:~": "  Terminal",
+	 		"~": "  Terminal",
+	 		"zsh": "  Terminal",
+	 		"class<Alacritty>": "  Terminal",
+	 		"Alacritty": "  Terminal",
+	 		"elia@15cn1xxx:(.*)": "  Terminal",
+	 		"(.*)elia@15cn1xxx:~": "  Terminal",
 
-	  // == Browser ==
+	 		// == Browser ==
 
-	  "(.*) — Mozilla Firefox": 
-	  "<span foreground='#f38ba8'>󰈹 </span> $1",
-	  "(.*)Mozilla Firefox": 
-	  "<span foreground='#f38ba8'>󰈹 </span> Firefox",
+	 		"(.*) — Mozilla Firefox": 
+	 		"<span foreground='#f38ba8'>󰈹 </span> $1",
+	 		"(.*)Mozilla Firefox": 
+	 		"<span foreground='#f38ba8'>󰈹 </span> Firefox",
 
-	  // == Development ==
+	 		// == Development ==
 
-	  "(.*) - Visual Studio Code": 
-	  "<span foreground='#89b4fa'>󰨞 </span> $1",
-	  "(.*)Visual Studio Code": 
-	  "<span foreground='#89b4fa'>󰨞 </span> Visual Studio Code",
+	 		"(.*) - Visual Studio Code": 
+	 		"<span foreground='#89b4fa'>󰨞 </span> $1",
+	 		"(.*)Visual Studio Code": 
+	 		"<span foreground='#89b4fa'>󰨞 </span> Visual Studio Code",
 
-	  "Godot": 
-	  "<span foreground='#89b4fa'> </span> Godot Engine",
-	  "Godot Engine - (.*)": 
-	  "<span foreground='#89b4fa'> </span> $1",
-	  "(.*) - Godot Engine": 
-	  "<span foreground='#89b4fa'> </span> $1",
+	 		"Godot": 
+	 		"<span foreground='#89b4fa'> </span> Godot Engine",
+	 		"Godot Engine - (.*)": 
+	 		"<span foreground='#89b4fa'> </span> $1",
+	 		"(.*) - Godot Engine": 
+	 		"<span foreground='#89b4fa'> </span> $1",
 
-	  // == Media ==
+	 		// == Media ==
 
-	  "(.*)Spotify": 
-	  "<span foreground='#a6e3a1'> </span> Spotify",
-	  "(.*)Spotify Premium": 
-	  "<span foreground='#a6e3a1'> </span> Spotify Premium",
+	 		"(.*)Spotify": 
+	 		"<span foreground='#a6e3a1'> </span> Spotify",
+	 		"(.*)Spotify Premium": 
+	 		"<span foreground='#a6e3a1'> </span> Spotify Premium",
 
-	  "OBS(.*)": 
-	  "<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
+	 		"OBS(.*)": 
+	 		"<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
 
-	  "VLC media player": 
-	  "<span foreground='#fab387'>󰕼 </span> VLC Media Player",
-	  "(.*) - VLC media player": 
-	  "<span foreground='#fab387'>󰕼 </span> $1",
+	 		"VLC media player": 
+	 		"<span foreground='#fab387'>󰕼 </span> VLC Media Player",
+	 		"(.*) - VLC media player": 
+	 		"<span foreground='#fab387'>󰕼 </span> $1",
 
-	  "GNU Image Manipulation Program": 
-	  "<span foreground='#a6adc8'> </span> GNU Image Manipulation Program",
+	 		"GNU Image Manipulation Program": 
+	 		"<span foreground='#a6adc8'> </span> GNU Image Manipulation Program",
 
-	  "qView": "  qView",
+	 		"qView": "  qView",
 
-	  "(.*).jpg": "  $1.jpg",
-	  "(.*).png": "  $1.png",
-	  "(.*).svg": "  $1.svg",
+	 		"(.*).jpg": "  $1.jpg",
+	 		"(.*).png": "  $1.png",
+	 		"(.*).svg": "  $1.svg",
 
-	  // == Social ==
+	 		// == Social ==
 
-	  "vesktop": 
-	  "<span foreground='#89b4fa'> </span> Discord",
+	 		"vesktop": 
+	 		"<span foreground='#89b4fa'> </span> Discord",
 
-	  "• Discord(.*)": "Discord$1",
-	  "(.*)Discord(.*)": 
-	  "<span foreground='#89b4fa'> </span> $1Discord$2",
+	 		"• Discord(.*)": "Discord$1",
+	 		"(.*)Discord(.*)": 
+	 		"<span foreground='#89b4fa'> </span> $1Discord$2",
 
-	  // == Documents ==
+	 		// == Documents ==
 
-	  "ONLYOFFICE Desktop Editors": 
-	  "<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
+	 		"ONLYOFFICE Desktop Editors": 
+	 		"<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
 
-	  "(.*).docx": 
-	  "<span foreground='#89b4fa'> </span> $1.docx",
-	  "(.*).xlsx": 
-	  "<span foreground='#a6e3a1'> </span> $1.xlsx",
-	  "(.*).pptx": 
-	  "<span foreground='#fab387'> </span> $1.pptx",
-	  "(.*).pdf": 
-	  "<span foreground='#f38ba8'> </span> $1.pdf",
+	 		"(.*).docx": 
+	 		"<span foreground='#89b4fa'> </span> $1.docx",
+	 		"(.*).xlsx": 
+	 		"<span foreground='#a6e3a1'> </span> $1.xlsx",
+	 		"(.*).pptx": 
+	 		"<span foreground='#fab387'> </span> $1.pptx",
+	 		"(.*).pdf": 
+	 		"<span foreground='#f38ba8'> </span> $1.pdf",
 
-	  "/": "  File Manager",
+	 		"/": "  File Manager",
+	 		"(.*) (.*) Dolphin": "  File Manager - $1",
 
-	  // == System ==
+	 		// == System ==
 
-	  "Timeshift-gtk": 
-	  "<span foreground='#a6e3a1'> </span> Timeshift",
+	 		"Timeshift-gtk": 
+	 		"<span foreground='#a6e3a1'> </span> Timeshift",
 
-	  "Authenticate": "  Authenticate"
+	 		"Authenticate": "  Authenticate"
 	}
 	},
 
@@ -218,27 +205,12 @@
 		"max-length": 6
 	},
 
-	"idle_inhibitor": {
-		"format": " ",
-		"tooltip": true,
-		"tooltip-format-activated": "Presentation Mode",
-		"tooltip-format-deactivated": "Idle Mode",
-		"start-activated": false,
-		"timeout": 5
-	},
 
-	"clock#time": {
+	"clock#timeDate": {
 		"format": "󱑂 {:%H:%M}",
 		"tooltip": true,
-		"tooltip-format": "12-hour Format: {:%I:%M %p}",
-		"min-length": 8,
-		"max-length": 8
-	},
-
-	"clock#date": {
-		"format": "󰨳 {:%m-%d}",
+		//"tooltip-format": "12-hour Format: {:%I:%M %p}",
 		"tooltip-format": "<tt>{calendar}</tt>",
-
 		"calendar": {
 			"mode": "month",
 			"mode-mon-col": 6,
@@ -249,10 +221,6 @@
 			}
 		},
 
-		"actions": {
-			"on-click-right": "mode"
-		},
-
 		"min-length": 8,
 		"max-length": 8
 	},
@@ -260,7 +228,7 @@
 	"custom/wifi": {
 		"exec": "~/.config/waybar/scripts/wifiinfo.sh",
 		"return-type": "json",
-		"format": "{}",	//󰤨
+		"format": "{}",
 		"tooltip": true,
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
 		"on-click-right": "$TERM_RUN nmtui",
