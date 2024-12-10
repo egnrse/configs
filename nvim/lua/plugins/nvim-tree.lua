@@ -40,7 +40,26 @@ return {
 			indent_markers = {
 				enable = true
 			}
-		}
+		},
+		-- custom mappings
+		on_attach = function(bufnr)
+			local api = require "nvim-tree.api"
+
+			 -- default mappings
+			api.config.mappings.default_on_attach(bufnr)
+			
+			local function opts(desc)
+      		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+		    end
+
+			local function map(mode, lhs, rhs, desc)
+				vim.keymap.set(mode, lhs, rhs, desc)
+			end
+			
+			-- custom mappings
+			map("n", "?", 	api.tree.toggle_help,			opts("Help"))
+			
+		end
 	}
   end,
 }
