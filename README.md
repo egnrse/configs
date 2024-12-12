@@ -37,10 +37,15 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - neovim: (/nvim/)  
 - v       (/other/v-editor)  
 - alacritty: (/alacritty/)  
+<<<<<<< HEAD
 - dunst:     (/dunst/)  
 - hyprland:  (/hypr/)  
 - waybar:    (/waybar/)  
 - partially bash:  (.bash_aliases, /other/.bashrc)  
+=======
+- hyprland: (/hypr/)  
+- partially bash:  (/bash/)  
+>>>>>>> parent of 60ecb51 (Revert "changed/updated .bashrc structure")
 - general Theme: (egnrseTheme.css)
 - git:    (/other/.gitconfig)
 - Nerd-Font: (/other/DejaVuSansMono.zip)
@@ -106,17 +111,19 @@ Needs:
 - notification service (eg dunst)
 
 ### bash
-*(.bash_aliases) (Linux)*  
-add this to your `~/.bashrc` (or similar) to fetch it automatically (mine already has it):  
+*(/bash/) (Linux)*  
+add this to your `~/.bashrc` (or similar) to fetch it automatically:
 ```
-if [ -f ~/.config/.bash_aliases ]; then
- 	. ~/.config/.bash_aliases
+# fetches the config file for bash (if it exists)
+# $customBashConfig_path is the path to the custom config file
+customBashConfig_path="$HOME/.config/bash/custom.bashrc"
+if [ -f "$customBashConfig_path" ]; then
+	source $customBashConfig_path
+else
+	echo "path to config not found ($customBashConfig_path)"
 fi
 ```
-Some more info is in the file.  
-
-*(/other/.bashrc) (Linux)*  
-copy the file to `~/.bashrc` (! this might replace your old config !) or copy the parts that u like. 
+Some more info is in the files.  
 
 ### general Theme
 *(egnrseTheme.css) (Linux)*  

@@ -1,14 +1,7 @@
-# alias file
+# aliases.bashrc
+#
 # 
-# put this in your ~/.bashrc :
-# if [ -f ~/.config/.bash_aliases ]; then
-# 	. ~/.config/.bash_aliases
-# fi
 
-
-export TERMINAL=alacritty
-export TERM_RUN="alacritty -e"	# run a command in a new shell
-export EDITOR=nvim
 
 # commands
 alias lsa='ls -a'
