@@ -37,7 +37,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - neovim: (/nvim/)  
 - alacritty: (/alacritty/)  
 - hyprland: (/hypr/)  
-- partially bash:  (.bash_aliases, /other/.bashrc)  
+- partially bash:  (/bash/)  
 - general Theme: (egnrseTheme.css)
 - git:    (/other/.gitconfig)
 - Nerd-Font: (/other/DejaVuSansMono.zip)
@@ -84,17 +84,19 @@ might not (fully) work without some other (not yet here) stuff (eg. wofi, waybar
 `SUPER+R` : start a program (wofi)  
 
 ### bash
-*(.bash_aliases) (Linux)*  
-add this to your `~/.bashrc` (or similar) to fetch it automatically (mine already has it):  
+*(/bash/) (Linux)*  
+add this to your `~/.bashrc` (or similar) to fetch it automatically:
 ```
-if [ -f ~/.config/.bash_aliases ]; then
- 	. ~/.config/.bash_aliases
+# fetches the config file for bash (if it exists)
+# $customBashConfig_path is the path to the custom config file
+customBashConfig_path="$HOME/.config/bash/custom.bashrc"
+if [ -f "$customBashConfig_path" ]; then
+	source $customBashConfig_path
+else
+	echo "path to config not found ($customBashConfig_path)"
 fi
 ```
-Some more info is in the file.  
-
-*(/other/.bashrc) (Linux)*  
-copy the file to `~/.bashrc` (! this might replace your old config !) or copy the parts that u like. 
+Some more info is in the files.  
 
 ### general Theme
 *(egnrseTheme.css) (Linux)*  
