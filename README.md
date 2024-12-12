@@ -37,15 +37,10 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - neovim: (/nvim/)  
 - v       (/other/v-editor)  
 - alacritty: (/alacritty/)  
-<<<<<<< HEAD
 - dunst:     (/dunst/)  
 - hyprland:  (/hypr/)  
 - waybar:    (/waybar/)  
-- partially bash:  (.bash_aliases, /other/.bashrc)  
-=======
-- hyprland: (/hypr/)  
 - partially bash:  (/bash/)  
->>>>>>> parent of 60ecb51 (Revert "changed/updated .bashrc structure")
 - general Theme: (egnrseTheme.css)
 - git:    (/other/.gitconfig)
 - Nerd-Font: (/other/DejaVuSansMono.zip)
@@ -112,7 +107,7 @@ Needs:
 
 ### bash
 *(/bash/) (Linux)*  
-add this to your `~/.bashrc` (or similar) to fetch it automatically:
+add this to your `~/.bashrc` (or similar) to source the files:
 ```
 # fetches the config file for bash (if it exists)
 # $customBashConfig_path is the path to the custom config file
