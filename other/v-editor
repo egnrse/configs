@@ -1,0 +1,17 @@
+#!/bin/bash
+# starts your $EDITOR with all given arguments (if $EDITOR is not empty)
+# if $EDITOR is empty: starts vim
+# to make `v` availabe as a system wide command:
+# - put this file into /usr/bin/v	(this file should be named `v`)
+# - make it executable: `sudo chmod +x v`
+# to use $EDITOR for sudo:
+# - execute `sudo visudo` and add `Defaults env_keep += EDITOR`
+
+# check if $EDITOR is empty
+if [ -z "$EDITOR" ]; then
+	echo "\$EDITOR is not set, using vim"
+  # $@ stores all arguments given to this command
+	vim "$@"
+else
+	"$EDITOR" "$@"
+fi
