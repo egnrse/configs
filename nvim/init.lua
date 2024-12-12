@@ -26,3 +26,4 @@ end
 
 require("config.lazy")	--plugins
 require("maps")			--keymappings
+--require('lush')(require('tokyodark'))	--colorscheme
