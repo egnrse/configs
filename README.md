@@ -1,7 +1,7 @@
 # some of my configs
 THIS IS STILL DEVELOPING!  
 
-In this repo are only configs not their programs, those u must already have installed.  
+In this repo are only configs not their programs, those u must have installed previously.  
 
 I use sparse-checkout and exlude to only get specific files with git. Sadly, the README.md file always gets cloned.  
 Except for files in the `other` folder all files should already be at the right place after cloning this repo. 
@@ -33,17 +33,19 @@ Is a file to exclude local files/folders from git.
 Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`     
 
 ## Synced configs:
-- vim:    (/other/.vimrc)
+- vim:    (/other/.vimrc)  
 - neovim: (/nvim/)  
+- v       (/other/v-editor)  
 - alacritty: (/alacritty/)  
-- hyprland: (/hypr/)  
+- dunst:     (/dunst/)  
+- hyprland:  (/hypr/)  
+- waybar:    (/waybar/)  
 - partially bash:  (.bash_aliases, /other/.bashrc)  
 - general Theme: (egnrseTheme.css)
 - git:    (/other/.gitconfig)
 - Nerd-Font: (/other/DejaVuSansMono.zip)
 
 wanting to add:
-- waybar
 - rofi
 - wofi
 - wlogout
@@ -61,11 +63,17 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
   Settings for the plugins are in their files (`./lua/plugins/*`)  
   - bufferline (top bar with *file* tabs)
   - cmp (autocompletion)
-  - colorscheme
+  - colorscheme (tokyodark)
   - lualine (status line)
+  - lush (color schemecreator, not used yet)
   - nvim-autopairs (autocomplete brackes and more)
   - nvim-tree (file explorer) {Leader+E}
   - other (misc plugins)
+
+### v
+*(/other/v-editor) (Linux)*  
+Use `v` in a console or script to launch the prefered editor (stored in *$EDITOR*).  
+Copy the file to `/usr/bin/`, rename it to `v` and make it executable. More explanations are in the file.
 
 ### alacritty
 *(/alacritty/) (Linux)*  
@@ -76,12 +84,26 @@ import = ["../../Local/alacritty/alacritty.toml"]
 ```
 to `%APPDATA%\alacritty\alacritty.toml`  
 
+### dunst
+*(/dunst/) (Linux)*
+a notification service, after cloning this git all files should already be in the right place (some explanations for the options are in the file)  
+
 ### hyprland
 *(/hypr/) (Linux)*  
 might not (fully) work without some other (not yet here) stuff (eg. wofi, waybar, someScripts, dunst, nautilus)  
 `SUPER+M` : close/exit/logout  
 `SUPER+Q` : terminal (alacritty)  
 `SUPER+R` : start a program (wofi)  
+
+### waybar
+*(/waybar/) (Linux)*
+a wayland statusbar, with some custom scripts for extra functionallity.  
+Needs:
+- wayland
+- wlogout (custom powermenu)
+- networkmanager
+- rofi? (custom wifi-menu)
+- notification service (eg dunst)
 
 ### bash
 *(.bash_aliases) (Linux)*  
