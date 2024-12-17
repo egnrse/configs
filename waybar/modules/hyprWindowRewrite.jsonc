@@ -1,0 +1,97 @@
+// rewrite for the hyprland/window module
+{
+	// ========== Window Titles ==========
+	"rewrite": {
+		// == Desktop ==
+
+		"": 
+		"<span foreground='#89b4fa'> </span> Hyprland",
+
+		// == Terminal ==
+
+		"~": "  Terminal",
+		"zsh": "  Terminal",
+		"class<Alacritty>": "  Terminal",
+		"Alacritty": "  Terminal",
+		"elia@15cn1xxx:(.*)": "  Terminal",
+		"(.*)elia@15cn1xxx:~": "  Terminal",
+
+		// == Browser ==
+
+		"(.*) — Mozilla Firefox": 
+		"<span foreground='#f38ba8'>󰈹 </span> $1",
+		"(.*)Mozilla Firefox": 
+		"<span foreground='#f38ba8'>󰈹 </span> Firefox",
+
+		// == Development ==
+
+		"(.*) - Visual Studio Code": 
+		"<span foreground='#89b4fa'>󰨞 </span> $1",
+		"(.*)Visual Studio Code": 
+		"<span foreground='#89b4fa'>󰨞 </span> Visual Studio Code",
+
+		"Godot": 
+		"<span foreground='#89b4fa'> </span> Godot Engine",
+		"Godot Engine - (.*)": 
+		"<span foreground='#89b4fa'> </span> $1",
+		"(.*) - Godot Engine": 
+		"<span foreground='#89b4fa'> </span> $1",
+
+		// == Media ==
+
+		"(.*)Spotify": 
+		"<span foreground='#a6e3a1'> </span> Spotify",
+		"(.*)Spotify Premium": 
+		"<span foreground='#a6e3a1'> </span> Spotify Premium",
+
+		"OBS(.*)": 
+		"<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
+
+		"VLC media player": 
+		"<span foreground='#fab387'>󰕼 </span> VLC Media Player",
+		"(.*) - VLC media player": 
+		"<span foreground='#fab387'>󰕼 </span> $1",
+
+		"GNU Image Manipulation Program": 
+		"<span foreground='#a6adc8'> </span> GNU Image Manipulation Program",
+
+		"qView": "  qView",
+
+		"(.*).jpg": "  $1.jpg",
+		"(.*).png": "  $1.png",
+		"(.*).svg": "  $1.svg",
+
+		// == Social ==
+
+		"vesktop": 
+		"<span foreground='#89b4fa'> </span> Discord",
+
+		"• Discord(.*)": "Discord$1",
+		"(.*)Discord(.*)": 
+		"<span foreground='#89b4fa'> </span> $1Discord$2",
+
+		// == Documents ==
+
+		"ONLYOFFICE Desktop Editors": 
+		"<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
+
+		"(.*).docx": 
+		"<span foreground='#89b4fa'> </span> $1.docx",
+		"(.*).xlsx": 
+		"<span foreground='#a6e3a1'> </span> $1.xlsx",
+		"(.*).pptx": 
+		"<span foreground='#fab387'> </span> $1.pptx",
+		"(.*).pdf": 
+		"<span foreground='#f38ba8'> </span> $1.pdf",
+
+		"/": "  File Manager",
+		"(.*) (.*) Dolphin": "  File Manager - $1",
+
+		// == System ==
+
+		"Timeshift-gtk": 
+		"<span foreground='#a6e3a1'> </span> Timeshift",
+
+		"Authenticate": "  Authenticate"
+	}
+}
