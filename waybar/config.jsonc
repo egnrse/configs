@@ -34,9 +34,10 @@
 	],
 
 	"modules-right": [
+		"wlr/taskbar",			// taskbar
 		"custom/media",         // media info
 
-		"pulseaudio",           // output device
+		"wireplumber",          // output device
 
 		"custom/backlight",     // brightness
 		"battery",              // battery
@@ -49,7 +50,7 @@
 		"format": "  ",
 		"tooltip": false,
 		"min-length": 3,
-		"max-length": 3
+		"max-length": 4
 	},
 
 	"hyprland/workspaces": {
@@ -67,6 +68,15 @@
 			"4": [],
 		}
 	},
+
+	"wlr/taskbar": {
+		"format": "{icon}",
+		//"format": "{icon} {app_id}",
+		"on-click": "minimize-raise",
+		"on-click-right": "close",
+		"min-length": 1,
+		"max-length": 5,
+	}, 
 
 	"hyprland/window": {
 		"format": "{}",
@@ -272,6 +282,7 @@
 		"max-length": 2
 	},
 
+	// media (audio)
 	"custom/media": {
 		"exec": "~/.config/waybar/scripts/mediaplayer.py",
 		"return-type": "json",
@@ -279,7 +290,7 @@
 		"tooltip": "{tooltip}",
 		"on-click": "playerctl play-pause",
 		"min-length": 5,
-		"max-length": 35
+		"max-length": 15
 	},
 
 	"pulseaudio": {
@@ -302,6 +313,18 @@
 		//"on-scroll-down": "~/.local/share/bin/volumecontrol.sh -o d",
 		"min-length": 6,
 		"max-length": 6
+	},
+
+	"wireplumber": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰝟 {volume}%",
+		"format-icons": ["󰕿", "󰖀", "󰕾"],
+		"on-click": "pwvucontrol",
+		"on-click-right": "helvum",
+		"max-volume": 150,
+		"scroll-step": 0.2
+		//"min-length": 6,
+		//"max-length": 6
 	},
 
 	"custom/backlight": {
