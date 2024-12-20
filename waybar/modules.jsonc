@@ -87,16 +87,29 @@
 		"max-length": 7
 	},
 
-	"custom/backlight": {
-		"exec": "~/.local/share/bin/brightnesscontrol.sh",
-		"return-type": "json",
-		"format": "{}",
+	"power-profiles-daemon": {
+		"format": "{icon}",
+		"tooltip-format": "Profile: {profile}\nDriver: {driver}",
 		"tooltip": true,
-		"on-scroll-up": "~/.local/share/bin/brightnesscontrol.sh -o d",
-		"on-scroll-down": "~/.local/share/bin/brightnesscontrol.sh -o i",
-		"interval": 1,
+		"format-icons": {
+			"default": "",
+			"performance": "",
+			"balanced": "",
+			"power-saver": ""
+		},
+		"min-length": 3
+	},
+
+	"backlight": {
+		"format": "{icon} {percent}%",
+		"format-icons": ["", "", "", "", "", "", "", "", ""],
+
+		"on-scroll-up": "brightnessctl set 1%+",
+		"on-scroll-down": "brightnessctl set 1%-",
 		"min-length": 6,
-		"max-length": 7
+		"max-length": 7,
+		//"reverse-mouse-scrolling": true,	// only mice
+		"reverse-scrolling": true 			// only for not mice
 	},
 
 
@@ -118,6 +131,8 @@
 		"format-disabled": "󰂲",
 		"format-connected": "󰂱",
 		"format-connected-battery": "󰂱",
+
+		"controller": "bluetoothctl",
 
 		"tooltip-format": 
 		"{num_connections} connected",
@@ -147,29 +162,6 @@
 		"max-length": 40
 	},
 
-	// not used anymore
-	//"pulseaudio": {
-	//	"format": "{icon} {volume}%",
-	//	"format-muted": "󰝟 {volume}%",
-    //
-	//	"format-icons": {
-	//		"default": ["󰕿", "󰖀", "󰕾"],
-	//		"headphone": "󰋋",
-	//		"headset": "󰋋"
-	//	},
-    //
-	//	"tooltip": true,
-	//	"tooltip-format": "Device: {desc}",
-	//	"on-click": "~/.local/share/bin/volumecontrol.sh -o m",
-	//	"on-click-right": "pavucontrol",
-	//	"on-scroll-up": "~/.local/share/bin/volumecontrol.sh -o d",
-	//	"on-scroll-down": "~/.local/share/bin/volumecontrol.sh -o i",
-	//	//"on-scroll-up": "~/.local/share/bin/volumecontrol.sh -o i",
-	//	//"on-scroll-down": "~/.local/share/bin/volumecontrol.sh -o d",
-	//	"min-length": 6,
-	//	"max-length": 6
-	//},
-
 	"wireplumber": {
 		"format": "{icon} {volume}%",
 		"format-muted": "󰝟 {volume}%",
@@ -177,10 +169,10 @@
 		"on-click": "pwvucontrol",
 		"on-click-right": "helvum",
 		"max-volume": 150,
-		"scroll-step": 0.2,
+		"scroll-step": 1,
 		"reverse-scrolling": 1,		//scrolling down decreases loudness
-		"min-length": 7,
-		//"max-length": 6
+		"min-length": 5,
+		"max-length": 7
 	},
 	
 
@@ -228,19 +220,32 @@
 		//"format": "{icon} {app_id}",
 		//"on-click": "minimize-raise",
 		"on-click": "activate",
-		"on-click-right": "close",
+		//"on-click-right": "close",
 		"tooltip-format": "{title}",
+		//"all-outputs": false,
 		"ignore-list": [
 			"Alacritty"
 		],
-		"rewrite": {
-			"Firefox$": "Firefox",
+		"rewrite": {	//rewrites the output format (not the tooltip(?))
 			"Foot Server": "Terminal"
 		},
+		"icon-size": 14,
 		"min-length": 1,
 		"max-length": 1
 	}, 
 
+	"tray": {
+		"icon-size": 14,
+		"max-length": 1
+	},
+
+	"systemd-failed-units": {
+		"hide-on-ok": true, // Do hide if there is zero failed units.
+		"format": "✗ {nr_failed}",
+		"format-ok": "✓",
+		"system": true, // Monitor failed systemwide units.
+		"user": false // Ignore failed user units.<
+	},
 
 	// === Padding ===
 	"custom/paddw": {

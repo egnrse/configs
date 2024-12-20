@@ -39,6 +39,8 @@
 
 		"wlr/taskbar",			// taskbar
 		"tray",					
+		"systemd-failed-units",
+		"custom/spacer",
 		"custom/paddw",
 
 		"custom/update",        // system update
@@ -46,7 +48,9 @@
 		"bluetooth",            // bluetooth
 
 		"wireplumber",          // output device
-		"custom/backlight",     // brightness
+		"custom/paddw",
+		"backlight",     // brightness
+		"power-profiles-daemon",
 		"battery",              // battery
 		"custom/power"          // power button
 	],
@@ -55,4 +59,10 @@
 	"include": [
 		"$HOME/.config/waybar/modules.jsonc"
 	],
+
+	"custom/spacer": {
+		"format": "|",
+		"tooltip": false,
+		"max-length": 1
+	}
 }

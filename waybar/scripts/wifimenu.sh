@@ -19,7 +19,7 @@ config="$HOME/.config/rofi/wifi.rasi"
 override="window { anchor: center; }"
 
 # Init notification
-notify-send -t 2500 "Searching for available Wi-Fi networks..." &
+notify-send -t 2500 "Searching for available Wi-Fi networks..."
 
 while true; do
 
@@ -31,10 +31,10 @@ while true; do
   wifi_status=$(nmcli -fields WIFI g)
 
   if [[ "$wifi_status" =~ "enabled" ]]; then
-    selected_option=$(echo -e "   Manual Entry\n 󰤭  Disable Wi-Fi\n$wifi_list" | uniq -u | wofi -dmenu -i -selected-row 1 -theme-str "entry { placeholder: \"Search\"; }" -theme-str "${override}" -config "${config}" -theme-str "window { height: 250px; }")
+    selected_option=$(echo -e "   Manual Entry\n 󰤭  Disable Wi-Fi\n$wifi_list" | uniq -u | rofi -dmenu -i -selected-row 1 -theme-str "entry { placeholder: \"Search\"; }" -theme-str "${override}" -config "${config}" -theme-str "window { height: 250px; }")
 
   elif [[ "$wifi_status" =~ "disabled" ]]; then
-    selected_option=$(echo -e " 󰤨  Enable Wi-Fi" | uniq -u | wofi -dmenu -i -theme-str "${override}" -config "${config}" -theme-str "window { height: 48px; } mainbox { padding: 40px 0 -32px 0;} inputbar { enabled: false; }")
+    selected_option=$(echo -e " 󰤨  Enable Wi-Fi" | uniq -u | rofi -dmenu -i -theme-str "${override}" -config "${config}" -theme-str "window { height: 48px; } mainbox { padding: 40px 0 -32px 0;} inputbar { enabled: false; }")
   fi
 
   # Extract selected SSID
@@ -55,13 +55,13 @@ while true; do
   elif [ "$selected_option" = "   Manual Entry" ]; then
 
     # Prompt for manual SSID and password
-    manual_ssid=$(wofi -dmenu -theme-str "entry { placeholder: \"Enter SSID\"; }" -theme-str "${override}" -config "${config}" -theme-str "window { height: 48px; } mainbox { padding: 8px 0; }")
+    manual_ssid=$(rofi -dmenu -theme-str "entry { placeholder: \"Enter SSID\"; }" -theme-str "${override}" -config "${config}" -theme-str "window { height: 48px; } mainbox { padding: 8px 0; }")
 
     if [ -z "$manual_ssid" ]; then
       exit
     fi
 
-    manual_password=$(wofi -dmenu -password -theme-str "entry { placeholder: \"Enter password\"; }" -theme-str "${override}" -config "${config}" -theme-str "window { height: 48px; } mainbox { padding: 8px 0; }")
+    manual_password=$(rofi -dmenu -password -theme-str "entry { placeholder: \"Enter password\"; }" -theme-str "${override}" -config "${config}" -theme-str "window { height: 48px; } mainbox { padding: 8px 0; }")
 
     if [ -z "$manual_password" ]; then
       nmcli device wifi connect "$manual_ssid"
