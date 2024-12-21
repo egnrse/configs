@@ -10,9 +10,10 @@ return {
 		'norcalli/nvim-colorizer.lua',
 		lazy = true,
 		init = function()
-			require'colorizer'.setup()
+			require'colorizer'.setup({
+				'*',	-- HIghlight all files
+				css = {css = true},
+			})
 		end,
 	}
 }
--- #FFFFFF
---

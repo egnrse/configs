@@ -75,4 +75,6 @@ vim.api.nvim_create_user_command('E', ':NvimTreeToggle', {})
 
 -- Custom Commands
 vim.api.nvim_create_user_command('W', ':w', {})			--save
-vim.api.nvim_create_user_command('Q', ':qa', {})		--close
+vim.api.nvim_create_user_command('Wq', ':wq', {})		--save+close
+vim.api.nvim_create_user_command('WA', ':wq', {})		--save+close
+vim.api.nvim_create_user_command('Q', ':qa', {})		--close all
