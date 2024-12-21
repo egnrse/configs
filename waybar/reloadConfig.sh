@@ -3,4 +3,4 @@
 
 
 killall -SIGUSR2 waybar
-notify-send "waybar restarted"
+notify-send -u low "waybar restarted"
