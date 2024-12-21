@@ -14,10 +14,13 @@
 @define-color BgDark		rgba(10,6,14,0.733);	/* #0A060EBB */
 @define-color TextDark		#1C6579;
 
+@define-color Accent		#350F3F;
+
 @define-color FocusFg		#35C1E7;
 @define-color FocusBg		@MainText;
 @define-color Focus2Fg		@FocusFg;
-@define-color Focus2Bg		#350F3F;
+@define-color Focus2Bg		@Accent;
+
 
 @define-color Border		@FocusFg;
 @define-color Alert			#C1334A;
