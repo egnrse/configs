@@ -1,18 +1,21 @@
-# alacritty config files
+# alacritty config file
 # man 5 alacritty
 
 [window]
-opacity = 0.1
+opacity = 0.733
 blur = true
 
 [font]
 normal = { family = "DejaVuSansM Nerd Font"}
+#size = 
 
 [colors]
-#foreground = 
-#background = 
+primary = {foreground = "#FCD4F6", background = "#180E1E"}
+
+transparent_background_colors = true
 
 [bell]
 animation = "Linear"	#"EaseOut"
 duration = 150
 color = "#aaaaaf"
+

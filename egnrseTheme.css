@@ -9,11 +9,33 @@
 
 /* Main Colors */
 
-@define-color main-bg         rgba(17,17,27,0.7);
-@define-color main-fg         rgba(205,212,244,0.9);
-@define-color main-br         #cdd6f4;
-@define-color other-bg        rgba(205,212,244,0.9);
+@define-color Background	rgba(17,17,27,0.733); /* #180E1EBB */
+@define-color MainText		#FCD4F6;
+@define-color BgDark		rgba(10,6,14,0.733);	/* #0A060EBB */
+@define-color TextDark		#1C6579;
 
+@define-color FocusFg		#35C1E7;
+@define-color FocusBg		@MainText;
+@define-color Focus2Fg		@FocusFg;
+@define-color Focus2Bg		#350F3F;
+
+@define-color Border		@FocusFg;
+@define-color Alert			#C1334A;
+@define-color AlertDark		#280C1B;
+
+
+/* State Colors */
+
+@define-color charging        @MainText;
+@define-color full            @MainText;
+@define-color good            @MainText;
+@define-color warning         @MainText;
+@define-color critical        @Alert;
+
+
+
+
+/* old things */
 @define-color active-bg       rgba(147,152,178,0.9);
 @define-color active-fg       #11111b;
 
@@ -39,10 +61,3 @@
 @define-color battery         #313244;
 @define-color power           #9399b2;
 
-/* State Colors */
-
-@define-color good            #f5e0dc;
-@define-color warning         #f9e2af;
-@define-color critical        #f38ba8;
-@define-color full            #a6e3a1;
-@define-color charging        #cdd6f4;
