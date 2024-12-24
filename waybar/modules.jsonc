@@ -1,5 +1,6 @@
-// module settings
-// 
+// settings for most used waybar modules
+// the main file of this config is `config.jsonc`
+// by egnrse
 {
 	"include": [
 		"$HOME/.config/waybar/modules/hyprWindow.jsonc"

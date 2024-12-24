@@ -1,5 +1,6 @@
-// my custom config for waybar
-// it is based on 'https://github.com/Sejjy/MechaBar'
+// waybar config by egnrse
+// (https://github.com/egnrse/configs)
+// based on 'https://github.com/Sejjy/MechaBar'
 {
 	// ========== GENERAL ==========
 	"layer": "top",
