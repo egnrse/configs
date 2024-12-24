@@ -37,18 +37,19 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 
 ## Synced configs:
 *({program name}: ({path in this git}))*
-- alacritty: (/alacritty/)  
-- bash:      (/bash/)  
-- dunst:     (/dunst/)  
-- git:    (/other/.gitconfig)
+- [alacritty](#alacritty): (/alacritty/)
+- [bash](#bash):      (/bash/)
+- [dunst](#dunst):     (/dunst/)
+- [git](#git):    (/other/.gitconfig)
 - [hyprland](#hyprland):  (/hypr/)  
-- neovim: (/nvim/)  
-- tofi:     (/tofi/)
-- v       (/other/v-editor)  
-- vim:    (/other/.vimrc)  
-- waybar:    (/waybar/)  
-- general Theme: (egnrseTheme.css)
-- Nerd-Font: (/other/DejaVuSansMono.zip)
+- [neovim](#nvim): (/nvim/)  
+- [tofi](#tofi):     (/tofi/)
+- [v-editor](#v)       (/other/v-editor)  
+- [vim](#vim):    (/other/.vimrc)  
+- [waybar](#waybar):    (/waybar/)
+- [wlogout](#wlogout):  (/wlogout/)  
+- [general Theme](#general-theme): (egnrseTheme.css)
+- [Nerd-Font](#nerd-font): (/other/DejaVuSansMono.zip)
 
 wanting to add:
 - rofi?
@@ -178,17 +179,16 @@ The config is split into multiple parts:
 - style.css (styling)
 - theme.css (colors used by style.css, imports `egnrseTheme.css`)
 
-Needs:  
-- wlogout (custom powermenu)  
+Needs:
+- wlogout (custom powermenu)
 - egnrseTheme.css (in this git)  
-
-- wayland  
-- hyprlctl (included in hyprland)  
-- a notification service (eg. dunst)  
-- rofi-wayland (for the custom wifi-menu, u can also mostly use rofi)  
-- networkmanager  
-- blueman-manager (bluetooth gui)  
-- wireplumber (audio-server, config has to be changed for it to work with ALSA)  
+- wayland
+- hyprlctl (included in hyprland)
+- a notification service (eg. dunst)
+- rofi-wayland (for the custom wifi-menu, u can also mostly use rofi)
+- networkmanager
+- blueman-manager (bluetooth gui)
+- wireplumber (audio-server, config has to be changed for it to work with ALSA)
 - pwvucontrol helvum (audio-management gui)
 
 ### wlogout
