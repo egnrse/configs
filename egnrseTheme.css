@@ -1,7 +1,18 @@
-/* Custom Theme
+/* Custom Theme by egnrse
+ * (https://github.com/egnrse/configs)
  * currently only supports colors
  *
- * 
+ * COLORSCHEME:
+ *  #0A060E
+ *  #180E1E
+ *  #350F3F
+ *  #1C6579
+ *  #35C1E7
+ *  #FCD4F6
+ * AlertColors:
+ *  #C1334A
+ *  #280C1B
+ *
  * bg - background
  * fg - foreground
  * br - border
@@ -9,7 +20,7 @@
 
 /* Main Colors */
 
-@define-color Background	rgba(17,17,27,0.733); /* #180E1EBB */
+@define-color Background	rgba(17,17,27,0.733);	/* #180E1EBB */
 @define-color MainText		#FCD4F6;
 @define-color BgDark		rgba(10,6,14,0.733);	/* #0A060EBB */
 @define-color TextDark		#1C6579;
