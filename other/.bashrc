@@ -1,35 +1,18 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# add custom alias definitions (from ~/.config/.bash_aliases, if the file exists)
-# you may want to put all your additions into a separate file
-if [ -f ~/.config/.bash_aliases ]; then
-	. ~/.config/.bash_aliases
+# fetch the custom config file for bash (if it exists)
+# $customBashConfig_path is the path to the config file
+customBashConfig_path="$HOME/.config/bash/custom.bashrc"
+if [ -f "$customBashConfig_path" ]; then
+	source $customBashConfig_path
+else
+	echo ".bashrc: path to config not found ($customBashConfig_path)"
 fi
 
-# make variables usable in cd calls
-shopt -s cdable_vars
-# set some custom paths
-export cDocs=/mnt/c
-export dTU=/mnt/d
-export dDocs=/mnt/d/Dokumente2
+## CUSTOM LOCATIONS
+export data='/mnt/data/'
+export d="$data"
+export dDoc="${data}/Documents#2/"
+export dDocs="${data}/Documents#2/"
+export dTU="${data}/Documents#2/TU/"
