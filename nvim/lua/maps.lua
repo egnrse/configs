@@ -21,7 +21,9 @@ local function map(mode, lhs, rhs)
 end
 
 -- General
-map("n", "<leader>w", "<CMD>update<CR>")	--save (n)
+--map("n", "<leader>w", "<CMD>update<CR>")	--save (n)
+map("n", "<C-s>", "<CMD>update<CR>")		--save (n)
+map("i", "<C-s>", "<CMD>update<CR>")		--save (i)
 map("v", "<C-c>", '"+y')					--copy clipboard (v)
 map("n", "<C-c>", '"+yy')					--copy line (n)
 map("i", "<C-v>", '<C-r>+')					--insert clipboard (i)
@@ -29,7 +31,7 @@ map("n", "<C-v>", "<C-q>")					--visual block mode (n)
 
 map("c", "<Tab>", "<C-z>")					--tab-autocompletation in commands (c)
 
---vim.api.nvim_del_keymap('n', '<C-v>')		-- delete a mapping
+--vim.api.nvim_del_keymap('n', '<C-v>')		--delete a mapping
 
 
 -- WINDOWS --
@@ -64,7 +66,7 @@ if vim.fn.has('win64') == 1 then
 end
 map("n", "<leader>th", ":belowright split | terminal " .. term .."<CR>")	--open terminal horizontal
 map("n", "<leader>tv", ":belowright vsplit | terminal " .. term .."<CR>")	--open terminal vertical
-map("t", "<Esc><Esc>", "<C-\\><C-n>")			-- swtch from terminal-mode to normal-mode
+map("t", "<Esc><Esc>", "<C-\\><C-n>")			-- switch from terminal-mode to normal-mode
 
 -- FileManager
 map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>")
