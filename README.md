@@ -1,7 +1,10 @@
 # some of my configs [WIP]
-THIS IS STILL DEVELOPING!  
+THIS IS STILL DEVELOPING! PR/issues are very welcome.  
+
+This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of the configs I use on my windows machine too.
 
 In this repo are only configs not their programs, those u must have installed previously.  
+For most configs, sparse-clone this git OR copy the files you want into the `~/.config/*/` folder. (with \* being the name of the program)  
 
 I use sparse-checkout and exlude to only get specific files with git. Sadly, the README.md file always gets cloned.  
 Except for files in the `other` folder all files should already be at the right place after cloning this repo. 
@@ -33,11 +36,12 @@ Is a file to exclude local files/folders from git.
 Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`     
 
 ## Synced configs:
+*({program name}: ({path in this git}))*
 - alacritty: (/alacritty/)  
 - bash:      (/bash/)  
 - dunst:     (/dunst/)  
 - git:    (/other/.gitconfig)
-- hyprland:  (/hypr/)  
+- [hyprland](#hyprland):  (/hypr/)  
 - neovim: (/nvim/)  
 - tofi:     (/tofi/)
 - v       (/other/v-editor)  
@@ -51,18 +55,24 @@ wanting to add:
 - sddm
 - a doc with common fixes
 
-### alacritty
+### [alacritty](https://alacritty.org/config-alacritty.html)
 *(/alacritty/) (Linux)*  
-just works (on Linux)  
-in win10 add: (does not work yet)  
+in win10 add: (does **NOT** work yet)  
 ```
 [general]
 import = ["../../Local/alacritty/alacritty.toml"]
 ```
 to `%APPDATA%\alacritty\alacritty.toml`  
 
+This file has some visual changes to make alacritty more beautiful.  
+
 ### bash
 *(/bash/) (Linux)*  
+My config is split into two/three parts:  
+- custom.bashrc (general settings)  
+- aliases.bashrc (aliases for commands)  
+- [~/.bashrc (for device specific settings, not in this git)]  
+
 add this to your `~/.bashrc` (or similar) to source the files:
 ```
 # fetches the config file for bash (if it exists)
@@ -74,31 +84,36 @@ else
 	echo "path to config not found ($customBashConfig_path)"
 fi
 ```
-Some more info is in the files.  
+Some more infos are in the files.  
 
-### dunst
-*(/dunst/) (Linux)*
-a notification service, after cloning this git all files should already be in the right place (some explanations for the options are in the file)  
+### [dunst](https://dunst-project.org/)
+*(/dunst/) (Linux)*  
+A notification (service) deamon, after cloning this git all files should already be in the right place (some explanations for the options are in the file)  
+Some settings only work on X11! (those should be marked)  
+There is a custom script `restartDunst.sh` that restart dunst and sends some notifications, to easily test changes in dunstrc.  
 
 ### git
 *(/other/.gitconfig)*  
-copy parts of the file into `~/.gitconfig`. It has some useful aliases (replacing your old config-file is not recommended)  
+Copy the parts that u like into `~/.gitconfig`. It has some useful aliases.  
+Replace the placeholders if needed (eg {email}, {computerName}).  
+(fully replacing your old config-file is **not** recommended)  
 
-### hyprland
+### [hyprland](https://hyprland.org/)
 *(/hypr/) (Linux)*  
-might not (fully) work without some other (not yet here) stuff (eg. someScripts, dolphin)  
+Might not (fully) work without some other (not yet here) stuff.  
 
-a wayland native (tiling) window manager  
-This config is split into 3 parts:  
+A wayland native (tiling) window manager.  
+This config is split into 4 parts:  
 - hyperland.conf (the main config file)  
 - look-feel.conf (animations, borders, gaps, ...)  
-- maps.conf      (key mappings)  
-#### keymapings
-*(for more look into /hypr/maps.conf)*  
+- maps.conf      (key mappings)
+- plugins.conf	 (plugins)  
+Many explanations are in the files.  
+#### Keymappings
 `SUPER+CTR+L`   : close/exit/logout (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
 `SUPER+E`       : opens File Browser (dolphin)  
-`SUPER`         : program launcher (tofi)  
+`SUPER [+R]`    : program launcher (tofi)  
 `SUPER+C`       : close active window  
   
 `SUPER+[1-0]`   : go to workspace [1-10]  
@@ -112,11 +127,15 @@ This config is split into 3 parts:
 `SUPER+O`       : switch split side  
 `SUPER+M`       : maximize active window (keep borders/bars)  
 `F11`           : make active window fullscreen  
+*(for more look into /hypr/maps.conf or /hypr/plugins.conf)*  
 
-Move windows with `SUPER+LeftMouse`, resize them with`SUPER+RightMouse` or right-clicking on the edges and dragging.
+Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
 
-### nvim
-*(/nvim/) (Win10/Linux)*    
+#### Plugins  
+- [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)  
+
+### [nvim](https://neovim.io/)
+*(/nvim/) (Win10/Linux)*  
 Some explanations of the settings are in the files. The setup Leader-Key is Space. (meaning: some shortcuts start with the Space-Key)  
 - Main setup in `init.lua`  
 - Custom keymapings in `./lua/maps.lua`  
@@ -128,47 +147,69 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
   - lualine (status line)  
   - lush (color schemecreator, not used yet)  
   - nvim-autopairs (autocomplete brackes and more)  
-  - nvim-tree (file explorer) {Leader+E}  
-  - other (misc plugins)  
+  - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) (file explorer) {Leader+E}  
+  - misc (eg. nvim-colorizer)  
 
-### tofi
+### [tofi](https://github.com/philj56/tofi)
 *(/tofi) (Linux)*  
-A wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has many explaining comments.
+A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has many explaining comments.  
 
 ### v
 *(/other/v-editor) (Linux)*  
 Use `v` in a console or script to launch the prefered editor (stored in *$EDITOR*).  
-Copy the file to `/usr/bin/`, rename it to `v` and make it executable. More explanations are in the file.
+Copy the file to `/usr/bin/`, rename it to `v` and make it executable. More explanations are in the file.  
+U can also use the alias in `bash/aliases.bashrc` for a simpler setup, with similar functionality.  
+TODO: make this a proper package (in AUR?)  
 
 ### vim
 *(/other/.vimrc) (Win10/Linux)*  
+This is a very simple setup that I use, when I can't use nvim.  
 Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manager, it should autoinstall itself. Should work on Win10 and Linux.  
 
-### waybar
+### [waybar](https://github.com/Alexays/Waybar)
 *(/waybar/) (Linux)*  
 **! some scripts used by this config are not in this git yet!**  
-a wayland statusbar, with some custom scripts for extra functionallity.  
+A wayland statusbar, with some custom scripts for extra functionallity. U can right/left-click or scroll on many modules.  
+There is a custom script `reoadConfig.sh` that loads the config again, to easily test changes for waybar.  
+The config is split into multiple parts:
+- config.jsonc (main config)
+- modules.jsonc (settings for most modules)
+- modules/*  (settings for all other modules)
+- style.css (styling)
+- theme.css (colors used by style.css, imports `egnrseTheme.css`)
+
 Needs:  
-- wayland  
 - wlogout (custom powermenu)  
+- egnrseTheme.css (in this git)  
+
+- wayland  
+- hyprlctl (included in hyprland)  
+- a notification service (eg. dunst)  
+- rofi-wayland (for the custom wifi-menu, u can also mostly use rofi)  
 - networkmanager  
-- rofi-wayland (custom wifi-menu)  
-- notification service (eg dunst)  
+- blueman-manager (bluetooth gui)  
+- wireplumber (audio-server, config has to be changed for it to work with ALSA)  
+- pwvucontrol helvum (audio-management gui)
 
 ### wlogout
 *(/wlogout/) (Linux)*  
-A wayland PowerMenu (to logout/shutdown/...).
+A wayland PowerMenu (to logout/shutdown/...). Theme-1 is longer (6 items), Theme-2 is more beautiful (but only 4 options). Both themes have layout-* file and a styles-*.css.  
+Needs:
+- egnrseTheme.css (in this git)
+- hyprland
+
 
 ### general Theme
 *(egnrseTheme.css) (Linux)*  
 still a work in progress  
 The Idea is to have one file where I can change all colors for all apps/packages I use.  
-Already works for all that use \*.css files. (eg waybar, wlogout), in all others the colors are hardcoded.
+Already works for all that use \*.css files. (eg. waybar, wlogout), in all other configs are the colors hardcoded.  
 
 
 ### [Nerd-Font](https://www.nerdfonts.com)
 (/other/DejaVuSansMono.zip)  
-or install it over pacman: `ttf-dejavu-nerd`
+The font used by many of the configs in this git.  
+Download it or install it over pacman: `ttf-dejavu-nerd`
 
 ## Appendix
 ### other useful (git) commands:
