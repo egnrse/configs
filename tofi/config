@@ -1,4 +1,7 @@
-# choose the theme u want 
+# tofi config by egnrse
+# (https://github.com/egnrse/configs)
+#
+# choose the theme u want:
 
 #include = ./floatingMenu
 include = ./sideMenu
