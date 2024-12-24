@@ -1,9 +1,13 @@
 # aliases.bashrc
 #
+# a custom config file for bash (extends .bashrc)
+# (https://github.com/egnrse/configs)
 # 
 
+# uncomment if u want the base functionality of `v-editor`, without doing it properly
+#alias v=$EDITOR
 
-# commands
+# general commands
 alias lsa='ls -a'
 alias lsA='ls -all'
 alias cd..='cd ..'

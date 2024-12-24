@@ -1,6 +1,7 @@
-#!/bin/bash
+# custom.bashrc
 #
-# a custom .bashrc file extension
+# a custom config file for bash (extends .bashrc)
+# (https://github.com/egnrse/configs)
 #
 ################################################
 ########## put this into your .bashrc ##########
@@ -25,6 +26,14 @@ if [[ $- = *i* ]] then
 	PS1='[\u@\h \W]\$ '
 fi
 
+
+## COLORS
+################################
+# fix colors on windows drives (all files have 777 as permission)
+# just changes the color of 777 files in general for the ls command
+export LS_COLORS="ow=01;31:$LS_COLORS"
+
+
 ## CUSTOM ENVIRONMENT VARIABLES
 ################################
 #
@@ -34,21 +43,28 @@ export EDITOR=nvim				# your prefered editor (eg. vim, nano)
 export TERMINAL=alacritty		# your prefered terminal (used in some scripts)
 export TERM_RUN="alacritty -e"	# run a command in a new shell
 
-# make variables usable in cd calls
+# make variables usable in cd calls (eg. `cd data`)
 shopt -s cdable_vars
 # custom paths (that can be used in cd calls because of the line above)
-export data='/mnt/data/'
-export d="$data"
-export dDoc="${data}/Documents#2/"
-export dDocs="${data}/Documents#2/"
-export dTU="${data}/Documents#2/TU/"
+# u might want to change some or add your own
+# 
+# an example:
+#export data='/mnt/data/'
+#export d="$data"
+#export dDoc="${data}/Documents#2/"
+#export dDocs="${data}/Documents#2/"
+#export dTU="${data}/Documents#2/TU/"
 
 # show that wayland is the Display-Server-Protocol (some apps rely on that)
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
 export GDK_BACKEND=wayland
 
+
+## ALIASES
+################################
 # fetch the aliases file (if the file exists)
+# currentDir gets the directory *this* file is in
 currentDir="$(dirname ${BASH_SOURCE[0]})"
 customBashAliases_path="${currentDir}/aliases.bashrc"
 if [ -f $customBashAliases_path ]; then
