@@ -1,8 +1,11 @@
 # modified dunstrc by egnrse
+# (https://github.com/egnrse/configs)
 # See dunst(5) for all configuration options
 
-# TODO import colors
+# TODO: 
+# - import colors (automatically)
 #@import "/home/elia/.theme_css";
+# - notifications on brightness/loudness/audio output|input device change
 
 
 [global]
@@ -29,6 +32,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
+	# width = 300
     width = (175,300)
 
     # The maximum height of a single notification, excluding the frame.
@@ -37,8 +41,8 @@
     # Position the notification in the top right corner
     origin = top-right
 
-    # Offset from the origin
-    offset = (15, 13)		#(5, 5)
+    # Offset from the origin (the top-right corner in our case)
+    offset = (15, 13)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -72,6 +76,7 @@
     # is set to 0 this option will be ignored.
     progress_bar_corners = all
 
+
     # Corner radius for the icon image.
     icon_corner_radius = 0
 
@@ -92,7 +97,7 @@
     # notifications.
     # Set to 0 to disable.
     # If gap_size is greater than 0, this setting will be ignored.
-    separator_height = 2
+    separator_height = 1
 
     # Padding between text and separator.
     padding = 8
@@ -122,7 +127,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = auto
 
     # Sort type.
     # possible values are:
@@ -130,14 +135,15 @@
     #  * urgency_ascending: sort by urgency (low then normal then critical)
     #  * urgency_descending: sort by urgency (critical then normal then low)
     #  * update: sort by update (most recent always at the top)
-    sort = yes
+    sort = update
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    # idle_threshold = 120
+    idle_threshold = 120
+
 
     ### Text ###
 
@@ -181,6 +187,9 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
+	# with Appname:
+    #format = "<b>%s</b>	(%a)\n%b"
+	# without Appname:
     format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
@@ -194,7 +203,7 @@
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
-    show_age_threshold = 60
+    show_age_threshold = 180
 
     # Specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
