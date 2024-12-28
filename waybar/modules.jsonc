@@ -179,10 +179,10 @@
 
 	// === other ===
 	"custom/update": {
-		"exec": "~/.local/share/bin/systemupdate.sh",
+		"exec": "~/.local/share/bin/sysUpdate.sh",
 		"return-type": "json",
 		"format": "{}",
-		"on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
+		"on-click": "hyprctl dispatch exec '~/.local/share/bin/sysUpdate.sh up'",
 		"interval": 60,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
