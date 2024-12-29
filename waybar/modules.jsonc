@@ -211,8 +211,8 @@
 	"custom/power": {
 		"format": " ",
 		"tooltip": false,
-		"on-click": "~/.local/share/bin/logoutlaunch.sh 2",
-		"on-click-right": "~/.local/share/bin/logoutlaunch.sh 1",
+		"on-click": "~/.config/waybar/scripts/logoutlaunch.sh 2",
+		"on-click-right": "~/.config/waybar/scripts/logoutlaunch.sh 1",
 		"min-length": 4
 	},
 
