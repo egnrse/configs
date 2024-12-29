@@ -182,7 +182,8 @@
 		"exec": "~/.config/waybar/scripts/packageUpdates.sh",
 		"return-type": "json",
 		"format": "{}",
-		"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/packageUpdates.sh up'",
+		//"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/sysUpgrade.sh'",
+		"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/packageUpdates.sh upgrade'",
 		"interval": 60,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does

@@ -7,6 +7,7 @@
 # 	pacman-contrib (for checkupdates)
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
+#	[sysUpgrade.sh (a custom script)]
 #
 #	by egnrse (https://github.com/egnrse/configs)
 #	(maybe original?: https://github.com/sejjy/mechabar/)
@@ -21,7 +22,7 @@ scriptName="packageUpdates.sh"
 # it is advised to set $TERMINAL as an environment variable (eg. in ~/.bashrc)
 sysUpdate_term=$TERMINAL
 # the system upgrade helper script
-sysUpdate_helper="./sysUpgrade.sh"
+sysUpdate_helper="$HOME/.config/waybar/scripts/sysUpgrade.sh"
 
 # ==== SETTINGS END ====
 
@@ -77,8 +78,8 @@ export aur_helper=$(get_aur_helper)
 var1=$1
 if [ "$var1" == "up" ] || [ "$var1" == "update" ] || [ "$var1" == "upgrade" ]; then
 	if [ -z "$sysUpdate_term" ]; then
-	notify-send "${scriptName}: 'terminal_run' not set" \
-		"Set 'terminal_run' in this script to use 'update'|'upgrade'."
+		notify-send "${scriptName}: 'terminal_run' not set" \
+			"Set 'terminal_run' in this script to use 'update'|'upgrade'."
 	else
 		$sysUpdate_term --title "System Upgrade" -e ${sysUpdate_helper} ${aur_helper}
 	fi
@@ -125,5 +126,7 @@ else
 	tooltip="Official:  $official_updates\nAUR ($aur_helper): $aur_updates\nFlatpak:   $flatpak_updates"
 	text="󰞒"
 fi
+
+#tooltip="${tooltip}\n(launch system update helper)"
 
 echo "{\"text\":\"${text}\", \"tooltip\":\"${tooltip}\"}"

@@ -3,11 +3,13 @@
 # helps with upgrading packages (for official/pacman, AUR and flatpak packages)
 # and helps with possible problems from the installations:
 # 	- resolve configs (pacdiff)
+# args: $1=aur_helper
 # Needs:
 # 	pacman-contrib (for pacdiff)
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
 # 
+# 	(this script is used by the packageUpdates.sh script)
 #	by egnrse (https://github.com/egnrse/configs)
 
 # u can give an aur_helper for this script to use with $1 (the first argument)
@@ -15,7 +17,7 @@
 custom_aur_helper=""
 
 # used for notifications
-scriptName="sysUpdate.sh"
+scriptName="sysUpgrade.sh"
 #notify-send "${scriptName}: installed aur_helper not set!"\
 #	"Set it in the script OR give it as the first argument to this script." &
 
