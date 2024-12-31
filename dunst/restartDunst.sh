@@ -3,11 +3,12 @@
 # restart and test dunst
 # (by egnrse)
 #
-# restarts dunst and sends custom notifications
+# restarts dunst and sends some custom notifications
 
 killall dunst
 sleep 0.5
-dunst &
+hyprctl dispatch exec dunst
+#dunst &	# use this if u dont have hyprctl
 
 # send notifications
 sleep 0.5
@@ -21,7 +22,7 @@ sleep 0.2
 notify-send -u normal "summary" "first line \n and a new line."
 notify-send -u low "not important" " ! :) # $  some special characters"
 sleep 0.2
-notify-send -u normal "not important (again)" "https://dunst-project.org/"
+notify-send -u low "not important (again)" "https://dunst-project.org/"
 sleep 1
 notify-send -u normal "summary" "first line \n and a new line."
 sleep 1

@@ -79,7 +79,7 @@ var1=$1
 if [ "$var1" == "up" ] || [ "$var1" == "update" ] || [ "$var1" == "upgrade" ]; then
 	if [ -z "$sysUpdate_term" ]; then
 		notify-send "${scriptName}: 'terminal_run' not set" \
-			"Set 'terminal_run' in this script to use 'update'|'upgrade'."
+			"Set 'terminal_run' in this script to use 'update'|'upgrade'." &
 	else
 		$sysUpdate_term --title "System Upgrade" -e ${sysUpdate_helper} ${aur_helper}
 	fi
