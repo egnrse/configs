@@ -1,4 +1,7 @@
-# git ls-files --others --exclude-from=.git/info/exclude
+# git exclude for egnrse/configs
+# (https://github.com/egnrse/configs/)
+# (should normally be in .git/info/exlude)
+# selects what (local) files to exclude from the git (similar to .gitignore, but is not synced)
 # Lines that start with '#' are comments.
 
 # all files in ./
@@ -8,15 +11,25 @@
 
 # don't exclude folders with: '!/example/'
 # don't exclude all files and subfolders of a folder with: '!/example/**'
-!/nvim/
-!/nvim/**
-!/hypr/
-!/hypr/**
 !/alacritty/
 !/alacritty/**
+!/bash/
+!/bash/**
+!/dunst/
+!/dunst/**
+!/hypr/
+!/hypr/**
+!/nvim/
+!/nvim/**
+!/tofi/
+!/tofi/**
 !/waybar/
 !/waybar/**
+!/wlogout/
+!/wlogout/**
+
+!/scripts/
+!/scripts/**
 
 # don't exclude the following files
 !/egnrseTheme.css
-!/.bash_aliases
