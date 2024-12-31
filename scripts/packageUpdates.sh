@@ -22,7 +22,7 @@ scriptName="packageUpdates.sh"
 # it is advised to set $TERMINAL as an environment variable (eg. in ~/.bashrc)
 sysUpdate_term=$TERMINAL
 # the system upgrade helper script
-sysUpdate_helper="$HOME/.config/waybar/scripts/sysUpgrade.sh"
+sysUpdate_helper="$HOME/.config/scripts/sysUpgrade.sh"
 
 # ==== SETTINGS END ====
 

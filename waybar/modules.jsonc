@@ -179,11 +179,10 @@
 
 	// === other ===
 	"custom/update": {
-		"exec": "~/.config/waybar/scripts/packageUpdates.sh",
+		"exec": "~/.config/scripts/packageUpdates.sh",
 		"return-type": "json",
 		"format": "{}",
-		//"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/sysUpgrade.sh'",
-		"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/packageUpdates.sh upgrade'",
+		"on-click": "hyprctl dispatch exec '~/.config/scripts/packageUpdates.sh upgrade'",
 		"interval": 60,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
@@ -212,8 +211,8 @@
 	"custom/power": {
 		"format": " ",
 		"tooltip": false,
-		"on-click": "~/.config/waybar/scripts/logoutlaunch.sh 2",
-		"on-click-right": "~/.config/waybar/scripts/logoutlaunch.sh 1",
+		"on-click": "~/.config/scripts/logoutlaunch.sh 2",
+		"on-click-right": "~/.config/scripts/logoutlaunch.sh 1",
 		"min-length": 4
 	},
 
