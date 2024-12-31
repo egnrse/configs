@@ -19,7 +19,7 @@ config="$HOME/.config/rofi/wifi.rasi"
 override="window { anchor: center; }"
 
 # Init notification
-notify-send -t 2500 "Searching for available Wi-Fi networks..."
+notify-send -u low "Searching for available Wi-Fi networks..."
 
 while true; do
 
