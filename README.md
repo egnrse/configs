@@ -109,7 +109,8 @@ This config is split into 4 parts:
 - hyperland.conf (the main config file)  
 - look-feel.conf (animations, borders, gaps, ...)  
 - maps.conf      (key mappings)
-- plugins.conf	 (plugins)  
+- plugins.conf	 (plugins)
+
 Many explanations are in the files.  
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout (wlogout)  
@@ -155,13 +156,15 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
 
 ### scripts
 *(/scripts/) (Linux)*  
-Some of my custom scripts used by other configs (eg. waybar, hyprland). The better place to put custom scripts is in `$HOME/.local/share/bin`. I linked this directory to `$HOME/.config/scripts/` (where the files will land if u just clone this git).  
+Some of my custom scripts used by other configs (eg. waybar, hyprland).  
+A better place to put custom scripts (than in the .config folder) is in `$HOME/.local/share/bin`. I linked `$HOME/.local/share/bin` to `$HOME/.config/scripts/` (where the files will land if u just clone this git).  
 You can do this with:  
 ```
 ln -s $HOME/.config/scripts/ $HOME/.local/share/bin
 ```
 
 Some scripts have settings/dependencies that are written in the top of the scripts. Some of the scripts will warn about and handle missing dependencies gracefully. (sadly not all of them yet)  
+
 General Needs (for some of the scripts):
 - wayland
 - [hyprland](#hyprland)
@@ -171,7 +174,7 @@ General Needs (for some of the scripts):
 
 ### [tofi](https://github.com/philj56/tofi)
 *(/tofi/) (Linux)*  
-A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has many explaining comments.  
+A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has more explaining comments.  
 
 ### v
 *(/other/v-editor) (Linux)*  
@@ -188,14 +191,16 @@ Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manage
 ### [waybar](https://github.com/Alexays/Waybar)
 *(/waybar/) (Linux)*  
 A wayland statusbar, with some custom scripts for extra functionallity. U can right/left-click or scroll on many modules.  
-There is a custom script `reloadConfig.sh` that loads the config again, to easily test changes for waybar.  
+There is a custom script `reloadConfig.sh` that reloads the configuration, to easily test changes for waybar.
+There is also a custom wifimenu, a custom package update helper and many other features.  
+
 The config is split into multiple parts:
 - config.jsonc (main config)
 - modules.jsonc (settings for most modules)
 - modules/*  (settings for all other modules)
 - style.css (styling)
 - theme.css (colors used by style.css, imports `egnrseTheme.css`)
-- scripts  (some scripts for extra functionallity)
+- scripts  (some scripts for extra functionality)
 
 Needs:
 - `.config/scripts/` (some scripts from this git)
