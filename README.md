@@ -109,7 +109,8 @@ This config is split into 4 parts:
 - hyperland.conf (the main config file)  
 - look-feel.conf (animations, borders, gaps, ...)  
 - maps.conf      (key mappings)
-- plugins.conf	 (plugins)  
+- plugins.conf	 (plugins)
+
 Many explanations are in the files.  
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout (wlogout)  
