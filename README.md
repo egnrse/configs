@@ -21,7 +21,7 @@ git config core.sparseCheckoutCone true
 ```
 Choose the folders that u want:
 ```
-git sparse-checkout set alacritty bash dunst hypr nvim tofi waybar wlogout
+git sparse-checkout set alacritty bash dunst hypr nvim scripts tofi waybar wlogout
 ```
 Finish the setup:
 ```
@@ -43,6 +43,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [git](#git):    (/other/.gitconfig)
 - [hyprland](#hyprland):  (/hypr/)  
 - [neovim](#nvim): (/nvim/)  
+- [scripts](#scripts):  (/scripts/)  
 - [tofi](#tofi):     (/tofi/)
 - [v-editor](#v)       (/other/v-editor)  
 - [vim](#vim):    (/other/.vimrc)  
@@ -91,7 +92,7 @@ Some more infos are in the files.
 *(/dunst/) (Linux)*  
 A notification (service) deamon, after cloning this git all files should already be in the right place (some explanations for the options are in the file)  
 Some settings only work on X11! (those should be marked)  
-There is a custom script `restartDunst.sh` that restart dunst and sends some notifications, to easily test changes in dunstrc.  
+There is a custom script `restartDunst.sh` that restarts dunst and sends some notifications, to easily test changes in dunstrc.  
 
 ### git
 *(/other/.gitconfig)*  
@@ -133,7 +134,8 @@ Many explanations are in the files.
 Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
 
 #### Plugins  
-- [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)  
+- [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
+- hypergrass: better touch screen support  
 
 ### [nvim](https://neovim.io/)
 *(/nvim/) (Win10/Linux)*  
@@ -151,8 +153,24 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
   - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) (file explorer) {Leader+E}  
   - misc (eg. nvim-colorizer)  
 
+### scripts
+*(/scripts/) (Linux)*  
+Some of my custom scripts used by other configs (eg. waybar, hyprland). The better place to put custom scripts is in `$HOME/.local/share/bin`. I linked this directory to `$HOME/.config/scripts/` (where the files will land if u just clone this git).  
+You can do this with:  
+```
+ln -s $HOME/.config/scripts/ $HOME/.local/share/bin
+```
+
+Some scripts have settings/dependencies that are written in the top of the scripts. Some of the scripts will warn about and handle missing dependencies gracefully. (sadly not all of them yet)  
+General Needs (for some of the scripts):
+- wayland
+- [hyprland](#hyprland)
+- a notification deamon (eg. [dunst](#dunst))
+- pacman-contrib
+
+
 ### [tofi](https://github.com/philj56/tofi)
-*(/tofi) (Linux)*  
+*(/tofi/) (Linux)*  
 A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has many explaining comments.  
 
 ### v
@@ -169,32 +187,34 @@ Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manage
 
 ### [waybar](https://github.com/Alexays/Waybar)
 *(/waybar/) (Linux)*  
-**! some scripts used by this config are not in this git yet!**  
 A wayland statusbar, with some custom scripts for extra functionallity. U can right/left-click or scroll on many modules.  
-There is a custom script `reoadConfig.sh` that loads the config again, to easily test changes for waybar.  
+There is a custom script `reloadConfig.sh` that loads the config again, to easily test changes for waybar.  
 The config is split into multiple parts:
 - config.jsonc (main config)
 - modules.jsonc (settings for most modules)
 - modules/*  (settings for all other modules)
 - style.css (styling)
 - theme.css (colors used by style.css, imports `egnrseTheme.css`)
+- scripts  (some scripts for extra functionallity)
 
 Needs:
-- wlogout (custom powermenu)
+- `.config/scripts/` (some scripts from this git)
 - egnrseTheme.css (in this git)  
+- [wlogout](#wlogout) (custom powermenu)
 - wayland
 - hyprlctl (included in hyprland)
-- a notification service (eg. dunst)
+- a notification service (eg. [dunst](#dunst))
 - rofi-wayland (for the custom wifi-menu, u can also mostly use rofi)
 - networkmanager
 - blueman-manager (bluetooth gui)
-- wireplumber (audio-server, config has to be changed for it to work with ALSA)
+- wireplumber (audio-server, config has to be changed for it to work with ALSA only)
 - pwvucontrol helvum (audio-management gui)
 
 ### wlogout
 *(/wlogout/) (Linux)*  
-A wayland PowerMenu (to logout/shutdown/...). Theme-1 is longer (6 items), Theme-2 is more beautiful (but only 4 options). Both themes have layout-* file and a styles-*.css.  
-Needs:
+A wayland PowerMenu (to logout/shutdown/...). theme-1 is longer (6 items), theme-2 only 4 has options. Both themes have a layout-\* file and a styles-\*.css.  
+U can use `/scripts/logoutlaunch.sh` (with args $1= 1 or 2) to launch those themes. They (should) scale automatically with display size and the scaling parameter.
+Needs:  
 - egnrseTheme.css (in this git)
 - hyprland
 
@@ -203,7 +223,7 @@ Needs:
 *(egnrseTheme.css) (Linux)*  
 still a work in progress  
 The Idea is to have one file where I can change all colors for all apps/packages I use.  
-Already works for all that use \*.css files. (eg. waybar, wlogout), in all other configs are the colors hardcoded.  
+Already works for all that use \*.css files. (eg. waybar, wlogout), in all other configs the colors are hardcoded.  
 
 
 ### [Nerd-Font](https://www.nerdfonts.com)
