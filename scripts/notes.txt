@@ -1,0 +1,3 @@
+# create a symlink
+ln -s /home/elia/.config/scripts/ ./bin
+
