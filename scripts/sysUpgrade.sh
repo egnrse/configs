@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# helps with upgrading packages (for official/pacman, AUR and flatpak packages)
+# helps with upgrading packages (for official-/pacman-, AUR- and flatpak-packages)
 # also helps with some system maintenance:
 # 	- resolve configs (pacdiff)
 # 	- pacman cache cleaning (paccache)
@@ -24,20 +24,24 @@ scriptName="sysUpgrade.sh"
 
 #set -x	# verbose debugging
 
-
+# visual variables
 underline="---------------------------------------------"
 normal="\033[0m"
 bold="\033[1m"
 
 # pauses and waits for the user in different ways
-# $1: ""(or not given):pause until any button is pressed, skip:asks to continue or skip
-# $2: set a custom message for 'skip'
+# $1: ""|"pause"(or not given):pause until any button is pressed; "skip":asks to continue or skip
+# $2: set a custom message
 # returns: 0: success, 1: negative answer, 2: (usage) error
 pause() {
 	case "$1" in
-		"")
+		""|"pause")
 			# continue with any button
-			echo ' press any button to continue...'
+			local var2=$2
+			if [ -z "$2" ]; then
+				var2=" press any button to continue..."
+			fi
+			echo "$var2"
 			read -n 1 -s;
 			return 0;
 			;;
@@ -57,7 +61,6 @@ pause() {
 					;;
 			esac
 			;;
-		
 		*)
 			echo " ERROR (${scriptName}): faulty pause usage! bad args given to pause()"
 			return 2;
@@ -89,17 +92,20 @@ else
 	echo ""
 fi
 
+#
+# ====== UPDATE PACKAGES ======
+# 
 # official + AUR
 if [ -n "$aur_helper" ]; then
 	# ${aur_helper} -Syu
-	echo -e "starting ${bold}${aur_helper}${normal} updates"
+	echo -e "starting ${bold}official/AUR${normal} updates with ${bold}${aur_helper}${normal}"
 	pause skip
 	if [ $? -eq 0 ]; then
 		${aur_helper} -Syu
 	fi
 else
 	# pacman -Syu
-	echo -e "starting ${bold}pacman${normal} updates"
+	echo -e "starting ${bold}official${normal} updates with ${bold}pacman${normal}"
 	pause skip
 	if [ $? -eq 0 ]; then
 		sudo pacman -Syu
@@ -153,8 +159,11 @@ if [ $skip -eq 0 ]; then
 fi
 echo ""
 
+#
+# ====== END ======
+#
 echo -e "${bold}All done! Your packages are up to date${normal}"
 echo " maybe restart your device"
-
+echo ""
 # keep the terminal open
 exec bash

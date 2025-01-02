@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-# checks packages for updates (official/pacman, AUR and flatpak packages)
+# checks packages for updates (official-/pacman-, AUR- and flatpak-packages)
 # returns the result in a json, that works for waybar
-# helps with updating packages if $1 is "up"/"update"/"upgrade" (runs $sysUpdate_helper)
+# helps with updating packages if '-u' is given or $1 is "up"/"update"/"upgrade" (runs $sysUpgrade_helper)
 # Needs:
 # 	pacman-contrib (for checkupdates)
 # 	[an aur_helper (eg. yay)]
@@ -20,17 +20,51 @@ custom_aur_helper=""
 scriptName="packageUpdates.sh"
 # the terminal you want to use for the system update helper
 # it is advised to set $TERMINAL as an environment variable (eg. in ~/.bashrc)
-sysUpdate_term=$TERMINAL
+sysUpgrade_term=$TERMINAL
 # the system upgrade helper script
-sysUpdate_helper="$HOME/.config/scripts/sysUpgrade.sh"
+sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
 
 # ==== SETTINGS END ====
 
 #set -x	# verbose debugging
 
+
+# ==== handle args ====
+# legacy handling
+args1=$1
+if [ "$args1" == "up" ] || [ "$args1" == "update" ] || [ "$args1" == "upgrade" ]; then
+	notify-send "${scriptName}: using deprecated args"\
+		"usage: ${scriptName} [-u|-?]\nYou should use -u to launch the sysUpgrade_helper."
+	upgrade="true"
+else
+	upgrade="false"
+fi
+while getopts "u?" opt; do
+	case $opt in
+		u) 
+			# launch upgrade
+			upgrade="true"
+			;;
+		?) 
+			# print usage
+			echo "checks packages for updates (official-/pacman-, AUR- and flatpak-packages)"
+			echo "returns the result in a json, that works for waybar"
+			echo "  -u: helps with updating packages (launches sysUpgrade_helper)"
+			echo "  -?: shows this text"
+			echo "usage: ${scriptName} [-u|-?]"
+			exit 0
+			;;
+		\?)
+			# invalid syntax: print usage
+			echo "usage: ${scriptName} [-u|-?]: setting -u launches the sysUpgrade_helper"
+			exit 2
+			;;
+	esac
+done
+
 # Check release
 if [ ! -f /etc/arch-release ]; then
-  exit 0
+  exit 1
 fi
 
 # test if a package is installed
@@ -74,15 +108,39 @@ export aur_helper=$(get_aur_helper)
 
 # ====== UPDATE ======
 # update packages
-# by starting ${sysUpdate_helper} in a new terminal
-var1=$1
-if [ "$var1" == "up" ] || [ "$var1" == "update" ] || [ "$var1" == "upgrade" ]; then
-	if [ -z "$sysUpdate_term" ]; then
-		notify-send "${scriptName}: 'terminal_run' not set" \
-			"Set 'terminal_run' in this script to use 'update'|'upgrade'." &
+# by starting ${sysUpgrade_helper} in a new terminal
+if [ "$upgrade" == "true" ]; then
+	if [ -z "$sysUpgrade_term" ]; then
+		# the value is empty
+		notify-send "${scriptName}: 'sysUpgrade_term' not set" \
+			"Set 'sysUpgrade_term' in this script to use 'update'|'upgrade'." &
+	elif ! command -v $sysUpgrade_term >/dev/null 2>&1; then
+		# 'command' does not find sysUpgrade_term
+		notify-send "${scriptName}: 'sysUpgrade_term' not valid" \
+			"Did not find '${sysUpgrade_term}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
+	elif ! command -v $sysUpgrade_helper >/dev/null 2>&1; then
+		# the sysUpgrade_helper does not exist
+		notify-send "${s:riptName}: 'sysUpgrade_helper' not found" \
+			"Did not find '${sysUpgrade_helper}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
 	else
-		$sysUpdate_term --title "System Upgrade" -e ${sysUpdate_helper} ${aur_helper}
+		# save the output of the next command
+		output=$(
+			## CHANGE ME
+			# this might need to change for different terminals	
+			#$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper}
+			$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper} \
+		2>&1 )
+
+		returnVal=$?
+		# test for errors
+		if [ $returnVal -ne 0 ]; then
+			echo "'sysUpgrade_helper' might have failed to start"
+			notify-send "${scriptName}: 'sysUpgrade_helper' might have failed to start" \
+				"Try looking into '## CHANGE ME' in ${scriptName}.\nThe command exited with status: ${returnVal}\nThe ouput:\n$output" &
+		fi
 	fi
+
+	exit 0
 fi
 
 
