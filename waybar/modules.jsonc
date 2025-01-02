@@ -182,7 +182,7 @@
 		"exec": "~/.config/scripts/packageUpdates.sh",
 		"return-type": "json",
 		"format": "{}",
-		"on-click": "hyprctl dispatch exec '~/.config/scripts/packageUpdates.sh upgrade'",
+		"on-click": "hyprctl dispatch exec '~/.config/scripts/packageUpdates.sh -u'",
 		"interval": 60,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
