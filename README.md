@@ -242,7 +242,9 @@ Download it or install it over pacman: `ttf-dejavu-nerd`
 `git config --global core.editor "nvim"`  
 `git config status.showUntrackedFiles no`  
 `git sparse-checkout list`  
+`git read-tree -mu HEAD` : reload current files from tree
 `git remote set-url origin github:egnrse/configs.git` : setup your `~/.ssh/config` for github first  
+`git reset --hard origin/main` : reset current branch to origin/main (will discard all local changes)
 
 ### ssh
 use `~/.ssh/config`  
