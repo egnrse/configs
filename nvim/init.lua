@@ -30,3 +30,7 @@ require("maps")			--keymappings
 -- change colors
 --vim.api.nvim_set_hl(0, "Normal", {fg = "#FFFFFF", bg = "#071020"} )
 --require('lush')(require('tokyodark'))	--colorscheme
+
+local lspconfig = require('lspconfig')
+lspconfig.bashls.setup{}
+
