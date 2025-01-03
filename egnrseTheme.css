@@ -27,6 +27,9 @@
 
 @define-color Accent		#350F3F;
 
+@define-color BackgroundSolid #180E1E;
+@define-color AccentTransparent	rgba(53,15,63,0.733);	/* #350F3F */
+
 @define-color FocusFg		#35C1E7;
 @define-color FocusBg		@MainText;
 @define-color Focus2Fg		@FocusFg;
@@ -40,7 +43,12 @@
 
 /* State Colors */
 
-@define-color charging        @MainText;
+@define-color green			  #77DD77;
+@define-color yellow		  #EEEE77;
+@define-color blue			  #AA87FF;
+
+
+@define-color charging        @green;
 @define-color full            @MainText;
 @define-color good            @MainText;
 @define-color warning         @MainText;
