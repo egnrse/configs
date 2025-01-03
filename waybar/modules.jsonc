@@ -32,6 +32,7 @@
 		"exec": "~/.config/waybar/scripts/hyprWindowMode.sh",
 		"return-type": "json",
 		"format": "{}",
+		"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/hyprWindowMode.sh toggle'",
 		"tooltip": true,
 		"interval": 1
 	},
@@ -172,7 +173,7 @@
 		"return-type": "json",
 		"format": "{}",
 		"on-click": "hyprctl dispatch exec '~/.config/scripts/packageUpdates.sh -u'",
-		"interval": 60,	// look for updates every 1h
+		"interval": 60,	// look for updates every 60s
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
 		"min-length": 2,

@@ -16,12 +16,12 @@
 	// of modules, split into: left, center, right
 
 	"modules-left": [
-		"custom/ws",            // window format-icons
+		//"custom/ws",            // window format-icons
+		"custom/hyprWindowMode",
 		"hyprland/workspaces",  // workspaces
 		"custom/spacer",
 		"custom/padding1",
-		"hyprland/window",       // window title
-		"custom/hyprWindowMode"
+		"hyprland/window"       // window title
 	],
 
 	"modules-center": [

@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# looks if a window (in hyprland) is one of the following:
-# normal/floating/fullscreen1(maximized)/fullscreen2(fullscreen)/fullscreen3
+# looks if the active window (in hyprland) is one of the following:
+# normal/floating/fullscreen1(maximized)/fullscreen2(fullscreen)/fullscreen3/there is no active window
 # (or a combination of them)
-# returns the result in a json that works for waybar ([n]/(f)/M/F/F)
-# 	'[x]': it is a normal window (with x being one of the following: n,M,F)
+# returns the result in a json that works for waybar ([n]/(f)/M/F/F/h)
+# 	'[x]': it is a normal window (with x being one of the following: n,h,M,F)
 # 	'(x)': it is a floating window (x: f,M,F)
+# 
 # 	eg. (M) means a floating window that is maximized
+# also toggles the floating state of the active window, when $1="toggle"
 # 
 # Needs:
 # 	hyprland
@@ -14,26 +16,53 @@
 # 	grep
 #
 #	by egnrse (https://github.com/egnrse/configs)	
-#
 
-# awk -v RS='': Treats each paragraph as a record.
-clientActive=$(hyprctl clients | awk -v RS='' '/focusHistoryID: 0/')
+# this scripts name (used for notifications)
+scriptName="hyprWindowMode.sh"
 
-if echo "$clientActive" | grep -q "fullscreen: 0"; then
+
+args1=$1
+
+clientActive=$(hyprctl activewindow -j)
+
+# === toggle ===
+if [ "$args1" == "toggle" ]; then
+	out=$(echo "$clientActive" | jq ".address")
+	if [ "$out" = "null" ]; then
+		# no active window found (eg. empty hyperland window)
+		notify-send -u low -a ${scriptName} "${scriptName}: nothing to toggle" &
+		exit 1
+	fi
+	hyprctl dispatch togglefloating
+	varExit=$?
+	if [ $varExit -eq 0 ]; then
+		notify-send -u low -a ${scriptName} "${scriptName}: toggle" &
+	else
+		notify-send -a ${scriptName} "${scriptName}: toggle ERROR?"\
+			"'hyprctl dispatch togglefloating' exited with status '$varExit'" &
+	fi
+	exit 0
+fi
+
+
+# === normal ===
+textOutput="h"
+tooltip="just hyprland"
+if [ $(echo "$clientActive" | jq ".fullscreen") -eq 0 ]; then
 	textOutput="n"
 	tooltip="normal (f0)"
-elif echo "$clientActive" | grep -q "fullscreen: 1"; then
+elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 1 ]; then
 	textOutput="M"
 	tooltip="maximized (f1)"
-elif echo "$clientActive" | grep -q "fullscreen: 2"; then
+elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 2 ]; then
 	textOutput="F"
 	tooltip="fullscreen (f2)"
-elif echo "$clientActive" | grep -q "fullscreen: 3"; then
+elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 3 ]; then
 	textOutput="F"
 	tooltip="maximized and fullscreen (f3)"
 fi
 
-if echo "$clientActive" | grep -q "floating: 1"; then
+if [ $(echo "$clientActive" | jq ".floating") == "true" ]; then
 	if [ "$textOutput" == "n" ]; then
 		textOutput="f"
 		tooltip="floating"
