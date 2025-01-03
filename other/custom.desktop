@@ -1,0 +1,48 @@
+# and example Desktop-Entry with some settings
+# only the first 2 settings are needed
+# put this into:
+#	/usr/share/applications/  		(system installed)
+#	/usr/local/share/applications/	(custom global apps)
+#	~/.local/share/applications/	(user apps)
+
+[Desktop Entry]
+
+Type=Application
+Name=custom
+
+# this makes this entry not visible
+Hidden=true
+Version=1.5
+GenericName=on screen Keyboard
+Comment=An on screen keyboard for a laptops
+#Icon=
+# this entry will only shown if 'vim' exists
+TryExec=vim
+# searches in $PATH, if this is not a file location
+Exec=vim
+# the path where the progam will be started in (paths must be absolut)
+Path=/home/elia/
+# if this Application needs to be started in a terminal
+Terminal=true
+Categories=Utility;
+Keywords=keyboard;
+
+# the main Categories
+#Categories=AudioVideo;Audio;Video;Development;Education;Game;Graphics;Network;Office;Science;Settings;System;Utility;
+
+# dont show in menus
+#NoDisplay=true
+
+# put the value of $XDG_CURRENT_DESKTOP
+#OnlyShowIn=Hyprland
+#NotShowIn=Hyprland
+#PrefersNonDefaultGPU=true
+
+
+# u can create actions
+Actions=new-window;
+
+[Desktop Action new-window]
+Name=open a hello window
+Exec=vim hello
+# you have the same options as above
