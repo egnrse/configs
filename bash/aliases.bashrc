@@ -21,3 +21,11 @@ alias gitlg='git log --oneline'
 alias gitlog='git log'
 alias gitlogg='git log --stat'
 alias gitbr='git branch'
+
+# trash/delete
+alias rm='rm -I'
+# if trash-d is installed use it and not rm
+if [ -n "$(command -v trash)" ]; then
+	alias rm='trash'
+	alias trash='trash -I'
+fi
