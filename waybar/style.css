@@ -2,8 +2,12 @@
 	border: none;
 	border-radius: 0;
 	font-family: "DejaVuSansM Nerd Font";
-	font-size: 13px;
+	font-weight: normal;
+	font-size: 14px;
 	min-height: 0;
+	padding: 0;
+	margin: 0;
+	border-radius: 1px;
 }
 
 @import "theme.css";
@@ -16,41 +20,71 @@ window#waybar {
 	/*border-bottom: 1px solid @Border;*/
 }
 
+/* drop shadow */
+window#waybar > box {
+	background: transparent;
+	box-shadow: 0 0 2px 1px @AccentTransparent;
+	margin: 1px;
+}
 
-
-tooltip {
+tooltip, #tray menu {
 	background: @Background;
 	color: @MainText;
+	border-radius: 4px;
 }
 tooltip label {
 	color: @MainText;
+	font-weight: normal;
+	font-size: 13px;
+	margin: -2px 3px;
 }
 
-#window {
-	font-weight: bold;
+/* many */
+#custom-ws, #workspaces, #custom-padding1, #window, #clock, #battery, #network, #taskbar, #tray, #custom-spacer, #custom-update, #custom-power, #custom-wifi, #bluetooth, #wireplumber, #backlight, #power-profiles-daemon, #custom-media
+{
+	background: @Background;
+	color: @MainText;
+	transition-duration: 0s;
 }
+
+#custom-ws, #workspaces, #custom-padding1, #window, #clock, #battery, #network, #taskbar, #tray, #custom-spacer, #custom-update, #custom-power, #custom-wifi, #bluetooth, #wireplumber, #backlight, #custom-media
+{
+	padding: 0 0;
+	margin: 0px 0px;
+}
+
+/* hover buttons */
+#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #bluetooth:hover, #wireplumber:hover, #custom-media:hover {
+	/*background-color: @TextDark;*/
+	background-color: @Focus2Bg;
+	color: @Focus2Fg;
+	transition-duration: 0.3s;
+}
+
 
 
 /* === HYPRLAND === */
-
-#workspaces {
-}
 
 #workspaces button {
 	background: @Background;
 	color: @MainText;
 	padding: 0 5px;
-	transition-duration: 0.05s;
+	padding-top: 3px;
 }
 
-#workspaces button:active {
-	background: #ffffff;
-	border-top: 2px solid @border;
+#workspaces button.active {
+	background-color: @TextDark;
+	color: @Focus2Fg;
+	/*border-bottom: 1px fill @Border;*/
+	border-top: 1px solid @Border;
+	padding-top: 1px;
+	transition-duration: 0.45s;
 }
 
 #workspaces button:hover {
-	background-color: @BgDark;
+	background: @Focus2Bg;
 	color: @Focus2Fg;
+	font-weight: bold;
 }
 
 /* === COMPUTER === */
@@ -76,17 +110,14 @@ tooltip label {
 	}
 }
 #battery.critical:not(.charging) {
-	color: white;
+	color: #FFFFFF;
 	animation-name: batteryCritical;
 	animation-duration: 0.5s;
-	animation-timing-function: linear;
+	animation-timing-function: steps(10);
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
 
-#power-profile-daemon {
-	color: green;
-}
 
 /* === CONNECTIONS === */
 #network {
@@ -98,36 +129,89 @@ tooltip label {
 
 
 /* === OTHER === */
-#mode {
-	background: #64727D;
-	border-bottom: 3px solid white;
-}
-
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-	padding: 0 3px;
-	margin: 0 2px;
-}
-
 #clock {
 	font-weight: bold;
 }
+#backlight {
+	margin-left: 0px;
+	padding-right: 2px;
+}
+#custom-media {
+	font-size: 13px;
+}
+
+#power-profiles-daemon {
+	margin-left: 0px;
+}
+#power-profiles-daemon.performance {
+	color: @yellow;
+	padding-right: 4px;
+	padding-left: 2px;
+}
+#power-profiles-daemon.balanced {
+	color: @MainText;
+	padding-right: 6px;
+}
+#power-profiles-daemon.power-saver {
+	color: @green;
+	padding-left: 1px;
+	padding-right: 5px;
+}
 
 #tray {
+}
+#tray menu {
+	background: @BackgroundSolid;
+}
+
+#wireplumber {
+	padding: 0px 1px;
+	margin-right: 0px;
+}
+#bluetooth {
+	padding-right: 1px;
+}
+#bluetooth.on {
+	color: @blue;
+}
+@keyframes bluetoothDiscovering {
+	to {
+		background-color: @Background;
+		color: @TextDark;
+	}
+}
+#bluetooth.discovering {
+	color: @blue;
+	animation-name: bluetoothDiscovering;
+	animation-duration: 1s;
+	animation-timing-function: steps(20);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+#bluetooth.no-controller {
+	color: @Alert;
+}
+
+
+#custom-wifi {
+	margin-left: -3px;
+	margin-right: 1px;
+	padding-right: 2px;
+}
+#custom-update {
+	margin-left: -2px;
+	margin-right: 1px;
+	padding-right: 1px;
 }
 
 #custom-power {
 	color: @MainText;
 	background-color: @Background;
-	padding-left: 2px;
-	padding-right: 2px;
-	transition-duration: 0.05s;
+	padding-left: 1px;
+	padding-right: 0px;
+	margin-right: -3px;
 }
-#custom-power:hover {
-	color: @Focus2Fg;
-	background-color: @BgDark;
-}
-#custom-power:active {
+#custom-power:hover{
+	background-color: @TextDark;
 	color: @FocusFg;
-	background-color: @FocusBg;
 }
-

@@ -5,8 +5,7 @@
 	// ========== GENERAL ==========
 	"layer": "top",
 	"position": "top",
-	// "height": 24, // uncomment to set fixed height
-	// the layout may break if height is greater than 24
+	"height": 24,
 	"mode": "dock",
 	"exclusive": true,
 	"passthrough": false,
@@ -19,37 +18,33 @@
 	"modules-left": [
 		"custom/ws",            // window format-icons
 		"hyprland/workspaces",  // workspaces
-
-		"custom/paddw",
+		"custom/spacer",
+		"custom/padding1",
 		"hyprland/window"       // window title
 	],
 
 	"modules-center": [
-		//"custom/cpuinfo",		// temperature
-
-		"clock#timeDate"//,		 // time/date
-
+		"clock#timeDate"		 // time/date
 	],
 
 	"modules-right": [
-		//"custom/cpu",			// cpu
-		//"memory",				// memory
 		
 		"custom/media",         // media info
-		"custom/paddw",
+		"custom/padding1",
 
 		"wlr/taskbar",			// taskbar
+		"custom/padding1",
 		"tray",					
 		"systemd-failed-units",
 		"custom/spacer",
-		"custom/paddw",
+		//"custom/padding1",
 
 		"custom/update",        // system update
 		"custom/wifi",          // wi-fi
 		"bluetooth",            // bluetooth
 
 		"wireplumber",          // output device
-		"custom/paddw",
+		"custom/padding1",
 		"backlight",     // brightness
 		"power-profiles-daemon",
 		"battery",              // battery
@@ -65,5 +60,13 @@
 		"format": "|",
 		"tooltip": false,
 		"max-length": 1
+	},
+
+	// === Padding ===
+	"custom/padding1": {
+		"format": " ",
+		"tooltip": false//,
+		//"min-length": 1,
+		//"max-length": 1
 	}
 }

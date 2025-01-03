@@ -1,4 +1,3 @@
-// settings for most used waybar modules
 // the main file of this config is `config.jsonc`
 // by egnrse
 {
@@ -18,7 +17,7 @@
 		"all-outputs": false,
 		"active-only": false,
 		"on-click": "activate",
-		"disable-scroll": false,
+		"disable-scroll": true,
 		"on-scroll-up": "hyprctl dispatch workspace -1",
 		"on-scroll-down": "hyprctl dispatch workspace +1",
 		"sort-by-number": true,
@@ -98,17 +97,19 @@
 			"balanced": "",
 			"power-saver": ""
 		},
-		"min-length": 3
+		"min-length": 2
 	},
 
 	"backlight": {
-		"format": "{icon} {percent}%",
+		//"format": "{icon} {percent}%",
+		"format": "{icon}",
 		"format-icons": ["", "", "", "", "", "", "", "", ""],
+		"tooltip-format": "{icon} {percent}%",
 
 		"on-scroll-up": "brightnessctl set 1%+",
 		"on-scroll-down": "brightnessctl set 1%-",
-		"min-length": 6,
-		"max-length": 7,
+		"min-length": 1,
+		"max-length": 2,
 		//"reverse-mouse-scrolling": true,	// only mice
 		"reverse-scrolling": true 			// only for not mice
 	},
@@ -123,8 +124,8 @@
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
 		"on-click-right": "$TERM_RUN nmtui",
 		"interval": 1,
-		"min-length": 3,
-		"max-length": 3
+		"min-length": 2,
+		"max-length": 2
 	},
 
 	"bluetooth": {
@@ -148,8 +149,8 @@
 
 		"on-click": "blueman-manager",
 		"interval": 1,
-		"min-length": 3,
-		"max-length": 3
+		"min-length": 2,
+		"max-length": 2
 	},
 
 	// === media/audio ===
@@ -218,18 +219,15 @@
 
 	"wlr/taskbar": {
 		"format": "{icon}",
-		//"format": "{icon} {app_id}",
 		//"on-click": "minimize-raise",
 		"on-click": "activate",
+		"on-click-middle": "close",
 		//"on-click-right": "close",
 		"tooltip-format": "{title}",
 		//"all-outputs": false,
 		"ignore-list": [
 			"Alacritty"
 		],
-		"rewrite": {	//rewrites the output format (not the tooltip(?))
-			"Foot Server": "Terminal"
-		},
 		"icon-size": 14,
 		"min-length": 1,
 		"max-length": 1
@@ -237,7 +235,8 @@
 
 	"tray": {
 		"icon-size": 14,
-		"max-length": 1
+		"max-length": 5,		// does refer to the name?
+		"show-passive-items": "true"
 	},
 
 	"systemd-failed-units": {
@@ -246,20 +245,6 @@
 		"format-ok": "✓",
 		"system": true, // Monitor failed systemwide units.
 		"user": false // Ignore failed user units.<
-	},
-
-	// === Padding ===
-	"custom/paddw": {
-		"format": " ",
-		"tooltip": false//,
-		//"min-length": 1,
-		//"max-length": 1
-	},
-
-	"custom/paddc": {
-		"format": " ",
-		"tooltip": false//,
-		//"min-length": 1,
-		//"max-length": 1
 	}
+
 }

@@ -1,6 +1,7 @@
 {
 	"hyprland/window": {
-		"format": "{}",
+		"format": "{title}",
+		"tooltip": "true",
 		"separate-outputs": true,
 		"min-length": 5,
 		"max-length": 45,
@@ -13,12 +14,10 @@
 
 			// == Terminal ==
 
-			"~": "  Terminal",
+			"~": "  Terminal (~)",
 			"zsh": "  Terminal",
-			"class<Alacritty>": "  Terminal",
-			"Alacritty": "  Terminal",
-			"elia@15cn1xxx:(.*)": "  Terminal",
-			"(.*)elia@15cn1xxx:~": "  Terminal",
+			"Alacritty": "  Terminal (Alacritty)",
+			"^elia@15cn1xxx:(.*)$": "  Terminal ($1)",
 
 			// == Browser ==
 
