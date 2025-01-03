@@ -33,7 +33,7 @@ sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
 # legacy handling
 args1=$1
 if [ "$args1" == "up" ] || [ "$args1" == "update" ] || [ "$args1" == "upgrade" ]; then
-	notify-send "${scriptName}: using deprecated args"\
+	notify-send -a ${scriptName} "${scriptName}: using deprecated args"\
 		"usage: ${scriptName} [-u|-?]\nYou should use -u to launch the sysUpgrade_helper."
 	upgrade="true"
 else
@@ -112,15 +112,15 @@ export aur_helper=$(get_aur_helper)
 if [ "$upgrade" == "true" ]; then
 	if [ -z "$sysUpgrade_term" ]; then
 		# the value is empty
-		notify-send "${scriptName}: 'sysUpgrade_term' not set" \
+		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_term' not set" \
 			"Set 'sysUpgrade_term' in this script to use 'update'|'upgrade'." &
 	elif ! command -v $sysUpgrade_term >/dev/null 2>&1; then
 		# 'command' does not find sysUpgrade_term
-		notify-send "${scriptName}: 'sysUpgrade_term' not valid" \
+		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_term' not valid" \
 			"Did not find '${sysUpgrade_term}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
 	elif ! command -v $sysUpgrade_helper >/dev/null 2>&1; then
 		# the sysUpgrade_helper does not exist
-		notify-send "${s:riptName}: 'sysUpgrade_helper' not found" \
+		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_helper' not found" \
 			"Did not find '${sysUpgrade_helper}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
 	else
 		# save the output of the next command
@@ -135,7 +135,7 @@ if [ "$upgrade" == "true" ]; then
 		# test for errors
 		if [ $returnVal -ne 0 ]; then
 			echo "'sysUpgrade_helper' might have failed to start"
-			notify-send "${scriptName}: 'sysUpgrade_helper' might have failed to start" \
+			notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_helper' might have failed to start" \
 				"Try looking into '## CHANGE ME' in ${scriptName}.\nThe command exited with status: ${returnVal}\nThe ouput:\n$output" &
 		fi
 	fi

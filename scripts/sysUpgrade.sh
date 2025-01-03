@@ -19,7 +19,7 @@ custom_aur_helper=""
 
 # used for notifications
 scriptName="sysUpgrade.sh"
-#notify-send "${scriptName}: installed aur_helper not set!"\
+#notify-send -a ${scriptName} "${scriptName}: installed aur_helper not set!"\
 #	"Set it in the script OR give it as the first argument to this script." &
 
 #set -x	# verbose debugging
