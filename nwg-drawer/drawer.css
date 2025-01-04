@@ -1,0 +1,108 @@
+/* config for nwg-drawer
+ * (by egnrse)
+ *
+ */
+/* interactive debugging: GTK_DEBUG=interactive nwg-drawer -r */
+* {
+	border: none;
+	font-family: "DejaVuSansM Nerd Font";
+	font-weight: normal;
+	font-size: 14px;
+}
+
+@import "theme.css";
+
+window, entry, button {
+	color: @MainText;
+	text-shadow: none;
+	transition-duration: 0.3s;
+	border-radius: 4px;
+	box-shadow: none;
+	border-color: @Border;
+}
+window {
+    background-color: @BgDark;
+	opacity: 0.95;
+}
+/* does not work
+ * https://docs.gtk.org/gtk3/class.ScrolledWindow.html
+scrolledwindow .overshoot.top, scrolledwindow.undershoot.top {
+	background-color: #000;
+	color: #000;
+}*/
+
+/* search entry */
+entry {
+    background-color: @Accent;
+	border: 1px solid @Border;
+	font-size: 14px;
+}
+entry:focus {
+    background-color: @BgDark;
+	border: 1px solid @Border;
+	opacity: 1;
+}
+
+/* apps */
+button, image {
+    background: none;
+	opacity: 0.95;
+}
+button {
+    background-color: @BackgroundSolid;
+	padding: 0px 0px;
+}
+button:hover {
+    background-color: @Accent;
+	color: @Focus2Fg;
+	opacity: 0.95;
+}
+button:focus {
+	/*background-color: @TextDark;*/
+	background-color: @TextDark;
+	color: @FocusFg;
+	opacity: 0.95;
+	outline: none;
+}
+
+/* in case you wanted to give category buttons a different look */
+#category-button {
+    margin: 0 2px 0 2px;
+	padding: 0px 20px;
+	border: 2px solid @BorderDark
+}
+#category-button:hover label, #category-button:focus label {
+	border-bottom: 1px solid @Border;
+}
+
+#pinned-box {
+    padding-bottom: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+    border-bottom: 1px solid @Border
+}
+
+#files-box {
+	background-color: @BackgroundSolid;
+	opacity: 0.733;
+    padding: 5px;
+    border: 1px solid @BorderDark;
+    border-radius: 15px;
+}
+
+/* math operation result label */
+#math-label {
+    font-weight: bold;
+    font-size: 20px;
+}
+/*border: 1px solid @BorderDark;*/
+
+/* the hint on the bottom */
+#status-line-wrapper {
+	background-color: @Background;
+	margin: -20px 0 -10px 0;
+	padding: 3px 0 3px 0;
+	border-top: 2px solid @BorderDark
+}
+#status-label {
+}
