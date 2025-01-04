@@ -27,16 +27,20 @@
 
 @define-color Accent		#350F3F;
 
-@define-color BackgroundSolid #180E1E;
-@define-color AccentTransparent	rgba(53,15,63,0.733);	/* #350F3F */
+@define-color MainTextTransparent	rgba(252,212,246 ,0.733);	/* #FCD4F6 */
+@define-color BackgroundSolid		#180E1E;
+@define-color AccentTransparent		rgba(53,15,63,0.733);	/* #350F3F */
 
 @define-color FocusFg		#35C1E7;
 @define-color FocusBg		@MainText;
 @define-color Focus2Fg		@FocusFg;
 @define-color Focus2Bg		@Accent;
 
+@define-color FocusBgTransparent	@MainTextTransparent;
+
 
 @define-color Border		@FocusFg;
+@define-color BorderDark	@Focus2Bg;
 @define-color Alert			#C1334A;
 @define-color AlertDark		#280C1B;
 
