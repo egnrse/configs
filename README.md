@@ -50,7 +50,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [waybar](#waybar):    (/waybar/)
 - [wlogout](#wlogout):  (/wlogout/)  
 - [general Theme](#general-theme): (egnrseTheme.css)
-- [Nerd-Font](#nerd-font): (/other/DejaVuSansMono.zip)
+- [misc](#misc):  (/other/*)
 
 wanting to add:
 - rofi?
@@ -73,7 +73,7 @@ This file has some visual changes to make alacritty more beautiful.
 My config is split into two/three parts:  
 - custom.bashrc (general settings)  
 - aliases.bashrc (aliases for commands)  
-- [~/.bashrc (for device specific settings, not in this git)]  
+- [~/.bashrc (for device specific settings, not fully in this git)]  
 
 add this to your `~/.bashrc` (or similar) to source the files:
 ```
@@ -87,6 +87,8 @@ else
 fi
 ```
 Some more infos are in the files.  
+
+I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into autotrash<sup>AUR</sup>)
 
 ### [dunst](https://dunst-project.org/)
 *(/dunst/) (Linux)*  
@@ -157,11 +159,12 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
 ### scripts
 *(/scripts/) (Linux)*  
 Some of my custom scripts used by other configs (eg. waybar, hyprland).  
-A better place to put custom scripts (than in the .config folder) is in `$HOME/.local/share/bin`. I linked `$HOME/.local/share/bin` to `$HOME/.config/scripts/` (where the files will land if u just clone this git).  
+A better place to put custom scripts (than in the .config folder) is in `$HOME/.local/share/bin`. I linked `$HOME/.local/share/bin/scripts` to `$HOME/.config/scripts/` (where the files will land if u just clone this git).  
 You can do this with:  
 ```
-ln -s $HOME/.config/scripts/ $HOME/.local/share/bin
+ln -s $HOME/.config/scripts/ $HOME/.local/share/bin/scripts
 ```
+Make sure the path ($HOME/.local/share/bin) exists (else the command fails).
 
 Some scripts have settings/dependencies that are written in the top of the scripts. Some of the scripts will warn about and handle missing dependencies gracefully. (sadly not all of them yet)  
 
@@ -213,7 +216,7 @@ Needs:
 - networkmanager
 - blueman-manager (bluetooth gui)
 - wireplumber (audio-server, config has to be changed for it to work with ALSA only)
-- pwvucontrol helvum (audio-management gui)
+- pwvucontrol<sub>AUR</sub> helvum (audio-management gui)
 
 ### wlogout
 *(/wlogout/) (Linux)*  
@@ -230,11 +233,25 @@ still a work in progress
 The Idea is to have one file where I can change all colors for all apps/packages I use.  
 Already works for all that use \*.css files. (eg. waybar, wlogout), in all other configs the colors are hardcoded.  
 
+### misc
+Other things that might I use...
+TODO: get a list of all dependencies (eg<sub>AUR</sub>)
 
-### [Nerd-Font](https://www.nerdfonts.com)
+#### onScreen Keyboard
+(/other/wvkbd*)  
+Put the binary `wvkbd-laptop` in a directory on the path (eg. `/usr/local/bin/`) to use it system-wide (hyprland/sddm/the desktop-entry expect that)  
+Put the desktop-entry in eg. `~/.local/share/applications/` (or follow the instructions in the file).  
+Swipe with one finger from the bottom up (on a touch screen) to toggle the keyboards visibility. (within [hyprland](#hyprland) with the hyprgrass plugin)
+
+#### [Nerd-Font](https://www.nerdfonts.com)
 (/other/DejaVuSansMono.zip)  
-The font used by many of the configs in this git.  
+The font used by many/some of the configs in this git.  
 Download it or install it over pacman: `ttf-dejavu-nerd`
+
+#### cool/usefull Packages
+zerotier-one
+joplin-desktop<sup>AUR</sup>
+beeper-latest-bin<sup>AUR</sup>
 
 ## Appendix
 ### other useful (git) commands:
@@ -249,3 +266,19 @@ Download it or install it over pacman: `ttf-dejavu-nerd`
 ### ssh
 use `~/.ssh/config`  
 `ssh -T github` : test github connection  
+
+### packages
+not sure which ones are <sub>AUR</sub>...  
+plasma-meta hyprland sddm uwsm		(window/login/session manager)  
+neovim vim git sudo grub openssh 	(some basics)  
+man-db man-pages  
+ntfs exfat-utils 			(filesystem types)  
+yay flatpak wget pacman-contrib 	(package manager+)  
+networkmanager	bluez-utils blueman	(internet/networking/bluetooth)  
+pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
+waybar dunst tofi<sup>AUR</sup> rofi-wayland wlogout	(statusbar, notifications, {app} browser)  
+zerotier-one firefox alacritty  
+appimagelauncher ttf-dejavu-nerd dolphin  
+qt5-wayland polkit-kde-agent  
+obs-studio libreoffice-fresh  
+joplin-desktop<sup>AUR</sup> beeper-latest-bin<sup>AUR</sup>  
