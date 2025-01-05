@@ -118,12 +118,14 @@ Many explanations are in the files.
 `SUPER+CTR+L`   : close/exit/logout (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
 `SUPER+E`       : opens File Browser (dolphin)  
-`SUPER [+R]`    : program launcher (tofi)  
+`SUPER +R`      : program launcher (tofi)  
+`SUPER +X`      : program drawer (nwg-drawer)  
 `SUPER+C`       : close active window  
   
 `SUPER+[1-0]`   : go to workspace [1-10]  
 `SUPER+S`       : go to special workspace  
 `SUPER+SHIFT+[1-0]` : move current window to workspace [1-10]  
+`SUPER+CTRL+[1-0]` : move current window to workspace (silently) [1-10]  
 `SUPER+SIFT+S`  : move current window to special workspace  
   
 `SUPER+V`       : toggle floating (for the active window)  
@@ -138,7 +140,7 @@ Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightM
 
 #### Plugins  
 - [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
-- hypergrass: better touch screen support  
+- hypergrass: better touch screen support (swipe bottom to left for [wvkbd-latop](#onscreen-keyboard) keyboard)  
 
 ### [nvim](https://neovim.io/)
 *(/nvim/) (Win10/Linux)*  
