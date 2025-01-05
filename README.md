@@ -254,6 +254,12 @@ joplin-desktop<sup>AUR</sup>
 beeper-latest-bin<sup>AUR</sup>
 
 ## Appendix
+### FIXES?
+#### Electron Apps
+If apps are blurry (on wayland) it might be using xWayland, you can fix this by adding the following to the launch-command of the app:  
+(the launch command prob. is in `/usr/bin/{APP}`)  
+`--enable-features=UseOzonePlatform --ozone-platform=wayland`
+
 ### other useful (git) commands:
 `git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
 `git config --global core.editor "nvim"`  
