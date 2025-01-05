@@ -55,10 +55,7 @@ shopt -s cdable_vars
 #export dDocs="${data}/Documents#2/"
 #export dTU="${data}/Documents#2/TU/"
 
-# show that wayland is the Display-Server-Protocol (some apps rely on that)
-export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=qt5ct
-export GDK_BACKEND=wayland
+
 
 
 ## ALIASES
