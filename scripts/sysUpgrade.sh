@@ -7,6 +7,7 @@
 # args: $1=aur_helper
 # Needs:
 # 	pacman-contrib (for pacdiff, paccache)
+# 	sudo
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
 # 
@@ -141,7 +142,7 @@ if [ $skip -eq 0 ]; then
 	echo "deal with new configuration files (pacdiff)"
 	pause skip
 	if [ $? -eq 0 ]; then
-		pacdiff
+		pacdiff --sudo
 	fi
 	# maybe also try p3wm 
 	echo "$underline"
