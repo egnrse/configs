@@ -1,5 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
+# show that wayland is the Display-Server-Protocol (some apps rely on that)
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=qt5ct
+export GDK_BACKEND=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
 # fetch the custom config file for bash (if it exists)
 # $customBashConfig_path is the path to the config file
