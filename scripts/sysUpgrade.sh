@@ -142,7 +142,7 @@ if [ $skip -eq 0 ]; then
 	echo "deal with new configuration files (pacdiff)"
 	pause skip
 	if [ $? -eq 0 ]; then
-		pacdiff --sudo
+		pacdiff --sudo --backup
 	fi
 	# maybe also try p3wm 
 	echo "$underline"
