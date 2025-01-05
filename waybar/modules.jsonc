@@ -200,7 +200,8 @@
 
 	"custom/power": {
 		"format": " ",
-		"tooltip": false,
+		"tooltip": true,
+		"tooltip-format": "(Ctr+Super+L)",
 		"on-click": "~/.config/scripts/logoutlaunch.sh 2",
 		"on-click-right": "~/.config/scripts/logoutlaunch.sh 1",
 		"min-length": 4
