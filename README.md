@@ -104,22 +104,20 @@ Replace the placeholders if needed (eg {email}, {computerName}).
 
 ### [hyprland](https://hyprland.org/)
 *(/hypr/) (Linux)*  
-Might not (fully) work without some other (not yet here) stuff.  
-
-A wayland native (tiling) window manager.  
+A wayland native (tiling/hybrid) window manager.  
 This config is split into 4 parts:  
 - hyperland.conf (the main config file)  
-- look-feel.conf (animations, borders, gaps, ...)  
+- look-feel.conf (animations, borders, gaps, ...)
+- window-rules.conf (rules on how windows/layers/workspaces/apps behave)  
 - maps.conf      (key mappings)
-- plugins.conf	 (plugins)
+- plugins.conf	 (plugins, including plugin keymappings)
 
-Many explanations are in the files.  
+Many explanations are in the config files.  
 #### Keymappings
-`SUPER+CTR+L`   : close/exit/logout (wlogout)  
+`SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
 `SUPER+E`       : opens File Browser (dolphin)  
-`SUPER +R`      : program launcher (tofi)  
-`SUPER +X`      : program drawer (nwg-drawer)  
+`SUPER+D`       : program drawer (nwg-drawer)  
 `SUPER+C`       : close active window  
   
 `SUPER+[1-0]`   : go to workspace [1-10]  
@@ -130,10 +128,12 @@ Many explanations are in the files.
   
 `SUPER+V`       : toggle floating (for the active window)  
 `SUPER+P`       : pin the active windows (to stay visible on all workspaces)  
-`SUPER+I`       : toggle how the (old) window was split (when inserting a new window)  
-`SUPER+O`       : switch split side  
+`SUPER+O`       : toggle split Orientation (how the (old) window was split)    
+`SUPER+I`       : switch split side  
 `SUPER+M`       : maximize active window (keep borders/bars)  
 `F11`           : make active window fullscreen  
+
+`SUPER+R`       : simple program launcher (tofi)  
 *(for more look into /hypr/maps.conf or /hypr/plugins.conf)*  
 
 Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
