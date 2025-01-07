@@ -1,10 +1,14 @@
 # some of my configs [WIP]
 THIS IS STILL DEVELOPING! PR/issues are very welcome.  
 
-This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of the configs I use on my windows machine too.
+This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of those configs I use on my windows machine too.
 
-In this repo are only configs not their programs, those u must have installed previously.  
+Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into the [Appendix](#Appendix) under [packages](#packages))  
+
+This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) some parts will break without this dependency.  
+
 For most configs, sparse-clone this git OR copy the files you want into the `~/.config/*/` folder. (with \* being the name of the program)  
+TODO: change this to a link based system (using `stow`?)
 
 I use sparse-checkout and exlude to only get specific files with git. Sadly, the README.md file always gets cloned.  
 Except for files in the `other` folder all files should already be at the right place after cloning this repo. 
@@ -21,14 +25,15 @@ git config core.sparseCheckoutCone true
 ```
 Choose the folders that u want:
 ```
-git sparse-checkout set alacritty bash dunst hypr nvim scripts tofi waybar wlogout
+git sparse-checkout set alacritty bash dunst environment.d hypr nvim nwg-drawer scripts tofi waybar wlogout
 ```
+(many of the configs rely on scripts and environment.d (or on each other) taking only a few might break things)  
+
 Finish the setup:
 ```
 git pull origin main
 git branch --set-upstream-to=origin/main main
 ```
-
 
 #### setup git exlude
 `./.git/info/exlude`  
@@ -43,6 +48,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [git](#git):    (/other/.gitconfig)
 - [hyprland](#hyprland):  (/hypr/)  
 - [neovim](#nvim): (/nvim/)  
+- [nwg-drawer](#nwg-drawer):    (/nwg-drawer/)
 - [scripts](#scripts):  (/scripts/)  
 - [tofi](#tofi):     (/tofi/)
 - [v-editor](#v)       (/other/v-editor)  
@@ -87,6 +93,7 @@ else
 fi
 ```
 Some more infos are in the files.  
+(be careful when settings environment variables)  
 
 I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into autotrash<sup>AUR</sup>)
 
@@ -111,8 +118,11 @@ This config is split into 4 parts:
 - window-rules.conf (rules on how windows/layers/workspaces/apps behave)  
 - maps.conf      (key mappings)
 - plugins.conf	 (plugins, including plugin keymappings)
-
 Many explanations are in the config files.  
+
+This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and some parts will not work with out this dependency.  
+See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`  
+
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
@@ -276,7 +286,8 @@ use `~/.ssh/config`
 `ssh -T github` : test github connection  
 
 ### packages
-not sure which ones are <sub>AUR</sub>...  
+not all AUR packages are marked yet (example<sub>AUR</sub>)  
+
 plasma-meta hyprland sddm uwsm		(window/login/session manager)  
 neovim vim git sudo grub openssh 	(some basics)  
 man-db man-pages  
