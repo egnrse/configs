@@ -2,6 +2,11 @@
 #
 # a custom config file for bash (extends .bashrc)
 # (https://github.com/egnrse/configs)
+# (by egnrse)
+#
+# custom.bashrc:	general settings are here
+# aliases.bashrc:	shell aliases 
+# env.bashrc:		custom environment variables
 #
 ################################################
 ########## put this into your .bashrc ##########
@@ -33,16 +38,6 @@ fi
 # just changes the color of 777 files in general for the ls command
 export LS_COLORS="ow=01;31:$LS_COLORS"
 
-
-## CUSTOM ENVIRONMENT VARIABLES
-################################
-#
-# those can be accessed with "$varName"
-# (in strings) the " (double qotes) are needed for command expansion (in '$varName' commands are not expanded)
-export EDITOR=nvim				# your prefered editor (eg. vim, nano)
-export TERMINAL=alacritty		# your prefered terminal (used in some scripts)
-export TERM_RUN="alacritty -e"	# run a command in a new shell
-
 # make variables usable in cd calls (eg. `cd data`)
 shopt -s cdable_vars
 # custom paths (that can be used in cd calls because of the line above)
@@ -69,3 +64,18 @@ if [ -f $customBashAliases_path ]; then
 else
 	echo "custom.bashrc: aliases.bashrc not found ($customBashAliases_path)"
 fi
+
+
+## CUSTOM ENVIRONMENT VARIABLES
+################################
+# fetch the env file (if the file exists)
+# currentDir gets the directory *this* file is in
+currentDir="$(dirname ${BASH_SOURCE[0]})"
+customBashEnv_path="${currentDir}/env.bashrc"
+if [ -f $customBashEnv_path ]; then
+	source $customBashEnv_path
+else
+	echo "custom.bashrc: env.bashrc not found ($customBashEnv_path)"
+fi
+
+

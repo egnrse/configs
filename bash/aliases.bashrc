@@ -2,6 +2,7 @@
 #
 # a custom config file for bash (extends .bashrc)
 # (https://github.com/egnrse/configs)
+# (by egnrse)
 # 
 
 # uncomment if u want the base functionality of `v-editor`, without doing it properly
