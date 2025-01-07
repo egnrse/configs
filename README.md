@@ -1,5 +1,5 @@
 # some of my configs [WIP]
-THIS IS STILL DEVELOPING! PR/issues are very welcome.  
+## !! This branch is STALE, I fully switched to [uwsm](https://github.com/Vladimir-csp/uwsm) for now. !!  
 
 This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of the configs I use on my windows machine too.
 
