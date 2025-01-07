@@ -54,7 +54,8 @@ tooltip label {
 }
 
 /* hover buttons */
-#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #bluetooth:hover, #wireplumber:hover, #custom-media:hover, #custom-hyprWindowMode:hover {
+#bluetooth.on:hover, #bluetooth.connected:hover, #bluetooth:hover, 
+#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #wireplumber:hover, #custom-media:hover, #custom-hyprWindowMode:hover {
 	/*background-color: @TextDark;*/
 	background-color: @Focus2Bg;
 	color: @Focus2Fg;
@@ -182,7 +183,7 @@ tooltip label {
 #bluetooth {
 	padding-right: 1px;
 }
-#bluetooth.on {
+#bluetooth.on, #bluetooth.connected {
 	color: @blue;
 }
 @keyframes bluetoothDiscovering {
