@@ -3,7 +3,7 @@ THIS IS STILL DEVELOPING! PR/issues are very welcome.
 
 This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of those configs I use on my windows machine too.
 
-Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into the [Appendix](#Appendix) under [packages](#packages))  
+Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [packages](#packages) under the [Appendix](#Appendix))  
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) some parts will break without this dependency.  
 
