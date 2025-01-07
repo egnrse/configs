@@ -286,7 +286,7 @@ use `~/.ssh/config`
 `ssh -T github` : test github connection  
 
 ### packages
-not all AUR packages are marked yet (example<sub>AUR</sub>)  
+not all AUR packages are marked yet (example<sup>AUR</sup>)  
 
 plasma-meta hyprland sddm uwsm		(window/login/session manager)  
 neovim vim git sudo grub openssh 	(some basics)  
