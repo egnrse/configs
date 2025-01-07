@@ -32,7 +32,7 @@
 		"exec": "~/.config/waybar/scripts/hyprWindowMode.sh",
 		"return-type": "json",
 		"format": "{}",
-		"on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/hyprWindowMode.sh toggle'",
+		"on-click": "uwsm app -- ~/.config/waybar/scripts/hyprWindowMode.sh toggle",
 		"tooltip": true,
 		"interval": 1
 	},
@@ -111,7 +111,7 @@
 		"format": "{}",
 		"tooltip": true,
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
-		"on-click-right": "$TERM_RUN nmtui",
+		"on-click-right": "uwsm app -- $TERM_RUN nmtui",
 		"interval": 1,
 		"min-length": 2,
 		"max-length": 2
@@ -136,7 +136,7 @@
 		"tooltip-format-enumerate-connected-battery": 
 		"{device_alias}: {device_battery_percentage}%",
 
-		"on-click": "blueman-manager",
+		"on-click": "uwsm app -- blueman-manager",
 		"interval": 1,
 		"min-length": 2,
 		"max-length": 2
@@ -157,8 +157,8 @@
 		"format": "{icon} {volume}%",
 		"format-muted": "󰝟 {volume}%",
 		"format-icons": ["󰕿", "󰖀", "󰕾"],
-		"on-click": "pwvucontrol",
-		"on-click-right": "helvum",
+		"on-click": "uwsm app -- pwvucontrol",
+		"on-click-right": "uwsm app -- helvum",
 		"max-volume": 150,
 		"scroll-step": 1,
 		"reverse-scrolling": 1,		//scrolling down decreases loudness
@@ -172,7 +172,7 @@
 		"exec": "~/.config/scripts/packageUpdates.sh",
 		"return-type": "json",
 		"format": "{}",
-		"on-click": "hyprctl dispatch exec '~/.config/scripts/packageUpdates.sh -u'",
+		"on-click": "uwsm app -- ~/.config/scripts/packageUpdates.sh -u",
 		"interval": 60,	// look for updates every 60s
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
