@@ -126,7 +126,7 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
-`SUPER+E`       : opens File Browser (dolphin)  
+`SUPER+E`       : opens File Browser (nemo)  
 `SUPER+D`       : program drawer (nwg-drawer)  
 `SUPER+C`       : close active window  
   
@@ -297,7 +297,7 @@ networkmanager	bluez-utils blueman	(internet/networking/bluetooth)
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
 waybar dunst tofi<sup>AUR</sup> rofi-wayland wlogout	(statusbar, notifications, {app} browser)  
 zerotier-one firefox alacritty  
-appimagelauncher ttf-dejavu-nerd dolphin  
+appimagelauncher ttf-dejavu-nerd nemo  
 qt5-wayland polkit-kde-agent  
 obs-studio libreoffice-fresh  
 joplin-desktop<sup>AUR</sup> beeper-latest-bin<sup>AUR</sup>  
