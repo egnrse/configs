@@ -55,14 +55,19 @@ tooltip label {
 
 /* hover buttons */
 #bluetooth.on:hover, #bluetooth.connected:hover, #bluetooth:hover, 
-#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #wireplumber:hover, #custom-media:hover, #custom-hyprWindowMode:hover {
+#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #wireplumber:hover, #custom-media:hover {
 	/*background-color: @TextDark;*/
 	background-color: @Focus2Bg;
 	color: @Focus2Fg;
 	transition-duration: 0.3s;
 }
-
-
+#custom-hyprWindowMode:hover, #custom-power:hover {
+	background-color: @TextDark;
+	color: @FocusFg;
+}
+#taskbar button.active  {
+	border-bottom: 1px solid @Border;
+}
 
 /* === HYPRLAND === */
 
@@ -71,6 +76,9 @@ tooltip label {
 	color: @MainText;
 	padding: 0 5px;
 	padding-top: 3px;
+	transition-duration: 0.45s;
+	box-shadow: none;
+	border: none;
 	/* does not work?
 	font-size: 16px;
 	font-weight: bold;
@@ -80,16 +88,21 @@ tooltip label {
 #workspaces button.active {
 	background-color: @TextDark;
 	color: @Focus2Fg;
-	/*border-bottom: 1px fill @Border;*/
 	border-top: 1px solid @Border;
 	padding-top: 1px;
-	transition-duration: 0.45s;
+	font-weight: bold;	/* does not work */
 }
-
 #workspaces button:hover {
 	background: @Focus2Bg;
 	color: @Focus2Fg;
-	font-weight: bold;
+	border-bottom: 2px solid @Border;
+	padding-top: 1px;
+}
+#workspaces button.active:hover {
+	background-color: @TextDark;
+	color: @Focus2Fg;
+	border-bottom: 2px solid @Border;
+	border-top: 0px solid @Border;
 }
 
 /* === COMPUTER === */
@@ -223,7 +236,4 @@ tooltip label {
 	padding-right: 0px;
 	margin-right: -3px;
 }
-#custom-power:hover{
-	background-color: @TextDark;
-	color: @FocusFg;
-}
+
