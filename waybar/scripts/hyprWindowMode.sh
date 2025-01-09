@@ -1,13 +1,16 @@
 #!/bin/bash
 
 # looks if the active window (in hyprland) is one of the following:
-# normal/floating/fullscreen1(maximized)/fullscreen2(fullscreen)/fullscreen3/there is no active window
+# 	normal		: n	(also adds '[]' around the state letter)
+# 	floating	: f	(also adds '()' around the state letter)
+# 	maximized	: M
+# 	fullscreen: F	(also for fullscreen and maximized)
+# 	empty WS	: h (hyprland)
+# 	pseudo		: P
+# 	pinned		: p
 # (or a combination of them)
-# returns the result in a json that works for waybar ([n]/(f)/M/F/F/h)
-# 	'[x]': it is a normal window (with x being one of the following: n,h,M,F)
-# 	'(x)': it is a floating window (x: f,M,F)
-# 
 # 	eg. (M) means a floating window that is maximized
+# returns the result in a json that works for waybar
 # also toggles the floating state of the active window, when $1="toggle"
 # 
 # Needs:
@@ -26,6 +29,7 @@ args1=$1
 clientActive=$(hyprctl activewindow -j)
 
 # === toggle ===
+# toggle floating sate of the active window
 if [ "$args1" == "toggle" ]; then
 	out=$(echo "$clientActive" | jq ".address")
 	if [ "$out" = "null" ]; then
@@ -51,7 +55,8 @@ tooltip="just hyprland"
 if [ $(echo "$clientActive" | jq ".fullscreen") -eq 0 ]; then
 	textOutput="n"
 	tooltip="normal (f0)"
-elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 1 ]; then
+fi
+if [ $(echo "$clientActive" | jq ".fullscreen") -eq 1 ]; then
 	textOutput="M"
 	tooltip="maximized (f1)"
 elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 2 ]; then
@@ -60,15 +65,41 @@ elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 2 ]; then
 elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 3 ]; then
 	textOutput="F"
 	tooltip="maximized and fullscreen (f3)"
+elif [ $(echo "$clientActive" | jq ".pinned") == "true" ]; then
+	textOutput="p"
+	tooltip="pinned"
+fi
+# pseudo
+pseudo=0
+if [ $(echo "$clientActive" | jq ".pseudo") == "true" ]; then
+	if [ "$textOutput" = "n" ]; then
+		textOutput="P"
+	fi
+	pseudo=1
 fi
 
+# floating
+floating=0
 if [ $(echo "$clientActive" | jq ".floating") == "true" ]; then
-	if [ "$textOutput" == "n" ]; then
-		textOutput="f"
-		tooltip="floating"
-	else
-		tooltip="${tooltip} and floating"
-	fi
+	floating=1
+	case "$textOutput" in
+		# normal
+		"n"|"P")
+			textOutput="f"
+			tooltip="floating"
+			;;
+		# maximized/fullscreen/pinned
+		*)
+			tooltip="${tooltip} and floating"
+			;;
+	esac
+fi
+
+if [ "${pseudo}" -eq 1 ]; then
+	tooltip="${tooltip}\n[pseudo]"
+fi
+
+if [ "${floating}" -eq 1 ]; then
 	textOutput="(${textOutput})"
 else
 	textOutput="[${textOutput}]"
