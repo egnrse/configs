@@ -1,9 +1,9 @@
 # some of my configs [WIP]
 THIS IS STILL DEVELOPING! PR/issues are very welcome.  
 
-This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of those configs I use on my windows machine too.
+This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of those configs I use on my windows machine too. (eg. nvim/alacritty)
 
-Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [packages](#packages) under the [Appendix](#Appendix))  
+Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [packages](#packages) in the [Appendix](#Appendix))  
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) some parts will break without this dependency.  
 
@@ -238,7 +238,6 @@ Needs:
 - egnrseTheme.css (in this git)
 - hyprland
 
-
 ### general Theme
 *(egnrseTheme.css) (Linux)*  
 still a work in progress  
@@ -260,7 +259,7 @@ Swipe with one finger from the bottom up (on a touch screen) to toggle the keybo
 The font used by many/some of the configs in this git.  
 Download it or install it over pacman: `ttf-dejavu-nerd`
 
-#### cool/usefull Packages
+#### cool/useful Packages
 zerotier-one
 joplin-desktop<sup>AUR</sup>
 beeper-latest-bin<sup>AUR</sup>
@@ -268,9 +267,13 @@ beeper-latest-bin<sup>AUR</sup>
 ## Appendix
 ### FIXES?
 #### Electron Apps
-If apps are blurry (on wayland) it might be using xWayland, you can fix this by adding the following to the launch-command of the app:  
+If apps are blurry (on wayland) it might be using Xwayland, you can fix this by adding the following to the launch-command of the app:  
 (the launch command prob. is in `/usr/bin/{APP}`)  
-`--enable-features=UseOzonePlatform --ozone-platform=wayland`
+`--enable-features=UseOzonePlatform --ozone-platform=wayland`  
+
+#### Matlab
+Look into the file `/other/matlabStart.sh` and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
+I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
 
 ### other useful (git) commands:
 `git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
@@ -286,18 +289,30 @@ use `~/.ssh/config`
 `ssh -T github` : test github connection  
 
 ### packages
-not all AUR packages are marked yet (example<sup>AUR</sup>)  
+some packages I use
 
-plasma-meta hyprland sddm uwsm		(window/login/session manager)  
-neovim vim git sudo grub openssh 	(some basics)  
-man-db man-pages  
-ntfs exfat-utils 			(filesystem types)  
-yay flatpak wget pacman-contrib 	(package manager+)  
-networkmanager	bluez-utils blueman	(internet/networking/bluetooth)  
-pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
-waybar dunst tofi<sup>AUR</sup> rofi-wayland wlogout	(statusbar, notifications, {app} browser)  
-zerotier-one firefox alacritty  
-appimagelauncher ttf-dejavu-nerd nemo  
-qt5-wayland polkit-kde-agent  
-obs-studio libreoffice-fresh  
-joplin-desktop<sup>AUR</sup> beeper-latest-bin<sup>AUR</sup>  
+#### basics
+base-devel neovim vim git sudo grub openssh efibootmgr
+man-db man-pages						(man pages)
+ntfs-3g exfat-utils 					(filesystem types)
+networkmanager bluez-utils blueman	    (internet/networking/bluetooth)
+flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)
+pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)
+waybar dunst rofi-wayland wlogout<sup>AUR</sup> tofi<sup>AUR</sup> nwg-drawer (statusbar, notifications, app-launcher)
+zerotier-one firefox alacritty
+trash-d ttf-dejavu-nerd nemo fastfetch rclone
+
+#### window manager
+plasma-meta hyprland sddm (kde, tiling WM, login)
+wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)
+
+#### other
+unzip zip
+obs-studio libreoffice-fresh
+prismlauncher appimagelauncher
+
+#### from AUR
+vesktop beeper-latest-bin spotify
+#### from Flatpak
+keepassXC joplin bottles OBS_Studio
+
