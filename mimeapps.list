@@ -1,0 +1,11 @@
+[Default Applications]
+inode/directory=nemo.desktop
+text/plain=nvim.desktop
+text/x-shellscript=nvim.desktop
+application/pdf=firefox.desktop
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/terminal=Alacritty.desktop
