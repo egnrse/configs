@@ -272,8 +272,15 @@ If apps are blurry (on wayland) it might be using Xwayland, you can fix this by 
 `--enable-features=UseOzonePlatform --ozone-platform=wayland`  
 
 #### Matlab
-Look into the file `/other/matlabStart.sh` and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
+Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
 I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
+
+#### Nemo (filemanager)
+change the standart terminal to alacritty:  
+`gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty`  
+fix running shell-scripts with alacritty (needs the option -e):  
+`gsettings set org.cinnamon.desktop.default-applications.terminal exec-arg e`  
+more in the [ArchWiki-Nemo](https://wiki.archlinux.org/title/Nemo)  
 
 ### other useful (git) commands:
 `git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
