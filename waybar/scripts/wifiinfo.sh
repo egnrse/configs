@@ -101,6 +101,7 @@ else
     grep -w "connected" |
 	grep -v -E "^(dummy|lo:)" |
 	grep -v -E "(externally)" |
+	head -n 1 |
     awk -F: '{print $1}')
 
   if [ -n "$active_device" ]; then

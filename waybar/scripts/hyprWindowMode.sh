@@ -52,17 +52,17 @@ fi
 # === normal ===
 textOutput="h"
 tooltip="just hyprland"
-if [ $(echo "$clientActive" | jq ".fullscreen") -eq 0 ]; then
+if [ $(echo "$clientActive" | jq ".fullscreen") == "0" ]; then
 	textOutput="n"
 	tooltip="normal (f0)"
 fi
-if [ $(echo "$clientActive" | jq ".fullscreen") -eq 1 ]; then
+if [ $(echo "$clientActive" | jq ".fullscreen") == "1" ]; then
 	textOutput="M"
 	tooltip="maximized (f1)"
-elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 2 ]; then
+elif [ $(echo "$clientActive" | jq ".fullscreen") == "2" ]; then
 	textOutput="F"
 	tooltip="fullscreen (f2)"
-elif [ $(echo "$clientActive" | jq ".fullscreen") -eq 3 ]; then
+elif [ $(echo "$clientActive" | jq ".fullscreen") == "3" ]; then
 	textOutput="F"
 	tooltip="maximized and fullscreen (f3)"
 elif [ $(echo "$clientActive" | jq ".pinned") == "true" ]; then
