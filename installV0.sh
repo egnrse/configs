@@ -9,6 +9,8 @@ set -x
 origin="$HOME/Documents/configs/"
 config="$HOME/.config/"
 backup="${config}.bac/"
+rootConf="/root/.config/"
+rootBackup="${rootConf}.bac/"
 
 mkdir ${backup}
 mv ${config}alacritty ${backup}
@@ -40,3 +42,15 @@ ln -s -i ${origin}egnrseTheme.css ${config}
 mv ${config}mimeapps.list ${backup}
 ln -s -i ${origin}mimeapps.list ${config}
 
+# link roots nvim to ours?
+read -p "do you want to link the nvim configs to root? [y/N]: " answer
+case $answer in
+	[Yy]*)
+		sudo mv ${rootConf}nvim ${rootBackup}
+		sudo ln -s -i ${origin}nvim ${rootConf}
+		;;
+	[Nn]*|"")
+		;;
+esac
+
+echo "All done."
