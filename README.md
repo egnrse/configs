@@ -282,6 +282,11 @@ fix running shell-scripts with alacritty (needs the option -e):
 `gsettings set org.cinnamon.desktop.default-applications.terminal exec-arg e`  
 more in the [ArchWiki-Nemo](https://wiki.archlinux.org/title/Nemo)  
 
+#### Pacman / Steam
+In `/etc/pacman.conf` I enable `ParallelDownloads = 5` and the `multilib` library (multilib is required for the `steam` package).  
+(just remove the `#` before the lines)  
+I used `rankmirrors` to rank the mirrors I chose in `/etc/pacman.d/mirrorlist`.
+
 ### other useful (git) commands:
 `git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
 `git config --global core.editor "nvim"`  
