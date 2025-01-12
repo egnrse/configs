@@ -307,12 +307,12 @@ some packages I use
 base-devel neovim vim git sudo grub openssh efibootmgr
 man-db man-pages						(man pages)
 ntfs-3g exfat-utils 					(filesystem types)
-networkmanager bluez-utils blueman	    (internet/networking/bluetooth)
+networkmanager blueman	    (internet/networking/bluetooth)
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)
 waybar dunst rofi-wayland wlogout<sup>AUR</sup> tofi<sup>AUR</sup> nwg-drawer (statusbar, notifications, app-launcher)
 zerotier-one firefox alacritty
-trash-d ttf-dejavu-nerd nemo fastfetch rclone
+trash-d ttf-dejavu-nerd nemo fastfetch rclone wl-clipboard
 
 #### window manager
 plasma-meta hyprland sddm (kde, tiling WM, login)
@@ -324,7 +324,7 @@ obs-studio libreoffice-fresh
 prismlauncher appimagelauncher
 
 #### from AUR
-vesktop beeper-latest-bin spotify
+vesktop beeper-latest-bin spotify waterfox-bin
 #### from Flatpak
-keepassXC joplin bottles OBS_Studio
+keepassXC joplin bottles OBS_Studio moonlight sunshine
 
