@@ -7,14 +7,20 @@ Make sure to install the packages needed for this config. (some dependencies are
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) some parts will break without this dependency.  
 
-For most configs, sparse-clone this git OR copy the files you want into the `~/.config/*/` folder. (with \* being the name of the program)  
-TODO: change this to a link based system (using `stow`?)
+I use an install script `./installV*.sh` to sym-link my local git with the config folders (mostly in `~/.config/`). [WIP]
 
-I use sparse-checkout and exlude to only get specific files with git. Sadly, the README.md file always gets cloned.  
-Except for files in the `other` folder all files should already be at the right place after cloning this repo. 
+The old method was: I use sparse-checkout and exlude to only get specific files with git. Except for files in the `other` folder all files should already be at the right place after cloning this repo. 
 
 ## set up some config syncing
 *(If u fork this first, u can sync and save your own configs)*  
+
+### install script (sym linking) [WIP]
+Clone the repo into a folder of your choosing and run the install script `./installV0.sh`.  
+(!! the script is very fragile, change the variables in the script and look what it does !!)  
+(most old files that the script will find it will move to ~/.config/.bak/)  
+TODO: make it more interactive (with an -a option) and save
+
+### old method (git ~/.config)
 Go into one of the following paths:  
 unix: `~/.config/`  
 win:  `C:\Users\<USERNAME>\AppData\Local\`
@@ -275,6 +281,9 @@ If apps are blurry (on wayland) it might be using Xwayland, you can fix this by 
 Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
 I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
 
+#### Waterfox
+When using the `waterfox-bin` package, I had some organization policies set. You can change them in `/opt/waterfox/distribution/policies.json`.  
+
 #### Nemo (filemanager)
 change the standart terminal to alacritty:  
 `gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty`  
@@ -293,7 +302,7 @@ I used `rankmirrors` to rank the mirrors I chose in `/etc/pacman.d/mirrorlist`.
 `git config status.showUntrackedFiles no`  
 `git sparse-checkout list`  
 `git read-tree -mu HEAD` : reload current files from tree
-`git remote set-url origin github:egnrse/configs.git` : setup your `~/.ssh/config` for github first  
+`git remote set-url origin github.com:egnrse/configs.git` : setup your `~/.ssh/config` for github first  
 `git reset --hard origin/main` : reset current branch to origin/main (will discard all local changes)
 
 ### ssh
@@ -304,27 +313,28 @@ use `~/.ssh/config`
 some packages I use
 
 #### basics
-base-devel neovim vim git sudo grub openssh efibootmgr
-man-db man-pages						(man pages)
-ntfs-3g exfat-utils 					(filesystem types)
-networkmanager blueman	    (internet/networking/bluetooth)
-flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)
-pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)
-waybar dunst rofi-wayland wlogout<sup>AUR</sup> tofi<sup>AUR</sup> nwg-drawer (statusbar, notifications, app-launcher)
-zerotier-one firefox alacritty
-trash-d ttf-dejavu-nerd nemo fastfetch rclone wl-clipboard
+base-devel neovim vim git sudo grub openssh efibootmgr  
+man-db man-pages						(man pages)  
+ntfs-3g exfat-utils 					(filesystem types)  
+networkmanager blueman	    (internet/networking/bluetooth)  
+flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
+pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
+waybar dunst rofi-wayland wlogout<sup>AUR</sup> tofi<sup>AUR</sup> nwg-drawer (statusbar, notifications, app-launcher)  
+zerotier-one firefox alacritty  
+trash-d ttf-dejavu-nerd nemo fastfetch rclone wl-clipboard  
 
 #### window manager
-plasma-meta hyprland sddm (kde, tiling WM, login)
-wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)
+plasma-meta hyprland sddm (kde, tiling WM, login)  
+wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)  
+xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### other
-unzip zip
-obs-studio libreoffice-fresh
-prismlauncher appimagelauncher
+unzip zip  
+obs-studio libreoffice-fresh  
+prismlauncher appimagelauncher  
 
 #### from AUR
-vesktop beeper-latest-bin spotify waterfox-bin
+vesktop beeper-latest-bin spotify waterfox-bin  
 #### from Flatpak
-keepassXC joplin bottles OBS_Studio moonlight sunshine
-
+(replace '\_' with spaces)  
+keepassXC joplin bottles OBS_Studio moonlight sunshine Tor_Browser_Launcher  
