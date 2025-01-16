@@ -1,5 +1,7 @@
 // the main file of this config is `config.jsonc`
 // by egnrse
+// based on 'https://github.com/Sejjy/MechaBar'
+
 {
 	"include": [
 		"$HOME/.config/waybar/modules/hyprWindow.jsonc"

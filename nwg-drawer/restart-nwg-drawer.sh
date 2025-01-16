@@ -1,7 +1,7 @@
 #/bin/bash
 
 # restart nwg-drawer
-# (by egnrse)
+# by egnrse (https://github.com/egnrse/configs)
 #
 # in the background (-r), with some custom arguments
 

@@ -13,6 +13,7 @@
 # 	some more fixes u can find in the arch wiki (link above)
 # 	your can find a list of matlab dependencies here: `https://aur.archlinux.org/packages/matlab`
 #
+# (https://github.com/egnrse/configs)
 # (by egnrse)
 
 # absolute path to the folder with matlab (eg. `/usr/local/src/matlab_R2024b/`)

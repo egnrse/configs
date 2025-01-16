@@ -1,4 +1,8 @@
--- Keymappings
+-- ----------- --
+-- Keymappings --
+-- ----------- --
+-- for nvim by egnrse
+-- (https://github.com/egnrse/configs)
 --
 -- sorted into:
 -- 	- General		(save, clipboard, ..)
@@ -10,7 +14,7 @@
 -- TODO: <leader>
 -- relative Number toggle
 -- understand fix cmp
--- add linting
+-- add better linting
 
 vim.g.mapleader = ' '		-- Space as the leader key
 

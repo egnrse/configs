@@ -5,6 +5,8 @@
 #	/usr/local/share/applications/	(custom global apps)
 #	~/.local/share/applications/	(user apps)
 
+# (by egnrse)
+
 [Desktop Entry]
 
 Type=Application

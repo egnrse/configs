@@ -1,5 +1,7 @@
 # some aliases and more (win powershell variant)
 # put this in $PROFILE
+#
+# (by egnrse)
 
 #setx EDITOR "nvim"
 Set-Alias v 'nvim'

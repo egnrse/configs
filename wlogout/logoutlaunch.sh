@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# sadly no idea who wrote this script (edited by egnrse)
+
 # Check if wlogout is already running, and terminate if so
 if pgrep -x "wlogout" >/dev/null; then
   pkill -x "wlogout"

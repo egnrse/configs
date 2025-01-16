@@ -15,7 +15,7 @@
 #
 # tl;dr:
 # 	don't put environment-variables here
-# 	(except only a bash shell needs them)
+# 	(except only bash shells need them)
 #
 ################################################
 ########## put this into your .bashrc ##########
@@ -51,6 +51,7 @@ export LS_COLORS="ow=01;31:$LS_COLORS"
 shopt -s cdable_vars
 # custom paths (that can be used in cd calls because of the line above)
 # u might want to change some or add your own
+# I added my device specific ones to `~/.bashrc`
 # 
 # an example:
 #export data='/mnt/data/'

@@ -6,6 +6,10 @@
 # - make it executable: `sudo chmod +x v`
 # to use $EDITOR for sudo:
 # - execute `sudo visudo` and add `Defaults env_keep += EDITOR`
+# 
+# (https://github.com/egnrse/configs)
+# (by egnrse)
+
 
 # check if $EDITOR is empty
 if [ -z "$EDITOR" ]; then

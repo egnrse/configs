@@ -2,6 +2,7 @@
 
 # [WIP] be carful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
+# (https://github.com/egnrse/configs)
 # (by egnrse)
 
 set -x

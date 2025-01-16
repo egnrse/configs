@@ -1,3 +1,12 @@
+-- nvim config by egnrse
+-- (https://github.com/egnrse/configs)
+--
+-- split into multiple parts:
+-- 	-./init.lua		: general configurations
+-- 	-./lua/maps.lua	: key mappings and custom commands
+--	-./lua/plugins/	: plugins managed by Lazy (`:Lazy`)
+
+
 if vim.fn.filereadable("~/.vimrc") == 1 then
 	vim.cmd('source ~/.vimrc')	-- import some settings from vim
 end
