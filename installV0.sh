@@ -40,8 +40,8 @@ ln -s -i ${origin}wlogout ${config}
 # files
 mv ${config}egnrseTheme.css ${backup}
 ln -s -i ${origin}egnrseTheme.css ${config}
-mv ${config}egnrseTheme.config ${backup}
-ln -s -i ${origin}egnrseTheme.config ${config}
+mv ${config}egnrseTheme.conf ${backup}
+ln -s -i ${origin}egnrseTheme.conf ${config}
 # egnrseTheme.sh ?
 mv ${config}mimeapps.list ${backup}
 ln -s -i ${origin}mimeapps.list ${config}
