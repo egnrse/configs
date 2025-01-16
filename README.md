@@ -53,6 +53,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [dunst](#dunst):     (/dunst/)
 - [git](#git):    (/other/.gitconfig)
 - [hyprland](#hyprland):  (/hypr/)  
+- [hyprlock](#hyprlock):  (/hypr/)
 - [neovim](#nvim): (/nvim/)  
 - [nwg-drawer](#nwg-drawer):    (/nwg-drawer/)
 - [scripts](#scripts):  (/scripts/)  
@@ -126,7 +127,7 @@ This config is split into 4 parts:
 - plugins.conf	 (plugins, including plugin keymappings)
 Many explanations are in the config files.  
 
-This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and some parts will not work with out this dependency.  
+This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and many parts will not work with out this dependency.  
 See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`  
 
 #### Keymappings
@@ -156,7 +157,11 @@ Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightM
 
 #### Plugins  
 - [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
-- hypergrass: better touch screen support (swipe bottom to left for [wvkbd-latop](#onscreen-keyboard) keyboard)  
+- hypergrass: better touch screen support (swipe from the bottom to left for [wvkbd-latop](#onscreen-keyboard) keyboard)  
+
+### hyprlock
+*(/hypr/hyprlock.conf/)*
+A screen lock config. It needs egnrseTheme.conf for colors.
 
 ### [nvim](https://neovim.io/)
 *(/nvim/) (Win10/Linux)*  
@@ -245,14 +250,13 @@ Needs:
 - hyprland
 
 ### general Theme
-*(egnrseTheme.css) (Linux)*  
+*(egnrseTheme.*) (Linux)*  
 still a work in progress  
-The Idea is to have one file where I can change all colors for all apps/packages I use.  
-Already works for all that use \*.css files. (eg. waybar, wlogout), in all other configs the colors are hardcoded.  
+The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3 egnrseTheme.css/*.conf/*.sh . In many configs are the colors still hardcoded. (eg. dunst, tofi)  
 
 ### misc
-Other things that might I use...
-TODO: get a list of all dependencies (eg<sub>AUR</sub>)
+Other things that might be useful...
+TODO: get a list of all dependencies (+mark<sub>AUR</sub>)
 
 #### onScreen Keyboard
 (/other/wvkbd*)  
@@ -310,7 +314,7 @@ use `~/.ssh/config`
 `ssh -T github` : test github connection  
 
 ### packages
-some packages I use
+Some of the packages I use:  
 
 #### basics
 base-devel neovim vim git sudo grub openssh efibootmgr  
@@ -319,7 +323,7 @@ ntfs-3g exfat-utils 					(filesystem types)
 networkmanager blueman	    (internet/networking/bluetooth)  
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
-waybar dunst rofi-wayland wlogout<sup>AUR</sup> tofi<sup>AUR</sup> nwg-drawer (statusbar, notifications, app-launcher)  
+waybar dunst rofi-wayland nwg-drawer hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
 zerotier-one firefox alacritty  
 trash-d ttf-dejavu-nerd nemo fastfetch rclone wl-clipboard  
 
@@ -328,13 +332,15 @@ plasma-meta hyprland sddm (kde, tiling WM, login)
 wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)  
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
-#### other
+#### misc
 unzip zip  
-obs-studio libreoffice-fresh  
+libreoffice-fresh  
 prismlauncher appimagelauncher  
 
 #### from AUR
-vesktop beeper-latest-bin spotify waterfox-bin  
+spotify  
+vesktop beeper-latest-bin (discord client, msg client)  
+waterfox-bin pa-notify (firefox fork, notification on loudness change)  
 #### from Flatpak
 (replace '\_' with spaces)  
 keepassXC joplin bottles OBS_Studio moonlight sunshine Tor_Browser_Launcher  
