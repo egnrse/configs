@@ -3,7 +3,7 @@ THIS IS STILL DEVELOPING! PR/issues are very welcome.
 
 This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of those configs I use on my windows machine too. (eg. nvim/alacritty)
 
-Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [packages](#packages) in the [Appendix](#Appendix))  
+Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [#packages](#packages) in the [#Appendix](#Appendix))  
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) some parts will break without this dependency.  
 
@@ -68,7 +68,6 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 wanting to add:
 - rofi?
 - sddm
-- a doc with common fixes
 
 ### [alacritty](https://alacritty.org/config-alacritty.html)
 *(/alacritty/) (Linux)*  
@@ -248,6 +247,7 @@ U can use `/scripts/logoutlaunch.sh` (with args $1= 1 or 2) to launch those them
 Needs:  
 - egnrseTheme.css (in this git)
 - hyprland
+- hyprlock
 
 ### general Theme
 *(egnrseTheme.*) (Linux)*  
@@ -287,6 +287,7 @@ I used the installer for linux from: [mathworks-download](https://de.mathworks.c
 
 #### Waterfox
 When using the `waterfox-bin` package, I had some organization policies set. You can change them in `/opt/waterfox/distribution/policies.json`.  
+To let the `KeepassXC-Browser` Plugin find KeepassXC u can copy the `native-messaging-hosts/` folder from `~/.mozilla` to `~/.waterfox` (given you have firefox installed, and the browser support (for firefox?) in KeepassXC enabled)
 
 #### Nemo (filemanager)
 change the standart terminal to alacritty:  
@@ -299,6 +300,13 @@ more in the [ArchWiki-Nemo](https://wiki.archlinux.org/title/Nemo)
 In `/etc/pacman.conf` I enable `ParallelDownloads = 5` and the `multilib` library (multilib is required for the `steam` package).  
 (just remove the `#` before the lines)  
 I used `rankmirrors` to rank the mirrors I chose in `/etc/pacman.d/mirrorlist`.
+
+#### VLC Media Player
+If the environment variable $DISPLAY is set, VLC will use X11 to display itself. (Because it is a bit buggy)  
+To force VLC to use wayland, you can change the line with `Exec=` in `/usr/share/applications/vlc.desktop` to:  
+`Exec=env -u DISPLAY /usr/bin/vlc --started-from-file %U`  
+This will preserve the environment variable globally while unsetting it for VLC.  
+
 
 ### other useful (git) commands:
 `git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
@@ -323,7 +331,7 @@ ntfs-3g exfat-utils 					(filesystem types)
 networkmanager blueman	    (internet/networking/bluetooth)  
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
-waybar dunst rofi-wayland nwg-drawer hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
+waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
 zerotier-one firefox alacritty  
 trash-d ttf-dejavu-nerd nemo fastfetch rclone wl-clipboard  
 
