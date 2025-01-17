@@ -46,7 +46,7 @@ pause() {
 			read -n 1 -s;
 			return 0;
 			;;
-		"skip" )
+		"skip"|"skipY" )
 			# for yes or empty (return 0) / no (return 1) questions
 			local var2="$2"
 			if [ -z "$2" ]; then
@@ -62,7 +62,23 @@ pause() {
 					;;
 			esac
 			;;
-		*)
+		"skipN" )
+			# for yes(return 0) / no or empty (return 1) questions
+			local var2="$2"
+			if [ -z "$2" ]; then
+				var2=" continue [y] or skip [n]"
+			fi
+			read -p "$var2 (y/N): " pause_answer
+			case $pause_answer in
+				[Yy]*)
+					return 0;
+					;;
+				[Nn]*|"")
+					return 1;
+					;;
+			esac
+			;;
+		*))
 			echo " ERROR (${scriptName}): faulty pause usage! bad args given to pause()"
 			return 2;
 			;;
@@ -134,7 +150,7 @@ echo ""
 # ====== SYSTEM MAINTENACE ======
 #
 echo -e "Do you want to do some ${bold}System Maintenance${normal} tasks?"
-pause skip
+pause skipN
 skip=$?
 echo "$underline"
 if [ $skip -eq 0 ]; then

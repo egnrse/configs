@@ -16,6 +16,11 @@
 # if this script does not know your aur_helper, u can set one here
 custom_aur_helper=""
 
+# how many updates must be available to show the update icon
+show_when=10
+# shows a hint (for the sysupdater) when 1 
+hint=1
+
 # used for notifications
 scriptName="packageUpdates.sh"
 # the terminal you want to use for the system update helper
@@ -175,14 +180,20 @@ fi
 # module and tooltip (for waybar)
 total_updates=$((official_updates + aur_updates + flatpak_updates))
 if [ $total_updates -eq 0 ]; then
-	text="󰸟"
 	tooltip="Packages are up to date"
 else
 	if [ -z "$aur_helper" ]; then
 		aur_helper="not found"
 	fi
 	tooltip="Official:  $official_updates\nAUR ($aur_helper): $aur_updates\nFlatpak:   $flatpak_updates"
+	if [ $show_hints -eq 1 ]; then
+		tooltip="${tooltip}\n<span font_size='80%'>(click to upgrade)</span>"
+	fi
+fi
+if [ $total_updates -ge $show_when ]; then
 	text="󰞒"
+else
+	text="󰸟"
 fi
 
 #tooltip="${tooltip}\n(launch system update helper)"
