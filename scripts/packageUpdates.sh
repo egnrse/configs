@@ -19,7 +19,7 @@ custom_aur_helper=""
 # how many updates must be available to show the update icon
 show_when=10
 # shows a hint (for the sysupdater) when 1 
-hint=1
+show_hints=1
 
 # used for notifications
 scriptName="packageUpdates.sh"
