@@ -2,6 +2,8 @@
 // by egnrse
 // based on 'https://github.com/Sejjy/MechaBar'
 
+// Hint formating: <span font_size='80%'>(Hint)</span>
+
 {
 	"include": [
 		"$HOME/.config/waybar/modules/hyprWindow.jsonc"
@@ -152,7 +154,7 @@
 		"tooltip": "{tooltip}",
 		"on-click": "playerctl play-pause",
 		"min-length": 5,
-		"max-length": 40
+		"max-length": 35
 	},
 
 	"wireplumber": {
@@ -161,6 +163,7 @@
 		"format-icons": ["󰕿", "󰖀", "󰕾"],
 		"on-click": "uwsm app -- pwvucontrol",
 		"on-click-right": "uwsm app -- helvum",
+		"on-click-middle": "uwsm app -- flatpak run io.github.dimtpap.coppwr",
 		"max-volume": 150,
 		"scroll-step": 1,
 		"reverse-scrolling": 1,		//scrolling down decreases loudness
@@ -175,7 +178,7 @@
 		"return-type": "json",
 		"format": "{}",
 		"on-click": "uwsm app -- ~/.config/scripts/packageUpdates.sh -u",
-		"interval": 60,	// look for updates every 60s
+		"interval": 300,	// look for updates every 5min
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
 		"min-length": 2,
@@ -203,7 +206,7 @@
 	"custom/power": {
 		"format": " ",
 		"tooltip": true,
-		"tooltip-format": "(Ctr+Super+L)",
+		"tooltip-format": "<span font_size='80%'>(Ctr+Super+L)</span>",
 		"on-click": "~/.config/scripts/logoutlaunch.sh 2",
 		"on-click-right": "~/.config/scripts/logoutlaunch.sh 1",
 		"min-length": 4
@@ -232,11 +235,11 @@
 	},
 
 	"systemd-failed-units": {
-		"hide-on-ok": true, // Do hide if there is zero failed units.
+		"hide-on-ok": true,		// Do hide if there is zero failed units.
 		"format": "✗ {nr_failed}",
 		"format-ok": "✓",
-		"system": true, // Monitor failed systemwide units.
-		"user": false // Ignore failed user units.<
+		"system": true,			// Monitor failed systemwide units.
+		"user": false			// Ignore failed user units.
 	}
 
 }

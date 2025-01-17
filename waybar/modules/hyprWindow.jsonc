@@ -1,32 +1,38 @@
 {
 	"hyprland/window": {
 		"format": "{title}",
-		"tooltip": "true",
-		"separate-outputs": true,
+		"separate-outputs": false,
 		"min-length": 5,
-		"max-length": 45,
+		"max-length": 55,
 		// ========== Window Titles ==========
 		"rewrite": {
-			// == Desktop ==
+			// ====== Desktop ======
 
 			"": 
 			"<span foreground='#89b4fa'> </span> Hyprland",
 
-			// == Terminal ==
+			// ====== Terminal ======
 
 			"~": "  Terminal (~)",
 			"zsh": "  Terminal",
 			"Alacritty": "  Terminal (Alacritty)",
 			"^elia@15cn1xxx:(.*)$": "  Terminal ($1)",
+			"^elia@.*:(.*)$": "  Terminal ($1)",
 
-			// == Browser ==
+			// ====== Browser ======
 
 			"(.*) — Mozilla Firefox": 
 			"<span foreground='#f38ba8'>󰈹 </span> $1",
 			"(.*)Mozilla Firefox": 
 			"<span foreground='#f38ba8'>󰈹 </span> Firefox",
 
-			// == Development ==
+			"(.*) — Waterfox": 
+			"<span foreground='#00A0F8'> </span> $1",
+			//"<span foreground='#00A0F8'>󰈹 </span> $1",
+			"(.*)Waterfox": 
+			"<span foreground='#00A0F8'> </span> Waterfox",
+
+			// ====== Development ======
 
 			"(.*) - Visual Studio Code": 
 			"<span foreground='#89b4fa'>󰨞 </span> $1",
@@ -40,7 +46,7 @@
 			"(.*) - Godot Engine": 
 			"<span foreground='#89b4fa'> </span> $1",
 
-			// == Media ==
+			// ====== Media ======
 
 			"(.*)Spotify": 
 			"<span foreground='#a6e3a1'> </span> Spotify",
@@ -49,6 +55,8 @@
 
 			"OBS(.*)": 
 			"<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
+
+			"(.*) — Strawberry Music Player": "🍓 Music ($1)",
 
 			"VLC media player": 
 			"<span foreground='#fab387'>󰕼 </span> VLC Media Player",
@@ -64,7 +72,7 @@
 			"(.*).png": "  $1.png",
 			"(.*).svg": "  $1.svg",
 
-			// == Social ==
+			// ====== Social ======
 
 			"vesktop": 
 			"<span foreground='#89b4fa'> </span> Discord",
@@ -73,7 +81,7 @@
 			"(.*)Discord(.*)": 
 			"<span foreground='#89b4fa'> </span> $1Discord$2",
 
-			// == Documents ==
+			// ====== Documents ======
 
 			"ONLYOFFICE Desktop Editors": 
 			"<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
@@ -90,12 +98,24 @@
 			"/": "  File Manager",
 			"(.*) (.*) Dolphin": "  File Manager - $1",
 
-			// == System ==
+			// ====== System ======
 
 			"Timeshift-gtk": 
 			"<span foreground='#a6e3a1'> </span> Timeshift",
 
-			"Authenticate": "  Authenticate"
+			"Authenticate": "  Authenticate",
+
+			"(.*)Bluetooth (.*)":
+			"<span foreground='#AA87FF'> </span> $1Bluetooth $2",
+
+			// ====== Other ======
+
+
+			"(.*)Steam(.*)": 
+			"<span foreground='#209aff'> </span> $1Steam$2",
+			"Joplin": 
+			"<span background='#209aff'></span>  Joplin"
+		
 		}
 	}
 }
