@@ -273,6 +273,8 @@ Download it or install it over pacman: `ttf-dejavu-nerd`
 zerotier-one
 joplin-desktop<sup>AUR</sup>
 beeper-latest-bin<sup>AUR</sup>
+[coppwr](https://dimtpap.ovh/coppwr) (flathub)
+[sonusmix](https://codeberg.org/sonusmix/sonusmix)
 
 ## Appendix
 ### FIXES?
@@ -307,6 +309,11 @@ To force VLC to use wayland, you can change the line with `Exec=` in `/usr/share
 `Exec=env -u DISPLAY /usr/bin/vlc --started-from-file %U`  
 This will preserve the environment variable globally while unsetting it for VLC.  
 
+#### Sunshine
+The Flatpak doesn't have the right permission.  
+Follow the Arch Linux install in: `https://docs.lizardbyte.dev/projects/sunshine/latest/about/setup.html`  
+Then do: `sudo setcap -r $(readlink -f $(which sunshine))`  
+Install all dependencies that sunshine needs. Symlink all libs that have the wrong version to the installed one. (in `/usr/lib`: sudo ln -s ./lib\*.so ./lib\*.so.1.83.0)
 
 ### other useful (git) commands:
 `git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
