@@ -147,6 +147,25 @@
 	},
 
 	// === media/audio ===
+
+	"mpris": {
+		"format": "{player_icon} {dynamic}|",
+		"format-paused": "{status_icon} <i>{dynamic}</i>|",
+		"player-icons": {
+			"default": "▶",
+			"mpv": "🎵"
+		},
+		"status-icons": {
+			"paused": "⏸"
+		},
+		"dynamic-len": 40,
+		"dynamic-order": ["title","artist","length","position","album"],
+		"title-len": 25,
+		"artist-len": 15
+
+		// "ignored-players": ["firefox"]
+	},
+
 	"custom/media": {
 		"exec": "~/.config/waybar/scripts/mediaplayer.py",
 		"return-type": "json",
@@ -159,8 +178,8 @@
 
 	"wireplumber": {
 		"format": "{icon} {volume}%",
-		"format-muted": "󰝟 {volume}%",
-		"format-icons": ["󰕿", "󰖀", "󰕾"],
+		"format-muted": "<span foreground='#C1334A'>󰖁 {volume}%</span>",	//󰖁 󰝟 
+		"format-icons": ["󰕿", "󰕿", "󰖀","󰖀","󰖀","󰖀", "󰕾","󰕾","󰕾", "<span foreground='#C1334A'>󰕾</span>"],
 		"on-click": "uwsm app -- pwvucontrol",
 		"on-click-right": "uwsm app -- helvum",
 		"on-click-middle": "uwsm app -- flatpak run io.github.dimtpap.coppwr",
@@ -176,9 +195,10 @@
 	"custom/update": {
 		"exec": "~/.config/scripts/packageUpdates.sh",
 		"return-type": "json",
-		"format": "{}",
-		"on-click": "uwsm app -- ~/.config/scripts/packageUpdates.sh -u",
-		"interval": 300,	// look for updates every 5min
+		"format": "{}",	
+		"on-click": "uwsm app -- ~/.config/scripts/packageUpdates.sh -u",	// launch upgrade script
+		"on-click-right": "~/.config/scripts/packageUpdates.sh",			// update update count
+		"interval": 3600,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
 		"min-length": 2,
@@ -219,7 +239,7 @@
 		"on-click-middle": "close",
 		//"on-click-right": "close",
 		"tooltip-format": "{title}",
-		//"all-outputs": false,
+		"all-outputs": false,		// show app of all displays
 		"ignore-list": [
 			"Alacritty"
 		],

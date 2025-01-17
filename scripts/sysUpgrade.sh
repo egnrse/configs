@@ -62,7 +62,7 @@ pause() {
 					;;
 			esac
 			;;
-		"skipN" )
+		"skipN")
 			# for yes(return 0) / no or empty (return 1) questions
 			local var2="$2"
 			if [ -z "$2" ]; then
@@ -78,7 +78,7 @@ pause() {
 					;;
 			esac
 			;;
-		*))
+		*)
 			echo " ERROR (${scriptName}): faulty pause usage! bad args given to pause()"
 			return 2;
 			;;

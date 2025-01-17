@@ -31,7 +31,7 @@ sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
 
 # ==== SETTINGS END ====
 
-#set -x	# verbose debugging
+set -x	# verbose debugging
 
 
 # ==== handle args ====
