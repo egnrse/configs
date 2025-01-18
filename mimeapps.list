@@ -17,6 +17,7 @@ application/x-extension-shtml=userapp-Waterfox-W76E02.desktop
 application/xhtml+xml=userapp-Waterfox-W76E02.desktop
 application/x-extension-xhtml=userapp-Waterfox-W76E02.desktop
 application/x-extension-xht=userapp-Waterfox-W76E02.desktop
+application/zip=mw-matlab.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Waterfox-W76E02.desktop;
@@ -30,3 +31,4 @@ application/xhtml+xml=userapp-Waterfox-W76E02.desktop;
 application/x-extension-xhtml=userapp-Waterfox-W76E02.desktop;
 application/x-extension-xht=userapp-Waterfox-W76E02.desktop;
 application/pdf=waterfox.desktop;
+application/zip=mw-matlab.desktop;

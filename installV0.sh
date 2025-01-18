@@ -11,7 +11,7 @@ origin="$HOME/Documents/configs/"
 config="$HOME/.config/"
 backup="${config}.bac/"
 rootConf="/root/.config/"
-rootBackup="${rootConf}.bac/"
+rootBackup="${rootConf}.bak/"
 
 mkdir ${backup}
 mv ${config}alacritty ${backup}
