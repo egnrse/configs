@@ -270,11 +270,12 @@ The font used by many/some of the configs in this git.
 Download it or install it over pacman: `ttf-dejavu-nerd`
 
 #### cool/useful Packages
-zerotier-one
-joplin-desktop<sup>AUR</sup>
-beeper-latest-bin<sup>AUR</sup>
-[coppwr](https://dimtpap.ovh/coppwr) (flathub)
-[sonusmix](https://codeberg.org/sonusmix/sonusmix)
+zerotier-one  
+joplin-desktop<sup>AUR</sup>  
+beeper-latest-bin<sup>AUR</sup>  
+[coppwr](https://dimtpap.ovh/coppwr) (flathub)  
+[sonusmix](https://codeberg.org/sonusmix/sonusmix)  
+[xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec)
 
 ## Appendix
 ### FIXES?
@@ -282,6 +283,19 @@ beeper-latest-bin<sup>AUR</sup>
 If apps are blurry (on wayland) it might be using Xwayland, you can fix this by adding the following to the launch-command of the app:  
 (the launch command prob. is in `/usr/bin/{APP}`)  
 `--enable-features=UseOzonePlatform --ozone-platform=wayland`  
+
+#### set Standart Terminal Emulator
+There sadly currently isn't a standartized way of doing that.  
+Things that (kinda) work though:  
+- Set the environment variable $TERMINAL (eg. in `~/.bashrc` with `TERMINAL=alacritty`)
+- Use the mime-type for terminals (u can add them in `~/.config/mimeapps.list`). It is `x-scheme-handler/terminal=Alacritty.desktop`.  
+- Use `xdg-terminal-exec` to launch terminal applications, I use the implementation by [mkhl](https://codeberg.org/mkhl/xdg-terminal-exec) with xdg-terminal-exec-mkhl<sup>AUR</sup>
+- For gnome applications look at the [Nemo](#nemo-file)
+- For KDE (applications) in `~/.config/kdeglobals` add:  
+```
+[General]
+TerminalApplication=alacritty
+```
 
 #### Matlab
 Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
