@@ -10,13 +10,6 @@
 	],
 
 	// === hyprland === 
-	"custom/ws": {
-		"format": "",
-		"tooltip": false,
-		"min-length": 3,
-		"max-length": 4
-	},
-
 	"hyprland/workspaces": {
 		"all-outputs": false,
 		"active-only": false,
