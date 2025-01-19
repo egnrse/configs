@@ -371,6 +371,7 @@ prismlauncher appimagelauncher
 spotify  
 vesktop beeper-latest-bin (discord client, msg client)  
 waterfox-bin pa-notify (firefox fork, notification on loudness change)  
+xdg-terminal-exec ttf-ms-win10-auto (default terminal, win fonts)
 #### from Flatpak
 (replace '\_' with spaces)  
 keepassXC joplin bottles OBS_Studio moonlight sunshine Tor_Browser_Launcher  
