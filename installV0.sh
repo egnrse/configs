@@ -9,7 +9,7 @@ set -x
 
 origin="$HOME/Documents/configs/"
 config="$HOME/.config/"
-backup="${config}.bac/"
+backup="${config}.bak/"
 rootConf="/root/.config/"
 rootBackup="${rootConf}.bak/"
 
