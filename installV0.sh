@@ -28,6 +28,8 @@ mv ${config}nvim ${backup}
 ln -s -i ${origin}nvim ${config}
 mv ${config}nwg-drawer ${backup}
 ln -s -i ${origin}nwg-drawer ${config}
+mv ${config}rofi ${backup}
+ln -s -i ${origin}rofi ${config}
 mv ${config}scripts ${backup}
 ln -s -i ${origin}scripts ${config}
 mv ${config}tofi ${backup}
