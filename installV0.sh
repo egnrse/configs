@@ -45,6 +45,8 @@ ln -s -i ${origin}egnrseTheme.conf ${config}
 # egnrseTheme.sh ?
 mv ${config}mimeapps.list ${backup}
 ln -s -i ${origin}mimeapps.list ${config}
+mv ${config}xdg-terminals.list ${backup}
+ln -s -i ${origin}xdg-terminals.list ${config}
 
 # link roots nvim to ours?
 read -p "do you want to link the nvim configs to root? [y/N]: " answer

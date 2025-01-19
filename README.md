@@ -289,12 +289,13 @@ There sadly currently isn't a standartized way of doing that.
 Things that (kinda) work though:  
 - Set the environment variable $TERMINAL (eg. in `~/.bashrc` with `TERMINAL=alacritty`)
 - Use the mime-type for terminals (u can add them in `~/.config/mimeapps.list`). It is `x-scheme-handler/terminal=Alacritty.desktop`.  
-- Use `xdg-terminal-exec` to launch terminal applications, I use the implementation by [mkhl](https://codeberg.org/mkhl/xdg-terminal-exec) with xdg-terminal-exec-mkhl<sup>AUR</sup>
-- For gnome applications look at the [Nemo](#nemo-file)
+- Use `xdg-terminal-exec`<sup>AUR</sup> to launch terminal applications ([Docs here](https://github.com/Vladimir-csp/xdg-terminal-exec)). Look into the file [xdg-terminals.list](./xdg-terminals.list) for how to configure and more information. ([rust implementation](https://codeberg.org/mkhl/xdg-terminal-exec))  
+- For gnome (applications) use the xdg-terminal-exec method AND look at the [Nemo](#nemo-file)  
 - For KDE (applications) in `~/.config/kdeglobals` add:  
 ```
 [General]
 TerminalApplication=alacritty
+TerminalService=Alacritty.desktop
 ```
 
 #### Matlab
