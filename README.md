@@ -315,6 +315,7 @@ more in the [ArchWiki-Nemo](https://wiki.archlinux.org/title/Nemo)
 
 #### Pacman / Steam
 In `/etc/pacman.conf` I enable `ParallelDownloads = 5` and the `multilib` library (multilib is required for the `steam` package).  
+Other nice options: Color
 (just remove the `#` before the lines)  
 I used `rankmirrors` to rank the mirrors I chose in `/etc/pacman.d/mirrorlist`.
 
