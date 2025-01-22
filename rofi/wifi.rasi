@@ -13,7 +13,7 @@ window {
   enabled:                  true;
   width:                    500px;
   fullscreen:               false;
-  transparency:             "real";
+  transparency:             "screenshot";
 
   border:                   2.08px;
   border-radius:            15px;
@@ -80,7 +80,7 @@ listbox {
   enabled:                  true;
   orientation:              vertical;
 
-  background-color:         inherit;
+  background-color:         transparent;
   children:                 [ "listview" ];
 }
 listview {

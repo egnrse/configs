@@ -5,11 +5,11 @@
 */
 
 * {
-	main-fg:		#cdd6f4;
-	main-bg:		#11111b;
-	main-br:		#cdd6f4;
-	input-bg:		#181825;
-	select-bg:		#9399b2;
+	main-fg:		#FCD4F6;
+	main-bg:		rgba(17,17,27,0.733);
+	main-br:		#35C1E7;
+	input-bg:		rgba(10,6,14,0.733);
+	select-bg:		rgba(252,212,246,0.733);
 	select-fg:		#11111b;
 	separatorcolor:	transparent;
 	border-color:	transparent;
