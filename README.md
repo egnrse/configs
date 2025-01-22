@@ -347,6 +347,11 @@ I used the installer for linux from: [mathworks-download](https://de.mathworks.c
 When using the `waterfox-bin` package, I had some organization policies set. You can change them in `/opt/waterfox/distribution/policies.json`.  
 To let the `KeepassXC-Browser` Plugin find KeepassXC u can copy the `native-messaging-hosts/` folder from `~/.mozilla` to `~/.waterfox` (given you have firefox installed, and the browser support (for firefox?) in KeepassXC enabled)
 
+#### [Thorium](https://thorium.rocks/)
+thorium-browser-bin<sup>AUR</sup>
+To active native wayland use `--ozone-platform-hint=auto` as a startup flag or set `Preferred Ozone platform` to auto within the `chrome://flags/` menu (put the previous thing into the URL field of thorioum).
+
+
 #### Nemo (filemanager)
 change the standart terminal to alacritty:  
 `gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty`  
@@ -406,11 +411,11 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 
 #### misc
 unzip zip  
-libreoffice-fresh  
+libreoffice-fresh torbrowser-launcher
 prismlauncher appimagelauncher  
 
 #### from AUR
-spotify  
+spotify thorium-browser-bin
 vesktop beeper-latest-bin (discord client, msg client)  
 waterfox-bin pa-notify (firefox fork, notification on loudness change)  
 xdg-terminal-exec ttf-ms-win10-auto (default terminal, win fonts)
