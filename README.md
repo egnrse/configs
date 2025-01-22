@@ -52,22 +52,26 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [bash](#bash):      (/bash/)
 - [dunst](#dunst):     (/dunst/)
 - [git](#git):    (/other/.gitconfig)
+- [hypridle](#hypridle):  (/hypr/)
 - [hyprland](#hyprland):  (/hypr/)  
 - [hyprlock](#hyprlock):  (/hypr/)
 - [neovim](#nvim): (/nvim/)  
 - [nwg-drawer](#nwg-drawer):    (/nwg-drawer/)
+- [rofi](#rofi):    (/rofi/)
 - [scripts](#scripts):  (/scripts/)  
+- [systemd](#systemd)    (/environment.d/))
 - [tofi](#tofi):     (/tofi/)
 - [v-editor](#v)       (/other/v-editor)  
 - [vim](#vim):    (/other/.vimrc)  
 - [waybar](#waybar):    (/waybar/)
 - [wlogout](#wlogout):  (/wlogout/)  
-- [general Theme](#general-theme): (egnrseTheme.css)
-- [misc](#misc):  (/other/*)
+- [general Theme](#general-theme): (egnrseTheme.\*)
+- [misc](#misc):  (/other/\*)
+- [Appendix](#appendix)
 
 wanting to add:
-- rofi?
 - sddm
+
 
 ### [alacritty](https://alacritty.org/config-alacritty.html)
 *(/alacritty/) (Linux)*  
@@ -79,6 +83,7 @@ import = ["../../Local/alacritty/alacritty.toml"]
 to `%APPDATA%\alacritty\alacritty.toml`  
 
 This file has some visual changes to make alacritty more beautiful.  
+
 
 ### bash
 *(/bash/) (Linux)*  
@@ -103,11 +108,13 @@ Some more infos are in the files.
 
 I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into autotrash<sup>AUR</sup>)
 
+
 ### [dunst](https://dunst-project.org/)
 *(/dunst/) (Linux)*  
 A notification (service) deamon, after cloning this git all files should already be in the right place (some explanations for the options are in the file)  
 Some settings only work on X11! (those should be marked)  
 There is a custom script `restartDunst.sh` that restarts dunst and sends some notifications, to easily test changes in dunstrc.  
+
 
 ### git
 *(/other/.gitconfig)*  
@@ -115,10 +122,16 @@ Copy the parts that u like into `~/.gitconfig`. It has some useful aliases.
 Replace the placeholders if needed (eg {email}, {computerName}).  
 (fully replacing your old config-file is **not** recommended)  
 
+
+### hypridle
+*(/hypr/)*  
+An idle deamon. To start it automatically with systemd: `systemctl --user enable --now hypridle.service`  
+Needs: [hyprland](#hyprland) [hyprlock](#hyprlock)  
+
 ### [hyprland](https://hyprland.org/)
 *(/hypr/) (Linux)*  
 A wayland native (tiling/hybrid) window manager.  
-This config is split into 4 parts:  
+This config is split into 4(+) parts:  
 - hyperland.conf (the main config file)  
 - look-feel.conf (animations, borders, gaps, ...)
 - window-rules.conf (rules on how windows/layers/workspaces/apps behave)  
@@ -133,7 +146,7 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 `SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
 `SUPER+E`       : opens File Browser (nemo)  
-`SUPER+D`       : program drawer (nwg-drawer)  
+`SUPER+R`       : run a program (tofi)  
 `SUPER+C`       : close active window  
   
 `SUPER+[1-0]`   : go to workspace [1-10]  
@@ -149,7 +162,7 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 `SUPER+M`       : maximize active window (keep borders/bars)  
 `F11`           : make active window fullscreen  
 
-`SUPER+R`       : simple program launcher (tofi)  
+`SUPER+D`       : program drawer (nwg-drawer)  
 *(for more look into /hypr/maps.conf or /hypr/plugins.conf)*  
 
 Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
@@ -157,6 +170,11 @@ Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightM
 #### Plugins  
 - [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
 - hypergrass: better touch screen support (swipe from the bottom to left for [wvkbd-latop](#onscreen-keyboard) keyboard)  
+
+Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo  
+        nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
+Works nicely with: hypridle hyprlock xdg-desktop-portal-hyprland  
+
 
 ### hyprlock
 *(/hypr/hyprlock.conf/)*
@@ -178,6 +196,12 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
   - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) (file explorer) {Leader+E}  
   - misc (eg. nvim-colorizer)  
 
+
+### rofi
+*(/rofi/)*
+Similar to tofi, used for the custom wifimenu (of waybar). For wayland use the `rofi-wayland` package (and not rofi).  
+
+
 ### scripts
 *(/scripts/) (Linux)*  
 Some of my custom scripts used by other configs (eg. waybar, hyprland).  
@@ -197,9 +221,14 @@ General Needs (for some of the scripts):
 - pacman-contrib
 
 
+### systemd
+*(/environment.d/)*  
+Some environment variables for systemd. (!! is setting wayland variables !!)
+
 ### [tofi](https://github.com/philj56/tofi)
 *(/tofi/) (Linux)*  
 A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has more explaining comments.  
+
 
 ### v
 *(/other/v-editor) (Linux)*  
@@ -207,6 +236,7 @@ Use `v` in a console or script to launch the prefered editor (stored in *$EDITOR
 Copy the file to `/usr/bin/`, rename it to `v` and make it executable. More explanations are in the file.  
 U can also use the alias in `bash/aliases.bashrc` for a simpler setup, with similar functionality.  
 TODO: make this a proper package (in AUR?)  
+
 
 ### vim
 *(/other/.vimrc) (Win10/Linux)*  
@@ -228,6 +258,7 @@ The config is split into multiple parts:
 - scripts  (some scripts for extra functionality)
 
 Needs:
+- uwsm<sup>AUR</sup> (for some app starts)
 - `.config/scripts/` (some scripts from this git)
 - egnrseTheme.css (in this git)  
 - [wlogout](#wlogout) (custom powermenu)
@@ -238,36 +269,44 @@ Needs:
 - networkmanager
 - blueman-manager (bluetooth gui)
 - wireplumber (audio-server, config has to be changed for it to work with ALSA only)
-- pwvucontrol<sub>AUR</sub> helvum (audio-management gui)
+- pwvucontrol<sub>AUR</sub> helvum coppwr(flatpak) (audio-management gui)
+Others: jq playerctl  
+
 
 ### wlogout
 *(/wlogout/) (Linux)*  
 A wayland PowerMenu (to logout/shutdown/...). theme-1 is longer (6 items), theme-2 only 4 has options. Both themes have a layout-\* file and a styles-\*.css.  
-U can use `/scripts/logoutlaunch.sh` (with args $1= 1 or 2) to launch those themes. They (should) scale automatically with display size and the scaling parameter.
-Needs:  
-- egnrseTheme.css (in this git)
-- hyprland
-- hyprlock
+U can use `/scripts/logoutlaunch.sh` (with args $1= 1 or 2) to launch those themes. They (should) scale automatically with display size and the scaling parameter.  
+Needs: egnrseTheme.css hyprland hyprlock  
+
 
 ### general Theme
-*(egnrseTheme.*) (Linux)*  
+*(egnrseTheme.\*) (Linux)*  
 still a work in progress  
-The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3 egnrseTheme.css/*.conf/*.sh . In many configs are the colors still hardcoded. (eg. dunst, tofi)  
+The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3 egnrseTheme.css/*.conf/*.sh . In many configs are the colors still hardcoded. (eg. dunst, tofi, rofi)  
+
 
 ### misc
-Other things that might be useful...
-TODO: get a list of all dependencies (+mark<sub>AUR</sub>)
+Other things that might be useful...  
 
 #### onScreen Keyboard
 (/other/wvkbd*)  
 Put the binary `wvkbd-laptop` in a directory on the path (eg. `/usr/local/bin/`) to use it system-wide (hyprland/sddm/the desktop-entry expect that)  
 Put the desktop-entry in eg. `~/.local/share/applications/` (or follow the instructions in the file).  
-Swipe with one finger from the bottom up (on a touch screen) to toggle the keyboards visibility. (within [hyprland](#hyprland) with the hyprgrass plugin)
+Swipe with one finger from the bottom up (on a touch screen) to toggle the keyboards visibility. (within [hyprland](#hyprland) with the hyprgrass plugin)  
 
 #### [Nerd-Font](https://www.nerdfonts.com)
 (/other/DejaVuSansMono.zip)  
 The font used by many/some of the configs in this git.  
 Download it or install it over pacman: `ttf-dejavu-nerd`
+
+#### xdg-terminal-exec
+*(/xdg-terminals.list)*  
+Set your standart terminal for `xdg-terminal-exec`<sup>AUR</sup> in the file `xdg-terminals.list` (is not in the xdg standart yet).  
+
+#### mimeapps.list
+*(/mimeapps.list)*  
+set default applications here (for different filetypes)
 
 #### cool/useful Packages
 zerotier-one  
@@ -276,6 +315,8 @@ beeper-latest-bin<sup>AUR</sup>
 [coppwr](https://dimtpap.ovh/coppwr) (flathub)  
 [sonusmix](https://codeberg.org/sonusmix/sonusmix)  
 [xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec)
+
+
 
 ## Appendix
 ### FIXES?

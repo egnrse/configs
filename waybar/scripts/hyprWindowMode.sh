@@ -17,6 +17,7 @@
 # 	hyprland
 # 	awk
 # 	grep
+# 	jq
 #
 #	by egnrse (https://github.com/egnrse/configs)	
 
