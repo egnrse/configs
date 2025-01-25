@@ -59,6 +59,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [nwg-drawer](#nwg-drawer):    (/nwg-drawer/)
 - [rofi](#rofi):    (/rofi/)
 - [scripts](#scripts):  (/scripts/)  
+- [sddm](#sddm): (/other/sddm.conf)
 - [systemd](#systemd)    (/environment.d/))
 - [tofi](#tofi):     (/tofi/)
 - [v-editor](#v)       (/other/v-editor)  
@@ -70,7 +71,7 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [Appendix](#appendix)
 
 wanting to add:
-- sddm
+- nothing rn
 
 
 ### [alacritty](https://alacritty.org/config-alacritty.html)
@@ -220,6 +221,15 @@ General Needs (for some of the scripts):
 - a notification deamon (eg. [dunst](#dunst))
 - pacman-contrib
 
+
+### [sddm](https://github.com/sddm/sddm)
+*(/other/sddm.conf)*
+A display manager for X11 and Wayland sessions. I use it to login into accounts and select which compositer I want to use. As I also have KDE-Plasma installed (from the `plasma-meta` package), I can select (in the bottom left corner) where to login to.  
+U can also select hyprland with and without uwsm, this config expects to be started managed by uwsm.
+Copy the config to `/etc/sddm.conf.d/sddm.conf`. If there are other config files already there, make sure sddm will read it last (see `man 5 sddm.conf`).  
+A easy way to style sddm if with the KDE-System-Settings.  
+(TODO: look into QtQuick for design, fix onscreen-keyboard env? kde_wayland?)  
+Needs: breeze (the theme used)  
 
 ### systemd
 *(/environment.d/)*  
