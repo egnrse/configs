@@ -1,15 +1,13 @@
 # some of my configs [WIP]
-THIS IS STILL DEVELOPING! PR/issues are very welcome.  
+THIS IS STILL DEVELOPING and always will! PR/issues are very welcome.  
 
-This config is for my arch/[hyprland](https://hyprland.org/) setup. Some of those configs I use on my windows machine too. (eg. nvim/alacritty)
+This config is for my arch/[hyprland](https://hyprland.org/) setup. It is made for a Laptop (with touch) and a PC (in a multimonitor setup, with (sadly) a nvidia graphicscard). Some of those configs I use on my (dualbooted-)windows pc too. (eg. nvim/alacritty)  
 
-Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [#packages](#packages) in the [#Appendix](#Appendix))  
+Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [#packages](#packages) in the [#Appendix](#appendix))  
 
-This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) some parts will break without this dependency.  
+This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) many (hyprland) parts will break without this dependency.  
 
 I use an install script `./installV*.sh` to sym-link my local git with the config folders (mostly in `~/.config/`). [WIP]
-
-The old method was: I use sparse-checkout and exlude to only get specific files with git. Except for files in the `other` folder all files should already be at the right place after cloning this repo. 
 
 ## set up some config syncing
 *(If u fork this first, u can sync and save your own configs)*  
@@ -18,36 +16,12 @@ The old method was: I use sparse-checkout and exlude to only get specific files 
 Clone the repo into a folder of your choosing and run the install script `./installV0.sh`.  
 (!! the script is very fragile, change the variables in the script and look what it does !!)  
 (most old files that the script will find it will move to ~/.config/.bak/)  
-TODO: make it more interactive (with an -a option) and save
+Currently some files still need to be moved manually. Most of them are files outside of `~/.config/`.  
+TODO: make it more interactive (with an -a option?)  
 
-### old method (git ~/.config)
-Go into one of the following paths:  
-unix: `~/.config/`  
-win:  `C:\Users\<USERNAME>\AppData\Local\`
-```
-git init
-git remote add origin https://github.com/egnrse/configs
-git config core.sparseCheckoutCone true
-```
-Choose the folders that u want:
-```
-git sparse-checkout set alacritty bash dunst environment.d hypr nvim nwg-drawer scripts tofi waybar wlogout
-```
-(many of the configs rely on scripts and environment.d (or on each other) taking only a few might break things)  
-
-Finish the setup:
-```
-git pull origin main
-git branch --set-upstream-to=origin/main main
-```
-
-#### setup git exlude
-`./.git/info/exlude`  
-Is a file to exclude local files/folders from git.
-Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`     
+[the old method can be found here](#old-setup-method-git-config)
 
 ## Synced configs:
-*({program name}: ({path in this git}))*
 - [alacritty](#alacritty): (/alacritty/)
 - [bash](#bash):      (/bash/)
 - [dunst](#dunst):     (/dunst/)
@@ -68,14 +42,19 @@ Copy the content (that u need) of the file `/other/exclude` to `./.git/info/excl
 - [wlogout](#wlogout):  (/wlogout/)  
 - [general Theme](#general-theme): (egnrseTheme.\*)
 - [misc](#misc):  (/other/\*)
+
+{program name}: ({path in this git})
+
 - [Appendix](#appendix)
+	- [some Fixes](#fixes)
+	- [Packages](#packages)
 
 wanting to add:
-- nothing rn
+- screenshots
 
 
 ### [alacritty](https://alacritty.org/config-alacritty.html)
-*(/alacritty/) (Linux)*  
+*(/alacritty/)*  
 in win10 add: (does **NOT** work yet)  
 ```
 [general]
@@ -87,7 +66,7 @@ This file has some visual changes to make alacritty more beautiful.
 
 
 ### bash
-*(/bash/) (Linux)*  
+*(/bash/)*  
 My config is split into two/three parts:  
 - custom.bashrc (general settings)  
 - aliases.bashrc (aliases for commands)  
@@ -105,15 +84,15 @@ else
 fi
 ```
 Some more infos are in the files.  
-(be careful when settings environment variables)  
+(be careful when setting environment variables)  
 
 I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into autotrash<sup>AUR</sup>)
 
 
 ### [dunst](https://dunst-project.org/)
-*(/dunst/) (Linux)*  
-A notification (service) deamon, after cloning this git all files should already be in the right place (some explanations for the options are in the file)  
-Some settings only work on X11! (those should be marked)  
+*(/dunst/)*  
+A notification (service) daemon, after cloning and installing this git, all files should already be linked correctly (some explanations for the options are in the file)  
+Some settings only work on X11! (those are be marked)  
 There is a custom script `restartDunst.sh` that restarts dunst and sends some notifications, to easily test changes in dunstrc.  
 
 
@@ -130,7 +109,7 @@ An idle deamon. To start it automatically with systemd: `systemctl --user enable
 Needs: [hyprland](#hyprland) [hyprlock](#hyprlock)  
 
 ### [hyprland](https://hyprland.org/)
-*(/hypr/) (Linux)*  
+*(/hypr/)*  
 A wayland native (tiling/hybrid) window manager.  
 This config is split into 4(+) parts:  
 - hyperland.conf (the main config file)  
@@ -164,84 +143,87 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 `F11`           : make active window fullscreen  
 
 `SUPER+D`       : program drawer (nwg-drawer)  
-*(for more look into /hypr/maps.conf or /hypr/plugins.conf)*  
+*(for more keymappings look into /hypr/maps.conf or /hypr/plugins.conf)*  
 
 Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
 
 #### Plugins  
 - [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
-- hypergrass: better touch screen support (swipe from the bottom to left for [wvkbd-latop](#onscreen-keyboard) keyboard)  
+- hypergrass: better touch-screen support (swipe from the bottom to left edge for the [wvkbd-latop](#onscreen-keyboard) keyboard)  
 
-Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo  
-        nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
+Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
 Works nicely with: hypridle hyprlock xdg-desktop-portal-hyprland  
 
 
 ### hyprlock
-*(/hypr/hyprlock.conf/)*
-A screen lock config. It needs egnrseTheme.conf for colors.
+*(/hypr/hyprlock.conf/)*  
+A screen lock config. It needs `egnrseTheme.conf` for the colors.
 
 ### [nvim](https://neovim.io/)
-*(/nvim/) (Win10/Linux)*  
+*(/nvim/)*  
 Some explanations of the settings are in the files. The setup Leader-Key is Space. (meaning: some shortcuts start with the Space-Key)  
 - Main setup in `init.lua`  
 - Custom keymapings in `./lua/maps.lua`  
-- Lazy Plugin Manager in `./lua/config/lazy.lua` (no extra setup needed)  
-  Settings for the plugins are in their files (`./lua/plugins/*`)  
-  - bufferline (top bar with *file* tabs)  
-  - cmp (autocompletion)  
-  - colorscheme (tokyodark)  
-  - lualine (status line)  
-  - lush (color schemecreator, not used yet)  
-  - nvim-autopairs (autocomplete brackes and more)  
-  - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) (file explorer) {Leader+E}  
-  - misc (eg. nvim-colorizer)  
+- Lazy Plugin Manager in `./lua/config/lazy.lua` (type `:Lazy` within nvim for the plugin menu)  
+  Settings for the plugins are in their files (`./lua/plugins/*.lua`)  
+  - bufferline (top bar with *file* tabs)
+  - cmp (autocompletion)
+  - colorscheme (tokyodark)
+  - lualine (status line)
+  - lush (color schemecreator, not used yet)
+  - markdown (some inline rendering)
+  - nvim-autopairs (autocomplete brackes and more)
+  - nvim-lint (linting (eg. marking wrong code) WIP)
+  - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) (file explorer) {Leader+E}
+  - misc (eg. nvim-colorizer)
 
+Linting is still a WIP. You might need a bash-language-server.  
 
-### rofi
-*(/rofi/)*
-Similar to tofi, used for the custom wifimenu (of waybar). For wayland use the `rofi-wayland` package (and not rofi).  
+### [nwg-drawer](https://github.com/nwg-piotr/nwg-drawer)
+*(/nwg-drawer/)*  
+A program drawer with math / filesearch (currently disabled for performace) support. Same usage as tofi, but slower and more graphical (eg. program icons/categories)  
+Is silently started with some custom options when hyprland starts. You can also find those options in the `restart-nwg-drawer.sh` script.  
+Use the math function by searching for eg. `8*4`. The answer will be shown in a popup when pressing `ENTER`.  
+Needs: egnrseTheme.css  
 
+### [rofi](https://github.com/lbonn/rofi)
+*(/rofi/)*  
+Similar to tofi, used for the custom wifimenu (of waybar). For wayland use the `rofi-wayland` package (and NOT `rofi`).  
 
 ### scripts
-*(/scripts/) (Linux)*  
+*(/scripts/)*  
 Some of my custom scripts used by other configs (eg. waybar, hyprland).  
-A better place to put custom scripts (than in the .config folder) is in `$HOME/.local/share/bin`. I linked `$HOME/.local/share/bin/scripts` to `$HOME/.config/scripts/` (where the files will land if u just clone this git).  
-You can do this with:  
-```
-ln -s $HOME/.config/scripts/ $HOME/.local/share/bin/scripts
-```
-Make sure the path ($HOME/.local/share/bin) exists (else the command fails).
+A better place to put custom scripts (than in the .config folder) is in `$HOME/.local/share/bin`. Currently, they are in `$HOME/.config/scripts/`. (TODO: change that)  
 
 Some scripts have settings/dependencies that are written in the top of the scripts. Some of the scripts will warn about and handle missing dependencies gracefully. (sadly not all of them yet)  
 
 General Needs (for some of the scripts):
 - wayland
 - [hyprland](#hyprland)
-- a notification deamon (eg. [dunst](#dunst))
+- a notification daemon (eg. [dunst](#dunst))
 - pacman-contrib
 
-
 ### [sddm](https://github.com/sddm/sddm)
-*(/other/sddm.conf)*
-A display manager for X11 and Wayland sessions. I use it to login into accounts and select which compositer I want to use. As I also have KDE-Plasma installed (from the `plasma-meta` package), I can select (in the bottom left corner) where to login to.  
-U can also select hyprland with and without uwsm, this config expects to be started managed by uwsm.
+*(/other/sddm.conf)*  
+A display manager for X11 and Wayland sessions. I use it to login into accounts and select which compositer I want to use. It also allows me to select which compositor to login into, in the bottom left corner. (I also have KDE-Plasma installed (from the `plasma-meta` package))  
+U can also select hyprland with and without uwsm, this config expects to be started *managed by uwsm*.  
 Copy the config to `/etc/sddm.conf.d/sddm.conf`. If there are other config files already there, make sure sddm will read it last (see `man 5 sddm.conf`).  
-A easy way to style sddm if with the KDE-System-Settings.  
-(TODO: look into QtQuick for design, fix onscreen-keyboard env? kde_wayland?)  
+A easy way to style sddm is with the KDE-System-Settings.  
+(TODO: look into QtQuick for theme design, fix onscreen-keyboard env? kde_wayland?)  
 Needs: breeze (the theme used)  
 
 ### systemd
 *(/environment.d/)*  
-Some environment variables for systemd. (!! is setting wayland variables !!)
+Some environment variables for systemd. Prob. not well done currently. (!! is setting wayland variables !!)
 
 ### [tofi](https://github.com/philj56/tofi)
-*(/tofi/) (Linux)*  
+*(/tofi/)*  
 A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has more explaining comments.  
+Needs: `/usr/share/fonts/TTF/DejaVuSansMNerdFont-Regular.ttf` (look into [Nerd-Font](#nerd-font))
 
 
 ### v
-*(/other/v-editor) (Linux)*  
+*(/other/v-editor)*  
 Use `v` in a console or script to launch the prefered editor (stored in *$EDITOR*).  
 Copy the file to `/usr/bin/`, rename it to `v` and make it executable. More explanations are in the file.  
 U can also use the alias in `bash/aliases.bashrc` for a simpler setup, with similar functionality.  
@@ -249,12 +231,12 @@ TODO: make this a proper package (in AUR?)
 
 
 ### vim
-*(/other/.vimrc) (Win10/Linux)*  
+*(/other/.vimrc)*  
 This is a very simple setup that I use, when I can't use nvim.  
 Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manager, it should autoinstall itself. Should work on Win10 and Linux.  
 
 ### [waybar](https://github.com/Alexays/Waybar)
-*(/waybar/) (Linux)*  
+*(/waybar/)*  
 A wayland statusbar, with some custom scripts for extra functionallity. U can right/left-click or scroll on many modules.  
 There is a custom script `reloadConfig.sh` that reloads the configuration, to easily test changes for waybar.
 There is also a custom wifimenu, a custom package update helper and many other features.  
@@ -269,66 +251,64 @@ The config is split into multiple parts:
 
 Needs:
 - uwsm<sup>AUR</sup> (for some app starts)
-- `.config/scripts/` (some scripts from this git)
+- `scripts/` (some scripts from this gits scripts folder)
 - egnrseTheme.css (in this git)  
 - [wlogout](#wlogout) (custom powermenu)
 - wayland
-- hyprlctl (included in hyprland)
+- hyprctl (included in hyprland)
 - a notification service (eg. [dunst](#dunst))
 - rofi-wayland (for the custom wifi-menu, u can also mostly use rofi)
 - networkmanager
 - blueman-manager (bluetooth gui)
 - wireplumber (audio-server, config has to be changed for it to work with ALSA only)
-- pwvucontrol<sub>AUR</sub> helvum coppwr(flatpak) (audio-management gui)
+- pwvucontrol<sup>AUR</sup> helvum coppwr(flatpak) (audio-management gui)
 Others: jq playerctl  
 
 
 ### wlogout
-*(/wlogout/) (Linux)*  
+*(/wlogout/)*  
 A wayland PowerMenu (to logout/shutdown/...). theme-1 is longer (6 items), theme-2 only 4 has options. Both themes have a layout-\* file and a styles-\*.css.  
-U can use `/scripts/logoutlaunch.sh` (with args $1= 1 or 2) to launch those themes. They (should) scale automatically with display size and the scaling parameter.  
-Needs: egnrseTheme.css hyprland hyprlock  
+U can use `/scripts/logoutlaunch.sh` (with args $1 being 1 or 2) to launch those themes. They (should) scale automatically with display size and scaling.  
+Needs: egnrseTheme.css hyprland uwsm hyprlock  
 
 
 ### general Theme
-*(egnrseTheme.\*) (Linux)*  
+*(egnrseTheme.\*)*  
 still a work in progress  
-The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3 egnrseTheme.css/*.conf/*.sh . In many configs are the colors still hardcoded. (eg. dunst, tofi, rofi)  
+The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3: egnrseTheme.css/\*.conf/\*.sh . In many configs the colors are still hardcoded. (eg. dunst, tofi, rofi)  
 
 
-### misc
-Other things that might be useful...  
+### Misc
+Other things that might be useful (mostly in the other folder).  
 
 #### onScreen Keyboard
-(/other/wvkbd*)  
+*(/other/wvkbd-laptop\*)*  
 Put the binary `wvkbd-laptop` in a directory on the path (eg. `/usr/local/bin/`) to use it system-wide (hyprland/sddm/the desktop-entry expect that)  
-Put the desktop-entry in eg. `~/.local/share/applications/` (or follow the instructions in the file).  
-Swipe with one finger from the bottom up (on a touch screen) to toggle the keyboards visibility. (within [hyprland](#hyprland) with the hyprgrass plugin)  
+Put the desktop-entry `wvkbd-laptop.desktop` in eg. `~/.local/share/applications/` (or follow the instructions in the file).  
+Swipe with one finger from the bottom to the left edge (on a touch screen) to toggle the keyboards visibility. (within [hyprland](#hyprland) with the hyprgrass plugin)  
 
 #### [Nerd-Font](https://www.nerdfonts.com)
-(/other/DejaVuSansMono.zip)  
-The font used by many/some of the configs in this git.  
-Download it or install it over pacman: `ttf-dejavu-nerd`
+*(/other/DejaVuSansMono.zip)*  
+The font used by some of the configs in this git.  
+Download it or install it over pacman: `ttf-dejavu-nerd`  
 
 #### xdg-terminal-exec
 *(/xdg-terminals.list)*  
-Set your standart terminal for `xdg-terminal-exec`<sup>AUR</sup> in the file `xdg-terminals.list` (is not in the xdg standart yet).  
+Set your standart terminal for `xdg-terminal-exec`<sup>AUR</sup> in the file `xdg-terminals.list` (is not in the xdg standart yet). Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator).  
+Needs: xdg-terminal-exec<sup>AUR</sup>
 
 #### mimeapps.list
 *(/mimeapps.list)*  
-set default applications here (for different filetypes)
-
-#### cool/useful Packages
-zerotier-one  
-joplin-desktop<sup>AUR</sup>  
-beeper-latest-bin<sup>AUR</sup>  
-[coppwr](https://dimtpap.ovh/coppwr) (flathub)  
-[sonusmix](https://codeberg.org/sonusmix/sonusmix)  
-[xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec)
+Set your default applications here (for different filetypes). You can also do this with the KDE-System-Settings or  
+an easer way to do this is using `Nemo`:  
+`Right Click a file > select *Open With* > *Other Application...* > ` select the application u like and press *Set as default*  
+This will also change the mimeapps.list file.  
+Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator).  
 
 
 
-## Appendix
+# Appendix
+
 ### FIXES?
 #### Electron Apps
 If apps are blurry (on wayland) it might be using Xwayland, you can fix this by adding the following to the launch-command of the app:  
@@ -387,20 +367,19 @@ Follow the Arch Linux install in: `https://docs.lizardbyte.dev/projects/sunshine
 Then do: `sudo setcap -r $(readlink -f $(which sunshine))`  
 Install all dependencies that sunshine needs. Symlink all libs that have the wrong version to the installed one. (in `/usr/lib`: sudo ln -s ./lib\*.so ./lib\*.so.1.83.0)
 
-### other useful (git) commands:
-`git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
-`git config --global core.editor "nvim"`  
-`git config status.showUntrackedFiles no`  
-`git sparse-checkout list`  
-`git read-tree -mu HEAD` : reload current files from tree
-`git remote set-url origin github.com:egnrse/configs.git` : setup your `~/.ssh/config` for github first  
-`git reset --hard origin/main` : reset current branch to origin/main (will discard all local changes)
+---
 
-### ssh
-use `~/.ssh/config`  
-`ssh -T github` : test github connection  
+### cool/useful Packages
+zerotier-one  
+joplin-desktop<sup>AUR</sup>  
+beeper-latest-bin<sup>AUR</sup>  
+[coppwr](https://dimtpap.ovh/coppwr) (flathub)  
+[sonusmix](https://codeberg.org/sonusmix/sonusmix)  
+[xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)
 
-### packages
+---
+
+### Packages
 Some of the packages I use:  
 
 #### basics
@@ -421,14 +400,57 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 
 #### misc
 unzip zip  
-libreoffice-fresh torbrowser-launcher
-prismlauncher appimagelauncher  
+libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher  
 
 #### from AUR
-spotify thorium-browser-bin
+spotify   
 vesktop beeper-latest-bin (discord client, msg client)  
-waterfox-bin pa-notify (firefox fork, notification on loudness change)  
-xdg-terminal-exec ttf-ms-win10-auto (default terminal, win fonts)
+waterfox-bin thorium-browser-bin pa-notify (browser, notification on loudness change)  
+xdg-terminal-exec ttf-ms-win10-auto (default terminal, win fonts)  
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight sunshine Tor_Browser_Launcher  
+keepassXC joplin bottles OBS_Studio moonlight
+#### from somewhere else
+sunshine matlab
+
+---
+
+### other useful (git) commands:
+`git config core.sparseCheckout true` : can also add single files to the sparsity list (not only directories)  
+`git config --global core.editor "nvim"`  
+`git config status.showUntrackedFiles no`  
+`git sparse-checkout list`  
+`git read-tree -mu HEAD` : reload current files from tree
+`git remote set-url origin github.com:egnrse/configs.git` : setup your `~/.ssh/config` for github first  
+`git reset --hard origin/main` : reset current branch to origin/main (will discard all local changes)
+
+use `~/.ssh/config`  
+`ssh -T github` : test github connection  
+
+### old setup method (git ~/.config)
+I used to use sparse-checkout and exlude to only get specific files with git. Except for files in the `other` folder all files should be at the right place after cloning this repo. 
+
+Go into one of the following paths:  
+unix: `~/.config/`  
+win:  `C:\Users\<USERNAME>\AppData\Local\`
+```
+git init
+git remote add origin https://github.com/egnrse/configs
+git config core.sparseCheckoutCone true
+```
+Choose the folders that u want:
+```
+git sparse-checkout set alacritty bash dunst environment.d hypr nvim nwg-drawer scripts tofi waybar wlogout
+```
+(many of the configs rely on scripts and environment.d (or on each other) taking only a few might break things)  
+
+Finish the setup:
+```
+git pull origin main
+git branch --set-upstream-to=origin/main main
+```
+
+#### setup git exlude
+`./.git/info/exlude`  
+Is a file to exclude local files/folders from git.
+Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`   
