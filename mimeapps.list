@@ -7,10 +7,13 @@ application/x-extension-xht=userapp-Waterfox-W76E02.desktop;
 application/x-extension-xhtml=userapp-Waterfox-W76E02.desktop;
 application/xhtml+xml=userapp-Waterfox-W76E02.desktop;
 application/zip=mw-matlab.desktop;
+image/jpeg=org.nomacs.ImageLounge.desktop;
+image/png=org.nomacs.ImageLounge.desktop;
 text/html=userapp-Waterfox-W76E02.desktop;
 x-scheme-handler/chrome=userapp-Waterfox-W76E02.desktop;
 x-scheme-handler/http=userapp-Waterfox-W76E02.desktop;
 x-scheme-handler/https=userapp-Waterfox-W76E02.desktop;
+image/webp=org.nomacs.ImageLounge.desktop;
 
 [Default Applications]
 application/pdf=waterfox.desktop
@@ -21,6 +24,8 @@ application/x-extension-xht=userapp-Waterfox-W76E02.desktop
 application/x-extension-xhtml=userapp-Waterfox-W76E02.desktop
 application/xhtml+xml=userapp-Waterfox-W76E02.desktop
 application/zip=mw-matlab.desktop
+image/jpeg=org.nomacs.ImageLounge.desktop
+image/png=org.nomacs.ImageLounge.desktop
 inode/directory=nemo.desktop
 text/html=userapp-Waterfox-W76E02.desktop
 text/plain=nvim.desktop
@@ -32,3 +37,4 @@ x-scheme-handler/http=userapp-Waterfox-W76E02.desktop
 x-scheme-handler/https=userapp-Waterfox-W76E02.desktop
 x-scheme-handler/terminal=Alacritty.desktop
 x-scheme-handler/unknown=firefox.desktop
+image/webp=org.nomacs.ImageLounge.desktop
