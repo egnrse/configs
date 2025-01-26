@@ -2,6 +2,7 @@
 
 # [WIP] be carful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
+# most things are symbolic links, exceptions: mimeapps.list
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 
@@ -46,7 +47,7 @@ mv ${config}egnrseTheme.conf ${backup}
 ln -s -i ${origin}egnrseTheme.conf ${config}
 # egnrseTheme.sh ?
 mv ${config}mimeapps.list ${backup}
-ln -s -i ${origin}mimeapps.list ${config}
+ln -i ${origin}mimeapps.list ${config}
 mv ${config}xdg-terminals.list ${backup}
 ln -s -i ${origin}xdg-terminals.list ${config}
 
