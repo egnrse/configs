@@ -300,9 +300,10 @@ Needs: xdg-terminal-exec<sup>AUR</sup>
 #### mimeapps.list
 *(/mimeapps.list)*  
 Set your default applications here (for different filetypes). You can also do this with the KDE-System-Settings or  
-an easer way to do this is using `Nemo`:  
+an easer way to do this is using the filemanager `Nemo`:  
 `Right Click a file > select *Open With* > *Other Application...* > ` select the application u like and press *Set as default*  
 This will also change the mimeapps.list file.  
+u can find the mime-type of a file using `xdg-mime query filetype {FILE}`.
 Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator).  
 
 
@@ -322,16 +323,7 @@ Things that (kinda) work though:
 - Use the mime-type for terminals (u can add them in `~/.config/mimeapps.list`). It is `x-scheme-handler/terminal=Alacritty.desktop`.  
 - Use `xdg-terminal-exec`<sup>AUR</sup> to launch terminal applications ([Docs here](https://github.com/Vladimir-csp/xdg-terminal-exec)). Look into the file [xdg-terminals.list](./xdg-terminals.list) for how to configure and more information. ([rust implementation](https://codeberg.org/mkhl/xdg-terminal-exec))  
 - For gnome (applications) use the xdg-terminal-exec method AND look at the [Nemo](#nemo-file)  
-- For KDE (applications) in `~/.config/kdeglobals` add:  
-```
-[General]
-TerminalApplication=alacritty
-TerminalService=Alacritty.desktop
-```
-
-#### Matlab
-Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
-I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
+- For KDE (applications) look at [Dolphin](#dolphin-file).
 
 #### Waterfox
 When using the `waterfox-bin` package, I had some organization policies set. You can change them in `/opt/waterfox/distribution/policies.json`.  
@@ -339,7 +331,26 @@ To let the `KeepassXC-Browser` Plugin find KeepassXC u can copy the `native-mess
 
 #### [Thorium](https://thorium.rocks/)
 thorium-browser-bin<sup>AUR</sup>
-To active native wayland use `--ozone-platform-hint=auto` as a startup flag or set `Preferred Ozone platform` to auto within the `chrome://flags/` menu (put the previous thing into the URL field of thorioum).
+To active native wayland use `--ozone-platform-hint=auto` as a startup flag or set `Preferred Ozone platform` to auto within the `chrome://flags/` menu (put the previous thing into the URL field of thorioum).  
+
+
+#### Dolphin (filemanager)
+Set the standart terminal for dolphin in `~/.config/kdeglobals` with:
+```
+[General]
+TerminalApplication=alacritty
+TerminalService=Alacritty.desktop
+```
+First row the command, second row the desktop-entry.  
+
+To build/update the KDE **desktop-entry cache** (that Dolphin needs to find programs):
+- have the `archlinux-xdg-menu` package installed
+- run: `XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental`
+(kbuildsycoca6 is part of the kservice package, which is a dependency of dolphin)  
+This fixes dolphin not finding programs.  
+TODO: make this an automatic (systemd?) service  
+
+To launch Dolphin (from the terminal) in the current directory use: `dolphin .`
 
 
 #### Nemo (filemanager)
@@ -348,6 +359,12 @@ change the standart terminal to alacritty:
 fix running shell-scripts with alacritty (needs the option -e):  
 `gsettings set org.cinnamon.desktop.default-applications.terminal exec-arg e`  
 more in the [ArchWiki-Nemo](https://wiki.archlinux.org/title/Nemo)  
+
+
+#### Matlab
+Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
+I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
+
 
 #### Pacman / Steam
 In `/etc/pacman.conf` I enable `ParallelDownloads = 5` and the `multilib` library (multilib is required for the `steam` package).  
