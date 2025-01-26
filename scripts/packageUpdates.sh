@@ -5,6 +5,7 @@
 # helps with updating packages if '-u' is given or $1 is "up"/"update"/"upgrade" (runs $sysUpgrade_helper)
 # Needs:
 # 	pacman-contrib (for checkupdates)
+# 	[xdg-terminal-exec (from AUR)]
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
 #	[sysUpgrade.sh (a custom script)]
@@ -13,21 +14,25 @@
 #	(maybe original?: https://github.com/sejjy/mechabar/)
 
 # ====== SETTINGS ======
-# if this script does not know your aur_helper, u can set one here
+# if this script does not find your aur_helper, u can set one here
 custom_aur_helper=""
 
 # how many updates must be available to show the update icon
 show_when=10
-# shows a hint (for the sysupdater) when 1 
+# shows a hint (for the sysupdater) in the wayubar tooltip when set to 1 
 show_hints=1
+# if set to 1 will not show deprecated warnings
+ignore_deprecated=0
+
+# the terminal you want to use to launch the system upgrade helper
+# if not set will try to use 'xdg-terminal-exec' falling back to $TERMINAL
+# it is advised to set $TERMINAL as an environment variable (eg. in ~/.bashrc)
+sysUpgrade_term=	#$TERMINAL
+# the system upgrade helper script
+sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
 
 # used for notifications
 scriptName="packageUpdates.sh"
-# the terminal you want to use for the system update helper
-# it is advised to set $TERMINAL as an environment variable (eg. in ~/.bashrc)
-sysUpgrade_term=$TERMINAL
-# the system upgrade helper script
-sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
 
 # ==== SETTINGS END ====
 
@@ -38,8 +43,11 @@ sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
 # legacy handling
 args1=$1
 if [ "$args1" == "up" ] || [ "$args1" == "update" ] || [ "$args1" == "upgrade" ]; then
-	notify-send -a ${scriptName} "${scriptName}: using deprecated args"\
-		"usage: ${scriptName} [-u|-?]\nYou should use -u to launch the sysUpgrade_helper."
+	if [ $ignore_deprecated -ne 1 ]; then
+		echo -e "${scriptName}: using deprecated args\n usage: ${scriptName} [-u|-?]\n You should use -u to launch the sysUpgrade_helper."
+		notify-send -a ${scriptName} "${scriptName}: using deprecated args"\
+			"usage: ${scriptName} [-u|-?]\nYou should use -u to launch the sysUpgrade_helper."
+	fi
 	upgrade="true"
 else
 	upgrade="false"
@@ -69,7 +77,9 @@ done
 
 # Check release
 if [ ! -f /etc/arch-release ]; then
-  exit 1
+	notify-send "${scriptName}: '/etc/arch-release' not found, exiting." &
+	echo "${scriptName}: '/etc/arch-release' not found, exiting."
+	exit 1
 fi
 
 # test if a package is installed
@@ -77,9 +87,9 @@ fi
 # returns 0 if it was found or 1 else
 pkg_installed() {
 	local pkg=$1
-	if pacman -Qi "${pkg}" &>/dev/null; then
+	if pacman -Q "${pkg}" &>/dev/null; then
 		return 0
-	elif pacman -Qi "flatpak" &>/dev/null && flatpak info "${pkg}" &>/dev/null; then
+	elif pacman -Q "flatpak" &>/dev/null && flatpak info "${pkg}" &>/dev/null; then
 		return 0
 	elif command -v "${pkg}" &>/dev/null; then
 		return 0
@@ -108,43 +118,92 @@ get_aur_helper() {
 	return 0
 }
 
-
-export aur_helper=$(get_aur_helper)
-
-# ====== UPDATE ======
-# update packages
-# by starting ${sysUpgrade_helper} in a new terminal
-if [ "$upgrade" == "true" ]; then
+# test which terminal to use to launch the system upgrade helper
+# show error messages if it fails
+# returns 0: xdg-terminal-exec, 1: sysUpgrade_term, 2: error
+which_term() {
+	# check for xdg-terminal-exec
+	if command -v xdg-terminal-exec >/dev/null 2>&1 && [ -z "$sysUpgrade_term" ]; then
+		# use xdg-terminal-exec if it exist and there is no custom terminal set
+		#echo "xdg-terminal-exec"
+		return 0
+	# set sysUpgrade_term to $TERMINAL
+	elif [ -z "$sysUpgrade_term" ] && [ -n "$TERMINAL" ]; then
+		echo -e "${scriptName}: trying to start with '\$TERMINAL -e'\n 'sysUpgrade_term' not set or empty"
+		notify-send -a ${scriptName} "${scriptName}: trying to start with '\$TERMINAL -e'"\
+			"'sysUpgrade_term' not set or empty, "
+		sysUpgrade_term=$TERMINAL
+	fi
+	# test sysUpgrade_term
 	if [ -z "$sysUpgrade_term" ]; then
 		# the value is empty
+		echo -e "${scriptName}: 'sysUpgrade_term' not set\nInstall 'xdg-terminal-exec' or set 'sysUpgrade_term' in this script to use 'update'|'upgrade'."
 		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_term' not set" \
-			"Set 'sysUpgrade_term' in this script to use 'update'|'upgrade'." &
+			"Install 'xdg-terminal-exec' or set 'sysUpgrade_term' in this script to use 'update'|'upgrade'." &
 	elif ! command -v $sysUpgrade_term >/dev/null 2>&1; then
 		# 'command' does not find sysUpgrade_term
+		echo -e "${scriptName}: 'sysUpgrade_term' not valid\nDid not find '${sysUpgrade_term}' as a valid command. Set it in this script to use 'update'|'upgrade'.\n You can also install 'xdg-terminal-exec' and set '\$sysUpgrade_term' to and empty value."
 		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_term' not valid" \
-			"Did not find '${sysUpgrade_term}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
+			"Did not find '${sysUpgrade_term}' as a valid command. Set it in this script to use 'update'|'upgrade'.\n You can also install 'xdg-terminal-exec' and set '\$sysUpgrade_term' to and empty value." &
 	elif ! command -v $sysUpgrade_helper >/dev/null 2>&1; then
 		# the sysUpgrade_helper does not exist
+		echo -e "${scriptName}: 'sysUpgrade_helper' not found\nDid not find '${sysUpgrade_helper}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
 		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_helper' not found" \
 			"Did not find '${sysUpgrade_helper}' as a valid command. Set it in this script to use 'update'|'upgrade'." &
 	else
-		# save the output of the next command
-		output=$(
-			## CHANGE ME
-			# this might need to change for different terminals	
-			#$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper}
-			$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper} \
-		2>&1 )
-
-		returnVal=$?
-		# test for errors
-		if [ $returnVal -ne 0 ]; then
-			echo "'sysUpgrade_helper' might have failed to start"
-			notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_helper' might have failed to start" \
-				"Try looking into '## CHANGE ME' in ${scriptName}.\nThe command exited with status: ${returnVal}\nThe ouput:\n$output" &
-		fi
+		#echo "${sysUpgrade_term} -e"
+		return 1
 	fi
+	# return an error
+	return 2
+}
 
+
+export aur_helper=$(get_aur_helper)
+
+# ====== UPGRADE ======
+# upgrade packages
+# by starting ${sysUpgrade_helper} in a new terminal
+if [ "$upgrade" == "true" ]; then
+	# test how to execute the upgrade helper
+	which_term		# returns 0,1 or 2
+	term=$?
+	case $term in
+		0)
+		# use xdg-terminal-exec
+			# save the output of the next command and show it in case of an error
+			output=$(
+				xdg-terminal-exec --title="System Upgrade" ${sysUpgrade_helper} ${aur_helper} \
+			2>&1 )
+			returnVal=$?
+			;;
+		1)	
+		# use $sysUpgrade_term -e
+			# save the output of the next command
+			output=$(
+				## CHANGE ME
+				# this might need to change for different terminals	
+				#$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper}
+				$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper} \
+			2>&1 )
+			returnVal=$?
+			;;
+		2)
+		# error (eg. no command found)
+			echo "${scriptName}: exiting as no valid terminal was found. (install xdg-terminal-exec or set '\$sysUpgrade_term')"
+			exit 1
+			;;
+		*)
+			echo "Invalid return value from 'which_term()' in ${scriptName}."
+			exit 1
+			;;
+	esac
+	# test for errors
+	if [ $returnVal -ne 0 ]; then
+		echo "'sysUpgrade_helper' might have failed to start"
+		notify-send -a ${scriptName} "${scriptName}: 'sysUpgrade_helper' might have failed to start" \
+			"Try looking into '## CHANGE ME' in ${scriptName}.\nThe command exited with status: ${returnVal}\nThe ouput:\n$output" &
+	fi
 	exit 0
 fi
 
@@ -195,7 +254,5 @@ if [ $total_updates -ge $show_when ]; then
 else
 	text="󰸟"
 fi
-
-#tooltip="${tooltip}\n(launch system update helper)"
 
 echo "{\"text\":\"${text}\", \"tooltip\":\"${tooltip}\"}"
