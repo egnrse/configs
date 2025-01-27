@@ -55,14 +55,19 @@ ln -s -i ${origin}xdg-terminals.list ${config}
 
 ## DIFFERENT LOCATIONS
 # hard link files
+echo "cp and move files to other locations too?"
+echo "press enter to continue (Ctr+C to exit)"
+read
 sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
-sudo cp -l -i ${origin}other/v-editor /usr/local/bin/v && sudo chmod +x /usr/bin/v
-echo "> execute `sudo visudo` and add `Defaults env_keep += EDITOR`"
+sudo cp -l -i ${origin}other/v-editor /usr/local/bin/v && sudo chmod +x /usr/local/bin/v
+echo "dont forget to execute 'sudo visudo' and add 'Defaults env_keep += EDITOR'"
 # dolphin
 mkdir -p ~/.local/share/kio/servicemenus
-cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/ && chmod +x {origin}/other/servicemenus/*
+cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
+chmod +x ${origin}other/servicemenus/*
 # wvkbd-laptop
 sudo cp -i ${origin}other/wvkbd-laptop /usr/local/bin/ 
+sudo +x /usr/local/share/bin/wvkbd-laptop
 sudo mkdir -p /usr/local/share/applications/
 sudo cp -l -i ${origin}other/wvkbd-laptop.desktop /usr/local/share/applications/
 
