@@ -151,15 +151,26 @@ echo ""
 #
 echo -e "Do you want to do some ${bold}System Maintenance${normal} tasks?"
 pause skipN
-skip=$?
+skipMaintenance=$?
 echo "$underline"
-if [ $skip -eq 0 ]; then
+if [ $skipMaintenance -eq 0 ]; then
+	# how many task where automatically skipped, because there was nothing to do
+	skippedCount=0
+
+	# remove unused packages (Qdt lists orphaned packages)
+	if pacman -Qdtq; then
+		echo "removing orphaned packages"
+		pause skip
+		if [ $? -eq 0 ]; then
+			sudo pacman -Rns $(pacman -Qdtq)
+		fi
+		echo "$underline"
+	else
+		((skippedCount++))
+	fi
 	# deal with new configuration files
 	echo "deal with new configuration files (pacdiff)"
-	pause skip
-	if [ $? -eq 0 ]; then
-		pacdiff --sudo --backup
-	fi
+	pause skip && pacdiff --sudo --backup
 	# maybe also try p3wm 
 	echo "$underline"
 	#echo ""
@@ -167,12 +178,14 @@ if [ $skip -eq 0 ]; then
 	# cleaning the pacman cache (keeping 2 old versions)
 	echo "cleaning pacman cache (paccache)"
 	#echo " keeping 2 older versions of packages"
-	pause skip
-	if [ $? -eq 0 ]; then
-		paccache --remove --keep 2
-	fi
+	pause skip && paccache --remove --keep 2
 
 	echo "$underline"
+	
+	# how many task where automatically skipped, because there was nothing to do
+	if [ ${skippedCount} -ge 1 ]; then
+		echo "Maintenance Tasks not shown (nothing to do): ${skippedCount}"
+	fi
 fi
 echo ""
 
