@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin,text/*
+Actions=RunScript
+
+[Desktop Action RunScript]
+Name=Update KDE Cache
+Exec=notify-send "hi"
+#Exec=/home/elia/.config/scripts/updateKDEcache.sh

@@ -8,11 +8,9 @@
 
 set -x
 
-origin="$HOME/Documents/configs/"
+origin="$(pwd)/"
 config="$HOME/.config/"
 backup="${config}.bak/"
-rootConf="/root/.config/"
-rootBackup="${rootConf}.bak/"
 
 mkdir ${backup}
 mv ${config}alacritty ${backup}
@@ -31,14 +29,16 @@ mv ${config}nwg-drawer ${backup}
 ln -s -i ${origin}nwg-drawer ${config}
 mv ${config}rofi ${backup}
 ln -s -i ${origin}rofi ${config}
-mv ${config}scripts ${backup}
-ln -s -i ${origin}scripts ${config}
 mv ${config}tofi ${backup}
 ln -s -i ${origin}tofi ${config}
 mv ${config}waybar ${backup}
-ln -s -i ${origin}waybar ${config}
+ln -s -i ${origin}waybar ${config} && chmod +x ${origin}waybar/scripts/*
 mv ${config}wlogout ${backup}
 ln -s -i ${origin}wlogout ${config}
+
+
+mv ${config}scripts ${backup}
+ln -s -i ${origin}scripts ${config} && chmod +x ${origin}scripts/*
 
 # files
 mv ${config}egnrseTheme.css ${backup}
@@ -46,20 +46,35 @@ ln -s -i ${origin}egnrseTheme.css ${config}
 mv ${config}egnrseTheme.conf ${backup}
 ln -s -i ${origin}egnrseTheme.conf ${config}
 # egnrseTheme.sh ?
+# hardlink mimeapps.list!
 mv ${config}mimeapps.list ${backup}
 ln -i ${origin}mimeapps.list ${config}
 mv ${config}xdg-terminals.list ${backup}
 ln -s -i ${origin}xdg-terminals.list ${config}
 
+
+## DIFFERENT LOCATIONS
+# hard link files
+sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
+sudo cp -l -i ${origin}other/v-editor /usr/local/bin/v && sudo chmod +x /usr/bin/v
+echo "> execute `sudo visudo` and add `Defaults env_keep += EDITOR`"
+# dolphin
+mkdir -p ~/.local/share/kio/servicemenus
+cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/ && chmod +x {origin}/other/servicemenus/*
+# wvkbd-laptop
+sudo cp -i ${origin}other/wvkbd-laptop /usr/local/bin/ 
+sudo mkdir -p /usr/local/share/applications/
+sudo cp -l -i ${origin}other/wvkbd-laptop.desktop /usr/local/share/applications/
+
 # link roots nvim to ours?
-read -p "do you want to link the nvim configs to root? [y/N]: " answer
-case $answer in
-	[Yy]*)
-		sudo mv ${rootConf}nvim ${rootBackup}
-		sudo ln -s -i ${origin}nvim ${rootConf}
-		;;
-	[Nn]*|"")
-		;;
-esac
+#read -p "do you want to link the nvim configs to root? [y/N]: " answer
+#case $answer in
+#	[Yy]*)
+#		sudo mv ${rootConf}nvim ${rootBackup}
+#		sudo ln -s -i ${origin}nvim ${rootConf}
+#		;;
+#	[Nn]*|"")
+#		;;
+#esac
 
 echo "All done."

@@ -1,0 +1,19 @@
+# adds a custom service menu entry (to dolphin) that updates the KService 
+# desktop-file system configuration cache (see 'man 8 kbuildsycoca6') 
+# Needs the 'archlinux-xdg-menu' package
+#
+# put this file into: '~/.local/share/kio/servicemenus/' or '/usr/share/kio/servicemenus/'
+# this file needs to be executable to work
+# (by egnrse)
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/octet-stream;
+Actions=RunScript;
+
+[Desktop Action RunScript]
+Name=Update KDE Cache
+Icon=accessories-dictionary-symbolic
+TryExec=archlinux-xdg-menu
+Exec=XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental
+
