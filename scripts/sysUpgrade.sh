@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/env bash
 
 # helps with upgrading packages (for official-/pacman-, AUR- and flatpak-packages)
 # also helps with some system maintenance:
@@ -154,20 +154,20 @@ pause skipN
 skipMaintenance=$?
 echo "$underline"
 if [ $skipMaintenance -eq 0 ]; then
-	# how many task where automatically skipped, because there was nothing to do
+	# counts how many task where automatically skipped, because there was nothing to do
 	skippedCount=0
 
 	# remove unused packages (Qdt lists orphaned packages)
-	if pacman -Qdtq; then
-		echo "removing orphaned packages"
-		pause skip
-		if [ $? -eq 0 ]; then
-			sudo pacman -Rns $(pacman -Qdtq)
-		fi
+	orphanList=$(pacman -Qdtq)
+	if [ -n "${orphanList}" ]; then
+		echo "remove the following orphaned packages:"
+		echo ${orphanList}
+		pause skip && sudo pacman -Rns --noconfirm $(pacman -Qdtq)
 		echo "$underline"
 	else
 		((skippedCount++))
 	fi
+
 	# deal with new configuration files
 	echo "deal with new configuration files (pacdiff)"
 	pause skip && pacdiff --sudo --backup
@@ -179,12 +179,21 @@ if [ $skipMaintenance -eq 0 ]; then
 	echo "cleaning pacman cache (paccache)"
 	#echo " keeping 2 older versions of packages"
 	pause skip && paccache --remove --keep 2
-
 	echo "$underline"
+
+	# clean yay build files
+	# TODO
+	# check all folders names in ~/.cache/yay/
+	# generate a list
+	# remove pacman -Q hits
+	# delete folders on the list
+	# 
+	#pause skip && echo TODO clean ~/.cache/yay/
+	#echo "$underline"
 	
 	# how many task where automatically skipped, because there was nothing to do
 	if [ ${skippedCount} -ge 1 ]; then
-		echo "Maintenance Tasks not shown (nothing to do): ${skippedCount}"
+		echo "hidden Tasks (nothing to do): ${skippedCount}"
 	fi
 fi
 echo ""
