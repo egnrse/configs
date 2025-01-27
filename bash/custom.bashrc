@@ -40,6 +40,12 @@ if [[ $- = *i* ]]; then
 	PS1='[\u@\h \W]\$ '
 fi
 
+# command (c) and file (f) completion after a command
+complete -c man command which
+complete -cf sudo exec
+
+# remove all but the last identical command from the bash history
+export HISTCONTROL=erasedups
 
 ## COLORS
 ################################
