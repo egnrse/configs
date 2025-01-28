@@ -1,4 +1,0 @@
-# create a symlink
-ln -s $HOME/.config/scripts/ $HOME/.local/share/bin/scripts
-
-folder needs to exist
