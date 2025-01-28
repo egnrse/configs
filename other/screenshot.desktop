@@ -1,0 +1,14 @@
+# copy part of the screen into the system clipboard
+# put this file into '~/.local/share/applications'
+# Needs a script with 'grim -g "$(slurp)" - | wl-copy'
+# (by egnrse)
+[Desktop Entry]
+Type=Application
+Name=Snip Screen
+Comment=copy part of the screen into the clipboard
+Terminal=false
+Keywords=snipping;tool;grim;capture
+Categories=Utility;
+Icon=select-rectangular-symbolic
+Exec=/home/elia/Documents/configs/scripts/screenshot.sh
+
