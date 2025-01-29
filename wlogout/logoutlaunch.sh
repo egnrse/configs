@@ -2,6 +2,9 @@
 
 # sadly no idea who wrote this script (edited by egnrse)
 
+# deprecated msg (use ~/.local/share/bin/scripts/logoutlaunch.sh)
+notify-send "logoutlaunch.sh: deprecated" "use '~/.local/share/bin/scripts/logoutlaunch.sh' instead"
+
 # Check if wlogout is already running, and terminate if so
 if pgrep -x "wlogout" >/dev/null; then
   pkill -x "wlogout"
