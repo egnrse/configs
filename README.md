@@ -7,7 +7,10 @@ Make sure to install the packages needed for this config. (some dependencies are
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) many (hyprland) parts will break without this dependency.  
 
-I use an install script `./installV*.sh` to sym-link my local git with the config folders (mostly in `~/.config/`). [WIP]
+I use an install script `./installV*.sh` to sym-link my local git with the config folders (mostly in `~/.config/`) and move some files around. [WIP]
+
+![Preview](other/rice_pics/rice2025-01.png)
+
 
 ## set up some config syncing
 *(If u fork this first, u can sync and save your own configs)*  
@@ -22,6 +25,9 @@ TODO: make it more interactive (with an -a option?)
 [the old method can be found here](#old-setup-method-git-config)
 
 ## Synced configs:
+<details>
+  <summary>Overview</summary>
+
 - [alacritty](#alacritty): (/alacritty/)
 - [bash](#bash):      (/bash/)
 - [dunst](#dunst):     (/dunst/)
@@ -49,20 +55,25 @@ TODO: make it more interactive (with an -a option?)
 	- [some Fixes](#fixes)
 	- [Packages](#packages)
 
+</details>
+
 wanting to add:
-- screenshots
+- nothing rn
 
 
 ### [alacritty](https://alacritty.org/config-alacritty.html)
 *(/alacritty/)*  
+This file has some visual changes to make alacritty more beautiful.  
+
+<details><summary>Deprecated Win10 support</summary>
+
 in win10 add: (does **NOT** work yet)  
 ```
 [general]
 import = ["../../Local/alacritty/alacritty.toml"]
 ```
 to `%APPDATA%\alacritty\alacritty.toml`  
-
-This file has some visual changes to make alacritty more beautiful.  
+</details>
 
 
 ### bash
@@ -71,6 +82,8 @@ My config is split into two/three parts:
 - custom.bashrc (general settings)  
 - aliases.bashrc (aliases for commands)  
 - [~/.bashrc (for device specific settings, not fully in this git)]  
+
+<details><summary>More Info</summary>
 
 add this to your `~/.bashrc` (or similar) to source the files:
 ```
@@ -87,7 +100,7 @@ Some more infos are in the files.
 (be careful when setting environment variables)  
 
 I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into autotrash<sup>AUR</sup>)
-
+</details>
 
 ### [dunst](https://dunst-project.org/)
 *(/dunst/)*  
@@ -122,6 +135,8 @@ Many explanations are in the config files.
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and many parts will not work with out this dependency.  
 See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`  
 
+<details> <summary>more (Keymappings/Plugings)</summary>
+
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
@@ -150,6 +165,8 @@ Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightM
 #### Plugins  
 - [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
 - hypergrass: better touch-screen support (swipe from the bottom to left edge for the [wvkbd-latop](#onscreen-keyboard) keyboard)  
+
+</details>
 
 Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
 Works nicely with: hypridle hyprlock xdg-desktop-portal-hyprland  
@@ -181,7 +198,7 @@ Linting is still a WIP. You might need a bash-language-server.
 
 ### [nwg-drawer](https://github.com/nwg-piotr/nwg-drawer)
 *(/nwg-drawer/)*  
-A program drawer with math / filesearch (currently disabled for performace) support. Same usage as tofi, but slower and more graphical (eg. program icons/categories)  
+A program drawer with math / filesearch (currently disabled for performace reasons) support. Same usage as tofi, but slower and more graphical (eg. program icons/categories)  
 Is silently started with some custom options when hyprland starts. You can also find those options in the `restart-nwg-drawer.sh` script.  
 Use the math function by searching for eg. `8*4`. The answer will be shown in a popup when pressing `ENTER`.  
 Needs: egnrseTheme.css  
@@ -193,7 +210,7 @@ Similar to tofi, used for the custom wifimenu (of waybar). For wayland use the `
 ### scripts
 *(/scripts/)*  
 Some of my custom scripts used by other configs (eg. waybar, hyprland).  
-A better place to put custom scripts (than in the .config folder) is in `$HOME/.local/share/bin`. Currently, they are in `$HOME/.config/scripts/`. (TODO: change that)  
+This config expects to find them in `$HOME/.local/share/bin/scripts`.  
 
 Some scripts have settings/dependencies that are written in the top of the scripts. Some of the scripts will warn about and handle missing dependencies gracefully. (sadly not all of them yet)  
 
@@ -249,7 +266,8 @@ The config is split into multiple parts:
 - theme.css (colors used by style.css, imports `egnrseTheme.css`)
 - scripts  (some scripts for extra functionality)
 
-Needs:
+<details> <summary>Needs:</summary>
+	
 - uwsm<sup>AUR</sup> (for some app starts)
 - `scripts/` (some scripts from this gits scripts folder)
 - egnrseTheme.css (in this git)  
@@ -264,6 +282,7 @@ Needs:
 - pwvucontrol<sup>AUR</sup> helvum coppwr(flatpak) (audio-management gui)
 Others: jq playerctl  
 
+</details>
 
 ### wlogout
 *(/wlogout/)*  
@@ -279,18 +298,13 @@ The Idea is to have one file where I can change all colors for all apps/packages
 
 
 ### Misc
-Other things that might be useful (mostly in the other folder).  
+<details><summary>Other things that might be useful (mostly in the other folder).  </summary>
 
 #### onScreen Keyboard
 *(/other/wvkbd-laptop\*)*  
 Put the binary `wvkbd-laptop` in a directory on the path (eg. `/usr/local/bin/`) to use it system-wide (hyprland/sddm/the desktop-entry expect that)  
 Put the desktop-entry `wvkbd-laptop.desktop` in eg. `~/.local/share/applications/` (or follow the instructions in the file).  
 Swipe with one finger from the bottom to the left edge (on a touch screen) to toggle the keyboards visibility. (within [hyprland](#hyprland) with the hyprgrass plugin)  
-
-#### [Nerd-Font](https://www.nerdfonts.com)
-*(/other/DejaVuSansMono.zip)*  
-The font used by some of the configs in this git.  
-Download it or install it over pacman: `ttf-dejavu-nerd`  
 
 #### xdg-terminal-exec
 *(/xdg-terminals.list)*  
@@ -306,24 +320,45 @@ This will also change the mimeapps.list file.
 u can find the mime-type of a file using `xdg-mime query filetype {FILE}`.
 Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator).  
 
+#### Dolphin
+*(/other/servicemenus/\*)*  
+Some files in the `other` folder are for Dolphin (KDE). To use them look into the files or look at [Dolphin](#dolphin-filemanager) under [Fixes](#some-fixes-for-common-issues)  
 
+#### screenshot utility
+*(/scripts/screenshot.sh, /other/screenshot.desktop)*  
+Desktop entry (called `Snip Screen`) to trigger a screen shot with `grim` and `slurp`.  
+TODO: more possible modes?
+
+#### 'old' folder
+*(/other/old/\*)*  
+Everything in here is not in active use anymore with no idea if I will need it for sth. later on.  
+
+#### [Nerd-Font](https://www.nerdfonts.com)
+*(/other/DejaVuSansMono.zip)*  
+The font used by some of the configs in this git.  
+Download it or install it over pacman: `ttf-dejavu-nerd`  
+
+</details>
 
 # Appendix
 
-### FIXES?
+### some fixes for common issues
+
+<details> <summary>Expand?</summary>
+
 #### Electron Apps
 If apps are blurry (on wayland) it might be using Xwayland, you can fix this by adding the following to the launch-command of the app:  
 (the launch command prob. is in `/usr/bin/{APP}`)  
 `--enable-features=UseOzonePlatform --ozone-platform=wayland`  
 
 #### set Standart Terminal Emulator
-There sadly currently isn't a standartized way of doing that.  
+There sadly currently isn't a standardized way of doing that.  
 Things that (kinda) work though:  
 - Set the environment variable $TERMINAL (eg. in `~/.bashrc` with `TERMINAL=alacritty`)
 - Use the mime-type for terminals (u can add them in `~/.config/mimeapps.list`). It is `x-scheme-handler/terminal=Alacritty.desktop`.  
 - Use `xdg-terminal-exec`<sup>AUR</sup> to launch terminal applications ([Docs here](https://github.com/Vladimir-csp/xdg-terminal-exec)). Look into the file [xdg-terminals.list](./xdg-terminals.list) for how to configure and more information. ([rust implementation](https://codeberg.org/mkhl/xdg-terminal-exec))  
-- For gnome (applications) use the xdg-terminal-exec method AND look at the [Nemo](#nemo-file)  
-- For KDE (applications) look at [Dolphin](#dolphin-file).
+- For gnome (applications) use the xdg-terminal-exec method AND look at the [Nemo](#nemo-filemanager)  
+- For KDE (applications) look at [Dolphin](#dolphin-filemanager).
 
 #### Waterfox
 When using the `waterfox-bin` package, I had some organization policies set. You can change them in `/opt/waterfox/distribution/policies.json`.  
@@ -384,6 +419,8 @@ Follow the Arch Linux install in: `https://docs.lizardbyte.dev/projects/sunshine
 Then do: `sudo setcap -r $(readlink -f $(which sunshine))`  
 Install all dependencies that sunshine needs. Symlink all libs that have the wrong version to the installed one. (in `/usr/lib`: sudo ln -s ./lib\*.so ./lib\*.so.1.83.0)
 
+</details>
+
 ---
 
 ### cool/useful Packages
@@ -395,9 +432,9 @@ beeper-latest-bin<sup>AUR</sup>
 [xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)
 
 ---
-
+	
 ### Packages
-Some of the packages I use:  
+<details> <summary>Some of the packages I use:</summary>
 
 #### basics
 base-devel neovim vim git sudo grub openssh efibootmgr  
@@ -430,6 +467,8 @@ keepassXC joplin bottles OBS_Studio moonlight
 #### from somewhere else
 sunshine matlab
 
+</details>
+
 ---
 
 ### other useful (git) commands:
@@ -444,7 +483,10 @@ sunshine matlab
 use `~/.ssh/config`  
 `ssh -T github` : test github connection  
 
+<details> <summary>
+	
 ### old setup method (git ~/.config)
+</summary>
 I used to use sparse-checkout and exlude to only get specific files with git. Except for files in the `other` folder all files should be at the right place after cloning this repo. 
 
 Go into one of the following paths:  
@@ -471,3 +513,5 @@ git branch --set-upstream-to=origin/main main
 `./.git/info/exlude`  
 Is a file to exclude local files/folders from git.
 Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`   
+
+</details>
