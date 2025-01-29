@@ -29,7 +29,7 @@ ignore_deprecated=0
 # it is advised to set $TERMINAL as an environment variable (eg. in ~/.bashrc)
 sysUpgrade_term=	#$TERMINAL
 # the system upgrade helper script
-sysUpgrade_helper="$HOME/.config/scripts/sysUpgrade.sh"
+sysUpgrade_helper="$HOME/.local/share/bin/scripts/sysUpgrade.sh"
 
 # used for notifications
 scriptName="packageUpdates.sh"
