@@ -2,7 +2,7 @@
 // by egnrse
 // based on 'https://github.com/Sejjy/MechaBar'
 
-// Hint formating: <span font_size='80%'>(Hint)</span>
+// formating for hints: <span font_size='80%'>(Hint)</span>
 
 {
 	"include": [
@@ -108,7 +108,7 @@
 		"format": "{}",
 		"tooltip": true,
 		"on-click": "~/.config/waybar/scripts/wifimenu.sh",
-		"on-click-right": "uwsm app -- $TERM_RUN nmtui",
+		"on-click-right": "uwsm app -- xdg-terminal-exec --title=NetworkManager nmtui",
 		"interval": 1,
 		"min-length": 2,
 		"max-length": 2
@@ -159,16 +159,6 @@
 		// "ignored-players": ["firefox"]
 	},
 
-	"custom/media": {
-		"exec": "~/.config/waybar/scripts/mediaplayer.py",
-		"return-type": "json",
-		"format": "{}",
-		"tooltip": "{tooltip}",
-		"on-click": "playerctl play-pause",
-		"min-length": 5,
-		"max-length": 35
-	},
-
 	"wireplumber": {
 		"format": "{icon} {volume}%",
 		"format-muted": "<span foreground='#C1334A'>󰖁 {volume}%</span>",	//󰖁 󰝟 
@@ -186,11 +176,11 @@
 
 	// === other ===
 	"custom/update": {
-		"exec": "~/.config/scripts/packageUpdates.sh",
+		"exec": "~/.local/share/bin/scripts/packageUpdates.sh",
 		"return-type": "json",
 		"format": "{}",	
-		"on-click": "uwsm app -- ~/.config/scripts/packageUpdates.sh -u",	// launch upgrade script
-		"on-click-right": "~/.config/scripts/packageUpdates.sh",			// update update count
+		"on-click": "uwsm app -- ~/.local/share/bin/scripts/packageUpdates.sh -u",	// launch upgrade script
+		"on-click-right": "~/.local/share/bin/scripts/packageUpdates.sh",			// update update count
 		"interval": 3600,	// look for updates every 1h
 		"tooltip": true,
 		"signal": 20, // I'm not sure what this does
@@ -221,7 +211,7 @@
 		"tooltip": true,
 		"tooltip-format": "<span font_size='80%'>(Ctr+Super+L)</span>",
 		"on-click": "~/.config/scripts/logoutlaunch.sh 2",
-		"on-click-right": "~/.config/scripts/logoutlaunch.sh 1",
+		"on-click-right": "~/.local/share/bin/scripts/logoutlaunch.sh 1",
 		"min-length": 4
 	},
 
