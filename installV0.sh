@@ -3,6 +3,8 @@
 # [WIP] be carful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
 # most things are symbolic links, exceptions: mimeapps.list
+#
+# after accepting, will move/link files to different parts on your pc too.
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 
@@ -12,7 +14,7 @@ origin="$(pwd)/"
 config="$HOME/.config/"
 backup="${config}.bak/"
 
-mkdir ${backup}
+mkdir -p ${backup}
 mv ${config}alacritty ${backup}
 ln -s -i ${origin}alacritty ${config}
 mv ${config}bash ${backup}
@@ -38,7 +40,11 @@ ln -s -i ${origin}wlogout ${config}
 
 
 mv ${config}scripts ${backup}
-ln -s -i ${origin}scripts ${config} && chmod +x ${origin}scripts/*
+chmod +x ${origin}scripts/*
+
+ln -s -i ${origin}scripts ${config}		# deprecated
+ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
+
 
 # files
 mv ${config}egnrseTheme.css ${backup}
@@ -65,6 +71,11 @@ echo "dont forget to execute 'sudo visudo' and add 'Defaults env_keep += EDITOR'
 mkdir -p ~/.local/share/kio/servicemenus
 cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
 chmod +x ${origin}other/servicemenus/*
+if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
+	:
+else
+	echo "install the 'archlinux-xdg-menu' packages, for some dolphin stuff to work"
+fi
 # wvkbd-laptop
 sudo cp -i ${origin}other/wvkbd-laptop /usr/local/bin/ 
 sudo +x /usr/local/share/bin/wvkbd-laptop
