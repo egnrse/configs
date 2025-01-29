@@ -52,7 +52,7 @@ TODO: make it more interactive (with an -a option?)
 {program name}: ({path in this git})
 
 - [Appendix](#appendix)
-	- [some Fixes](#fixes)
+	- [some Fixes](#some-fixes-for-common-issues)
 	- [Packages](#packages)
 
 </details>
