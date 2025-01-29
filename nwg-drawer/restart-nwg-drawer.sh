@@ -9,7 +9,7 @@
 
 logfile=~/.config/nwg-drawer/nwg-drawer.log
 # set TERMINAL as an environment variable with your favorite terminal (eg 'alacritty')
-args="-r -c 8 -spacing 10 -fm nemo -term $TERMINAL -wm 'hyprland' -nofs"
+args="-r -c 8 -spacing 10 -fm dolpin -term $TERMINAL -wm 'hyprland' -nofs"
 
 killall nwg-drawer
 sleep 0.5
