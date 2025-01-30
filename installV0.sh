@@ -42,7 +42,7 @@ ln -s -i ${origin}wlogout ${config}
 mv ${config}scripts ${backup}
 chmod +x ${origin}scripts/*
 
-ln -s -i ${origin}scripts ${config}		# deprecated
+#ln -s -i ${origin}scripts ${config}		# deprecated
 ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
 
 
@@ -81,6 +81,9 @@ sudo cp -i ${origin}other/wvkbd-laptop /usr/local/bin/
 sudo +x /usr/local/share/bin/wvkbd-laptop
 sudo mkdir -p /usr/local/share/applications/
 sudo cp -l -i ${origin}other/wvkbd-laptop.desktop /usr/local/share/applications/
+
+# screenshot
+ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
 
 # link roots nvim to ours?
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer

@@ -10,5 +10,5 @@ Terminal=false
 Keywords=snipping;tool;grim;capture
 Categories=Utility;
 Icon=select-rectangular-symbolic
-Exec=/home/elia/Documents/configs/scripts/screenshot.sh
+Exec=/home/elia/.local/share/bin/scripts/screenshot.sh
 
