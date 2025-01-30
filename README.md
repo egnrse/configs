@@ -444,8 +444,9 @@ networkmanager blueman	    (internet/networking/bluetooth)
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
-zerotier-one firefox alacritty  
-trash-d ttf-dejavu-nerd nemo fastfetch rclone wl-clipboard  
+polkit-kde-agent archlinux-xdg-menu wl-clipboard trash-d  (utilities)  
+firefox alacritty konsole nemo dolphin  
+ttf-dejavu-nerd fastfetch rclone zerotier-one  
 
 #### window manager
 plasma-meta hyprland sddm (kde, tiling WM, login)  
@@ -454,7 +455,8 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 
 #### misc
 unzip zip  
-libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher  
+libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko 
+strawberry vlc kalgebra
 
 #### from AUR
 spotify   
@@ -463,7 +465,7 @@ waterfox-bin thorium-browser-bin pa-notify (browser, notification on loudness ch
 xdg-terminal-exec ttf-ms-win10-auto (default terminal, win fonts)  
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight
+keepassXC joplin bottles OBS_Studio moonlight coppwr
 #### from somewhere else
 sunshine matlab
 
