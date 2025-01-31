@@ -157,6 +157,14 @@ if [ $skipMaintenance -eq 0 ]; then
 	# counts how many task where automatically skipped, because there was nothing to do
 	skippedCount=0
 
+	# test for needed packages
+	if pacman -Q "pacman-contrib" &>/dev/null; then
+		:
+	else
+		echo -e "${bold}WARNING:${normal} package 'pacman-contrib' is missing, pacdiff/paccache will not work (${scriptName})"
+		echo "$underline"
+	fi
+
 	# remove unused packages (Qdt lists orphaned packages)
 	orphanList=$(pacman -Qdtq)
 	if [ -n "${orphanList}" ]; then

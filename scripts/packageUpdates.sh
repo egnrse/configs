@@ -118,7 +118,7 @@ get_aur_helper() {
 	return 0
 }
 
-# test which terminal to use to launch the system upgrade helper
+# test which terminal to use to launch the system upgrade helper (only used for '-u'/'upgrade')
 # show error messages if it fails
 # returns 0: xdg-terminal-exec, 1: sysUpgrade_term, 2: error
 which_term() {
@@ -215,6 +215,7 @@ official_updates=0
 if command -v "checkupdates" >/dev/null 2>&1; then
 	official_updates=$(checkupdates | wc -l)
 else
+	echo -e "${scriptName}: checkupdates not found\n This script will not check for official/pacman updates without it."
 	notify-send "${scriptName}: checkupdates not found"\
 		"This script will not check for official/pacman updates without it." &
 fi
