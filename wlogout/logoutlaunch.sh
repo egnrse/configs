@@ -1,1 +1,1 @@
-/home/elia/Documents/configs/scripts/logoutlaunch.sh
+../scripts/logoutlaunch.sh
