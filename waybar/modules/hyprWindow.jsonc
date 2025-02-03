@@ -95,8 +95,11 @@
 			"(.*).pdf": 
 			"<span foreground='#f38ba8'> </span> $1.pdf",
 
-			"/": "  File Manager",
-			"(.*) (.*) Dolphin": "  File Manager - $1",
+			// ====== File Manager ======
+
+			"/": "  Files",
+			"(.*) (.*) Dolphin": "  Files ($1)",
+			//"(.*) (.*) Dolphin": "  File Manager - $1",
 
 			// ====== System ======
 
@@ -110,11 +113,14 @@
 
 			// ====== Other ======
 
-
 			"(.*)Steam(.*)": 
 			"<span foreground='#209aff'> </span> $1Steam$2",
-			"Joplin": 
-			"<span background='#209aff'></span>  Joplin"
+
+			// eg. KeePassXC
+			"(.*) - KeePass(.*)": 
+			"<span> </span> KeePass$2 ($1)",
+			//"Joplin": 
+			//"<span background='#209aff'></span>  Joplin"
 		
 		}
 	}
