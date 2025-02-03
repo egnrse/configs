@@ -58,7 +58,7 @@ tooltip label {
 
 /* hover buttons */
 #bluetooth.on:hover, #bluetooth.connected:hover, #bluetooth:hover, 
-#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #wireplumber:hover, #custom-media:hover {
+#custom-power:hover, #power-profiles-daemon:hover, #custom-update:hover, #custom-wifi:hover, #wireplumber:hover, #custom-media:hover, #clock:hover {
 	/*background-color: @TextDark;*/
 	background-color: @Focus2Bg;
 	color: @Focus2Fg;

@@ -294,7 +294,7 @@ Needs: egnrseTheme.css hyprland uwsm hyprlock
 ### general Theme
 *(egnrseTheme.\*)*  
 still a work in progress  
-The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3: egnrseTheme.css/\*.conf/\*.sh . In many configs the colors are still hardcoded. (eg. dunst, tofi, rofi)  
+The Idea is to have one file where I can change all colors for all apps/packages I use. Currently, I use 3: egnrseTheme.css/\*.conf/\*.sh . In many configs the colors are still hardcoded. (eg. dunst, tofi, rofi, some waybar modules)  
 
 
 ### Misc
