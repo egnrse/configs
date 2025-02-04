@@ -16,21 +16,28 @@
 			"~": "  Terminal (~)",
 			"zsh": "  Terminal",
 			"Alacritty": "  Terminal (Alacritty)",
+			"(.*) — Konsole": "  Terminal ($1)",
 			"^elia@15cn1xxx:(.*)$": "  Terminal ($1)",
 			"^elia@.*:(.*)$": "  Terminal ($1)",
 
 			// ====== Browser ======
 
-			"(.*) — Mozilla Firefox": 
-			"<span foreground='#f38ba8'>󰈹 </span> $1",
-			"(.*)Mozilla Firefox": 
-			"<span foreground='#f38ba8'>󰈹 </span> Firefox",
+			"(.*) — Mozilla Firefox$": 
+			//"<span foreground='#f38ba8'>󰈹 </span> $1 (Firefox)",		// lighter color variant
+			"<span foreground='#FE9031'>󰈹 </span> $1 (Firefox)",
+			"(.*)Mozilla Firefox$": 
+			"<span foreground='#FE9031'>󰈹 </span> Firefox",
 
-			"(.*) — Waterfox": 
-			"<span foreground='#00A0F8'> </span> $1",
-			//"<span foreground='#00A0F8'>󰈹 </span> $1",
-			"(.*)Waterfox": 
-			"<span foreground='#00A0F8'> </span> Waterfox",
+			"(.*) — Waterfox$": 
+			//"<span foreground='#00A0F8'> </span> $1 (Waterfox)",		// alternative icon
+			"<span foreground='#00A0F8'>󰈹 </span> $1 (Waterfox)",
+			"(.*)Waterfox$": 
+			"<span foreground='#00A0F8'>󰈹 </span> Waterfox $1",
+			
+			"(.*) - Google Chrome": "  $1 (Google Chrome)",
+			"(.*) - Thorium":
+			"<span foreground='#669DF6'> </span> $1 (Thorium)",
+			//"<span foreground='#1A73E8'> </span> $1 (Thorium)",
 
 			// ====== Development ======
 
@@ -40,13 +47,20 @@
 			"<span foreground='#89b4fa'>󰨞 </span> Visual Studio Code",
 
 			"Godot": 
-			"<span foreground='#89b4fa'> </span> Godot Engine",
+			//"<span foreground='#89b4fa'> </span> $1",		// lighter color variant
+			"<span foreground='#478CBF'> </span> Godot Engine",
 			"Godot Engine - (.*)": 
-			"<span foreground='#89b4fa'> </span> $1",
+			"<span foreground='#478CBF'> </span> $1",
 			"(.*) - Godot Engine": 
-			"<span foreground='#89b4fa'> </span> $1",
+			"<span foreground='#478CBF'> </span> $1",
 
 			// ====== Media ======
+
+			// also gets replaced within other replacements (eg. browsers)
+			"(.*)Youtube (.*)":
+			"<span foreground='#FF4D38'> </span> Youtube $2",
+			"(.*) - Youtube (.*)":
+			"<span foreground='#FF4D38'> </span> $1 $2",
 
 			"(.*)Spotify": 
 			"<span foreground='#a6e3a1'> </span> Spotify",
@@ -67,10 +81,11 @@
 			"<span foreground='#a6adc8'> </span> GNU Image Manipulation Program",
 
 			"qView": "  qView",
+			"nomacs (.*)": "  nomacs $1",
 
-			"(.*).jpg": "  $1.jpg",
-			"(.*).png": "  $1.png",
-			"(.*).svg": "  $1.svg",
+			"(.*).jpg(.*)": "  $1.jpg$2",
+			"(.*).png(.*)": "  $1.png$2",
+			"(.*).svg(.*)": "  $1.svg$2",
 
 			// ====== Social ======
 
@@ -111,7 +126,19 @@
 			"(.*)Bluetooth (.*)":
 			"<span foreground='#AA87FF'> </span> $1Bluetooth $2",
 
+			// audio-settings  󱡬
+			"Volume Control": "󱡫  Volume Control",
+			"Pipewire Volume Control": "󱡫  Pipewire Volume Control",
+			"Helvum - Pipewire Patchbay": "󱡫  Helvum - Pipewire Patchbay",
+			"coppwr": "󱡫  coppwr",
+
 			// ====== Other ======
+
+			// calculator 󰃬
+			"KAlgebra": "󰪚  KAlgebra",
+
+			// 󱍡 󰓜 
+			"(.*) — Discover$": "󰓜  $1 — Discover",
 
 			"(.*)Steam(.*)": 
 			"<span foreground='#209aff'> </span> $1Steam$2",
