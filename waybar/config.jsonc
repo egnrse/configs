@@ -21,6 +21,7 @@
 		"custom/spacer",
 		"custom/padding1",
 		"hyprland/window"		// window title
+		//,"custom/test"			// testing modules
 	],
 
 	"modules-center": [
