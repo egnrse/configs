@@ -11,6 +11,6 @@ rclone copy ${localPath} gdrive-nit:/DB --include "KeePassElia2023_06.kbdx"
 if [ $? -eq 0 ]; then
 	notify-send "uploadDB successful" "syncing '${localPath}' with 'gdrive-nit:/DB'"
 else
-	notify-send "uploadDB probably failed" "syncing '${localPath}' with 'gdrive-nit:/DB'"
+	notify-send  -u critical "uploadDB probably failed" "syncing '${localPath}' with 'gdrive-nit:/DB'"
 fi
 #rclone sync gdrive-nit:/DB ~/Documents/DB/
