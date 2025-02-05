@@ -7,7 +7,7 @@
 * {
 	font-family: "JetBrainsMono Nerd Font";
 	font-size: 14px;
-	transition: all 0.4s cubic-bezier(.55,0.0,.28,1.0);
+	transition: all 0.35s cubic-bezier(.55,0.0,.28,1.0);
 	background-image: none;
 }
 
@@ -30,14 +30,12 @@ button {
 }
 
 button:focus {
-	color: @TextDark;
 	background-color: @TextDark;
 	opacity:	0.9;
 	background-size: 30%;
 }
 
 button:hover {
-	color: @TextDark;
 	background-color: @Accent;
 	background-size: 30%;
 }
