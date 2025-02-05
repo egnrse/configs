@@ -454,6 +454,7 @@ wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### misc
+bash-language-server (lsp)
 unzip zip  
 libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko 
 strawberry vlc kalgebra godot-mono
