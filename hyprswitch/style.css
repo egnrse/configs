@@ -21,25 +21,27 @@
     color: @MainText;
 }
 
-
+/* popup per monitor (small border on the very outside) */
 .monitor {
     background: @BgDark;
 	border: var(--border-size) solid @BorderDark;
 }
 .monitor_active {
 }
+
+/* within each monitor, all open workspaces (includes WS-Number and Clients) */
 .workspace {
 	font-size: 25px;
 	background-color: @AccentTransparent;
 }
-
 .workspace:hover {
 	opacity: 1;
 	background-color: @FocusFg;
 }
 .workspace_active {
     border: var(--border-size-active) solid @Alert;
-    background: @MainText;
+    /*background: @MainText;*/
+	background-color: @Accent;
 }
 .workspace_active label {
     color: @FocusFg;
@@ -51,6 +53,7 @@
     border: var(--border-size) solid @green;
 }
 
+/* running GUI programs grouped by workspace (includes title and icon) */
 .client {
 	font-size: 15px;
     background: @TextDark;
@@ -76,6 +79,7 @@
     background: @Background;
 }
 
+/* disabled currently, a number uniqe to eather clients or workspaces */
 .index {
     background: @FocusBg;
     color: @FocusFg;
