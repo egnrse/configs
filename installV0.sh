@@ -25,6 +25,8 @@ mv ${config}environment.d ${backup}
 ln -s -i ${origin}environment.d ${config}
 mv ${config}hypr ${backup}
 ln -s -i ${origin}hypr ${config}
+mv ${config}hyprswitch ${backup}
+ln -s -i ${origin}hyprswitch ${config}
 mv ${config}nvim ${backup}
 ln -s -i ${origin}nvim ${config}
 mv ${config}nwg-drawer ${backup}
