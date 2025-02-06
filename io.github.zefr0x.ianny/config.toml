@@ -1,0 +1,17 @@
+# config file for ianny (by egnrse)
+# (https://github.com/egnrse/configs)
+# also see: 'https://github.com/zefr0x/ianny'
+[timer]
+# Timer will stop and reset when you are idle for this amount of seconds.
+idle_timeout = 240			# 4min
+# Active duration that activates a break.
+short_break_timeout = 3600	# 1h
+long_break_timeout = 14400	# 4h
+# Breaks duration.
+short_break_duration = 120	# 2min
+long_break_duration = 300	# 5min
+
+[notification]
+show_progress_bar = true
+# Minimum delay of updating the progress bar (lower than 1s may return an error).
+minimum_update_delay = 15
