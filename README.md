@@ -163,18 +163,23 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
 </details>
 
-<details><summary>Plugins:</summary>
+<details><summary>Plugins/Extensions:</summary>
 
 #### [Hyprspace](https://github.com/KZDKM/Hyprspace)
 window overview (`SUPER+Tab`)(not used anymore)
 
 #### [hypergrass](https://github.com/horriblename/hyprgrass)
-better touch-screen support
+better touch-screen support (install with hyprpm, see `./hypr/plugins.conf`)
 - swipe from the bottom to left edge: launch the [wvkbd-laptop](#onscreen-keyboard) keyboard
 - swipe from the bottom (towards the top): launch app drawer ([nwg-drawer](#nwg-drawer))
 - longpress with 2 fingers: movewindow
 - longpress with 3 fingers: resizewindow
 Needs: glm wvkbd-laptop nwg-drawer  
+
+#### [Hyprswitch](https://github.com/H3rmt/hyprswitch)
+CLI/GUI to switch between window in hyprland (`hyprswitch`<sup>AUR</sup>)
+Needs: egnrseTheme.css
+
 </details>
 
 Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
@@ -472,7 +477,7 @@ strawberry vlc kalgebra godot-mono
 spotify   
 vesktop beeper-latest-bin (discord client, msg client)  
 waterfox-bin thorium-browser-bin pa-notify (browser, notification on loudness change)  
-xdg-terminal-exec ttf-ms-win10-auto (default terminal, win fonts)  
+xdg-terminal-exec ttf-ms-win10-auto hyprswitch (default terminal, win fonts)  
 #### from Flatpak
 (replace '\_' with spaces)  
 keepassXC joplin bottles OBS_Studio moonlight coppwr
