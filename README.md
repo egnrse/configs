@@ -135,7 +135,7 @@ Many explanations are in the config files.
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and many parts will not work with out this dependency.  
 See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`  
 
-<details> <summary>more (Keymappings/Plugings)</summary>
+<details> <summary>Keymappings:</summary>
 
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
@@ -161,11 +161,17 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 *(for more keymappings look into /hypr/maps.conf or /hypr/plugins.conf)*  
 
 Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightMouse`/`SUPER+ALT+Space` (use `SHIFT` to keep the aspect ratio) or right-clicking on the edges and dragging.  
-
+</details>
+<details><summary>Plugins:</summary>
 #### Plugins  
 - [Hyprspace](https://github.com/KZDKM/Hyprspace): window overview (`SUPER+Tab`)(not used anymore)
-- hypergrass: better touch-screen support (swipe from the bottom to left edge for the [wvkbd-latop](#onscreen-keyboard) keyboard)  
-
+##### [hypergrass](https://github.com/horriblename/hyprgrass)
+better touch-screen support
+- swipe from the bottom to left edge: launch the [wvkbd-laptop](#onscreen-keyboard) keyboard
+- swipe from the bottom (towards the top): launch app drawer ([nwg-drawer](#nwg-drawer))
+- longpress with 2 fingers: movewindow
+- longpress with 3 fingers: resizewindow
+Needs: glm wvkbd-laptop nwg-drawer
 </details>
 
 Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
