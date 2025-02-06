@@ -106,7 +106,7 @@ I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into
 *(/dunst/)*  
 A notification (service) daemon, after cloning and installing this git, all files should already be linked correctly (some explanations for the options are in the file)  
 Some settings only work on X11! (those are be marked)  
-There is a custom script `restartDunst.sh` that restarts dunst and sends some notifications, to easily test changes in dunstrc.  
+There is a custom script `restartDunst.sh` that restarts dunst and sends some notifications (if any `$1` is given), to easily test changes in dunstrc.  
 
 
 ### git
@@ -117,8 +117,9 @@ Replace the placeholders if needed (eg {email}, {computerName}).
 
 
 ### hypridle
-*(/hypr/)*  
-An idle deamon. To start it automatically with systemd: `systemctl --user enable --now hypridle.service`  
+*(/hypr/hypridle.conf)*  
+An idle deamon. To start it automatically on system startup (with systemd) run:  
+`systemctl --user enable --now hypridle.service`  
 Needs: [hyprland](#hyprland) [hyprlock](#hyprlock)  
 
 ### [hyprland](https://hyprland.org/)
@@ -177,26 +178,33 @@ better touch-screen support (install with hyprpm, see `./hypr/plugins.conf`)
 Needs: glm wvkbd-laptop nwg-drawer  
 
 #### [Hyprswitch](https://github.com/H3rmt/hyprswitch)
-CLI/GUI to switch between window in hyprland (`hyprswitch`<sup>AUR</sup>)
-Needs: egnrseTheme.css
+*(/hyprswitch/)*  
+CLI/GUI to switch between window in hyprland (`hyprswitch`<sup>AUR</sup>)  
+The daemon should get started with hyprland. There is also a custom script `restartHyprswitch.sh` to (re-)start the hyprswitch daemon.
+Needs: egnrseTheme.css hyprswitch<sup>AUR</sup>  
 
 </details>
 
-Needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
+Hyprland needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
 Works nicely with: hypridle hyprlock xdg-desktop-portal-hyprland  
 
 
 ### hyprlock
-*(/hypr/hyprlock.conf/)*  
-A screen lock config. It needs `egnrseTheme.conf` for the colors.
+*(/hypr/hyprlock.conf)*  
+A screen lock config. It needs `egnrseTheme.conf` for the colors.  
+
+### [ianny](https://github.com/zefr0x/ianny)
+*(/io.github.zefr0x.ianny/)*  
+Utility that periodically informs the user to take breaks. Change the reminder periods in `./io.github.zefr0x.ianny/config.toml`.  
+Should get started with hyprland. There is also a custom script `restartIanny.sh` to (re-)start Ianny.  
 
 ### [nvim](https://neovim.io/)
 *(/nvim/)*  
 Some explanations of the settings are in the files. The setup Leader-Key is Space. (meaning: some shortcuts start with the Space-Key)  
 - Main setup in `init.lua`  
-- Custom keymapings in `./lua/maps.lua`  
-- Lazy Plugin Manager in `./lua/config/lazy.lua` (type `:Lazy` within nvim for the plugin menu)  
-  Settings for the plugins are in their files (`./lua/plugins/*.lua`)  
+- Custom keymapings in `lua/maps.lua`  
+- Lazy Plugin Manager in `lua/config/lazy.lua` (type `:Lazy` within nvim for the plugin menu)  
+  Settings for the plugins are in their files (`lua/plugins/*.lua`)  
   - bufferline (top bar with *file* tabs)
   - cmp (autocompletion)
   - colorscheme (tokyodark)
