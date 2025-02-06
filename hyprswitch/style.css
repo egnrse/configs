@@ -1,0 +1,101 @@
+/* style.css for hyprswitch by egnrse
+ * (https://github.com/egnrse/configs)
+ * see also 'https://github.com/H3rmt/hyprswitch/wiki/CSS'
+ */
+
+@import "theme.css";
+
+/* css variables */
+:root {
+	--border-radius: 15px;
+	--border-size: 2px;
+	--border-size-active: 2px;
+}
+
+
+* {
+	font-family: "DejaVuSansM Nerd Font";
+	/*transition: all 0.35s cubic-bezier(.55,0.0,.28,1.0);*/
+	transition-duration: 0.3s;
+	transition-property: color, width, height;
+    color: @MainText;
+}
+
+
+.monitor {
+    background: @BgDark;
+	border: var(--border-size) solid @BorderDark;
+}
+.monitor_active {
+}
+.workspace {
+	font-size: 25px;
+	background-color: @AccentTransparent;
+}
+
+.workspace:hover {
+	opacity: 1;
+	background-color: @FocusFg;
+}
+.workspace_active {
+    border: var(--border-size-active) solid @Alert;
+    background: @MainText;
+}
+.workspace_active label {
+    color: @FocusFg;
+}
+.workspace_active:hover label {
+    color: @MainText;
+}
+.workspace_special {
+    border: var(--border-size) solid @green;
+}
+
+.client {
+	font-size: 15px;
+    background: @TextDark;
+	border: 1px solid @TextDark;
+	margin: 1px;
+}
+.client label {
+	margin-top: 3px;
+}
+.client:hover {
+	font-weight: bold;
+	background-color: @Accent;
+}
+.client:hover label {
+    color: @FocusFg;
+	transition-property: none;
+}
+.client_active {
+    border: var(--border-size-active) solid @Alert;
+	background-color: @TextDark;
+}
+.client-image {
+    background: @Background;
+}
+
+.index {
+    background: @FocusBg;
+    color: @FocusFg;
+	border: var(--border-size) solid @TextDark;
+}
+
+
+/* did not test those yet */
+.launcher {
+    background: pink;
+}
+.launcher-entry {
+    background: greenyellow;
+}
+.launcher-list {
+    background: blue;
+}
+.launcher-item {
+    background: red;
+}
+.launcher-item-selected {
+    background-color: aqua;
+}
