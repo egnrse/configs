@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/env bash
 
 # restart and test dunst
 # (by egnrse)

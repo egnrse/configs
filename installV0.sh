@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # [WIP] be carful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
