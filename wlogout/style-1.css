@@ -6,7 +6,7 @@
  */
 * {
 	font-family: "JetBrainsMono Nerd Font";
-	font-size: 14px;
+	font-size: 15px;
 	transition: all 0.35s cubic-bezier(.55,0.0,.28,1.0);
 	background-image: none;
 }
