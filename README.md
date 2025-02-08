@@ -52,7 +52,7 @@ TODO: make it more interactive (with an -a option?)
 {program name}: ({path in this git})
 
 - [Appendix](#appendix)
-	- [some Fixes](#some-fixes-useful-extensions-for-used-packages)
+	- [some Fixes](#some-fixes--useful-extensions-for-used-packages)
 	- [Packages](#packages)
 
 </details>
@@ -344,7 +344,7 @@ Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator)
 
 #### Dolphin
 *(/other/servicemenus/\*)*  
-Some files in the `other` folder are for Dolphin (KDE). To use them look into the files or look at [Dolphin](#dolphin-filemanager) under [Fixes](#some-fixes-useful-extensions-for-used-packages)  
+Some files in the `other` folder are for Dolphin (KDE). To use them look into the files or look at [Dolphin](#dolphin-filemanager) under [Fixes](#some-fixes--useful-extensions-for-used-packages)  
 
 #### screenshot utility
 *(/scripts/screenshot.sh, /other/screenshot.desktop)*  
