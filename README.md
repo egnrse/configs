@@ -52,7 +52,7 @@ TODO: make it more interactive (with an -a option?)
 {program name}: ({path in this git})
 
 - [Appendix](#appendix)
-	- [some Fixes](#some-fixes-for-common-issues)
+	- [some Fixes](#some-fixes-useful-extensions-for-used-packages)
 	- [Packages](#packages)
 
 </details>
@@ -344,7 +344,7 @@ Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator)
 
 #### Dolphin
 *(/other/servicemenus/\*)*  
-Some files in the `other` folder are for Dolphin (KDE). To use them look into the files or look at [Dolphin](#dolphin-filemanager) under [Fixes](#some-fixes-for-common-issues)  
+Some files in the `other` folder are for Dolphin (KDE). To use them look into the files or look at [Dolphin](#dolphin-filemanager) under [Fixes](#some-fixes-useful-extensions-for-used-packages)  
 
 #### screenshot utility
 *(/scripts/screenshot.sh, /other/screenshot.desktop)*  
@@ -364,7 +364,7 @@ Download it or install it over pacman: `ttf-dejavu-nerd`
 
 # Appendix
 
-### some fixes for common issues
+### some fixes / useful extensions (for used packages)
 
 <details> <summary>Expand?</summary>
 
@@ -406,6 +406,11 @@ To build/update the KDE **desktop-entry cache** (that Dolphin needs to find prog
 (kbuildsycoca6 is part of the kservice package, which is a dependency of dolphin)  
 This fixes dolphin not finding programs.
 **this function is in the rightclick menu of dolphin** (if u put the files from `/other/servicemenus` in the correct place)
+
+**Extensions**
+- `kio-admin` (sudo for dolphin)  
+- `ark` (zip/tar support)  
+- `dolphin-plugins` (git/mercurial/dropbox support, needs to be activated within the *Context Menu* Settings)  
 
 To launch Dolphin (from the terminal) in the current directory use: `dolphin .`
 
@@ -466,7 +471,7 @@ networkmanager blueman	    (internet/networking/bluetooth)
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
-polkit-kde-agent archlinux-xdg-menu wl-clipboard trash-d  (utilities)  
+polkit-kde-agent wl-clipboard trash-d  (utilities)  
 firefox alacritty konsole nemo dolphin  
 ttf-dejavu-nerd fastfetch rclone zerotier-one  
 
@@ -476,21 +481,22 @@ wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### misc
-bash-language-server (lsp)
+bash-language-server (lsp)  
+kio-admin ark dolphin-plugins archlinux-xdg-menu (dolphin stuff)  
+hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
-libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko 
-strawberry vlc kalgebra godot-mono
+libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko  
+strawberry vlc kalgebra godot-mono  
 
 #### from AUR
-spotify   
-vesktop beeper-latest-bin (discord client, msg client)  
-waterfox-bin thorium-browser-bin pa-notify (browser, notification on loudness change)  
-xdg-terminal-exec ttf-ms-win10-auto hyprswitch (default terminal, win fonts)  
+xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny-git (default terminal, win fonts)   
+spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)   
+waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight coppwr
+keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher  
 #### from somewhere else
-sunshine matlab
+sunshine matlab  
 
 </details>
 
