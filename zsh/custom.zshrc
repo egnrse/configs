@@ -17,45 +17,87 @@ if [ ! -d $ZINIT_HOME ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# load plugins
+## load plugins
+# zsh-syntax-highlighting
 zinit light zsh-users/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_MAXLENGTH=512
 
+# zsh-users/zsh-completions
 zinit light zsh-users/zsh-completions
 
+# zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)	# first search in the history, then in the completion engine
-ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|v *|nvim *|vim *" # ignore matches from this regex
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|v *|nvim *|vim *|trash *|rm *" # ignore matches from this regex
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-#zinit light Aloxaf/fzf-tab			# needs fzf
-# works well for big lists (not sure how to enable it only there)
+# Aloxaf/fzf-tab
+zinit light Aloxaf/fzf-tab			# needs fzf
+
+zinit snippet OMZP::sudo			# press 'Esc' twice to preface a command with sudo
+
+# to slow for me:
+#zinit snippet OMZP::command-not-found	# recommend packages if a command is not found (needs 'pkgfile', pkgfile -u)
 
 
-zinit snippet OMZP::command-not-found	# recommend packages if a command is not found (needs 'pkgfile', pkgfile -u)
-zinit snippet OMZP::sudo		# press 'Esc' twice to preface a command with sudo
-
-# style
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
 
 ## GENERAL ZSH SETTINGS
 ################################
-setopt extendedglob nomatch
-unsetopt beep
+setopt extendedglob nomatch			# pattern matching (nomatch: return error on no results)
+unsetopt beep						# disable beep on error
+setopt glob_dots 					# include hidden files in the completion
+setopt prompt_subst					# enable substitution in prompts
 
-# load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit	# load completions
+autoload -Uz vcs_info				# version-control support
 
 # updates zinit plugins
 zinit cdreplay -q
 
+## style
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select
+
+# version-control style
+zstyle ':vcs_info:*' enable git hg			# active for: git mercurial
+zstyle ':vcs_info:git:*' check-for-changes true	# activate %u %c
+zstyle ':vcs_info:git:*' use-simple true	# faster but less accurate
+zstyle ':vcs_info:git:*' stagedstr '*'  	# indicator for staged changes (%c)
+zstyle ':vcs_info:git:*' unstagedstr '*'	# indicator for unstaged changes (%u)
+zstyle ':vcs_info:git:*' formats "%F{#555}(%b%c)%u%{$reset_color%}" 		# (branch staged)unstaged
+zstyle ':vcs_info:git:*' actionformats "%F{#555}[%a](%b%c)%u%{$reset_color%}" # [action](branch staged)unstaged 
+
+## runs before each command
+precmd() {
+	# change window title
+	print -Pn "\e]0;%n@%m:%~\a"  #Title: username@hostname: currentDirectory
+	# get version-control info
+	vcs_info
+}
+
+
 
 ## KEYBINDINGS
 ################################
+# -r unbinds the key
 bindkey -v
+bindkey -r '^[[2~' 			 		# Insert key
+bindkey '^[[3~' delete-char 		# Delete key
+bindkey '^[[H' beginning-of-line	# Home/Pos1 key
+bindkey '^[[F' end-of-line		 	# End key
+
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+bindkey '^Z' undo
+bindkey '^R' redo
+
+## plugin keybinds
 bindkey '^e' autosuggest-clear
 # autosuggest-accept autosuggest-execute
+
+bindkey -r '^I'
+bindkey '^I' expand-or-complete		# Tab (normal autocomplete)
+bindkey '^[[Z' fzf-tab-complete		# Shift+Tab
 
 
 ## LOOKS && COLORS
@@ -68,18 +110,22 @@ export LS_COLORS="ow=01;31:$LS_COLORS"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-# prompt
-PROMPT='[%n@%m '			# '[username@host '
+## prompt
+PROMPT='[%F{green}%n%f'			# '[username@host '
+PROMPT+='@%m '					# '@host '
 PROMPT+='%F{green}%1~%f'		# current folder name (in green)
-PROMPT+=']%# '				# ']%' or ']#' if superuser 
+PROMPT+=']%# '					# ']%' or ']#' if superuser 
 
 RPROMPT="%(?..%F{red}[%?]%f)"	# show exit status of previous command if it is not 0 (in red)
+RPROMPT+='${vcs_info_msg_0_}'	# version-control
 
-# runs before each command
-precmd() {
-	# change window title
-	print -Pn "\e]0;%n@%m:%~\a"  #Title: username@hostname: currentDirectory
-}
+## plugins
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#00B39C,underline'
+#ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,normal'
+ZSH_HIGHLIGHT_STYLES[default]='none'
 
 
 ## HISTORY
@@ -108,9 +154,10 @@ customBashAliases_path="${currentDir}/aliases.shrc"
 if [ -f $customBashAliases_path ]; then
 	source $customBashAliases_path
 else
-	echo "custom.bashrc: aliases.shrc not found ($customBashAliases_path)"
+	echo "custom.zshrc: aliases.shrc not found ($customBashAliases_path)"
 fi
 
 
-# shell integration
+# SHELL INTEGRATION
+################################
 eval "$(zoxide init --cmd cd zsh)"	# fuzzy finding for cd (needs zoxide)
