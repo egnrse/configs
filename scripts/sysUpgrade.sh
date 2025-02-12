@@ -10,6 +10,7 @@
 # 	sudo
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
+#	[zsh] (zinit plugin manager)
 # 
 # 	(this script is used by the packageUpdates.sh script)
 #	by egnrse (https://github.com/egnrse/configs)
@@ -198,6 +199,33 @@ if [ $skipMaintenance -eq 0 ]; then
 	# 
 	#pause skip && echo TODO clean ~/.cache/yay/
 	#echo "$underline"
+
+	# zinit updates (zsh pluginmanager)
+	
+	# check if zinit (a zsh pluginmanager is installed)
+	checkZinitInstall() {
+		# we need to source ~.zshrc to load zinit (because it is not an interactive zsh session)
+		zsh -c 'source ~/.zshrc && command -v zinit > /dev/null'
+		echo $?
+	}
+	if [ $(command -v zsh) > /dev/null ] && [ $(checkZinitInstall) -eq 0 ]; then
+		# found zsh and zinit
+		echo "update zinit and zinit plugins (zsh pluginmanager)"
+		pause skip
+		if [ $? -eq 0 ]; then
+			echo ""
+			# we need to source ~.zshrc to load zinit
+			zsh  -c '
+			source ~/.zshrc
+			zinit self-update
+			zinit update --parallel
+			' #| sed -r "s/\x1B\[[0-9;]*[mK]//g" # remove all colors from the output
+		fi
+		echo "$underline"
+	else
+		# zsh or zinit is not installed
+		:
+	fi
 	
 	# how many task where automatically skipped, because there was nothing to do
 	if [ ${skippedCount} -ge 1 ]; then
@@ -212,5 +240,5 @@ echo ""
 echo -e "${bold}All done! Your packages are up to date${normal}"
 echo " maybe restart your device"
 echo ""
-# keep the terminal open
-exec bash
+# keep the terminal open (with the system shell)
+exec $SHELL
