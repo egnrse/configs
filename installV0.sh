@@ -1,4 +1,4 @@
- !/bin/env bash
+ #!/bin/env bash
 
 # [WIP] be carful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
@@ -14,58 +14,66 @@ origin="$(pwd)/"
 config="$HOME/.config/"
 backup="${config}.bak/"
 
+skip() {
+	var1=$1
+	if [ -z "$1" ]; then
+		var1=" continue [y] or skip [n]"
+	fi
+	read -p "$var1 (Y/n): " pause_answer
+	case $pause_answer in
+		[Yy]*|"")
+			return 0;
+			;;
+		[Nn]*)
+			return 1;
+			;;
+	esac
+}
+
+# links $1 from $origin to $config
+# backing up old files to $backup (files in $backup might get deleted)
+linkTo() {
 # cp -r --update : copy recursively, overwrite older files
 # ln -s -i : link symbolic, interactively (ask if unsure)
+	linkName=$1
+	if [ -d "${config}${linkName}" ]; then
+		# directory
+		rm -r ${backup}$linkName
+		mv -f --update ${config}$linkName ${backup}
+	elif [ -f "${config}${linkName}" ]; then
+		cp --update ${config}$linkName ${backup}
+	fi
+	ln -s ${origin}$linkName ${config}
+}
+
+# ask for each input and call linkTo() if yes was selected
+askForLink() {
+	for link in "$@"; do
+		skip "link $link" && linkTo $link
+	done
+}
+
 mkdir -p ${backup}
-cp -r --update ${config}alacritty ${backup}
-ln -s -i ${origin}alacritty ${config}
-cp -r --update ${config}bash ${backup}
-ln -s -i ${origin}bash ${config}
-cp -r --update ${config}dunst ${backup}
-ln -s -i ${origin}dunst ${config}
-cp -r --update ${config}environment.d ${backup}
-ln -s -i ${origin}environment.d ${config}
-cp -r --update ${config}hypr ${backup}
-ln -s -i ${origin}hypr ${config}
-cp -r --update ${config}hyprswitch ${backup}
-ln -s -i ${origin}hyprswitch ${config}
-cp -r --update ${config}io.github.zefr0x.ianny ${backup}
-ln -s -i ${origin}io.github.zefr0x.ianny ${config}
-cp -r --update ${config}nvim ${backup}
-ln -s -i ${origin}nvim ${config}
-cp -r --update ${config}nwg-drawer ${backup}
-ln -s -i ${origin}nwg-drawer ${config}
-cp -r --update ${config}rofi ${backup}
-ln -s -i ${origin}rofi ${config}
-cp -r --update ${config}tofi ${backup}
-ln -s -i ${origin}tofi ${config}
-cp -r --update ${config}waybar ${backup}
-ln -s -i ${origin}waybar ${config} && chmod +x ${origin}waybar/scripts/*
-cp -r --update ${config}wlogout ${backup}
-ln -s -i ${origin}wlogout ${config}
-cp -r --update ${config}zsh ${backup}
-ln -s -i ${origin}zsh ${config}
 
+# link folders to $config
+askForLink alacritty bash dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer rofi tofi waybar wlogout zsh
 
-cp -r --update ${config}scripts ${backup}
+# scripts
 chmod +x ${origin}scripts/*
-
 #ln -s -i ${origin}scripts ${config}		# deprecated
-ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
-
+skip "link ${HOME}/.local/share/bin/scripts" && ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
 
 # files
-cp -r --update ${config}egnrseTheme.css ${backup}
-ln -s -i ${origin}egnrseTheme.css ${config}
-cp -r --update ${config}egnrseTheme.conf ${backup}
-ln -s -i ${origin}egnrseTheme.conf ${config}
+askForLink egnrseTheme.css egnrseTheme.css egnrseTheme.conf xdg-terminals.list
 # egnrseTheme.sh ?
-# hardlink mimeapps.list!
-cp -r --update ${config}mimeapps.list ${backup}
-ln -i ${origin}mimeapps.list ${config}
-cp -r --update ${config}xdg-terminals.list ${backup}
-ln -s -i ${origin}xdg-terminals.list ${config}
 
+# hardlink mimeapps.list!
+if [ $(skip "hardlink mimeapps.list") ]; then
+	cp -r --update ${config}mimeapps.list ${backup}
+	ln ${origin}mimeapps.list ${config}
+fi
+
+echo ""
 
 ## DIFFERENT LOCATIONS
 # hard link files
