@@ -4,8 +4,8 @@
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 #
-# custom.zshrc:		general settings are here
-# aliases.shrc:		shell aliases
+# custom.zshrc:		general settings are here (needs to be sourced)
+# aliases.shrc:		shell aliases (sourced by this file)
 
 ## PLUGIN MANAGER
 ################################
