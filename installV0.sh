@@ -1,4 +1,4 @@
-#!/bin/env bash
+ !/bin/env bash
 
 # [WIP] be carful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
@@ -14,36 +14,40 @@ origin="$(pwd)/"
 config="$HOME/.config/"
 backup="${config}.bak/"
 
+# cp -r --update : copy recursively, overwrite older files
+# ln -s -i : link symbolic, interactively (ask if unsure)
 mkdir -p ${backup}
-mv ${config}alacritty ${backup}
+cp -r --update ${config}alacritty ${backup}
 ln -s -i ${origin}alacritty ${config}
-mv ${config}bash ${backup}
+cp -r --update ${config}bash ${backup}
 ln -s -i ${origin}bash ${config}
-mv ${config}dunst ${backup}
+cp -r --update ${config}dunst ${backup}
 ln -s -i ${origin}dunst ${config}
-mv ${config}environment.d ${backup}
+cp -r --update ${config}environment.d ${backup}
 ln -s -i ${origin}environment.d ${config}
-mv ${config}hypr ${backup}
+cp -r --update ${config}hypr ${backup}
 ln -s -i ${origin}hypr ${config}
-mv ${config}hyprswitch ${backup}
+cp -r --update ${config}hyprswitch ${backup}
 ln -s -i ${origin}hyprswitch ${config}
-mv ${config}io.github.zefr0x.ianny ${backup}
+cp -r --update ${config}io.github.zefr0x.ianny ${backup}
 ln -s -i ${origin}io.github.zefr0x.ianny ${config}
-mv ${config}nvim ${backup}
+cp -r --update ${config}nvim ${backup}
 ln -s -i ${origin}nvim ${config}
-mv ${config}nwg-drawer ${backup}
+cp -r --update ${config}nwg-drawer ${backup}
 ln -s -i ${origin}nwg-drawer ${config}
-mv ${config}rofi ${backup}
+cp -r --update ${config}rofi ${backup}
 ln -s -i ${origin}rofi ${config}
-mv ${config}tofi ${backup}
+cp -r --update ${config}tofi ${backup}
 ln -s -i ${origin}tofi ${config}
-mv ${config}waybar ${backup}
+cp -r --update ${config}waybar ${backup}
 ln -s -i ${origin}waybar ${config} && chmod +x ${origin}waybar/scripts/*
-mv ${config}wlogout ${backup}
+cp -r --update ${config}wlogout ${backup}
 ln -s -i ${origin}wlogout ${config}
+cp -r --update ${config}zsh ${backup}
+ln -s -i ${origin}zsh ${config}
 
 
-mv ${config}scripts ${backup}
+cp -r --update ${config}scripts ${backup}
 chmod +x ${origin}scripts/*
 
 #ln -s -i ${origin}scripts ${config}		# deprecated
@@ -51,15 +55,15 @@ ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
 
 
 # files
-mv ${config}egnrseTheme.css ${backup}
+cp -r --update ${config}egnrseTheme.css ${backup}
 ln -s -i ${origin}egnrseTheme.css ${config}
-mv ${config}egnrseTheme.conf ${backup}
+cp -r --update ${config}egnrseTheme.conf ${backup}
 ln -s -i ${origin}egnrseTheme.conf ${config}
 # egnrseTheme.sh ?
 # hardlink mimeapps.list!
-mv ${config}mimeapps.list ${backup}
+cp -r --update ${config}mimeapps.list ${backup}
 ln -i ${origin}mimeapps.list ${config}
-mv ${config}xdg-terminals.list ${backup}
+cp -r --update ${config}xdg-terminals.list ${backup}
 ln -s -i ${origin}xdg-terminals.list ${config}
 
 

@@ -62,7 +62,7 @@ zstyle ':completion:*' menu select
 zstyle ':vcs_info:*' enable git hg			# active for: git mercurial
 zstyle ':vcs_info:git:*' check-for-changes true	# activate %u %c
 zstyle ':vcs_info:git:*' use-simple true	# faster but less accurate
-zstyle ':vcs_info:git:*' stagedstr '*'  	# indicator for staged changes (%c)
+zstyle ':vcs_info:git:*' stagedstr '+'  	# indicator for staged changes (%c)
 zstyle ':vcs_info:git:*' unstagedstr '*'	# indicator for unstaged changes (%u)
 zstyle ':vcs_info:git:*' formats "%F{#555}(%b%c)%u%{$reset_color%}" 		# (branch staged)unstaged
 zstyle ':vcs_info:git:*' actionformats "%F{#555}[%a](%b%c)%u%{$reset_color%}" # [action](branch staged)unstaged 
