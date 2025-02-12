@@ -326,7 +326,8 @@ some Features:
 - press Esc twice to prepend `sudo` to a command
 
 <details><summary>More Info</summary>
-add this to your `~/.zshrc` (or similar) to source the files:  
+add this to your `~/.zshrc` (or similar) to source the files:
+
 ```
 # fetch the custom config file for zsh (if it exists)
 # customZshConfig_path is the path to the config file
@@ -344,7 +345,7 @@ Be sure to have `zsh` installed! (and u are using the correct location)
 </details>
 
 I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm`.  
-Infos about the settings used are in the files.
+Infos about the settings used are in the files.  
 Needs: zoxide fzf  
 
 
