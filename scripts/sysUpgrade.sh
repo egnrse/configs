@@ -208,7 +208,7 @@ if [ $skipMaintenance -eq 0 ]; then
 		zsh -c 'source ~/.zshrc && command -v zinit > /dev/null'
 		echo $?
 	}
-	if [ $(command -v zsh) > /dev/null ] && [ $(checkZinitInstall) -eq 0 ]; then
+	if [ $(command -v zsh) > /dev/null ] && [ -f ~/.zshrc ] && [ $(checkZinitInstall) -eq 0 ]; then
 		# found zsh and zinit
 		echo "update zinit and zinit plugins (zsh pluginmanager)"
 		pause skip
