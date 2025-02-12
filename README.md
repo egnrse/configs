@@ -523,6 +523,20 @@ sunshine matlab
 use `~/.ssh/config`  
 `ssh -T github` : test github connection  
 
+#### [gpg and git](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work):
+create/show gpg keypair, print public key, add key to git:  
+```
+gpg --full-generate-key
+gpg --list-secret-keys --keyid-format=long
+gpg --armor --export <id>
+git config --global user.signingkey <id>
+```
+to unlock pw-protected keys this must exist: `export GPG_TTY=$(tty)`
+`git commit -S` : commit a signed commit
+`git config --local commit.gpgsign true` : activate automatical signing of commits  
+`git log --show-signature -1` : show signiture of the last commit
+`git tag -s v1.5 -m 'my signed 1.5 tag'` : sign a tag (did not try)
+
 <details> <summary>
 	
 ### old setup method (git ~/.config)
