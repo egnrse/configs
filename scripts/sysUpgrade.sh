@@ -224,7 +224,7 @@ if [ $skipMaintenance -eq 0 ]; then
 		echo "$underline"
 	else
 		# zsh or zinit is not installed
-		:
+		echo "zsh, zinit, or '~/.zshrc' are missing: skipping zinit (zsh) updates"
 	fi
 	
 	# how many task where automatically skipped, because there was nothing to do
