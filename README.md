@@ -315,10 +315,36 @@ Needs: egnrseTheme.css hyprland uwsm hyprlock
 
 ### zsh
 *(/zsh/)*  
-Change the standart terminal from bash to zsh with:  
+My config is split into two/three parts:  
+- custom.zshrc (general settings)
+- aliases.shrc (aliases for commands)
+- [~/.zshrc (for device specific settings)]
+
+some Features:  
+- `Shift+Tab`: fzf search completion
+- `cd dir`: smart cd with [zoxide](https://github.com/ajeetdsouza/zoxide) (remembers folders, so that u can directly cd to them)
+- press Esc twice to prepend `sudo` to a command
+
+<details><summary>More Info</summary>
+add this to your `~/.zshrc` (or similar) to source the files:  
+```
+# fetch the custom config file for zsh (if it exists)
+# customZshConfig_path is the path to the config file
+customZshConfig_path="$HOME/.config/zsh/custom.zshrc"
+if [ -f "$customZshConfig_path" ]; then
+	source $customZshConfig_path
+else
+	echo ".zshrc: path to config not found ($customZshConfig_path)"
+fi
+```
+
+Change the standart terminal to zsh with:  
 `chsh -s /bin/zsh elia` (with `elia` being your username)  
-Be sure you have `zsh` installed! (and write the correct location)
-TODO: more explanations
+Be sure to have `zsh` installed! (and u are using the correct location)  
+</details>
+
+I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm`.  
+Infos about the settings used are in the files.
 Needs: zoxide fzf  
 
 
@@ -480,8 +506,8 @@ networkmanager blueman	    (internet/networking/bluetooth)
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
-polkit-kde-agent wl-clipboard trash-d  (utilities)  
-firefox alacritty konsole nemo dolphin  
+polkit-kde-agent wl-clipboard trash-d zsh zoxide fzf (utilities)  
+firefox alacritty konsole dolphin  
 ttf-dejavu-nerd fastfetch rclone zerotier-one  
 
 #### window manager
@@ -495,7 +521,7 @@ kio-admin ark dolphin-plugins archlinux-xdg-menu (dolphin stuff)
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
 libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko  
-strawberry vlc kalgebra godot-mono  
+strawberry vlc kalgebra godot-mono blender cuda
 
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny-git (default terminal, win fonts)   
