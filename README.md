@@ -46,6 +46,7 @@ TODO: make it more interactive (with an -a option?)
 - [vim](#vim):    (/other/.vimrc)  
 - [waybar](#waybar):    (/waybar/)
 - [wlogout](#wlogout):  (/wlogout/)  
+- [zsh](#zsh): (/zsh/)
 - [general Theme](#general-theme): (egnrseTheme.\*)
 - [misc](#misc):  (/other/\*)
 
@@ -311,6 +312,14 @@ Others: jq playerctl
 A wayland PowerMenu (to logout/shutdown/...). theme-1 is longer (6 items), theme-2 only 4 has options. Both themes have a layout-\* file and a styles-\*.css.  
 U can use `/scripts/logoutlaunch.sh` (with args $1 being 1 or 2) to launch those themes. They (should) scale automatically with display size and scaling.  
 Needs: egnrseTheme.css hyprland uwsm hyprlock  
+
+### zsh
+*(/zsh/)*  
+Change the standart terminal from bash to zsh with:  
+`chsh -s /bin/zsh elia` (with `elia` being your username)  
+Be sure you have `zsh` installed! (and write the correct location)
+TODO: more explanations
+Needs: zoxide fzf  
 
 
 ### general Theme
