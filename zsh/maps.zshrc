@@ -5,7 +5,7 @@
 # (by egnrse)
 
 # -r unbinds the key
-bindkey -v
+bindkey -e
 bindkey -r '^[[2~' 			 		# Insert key
 bindkey '^[[3~' delete-char 		# Delete key
 bindkey '^[[H' beginning-of-line	# Home/Pos1 key
@@ -16,6 +16,10 @@ bindkey '^N' history-search-forward
 bindkey '^Z' undo
 bindkey '^R' redo
 
+# Ctrl+Arrow keys: Jump Words
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
 ## plugin keybinds
 bindkey '^e' autosuggest-clear
 # autosuggest-accept autosuggest-execute
@@ -23,4 +27,5 @@ bindkey '^e' autosuggest-clear
 bindkey -r '^I'
 bindkey '^I' expand-or-complete		# Tab (normal autocomplete)
 bindkey '^[[Z' fzf-tab-complete		# Shift+Tab
+
 
