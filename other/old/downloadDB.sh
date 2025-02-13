@@ -4,8 +4,14 @@
 # by egnrse
 
 localPath=~/Documents/DB/
+fileName=KeePassElia2023_06.kdbx
 
 echo "syncing gdrive-nit:/DB with ${localPath}"
+
+# backup before download
+cp ${localPath}/${fileName} ${localPath}/old/$(date +"%Y%m%d-%H%M%S")_${fileName}.bak
+
+
 rclone copy gdrive-nit:/DB ${localPath}
 if [ $? -eq 0 ]; then
 	notify-send "downloadDB successful" "syncing 'gdrive-nit:/DB' with '${localPath}'"
