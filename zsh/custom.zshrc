@@ -147,14 +147,12 @@ setopt hist_find_no_dups
 
 ## ALIASES
 ################################
-# fetch the aliases file (if the file exists)
-# currentDir gets the directory *this* file is in
-currentDir="${0:A:h}"
-customBashAliases_path="${currentDir}/aliases.shrc"
-if [ -f $customBashAliases_path ]; then
-	source $customBashAliases_path
+# fetch the aliases file (if the file exists) from ~/.config/shell/
+customZshAliases_path=~/.config/shell/aliases.shrc
+if [ -f $customZshAliases_path ]; then
+	source $customZshAliases_path
 else
-	echo "custom.zshrc: aliases.shrc not found ($customBashAliases_path)"
+	echo "custom.zshrc: aliases.shrc not found ($customZshAliases_path)"
 fi
 
 

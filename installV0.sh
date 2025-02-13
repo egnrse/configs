@@ -55,8 +55,9 @@ askForLink() {
 
 mkdir -p ${backup}
 
+
 # link folders to $config
-askForLink alacritty bash dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer rofi tofi waybar wlogout zsh
+askForLink alacritty bash dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer rofi shell tofi waybar wlogout zsh
 
 # scripts
 chmod +x ${origin}scripts/*
