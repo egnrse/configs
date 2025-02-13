@@ -5,7 +5,7 @@
 # (by egnrse)
 #
 # custom.zshrc:		general settings are here (needs to be sourced)
-# aliases.shrc:		shell aliases (sourced by this file)
+# ../shell/aliases.shrc:		shell aliases (sourced by this file)
 
 ## PLUGIN MANAGER
 ################################
