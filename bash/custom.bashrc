@@ -5,7 +5,7 @@
 # (by egnrse)
 #
 # custom.bashrc:	general settings are here
-# aliases.bashrc:	shell aliases 
+# ../shell/aliases.shrc:	shell aliases 
 # 
 ## ENVIRONMENT VARIABLES
 # since using uwsm, many apps will not see env-variables exported from .bashrc
@@ -72,13 +72,11 @@ shopt -s cdable_vars
 ## ALIASES
 ################################
 # fetch the aliases file (if the file exists)
-# currentDir gets the directory *this* file is in
-currentDir="$(dirname ${BASH_SOURCE[0]})"
-customBashAliases_path="${currentDir}/aliases.bashrc"
+customBashAliases_path=~/.config/shell/aliases.shrc
 if [ -f $customBashAliases_path ]; then
 	source $customBashAliases_path
 else
-	echo "custom.bashrc: aliases.bashrc not found ($customBashAliases_path)"
+	echo "custom.bashrc: aliases.shrc not found ($customBashAliases_path)"
 fi
 
 
