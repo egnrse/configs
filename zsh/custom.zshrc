@@ -5,6 +5,7 @@
 # (by egnrse)
 #
 # custom.zshrc:		general settings are here (needs to be sourced)
+# maps.zshrc:		keymappings (sourced by this file)
 # ../shell/aliases.shrc:		shell aliases (sourced by this file)
 
 ## PLUGIN MANAGER
@@ -79,26 +80,13 @@ precmd() {
 
 ## KEYBINDINGS
 ################################
-# -r unbinds the key
-bindkey -v
-bindkey -r '^[[2~' 			 		# Insert key
-bindkey '^[[3~' delete-char 		# Delete key
-bindkey '^[[H' beginning-of-line	# Home/Pos1 key
-bindkey '^[[F' end-of-line		 	# End key
-
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward
-bindkey '^Z' undo
-bindkey '^R' redo
-
-## plugin keybinds
-bindkey '^e' autosuggest-clear
-# autosuggest-accept autosuggest-execute
-
-bindkey -r '^I'
-bindkey '^I' expand-or-complete		# Tab (normal autocomplete)
-bindkey '^[[Z' fzf-tab-complete		# Shift+Tab
-
+# fetch the map file (if the file exists)
+customZshMappings_path=~/.config/zsh/maps.zshrc
+if [ -f $customZshMappings_path ]; then
+	source $customZshMappings_path
+else
+	echo "custom.zshrc: map.zshrc not found ($customZshMappings_path)"
+fi
 
 ## LOOKS && COLORS
 ################################
