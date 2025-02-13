@@ -15,7 +15,7 @@ X-KDE-AuthorizeAction=shell_access
 
 [Desktop Action runInKonsole]
 TryExec=xdg-terminal-exec
-Exec=xdg-terminal-exec bash -c "%f; exec bash" 
+Exec=xdg-terminal-exec bash -c "%f; exec $SHELL" 
 Icon=system-run-symbolic
 Name=Run In Konsole
 
