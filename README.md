@@ -558,11 +558,11 @@ gpg --list-secret-keys --keyid-format=long
 gpg --armor --export <id>
 git config --global user.signingkey <id>
 ```
-to unlock pw-protected keys this must exist: `export GPG_TTY=$(tty)`
-`git commit -S` : commit a signed commit
-`git config --local commit.gpgsign true` : activate automatical signing of commits  
-`git log --show-signature -1` : show signiture of the last commit
-`git tag -s v1.5 -m 'my signed 1.5 tag'` : sign a tag (did not try)
+to unlock pw-protected keys this must exist: `export GPG_TTY=$(tty)`  
+`git commit -S` : commit a signed commit  
+`git config --local commit.gpgsign true` : activate automatical signing of commits   
+`git log --show-signature -1` : show signiture of the last commit  
+`git tag -s v1.5 -m 'my signed 1.5 tag'` : sign a tag (did not try)  
 
 <details> <summary>
 	
@@ -592,7 +592,7 @@ git branch --set-upstream-to=origin/main main
 
 #### setup git exlude
 `./.git/info/exlude`  
-Is a file to exclude local files/folders from git.
+Is a file to exclude local files/folders from git.  
 Copy the content (that u need) of the file `/other/exclude` to `./.git/info/exclude`   
 
 </details>
