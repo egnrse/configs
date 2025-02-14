@@ -241,6 +241,7 @@ if [ $skipMaintenance -eq 0 ]; then
 			source ~/.zshrc
 			zinit self-update
 			zinit update --parallel
+			zinit delete --clean
 			' #| sed -r "s/\x1B\[[0-9;]*[mK]//g" # remove all colors from the output
 		fi
 	else
