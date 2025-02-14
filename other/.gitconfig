@@ -11,3 +11,5 @@
 	loggg = log -p		# show diffs
 	s = status
 	br = branch
+[commit]
+	gpgsign = true
