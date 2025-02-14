@@ -10,7 +10,7 @@
 # 	sudo
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
-#	[zsh] (zinit plugin manager)
+#	[zsh] (and zinit (a zsh plugin manager))
 # 
 # 	(this script is used by the packageUpdates.sh script)
 #	by egnrse (https://github.com/egnrse/configs)
@@ -113,7 +113,7 @@ fi
 #
 # ====== UPDATE PACKAGES ======
 # 
-# official + AUR
+## official + AUR
 if [ -n "$aur_helper" ]; then
 	# ${aur_helper} -Syu
 	echo -e "starting ${bold}official/AUR${normal} updates with ${bold}${aur_helper}${normal}"
@@ -132,7 +132,7 @@ fi
 echo "$underline"
 echo ""
 
-# flatpak
+## flatpak
 # test if the command exists
 if command -v "flatpak" &>/dev/null; then
 	echo -e "starting ${bold}flatpak${normal} updates"
@@ -158,7 +158,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	# counts how many task where automatically skipped, because there was nothing to do
 	skippedCount=0
 
-	# test for needed packages
+	## test for needed packages
 	if pacman -Q "pacman-contrib" &>/dev/null; then
 		:
 	else
@@ -166,7 +166,8 @@ if [ $skipMaintenance -eq 0 ]; then
 		echo "$underline"
 	fi
 
-	# remove unused packages (Qdt lists orphaned packages)
+
+	## remove unused packages (Qdt lists orphaned packages)
 	orphanList=$(pacman -Qdtq)
 	if [ -n "${orphanList}" ]; then
 		echo "remove the following orphaned packages:"
@@ -177,20 +178,40 @@ if [ $skipMaintenance -eq 0 ]; then
 		((skippedCount++))
 	fi
 
-	# deal with new configuration files
+	
+	## deal with new configuration files
 	echo "deal with new configuration files (pacdiff)"
 	pause skip && pacdiff --sudo --backup
 	# maybe also try p3wm 
 	echo "$underline"
-	#echo ""
 
-	# cleaning the pacman cache (keeping 2 old versions)
-	echo "cleaning pacman cache (paccache)"
-	#echo " keeping 2 older versions of packages"
-	pause skip && paccache --remove --keep 2
-	echo "$underline"
 
-	# clean yay build files
+	## cleaning the pacman cache
+	# test if there is stuff to do
+	returnCacheUn=$(paccache --dryrun --uninstalled --keep 0 --min-atime "90 days ago")
+	returnCacheInstall=$(paccache --dryrun --keep 2 --min-mtime "30 days ago")
+	# write color and bold escape sequences to the string
+	returnNothingTodo=$(echo -e '\E[1m\E[32m==>\E(B\E[m\E[1m no candidate packages found for pruning\E(B\E[m')
+
+	if [ "$returnCacheUn" = "$returnNothingTodo" ] && [ "$returnCacheInstall" = "$returnNothingTodo" ]; then
+		# nothings to do
+		((skippedCount++))
+	else
+		echo "cleaning pacman cache (paccache)"
+		pause skip
+		if [ $? -eq 0 ]; then
+			# remove caches from uninstalled pkgs, older than 90 days (access time)
+			returnCacheUninstallRun=$(paccache --remove --uninstalled --keep 0 --min-atime "90 days ago")
+			echo "Uninstalled packages: $returnCacheUninstallRun"
+			# remove caches from installed pkgs, keep at least 2, keep all from the last 30 days (update time)
+			returnCacheInstallRun=$(paccache --remove --keep 2 --min-mtime "30 days ago")
+			echo "Installed packages:   $returnCacheInstallRun"
+		fi
+		echo "$underline"
+	fi
+
+
+	## clean yay build files
 	# TODO
 	# check all folders names in ~/.cache/yay/
 	# generate a list
@@ -200,14 +221,15 @@ if [ $skipMaintenance -eq 0 ]; then
 	#pause skip && echo TODO clean ~/.cache/yay/
 	#echo "$underline"
 
-	# zinit updates (zsh pluginmanager)
-	
-	# check if zinit (a zsh pluginmanager is installed)
+
+	## zinit updates (zsh pluginmanager)
+	# check if zinit is installed
 	checkZinitInstall() {
 		# we need to source ~.zshrc to load zinit (because it is not an interactive zsh session)
 		zsh -c 'source ~/.zshrc && command -v zinit > /dev/null'
 		echo $?
 	}
+	# check of zsh and zinit are installed and '~/.zshrc' exists
 	if [ $(command -v zsh) > /dev/null ] && [ -f ~/.zshrc ] && [ $(checkZinitInstall) -eq 0 ]; then
 		# found zsh and zinit
 		echo "update zinit and zinit plugins (zsh pluginmanager)"
@@ -222,12 +244,13 @@ if [ $skipMaintenance -eq 0 ]; then
 			' #| sed -r "s/\x1B\[[0-9;]*[mK]//g" # remove all colors from the output
 		fi
 	else
-		# zsh or zinit is not installed
+		# zsh or zinit are not installed
 		echo "zsh, zinit or '~/.zshrc' are missing: skipping zinit updates"
 	fi
 	echo "$underline"
 	
-	# how many task where automatically skipped, because there was nothing to do
+
+	## how many task where automatically skipped, because there was nothing to do
 	if [ ${skippedCount} -ge 1 ]; then
 		echo "hidden Tasks (nothing to do): ${skippedCount}"
 	fi
