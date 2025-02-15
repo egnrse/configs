@@ -241,8 +241,10 @@ if [ $skipMaintenance -eq 0 ]; then
 			source ~/.zshrc
 			zinit self-update
 			zinit update --parallel
-			zinit delete --clean
+			#zinit delete --clean
 			' #| sed -r "s/\x1B\[[0-9;]*[mK]//g" # remove all colors from the output
+			echo ""
+			echo -e "delete unused plugins by running 'zinit delete --clean' \n in an interactive zsh session"
 		fi
 	else
 		# zsh or zinit are not installed
