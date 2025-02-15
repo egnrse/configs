@@ -24,6 +24,7 @@ bindkey '^[[1;5D' backward-word
 bindkey '^e' autosuggest-clear
 # autosuggest-accept autosuggest-execute
 
+# ^I will be overwritten by fzf-tab (is changed again in 'atload', see custom.zshrc)
 bindkey -r '^I'
 bindkey '^I' expand-or-complete		# Tab (normal autocomplete)
 bindkey '^[[Z' fzf-tab-complete		# Shift+Tab
