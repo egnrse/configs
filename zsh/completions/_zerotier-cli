@@ -1,0 +1,32 @@
+#compdef zerotier-cli
+# zsh completion for zerotier-cli
+# (by egnrse)
+
+_arguments \
+	'-h[Display help]' \
+	'-v[Show version]' \
+	'-j[Display full raw JSON output]' \
+	'-D[ZeroTier home path for parameter auto-detect]:filename:_files' \
+	'-p<port>[HTTP port (default: auto)]' \
+	'-T<token>[Authentication token (default: auto)]'
+_values \
+	'info[Display status info]' \
+	'listpeers[List all peers]' \
+	'peers[List all peers (prettier)]' \
+	'listnetworks[List all networks]'\
+	'join <network ID>[Join a network]' \
+	'leave <network ID>[Leave a network]' \
+	'set <network ID> <setting>[Set a network setting]' \
+	'get <network ID> <setting>[Get a network setting]' \
+	'listmoons[List moons (federated root sets)]' \
+	'orbit <world ID> <seed>[Join a moon via any member root]' \
+	'deorbit <world ID>[Leave a moon]' \
+	'dump[Debug settings dump for support]'
+
+# TODO: settings, world/network ID ?
+
+# Settings to use with [get/set] may include property names from
+#  the JSON output of "zerotier-cli -j listnetworks". Additionally,
+#  (ip, ip4, ip6, ip6plane, and ip6prefix can be used). For instance:
+#  zerotier-cli get <network ID> ip6plane will return the 6PLANE address
+#  assigned to this node.

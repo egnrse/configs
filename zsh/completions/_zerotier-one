@@ -1,0 +1,12 @@
+#compdef zerotier-one
+# zsh completion for zerotier-one
+# (by egnrse)
+
+_arguments \
+	'-h[Display help]' \
+	'-v[Show version]' \
+	'-U[Skip privilege check and do not attempt to drop privileges]' \
+	'-p<port>[Port for UDP and TCP/HTTP (default: 9993, 0 for random)]' \
+	'-d[Fork and run as daemon (Unix-ish OSes)]' \
+	'-i[Generate and manage identities (zerotier-idtool)]' \
+	'-q[Query API (zerotier-cli)]'

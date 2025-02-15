@@ -30,7 +30,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_MAXLENGTH=512
 
 # zsh-users/zsh-autosuggestions
-zinit ice wait lucid
+zinit ice wait lucid #atload'_zsh_autosuggest_start' # has weard side effects
 zinit light zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)	# first search in the history, then in the completion engine
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|v *|nvim *|vim *|trash *|rm *" # ignore matches from this regex
@@ -49,6 +49,12 @@ zinit snippet OMZP::sudo			# press 'Esc' twice to preface a command with sudo
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
+# custom completions (needs to be executed before 'compinit')
+zinit ice wait lucid atload"fpath+=('$HOME/.config/zsh/completions'); compinit"
+zinit load $HOME/.config/zsh/completions/
+#zinit creinstall $HOME/.config/zsh/completions
+
+
 # to slow for me:
 #zinit snippet OMZP::command-not-found	# recommend packages if a command is not found (needs 'pkgfile', pkgfile -u)
 
@@ -64,8 +70,11 @@ setopt prompt_subst					# enable substitution in prompts
 autoload -Uz compinit && compinit	# load completions
 autoload -Uz vcs_info				# version-control support
 
-# updates zinit plugins
+# load zinit plugins completion
 zinit cdreplay -q
+
+## custom completions (from commands that have a 'good' --help)
+compdef _gnu_generic trash sddm pipewire nwg-drawer wireplumber
 
 ## style
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
