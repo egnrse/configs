@@ -49,14 +49,17 @@ zinit snippet OMZP::sudo			# press 'Esc' twice to preface a command with sudo
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
-# custom completions (needs to be executed before 'compinit')
-zinit ice wait lucid atload"fpath+=('$HOME/.config/zsh/completions'); compinit"
-zinit load $HOME/.config/zsh/completions/
-#zinit creinstall $HOME/.config/zsh/completions
-
 
 # to slow for me:
 #zinit snippet OMZP::command-not-found	# recommend packages if a command is not found (needs 'pkgfile', pkgfile -u)
+
+# custom completions (needs to be executed before 'compinit')
+#zinit ice wait lucid atload"fpath+=('$HOME/.config/zsh/completions'); compinit"
+#zinit load $HOME/.config/zsh/completions/
+#zinit creinstall $HOME/.config/zsh/completions
+
+## custom completion
+fpath+=("$HOME/.config/zsh/completions/")
 
 
 
