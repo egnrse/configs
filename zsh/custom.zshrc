@@ -49,16 +49,16 @@ zinit snippet OMZP::sudo			# press 'Esc' twice to preface a command with sudo
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
+# docker completions (the one installed by the docker packages is worse)
+zinit ice wait lucid
+zinit light greymd/docker-zsh-completion
 
 # to slow for me:
 #zinit snippet OMZP::command-not-found	# recommend packages if a command is not found (needs 'pkgfile', pkgfile -u)
 
-# custom completions (needs to be executed before 'compinit')
-#zinit ice wait lucid atload"fpath+=('$HOME/.config/zsh/completions'); compinit"
-#zinit load $HOME/.config/zsh/completions/
-#zinit creinstall $HOME/.config/zsh/completions
 
-## custom completion
+## custom completions (needs to be executed before 'compinit')
+#zinit creinstall $HOME/.config/zsh/completions 	# call once to install completions (or use the next line)
 fpath+=("$HOME/.config/zsh/completions/")
 
 
