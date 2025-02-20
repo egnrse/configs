@@ -102,6 +102,9 @@ sudo cp -l -i ${origin}other/wvkbd-laptop.desktop /usr/local/share/applications/
 # screenshot
 ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
 
+# sshd
+sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
+
 # link roots nvim to ours?
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer
 #case $answer in
