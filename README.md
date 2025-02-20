@@ -493,6 +493,7 @@ beeper-latest-bin<sup>AUR</sup>
 [coppwr](https://dimtpap.ovh/coppwr) (flathub)  
 [sonusmix](https://codeberg.org/sonusmix/sonusmix)  
 [xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)
+[ssh-audit](https://github.com/jtesta/ssh-audit)
 
 ---
 	
@@ -507,13 +508,13 @@ networkmanager blueman	    (internet/networking/bluetooth)
 flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
-polkit-kde-agent wl-clipboard trash-d zsh zoxide fzf (utilities)  
+polkit-kde-agent wl-clipboard trash-d<sup>AUR</sup> zsh zoxide fzf (utilities)  
 firefox alacritty konsole dolphin  
 ttf-dejavu-nerd fastfetch rclone zerotier-one  
 
 #### window manager
 plasma-meta hyprland sddm (kde, tiling WM, login)  
-wayland-protocols uwsm<sup>AUR</sup> (managing wayland-WM)  
+wayland-protocols wayland-utils uwsm<sup>AUR</sup> (managing wayland-WM)  
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### misc
@@ -522,10 +523,10 @@ kio-admin ark dolphin-plugins archlinux-xdg-menu (dolphin stuff)
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
 libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko  
-strawberry vlc kalgebra godot-mono blender cuda
+strawberry vlc kalgebra kcalc godot-mono blender cuda
 
 #### from AUR
-xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny-git (default terminal, win fonts)   
+xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny (default terminal, win fonts)   
 spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)   
 waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
 #### from Flatpak
