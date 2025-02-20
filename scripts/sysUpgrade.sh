@@ -257,8 +257,12 @@ if [ $skipMaintenance -eq 0 ]; then
 	# check if nvim is installed and accepts the command 'Lazy!'
 	if [ $(command -v nvim) > /dev/null ] && [ -z "$(nvim --headless '+Lazy!' +qa)" ]; then
 		echo "update Lazy and Lazy plugins (nvim pluginmanager)"
-		# start nvim headless, sync plugins, exit nvim when done
-		pause skip && nvim --headless "+Lazy! sync" +qa
+		pause skip
+		if [ $? -eq 0 ]; then
+			echo ""
+			# start nvim headless, sync plugins, exit nvim when done
+			nvim --headless "+Lazy! sync" +qa
+		fi
 		echo "$underline"
 	fi
 	
