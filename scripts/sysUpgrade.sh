@@ -41,7 +41,7 @@ pause() {
 			# continue with any button
 			local var2=$2
 			if [ -z "$2" ]; then
-				var2=" press any button to continue..."
+				var2="> press any button to continue..."
 			fi
 			echo "$var2"
 			read -n 1 -s;
@@ -51,7 +51,7 @@ pause() {
 			# for yes or empty (return 0) / no (return 1) questions
 			local var2="$2"
 			if [ -z "$2" ]; then
-				var2=" continue [y] or skip [n]"
+				var2="> continue [y] or skip [n]"
 			fi
 			read -p "$var2 (Y/n): " pause_answer
 			case $pause_answer in
@@ -67,7 +67,7 @@ pause() {
 			# for yes(return 0) / no or empty (return 1) questions
 			local var2="$2"
 			if [ -z "$2" ]; then
-				var2=" continue [y] or skip [n]"
+				var2="> continue [y] or skip [n]"
 			fi
 			read -p "$var2 (y/N): " pause_answer
 			case $pause_answer in
@@ -171,7 +171,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	orphanList=$(pacman -Qdtq)
 	if [ -n "${orphanList}" ]; then
 		echo "remove the following orphaned packages:"
-		echo ${orphanList}
+		echo ${orphanList} | sed 's/^/ /'	# preppend each line with a space
 		pause skip && sudo pacman -Rns --noconfirm $(pacman -Qdtq)
 		echo "$underline"
 	else
@@ -186,40 +186,66 @@ if [ $skipMaintenance -eq 0 ]; then
 	echo "$underline"
 
 
-	## cleaning the pacman cache
-	# test if there is stuff to do
-	returnCacheUn=$(paccache --dryrun --uninstalled --keep 0 --min-atime "90 days ago")
-	returnCacheInstall=$(paccache --dryrun --keep 2 --min-mtime "30 days ago")
-	# write color and bold escape sequences to the string
+	## cleaning the pacman/AUR cache
+	# pacman cache location
+	pacmanCache=/var/cache/pacman/pkg
+	# AUR cache location	
+	if [ -n "$XDG_CACHE_HOME" ]; then
+		aurCacheDir="$XDG_CACHE_HOME/${aur_helper}"
+	else
+		aurCacheDir="$HOME/.cache/${aur_helper}"
+	fi
+	# list all AUR package directories (with a '-c' prefix, ignore errors)
+	aurCaches=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec echo -c {} \; 2>/dev/null)
+
+	# write color and bold escape sequences to the string (for comparisons)
 	returnNothingTodo=$(echo -e '\E[1m\E[32m==>\E(B\E[m\E[1m no candidate packages found for pruning\E(B\E[m')
 
-	if [ "$returnCacheUn" = "$returnNothingTodo" ] && [ "$returnCacheInstall" = "$returnNothingTodo" ]; then
-		# nothings to do
-		((skippedCount++))
-	else
+	# test if there is stuff to do
+	returnCacheInstall=$(paccache --dryrun --keep 2 --min-mtime "30 days ago" -c $pacmanCache $aurCaches)
+	if [ "$returnCacheInstall" = "$returnNothingTodo" ]; then
+		# only search for more stuff if nothing was found
+		returnCacheUn=$(paccache --dryrun --uninstalled --keep 0 --min-atime "90 days ago" -c $pacmanCache $aurCaches)
+	fi
+
+	if [ "$returnCacheUn" != "$returnNothingTodo" ] || [ "$returnCacheInstall" != "$returnNothingTodo" ]; then
+		# something to do
 		echo "cleaning pacman cache (paccache)"
 		pause skip
 		if [ $? -eq 0 ]; then
+			echo ""
 			# remove caches from uninstalled pkgs, older than 90 days (access time)
-			returnCacheUninstallRun=$(paccache --remove --uninstalled --keep 0 --min-atime "90 days ago")
-			echo "Uninstalled packages: $returnCacheUninstallRun"
+			if [ "${returnCacheUn}" != "${returnNothingTodo}" ]; then
+				returnCacheUninstallRun=$(paccache --remove --uninstalled --keep 0 --min-atime "90 days ago" -c $pacmanCache $aurCaches)
+			echo "Uninstalled packages:"
+			echo $returnCacheUninstallRun
+			fi
 			# remove caches from installed pkgs, keep at least 2, keep all from the last 30 days (update time)
-			returnCacheInstallRun=$(paccache --remove --keep 2 --min-mtime "30 days ago")
-			echo "Installed packages:   $returnCacheInstallRun"
+			if [ "${returnCacheUn}" != "${returnNothingTodo}" ]; then
+				returnCacheInstallRun=$(paccache --remove --keep 2 --min-mtime "30 days ago" -c $pacmanCache $aurCaches)
+				echo "Installed packages:"
+				echo $returnCacheInstallRun
+			fi
 		fi
 		echo "$underline"
+	else
+		# nothings to do
+		((skippedCount++))
 	fi
+	
 
-
-	## clean yay build files
-	# TODO
-	# check all folders names in ~/.cache/yay/
-	# generate a list
-	# remove pacman -Q hits
-	# delete folders on the list
-	# 
-	#pause skip && echo TODO clean ~/.cache/yay/
-	#echo "$underline"
+	## removing AUR directories without build packages inside
+	# Needs: $aurCacheDir from 'cleaning the pacman/AUR cache'
+	# search for '*.pkg.tar.zst' within directories in ${aurCacheDir}
+	aurDeleteDir=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || echo {}" \;)
+	if [ -n "${aurCacheDir}" ] && [ -n "${aurDeleteDir}" ]; then
+		echo "remove AUR directories without build packages:"
+		echo ${aurDeleteDir} | sed 's/ /\n/g' | sed 's/^/ /'	# display a nice list
+		pause skip && find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || rm -r {}" \;
+		echo "$underline"
+	else
+		((skippedCount++))
+	fi
 
 
 	## zinit updates (zsh pluginmanager)
