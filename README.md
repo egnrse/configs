@@ -499,8 +499,8 @@ joplin-desktop<sup>AUR</sup>
 beeper-latest-bin<sup>AUR</sup>  
 [coppwr](https://dimtpap.ovh/coppwr) (flathub)  
 [sonusmix<sup>AUR</sup>](https://codeberg.org/sonusmix/sonusmix)  
-[xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)
-[ssh-audit](https://github.com/jtesta/ssh-audit)
+[xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)  
+[ssh-audit](https://github.com/jtesta/ssh-audit)  
 
 ---
 	
