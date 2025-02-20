@@ -251,6 +251,16 @@ if [ $skipMaintenance -eq 0 ]; then
 		echo "zsh, zinit or '~/.zshrc' are missing: skipping zinit updates"
 	fi
 	echo "$underline"
+
+
+	## Lazy updates (nvim pluginmanager)
+	# check if nvim is installed and accepts the command 'Lazy!'
+	if [ $(command -v nvim) > /dev/null ] && [ -z "$(nvim --headless '+Lazy!' +qa)" ]; then
+		echo "update Lazy and Lazy plugins (nvim pluginmanager)"
+		# start nvim headless, sync plugins, exit nvim when done
+		pause skip && nvim --headless "+Lazy! sync" +qa
+		echo "$underline"
+	fi
 	
 
 	## how many task where automatically skipped, because there was nothing to do
