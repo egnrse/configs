@@ -387,6 +387,13 @@ Some files in the `other` folder are for Dolphin (KDE). To use them look into th
 Desktop entry (called `Snip Screen`) to trigger a screen shot with `grim` and `slurp`.  
 TODO: more possible modes?
 
+#### ssd daemon (sshd)
+*(/other/50-custom-sshd.conf)*  
+A secure'ish sshd config, put the config-file into `/etc/ssh/sshd_config.d/`. You might need to run `ssh-keygen -A` to generate the keys needed for the daemon.
+You will need to change the allowed users if you want to connect with a different account than 'elia'. Only connections from localhost (127.0.0.1) and from a localnetwork ip address are allowed. I have a private [zerotier-one](https://www.zerotier.com/) network that I allow connections from too.  
+To setup your first connection, disalbe `PasswordAuthentication no` and `AuthenticationMethods publickey` as they only allow signing in with a publickey.  
+I used [ssh-audit](https://github.com/jtesta/ssh-audit) to try to make my system more secure.  
+
 #### 'old' folder
 *(/other/old/\*)*  
 Everything in here is not in active use anymore with no idea if I will need it for sth. later on.  
@@ -491,7 +498,7 @@ zerotier-one
 joplin-desktop<sup>AUR</sup>  
 beeper-latest-bin<sup>AUR</sup>  
 [coppwr](https://dimtpap.ovh/coppwr) (flathub)  
-[sonusmix](https://codeberg.org/sonusmix/sonusmix)  
+[sonusmix<sup>AUR</sup>](https://codeberg.org/sonusmix/sonusmix)  
 [xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)
 [ssh-audit](https://github.com/jtesta/ssh-audit)
 
