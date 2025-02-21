@@ -2,15 +2,20 @@
 
 # helps with upgrading packages (for official-/pacman-, AUR- and flatpak-packages)
 # also helps with some system maintenance:
-# 	- resolve configs (pacdiff)
+# 	- remove orphaned packages
+# 	- resolve config changes (pacdiff)
 # 	- pacman cache cleaning (paccache)
+# 	- AUR cache cleaning (paccache, only tested with yay)
+# 	- update zinit (zsh pluginmanager)
+# 	- update lazy (nvim pluginmanager)
 # args: $1=aur_helper
 # Needs:
 # 	pacman-contrib (for pacdiff, paccache)
 # 	sudo
-# 	[an aur_helper (eg. yay)]
+# 	[an aur_helper (tested with yay)]
 #	[flatpak]
 #	[zsh] (and zinit (a zsh plugin manager))
+#	[nvim] (and lazy (a nvim pluginmanager))
 # 
 # 	(this script is used by the packageUpdates.sh script)
 #	by egnrse (https://github.com/egnrse/configs)
@@ -32,8 +37,8 @@ normal="\033[0m"
 bold="\033[1m"
 
 # pauses and waits for the user in different ways
-# $1: ""|"pause"(or not given):pause until any button is pressed; "skip":asks to continue or skip
-# $2: set a custom message
+# $1: ""|"pause"(pause or not given):pause until any button is pressed; "skip"|"skipY":asks to continue or skip (continue by default), "skipN": same as 'skip', but skipping by default
+# $2: set a custom message (when eg. skip is given to $1, will show as "$2 (Y/n)")
 # returns: 0: success, 1: negative answer, 2: (usage) error
 pause() {
 	case "$1" in
@@ -64,7 +69,7 @@ pause() {
 			esac
 			;;
 		"skipN")
-			# for yes(return 0) / no or empty (return 1) questions
+			# for yes (return 0) / no or empty (return 1) questions
 			local var2="$2"
 			if [ -z "$2" ]; then
 				var2="> continue [y] or skip [n]"
@@ -95,7 +100,7 @@ echo -e "Welcome to ${bold}sysUpgrade${normal} a system update helper!"
 echo "$underline"
 echo ""
 
-# get aur_helper
+## get aur_helper
 if [ -n "$custom_aur_helper" ]; then
 	aur_helper=$custom_aur_helper
 	if [ -n "$1" ]; then
@@ -167,7 +172,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	fi
 
 
-	## remove unused packages (Qdt lists orphaned packages)
+	## remove unused/orphaned packages (Qdt lists orphaned packages)
 	orphanList=$(pacman -Qdtq)
 	if [ -n "${orphanList}" ]; then
 		echo "remove the following orphaned packages:"
@@ -299,6 +304,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	fi
 fi
 echo ""
+
 
 #
 # ====== END ======
