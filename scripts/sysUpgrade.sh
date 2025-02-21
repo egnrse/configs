@@ -24,7 +24,7 @@
 # OR set one here (with custom_aur_helper)
 custom_aur_helper=""
 
-# used for notifications
+# used for notifications (and resource names, eg. pipes)
 scriptName="sysUpgrade.sh"
 #notify-send -a ${scriptName} "${scriptName}: installed aur_helper not set!"\
 #	"Set it in the script OR give it as the first argument to this script." &
@@ -117,7 +117,26 @@ fi
 
 #
 # ====== UPDATE PACKAGES ======
-# 
+#
+
+## == prepare ==
+# run commands that might take a while and dont need user input while waiting for IO (in the background)
+# using (fifo) pipes to communicate with this proccess
+
+## flatpak
+if command -v "flatpak" &>/dev/null; then
+	flatpakUpdatePrep_pipe="/tmp/${scriptName}_flatpakUpdateCheck_pipe"
+	rm -f $flatpakUpdatePrep_pipe
+	mkfifo $flatpakUpdatePrep_pipe
+	trap "rm -f $flatpakUpdatePrep_pipe" EXIT
+
+	# test for updates (backgrounded)
+	flatpak remote-ls --updates | wc -l > "$flatpakUpdatePrep_pipe" &
+fi
+
+
+## == update ==
+
 ## official + AUR
 if [ -n "$aur_helper" ]; then
 	# ${aur_helper} -Syu
@@ -140,10 +159,19 @@ echo ""
 ## flatpak
 # test if the command exists
 if command -v "flatpak" &>/dev/null; then
-	echo -e "starting ${bold}flatpak${normal} updates"
-	pause skip
-	if [ $? -eq 0 ]; then
-		flatpak update
+	# look into '== prepare ==' of the 'update packages' section for the preparation steps
+	# read from pipe (flatpak updates)
+	read flatpakUpdatePrep_return < "$flatpakUpdatePrep_pipe"
+	rm -f $flatpakUpdatePrep_pipe
+	
+	if [ "$flatpakUpdatePrep_return" -ge 1 ]; then
+		echo -e "starting ${bold}flatpak${normal} updates"
+		pause skip
+		if [ $? -eq 0 ]; then
+			flatpak update
+		fi
+	else
+		echo -e "INFO: flatpak packages are up to date"
 	fi
 	echo "$underline"
 else
@@ -155,6 +183,52 @@ echo ""
 #
 # ====== SYSTEM MAINTENACE ======
 #
+
+## == prepare ==
+# run commands that might take a while and dont need user input while waiting for IO (in the background)
+# using (fifo) pipes to communicate with this proccess
+
+## cleaning the pacman/AUR cache
+cachePrep_pipe="/tmp/${scriptName}_cacheClean_pipe"
+rm -f $cachePrep_pipe
+mkfifo $cachePrep_pipe
+trap "rm -f $cachePrep_pipe" EXIT
+
+# pacman cache location
+pacmanCache=/var/cache/pacman/pkg
+# AUR cache location	
+if [ -n "$XDG_CACHE_HOME" ]; then
+	aurCacheDir="$XDG_CACHE_HOME/${aur_helper}"
+else
+	aurCacheDir="$HOME/.cache/${aur_helper}"
+fi
+
+# background part
+cachePrepare() {
+	# list all AUR package directories (with a '-c' prefix, ignore errors)
+	aurCaches=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec echo -c {} \; 2>/dev/null)
+
+	# write color and bold escape sequences to the string (for comparisons)
+	returnNothingTodo=$(echo -e '\E[1m\E[32m==>\E(B\E[m\E[1m no candidate packages found for pruning\E(B\E[m')
+
+	# test if there is stuff to do
+	returnCacheInstall=$(paccache --dryrun --keep 2 --min-mtime "30 days ago" -c $pacmanCache $aurCaches)
+	if [ "$returnCacheInstall" = "$returnNothingTodo" ]; then
+		# only search for more stuff if nothing was found
+		returnCacheUn=$(paccache --dryrun --uninstalled --keep 0 --min-atime "90 days ago" -c $pacmanCache $aurCaches)
+	fi
+
+	if [ "$returnCacheUn" != "$returnNothingTodo" ] || [ "$returnCacheInstall" != "$returnNothingTodo" ]; then
+		echo 0 >"$cachePrep_pipe"
+	else
+		echo 1 >"$cachePrep_pipe"
+	fi
+}
+cachePrepare &
+
+
+## == maintain ==
+
 echo -e "Do you want to do some ${bold}System Maintenance${normal} tasks?"
 pause skipN
 skipMaintenance=$?
@@ -192,45 +266,27 @@ if [ $skipMaintenance -eq 0 ]; then
 
 
 	## cleaning the pacman/AUR cache
-	# pacman cache location
-	pacmanCache=/var/cache/pacman/pkg
-	# AUR cache location	
-	if [ -n "$XDG_CACHE_HOME" ]; then
-		aurCacheDir="$XDG_CACHE_HOME/${aur_helper}"
-	else
-		aurCacheDir="$HOME/.cache/${aur_helper}"
-	fi
-	# list all AUR package directories (with a '-c' prefix, ignore errors)
-	aurCaches=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec echo -c {} \; 2>/dev/null)
+	# look into '== prepare ==' of the 'system maintainance' section for the preparation steps
 
-	# write color and bold escape sequences to the string (for comparisons)
-	returnNothingTodo=$(echo -e '\E[1m\E[32m==>\E(B\E[m\E[1m no candidate packages found for pruning\E(B\E[m')
+	# read from the prepared pipe
+	read cachePrep_return < "${cachePrep_pipe}"
+	rm -f $cachePrep_pipe
 
-	# test if there is stuff to do
-	returnCacheInstall=$(paccache --dryrun --keep 2 --min-mtime "30 days ago" -c $pacmanCache $aurCaches)
-	if [ "$returnCacheInstall" = "$returnNothingTodo" ]; then
-		# only search for more stuff if nothing was found
-		returnCacheUn=$(paccache --dryrun --uninstalled --keep 0 --min-atime "90 days ago" -c $pacmanCache $aurCaches)
-	fi
-
-	if [ "$returnCacheUn" != "$returnNothingTodo" ] || [ "$returnCacheInstall" != "$returnNothingTodo" ]; then
+	if [ ${cachePrep_return} -eq 0 ]; then
 		# something to do
 		echo "cleaning pacman cache (paccache)"
 		pause skip
 		if [ $? -eq 0 ]; then
 			echo ""
 			# remove caches from uninstalled pkgs, older than 90 days (access time)
-			if [ "${returnCacheUn}" != "${returnNothingTodo}" ]; then
-				returnCacheUninstallRun=$(paccache --remove --uninstalled --keep 0 --min-atime "90 days ago" -c $pacmanCache $aurCaches)
 			echo "Uninstalled packages:"
+			returnCacheUninstallRun=$(paccache --remove --uninstalled --keep 0 --min-atime "90 days ago" -c $pacmanCache $aurCaches)
 			echo $returnCacheUninstallRun
-			fi
+			
 			# remove caches from installed pkgs, keep at least 2, keep all from the last 30 days (update time)
-			if [ "${returnCacheUn}" != "${returnNothingTodo}" ]; then
-				returnCacheInstallRun=$(paccache --remove --keep 2 --min-mtime "30 days ago" -c $pacmanCache $aurCaches)
-				echo "Installed packages:"
-				echo $returnCacheInstallRun
-			fi
+			echo "Installed packages:"
+			returnCacheInstallRun=$(paccache --remove --keep 2 --min-mtime "30 days ago" -c $pacmanCache $aurCaches)
+			echo $returnCacheInstallRun
 		fi
 		echo "$underline"
 	else
@@ -302,6 +358,10 @@ if [ $skipMaintenance -eq 0 ]; then
 	if [ ${skippedCount} -ge 1 ]; then
 		echo "hidden Tasks (nothing to do): ${skippedCount}"
 	fi
+else
+	## no system maintainance
+	# some cleanup
+	rm -f $cachePrep_pipe
 fi
 echo ""
 
