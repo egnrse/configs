@@ -220,8 +220,10 @@ cachePrepare() {
 
 	if [ "$returnCacheUn" != "$returnNothingTodo" ] || [ "$returnCacheInstall" != "$returnNothingTodo" ]; then
 		echo 0 >"$cachePrep_pipe"
+		echo $aurCaches >"$cachePrep_pipe"
 	else
 		echo 1 >"$cachePrep_pipe"
+		echo $aurCaches >"$cachePrep_pipe"
 	fi
 }
 cachePrepare &
@@ -270,6 +272,7 @@ if [ $skipMaintenance -eq 0 ]; then
 
 	# read from the prepared pipe
 	read cachePrep_return < "${cachePrep_pipe}"
+	read aurCaches < "${cachePrep_pipe}"
 	rm -f $cachePrep_pipe
 
 	if [ ${cachePrep_return} -eq 0 ]; then
