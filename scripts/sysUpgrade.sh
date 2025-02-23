@@ -33,6 +33,8 @@ scriptName="sysUpgrade.sh"
 
 # visual variables
 underline="---------------------------------------------"
+infoText="INFO:"
+warningText="WARNING:"
 normal="\033[0m"
 bold="\033[1m"
 
@@ -91,6 +93,16 @@ pause() {
 	esac
 }
 
+# tests if a proccess with a given PID ($1) is running and displays $2 if so
+# DOES NOT WORK (prob. because of pipe buffering)
+stillRunning() {
+	local PID=$1
+	if ps p ${PID} >/dev/null; then
+		#echo $2
+		:
+	fi
+}
+
 
 #
 # ====== START ======
@@ -104,13 +116,13 @@ echo ""
 if [ -n "$custom_aur_helper" ]; then
 	aur_helper=$custom_aur_helper
 	if [ -n "$1" ]; then
-		echo "WARNING: Using a custom aur_helper ($aur_helper), but an aur_helper was also given over \$1 ($1)."
+		echo "${bold}${warningText}${normal} Using a custom aur_helper ($aur_helper), but an aur_helper was also given over \$1 ($1)."
 		echo ""
 	fi
 elif [ -n "$1" ]; then
 	aur_helper=$1
 else
-	echo "WARNING: The installed aur_helper was not set!"
+	echo "${bold}${warningText}${normal} The installed aur_helper was not set!"
 	echo " Set it in the script OR give it as the first argument to this script."
 	echo ""
 fi
@@ -132,6 +144,7 @@ if command -v "flatpak" &>/dev/null; then
 
 	# test for updates (backgrounded)
 	flatpak remote-ls --updates | wc -l > "$flatpakUpdatePrep_pipe" &
+	flatpak_pid=$!
 fi
 
 
@@ -160,8 +173,9 @@ echo ""
 # test if the command exists
 if command -v "flatpak" &>/dev/null; then
 	# look into '== prepare ==' of the 'update packages' section for the preparation steps
-	# read from pipe (flatpak updates)
-	read flatpakUpdatePrep_return < "$flatpakUpdatePrep_pipe"
+	# read from pipe (flatpak updates), echo a msg if preparations are still running
+	stillRunning ${flatpak_pid} "${infoText} Searching for flatpak updates..."
+	flatpakUpdatePrep_return=$(cat "$flatpakUpdatePrep_pipe")
 	rm -f $flatpakUpdatePrep_pipe
 	
 	if [ "$flatpakUpdatePrep_return" -ge 1 ]; then
@@ -171,11 +185,11 @@ if command -v "flatpak" &>/dev/null; then
 			flatpak update
 		fi
 	else
-		echo -e "INFO: flatpak packages are up to date"
+		echo -e "${infoText} flatpak packages are up to date"
 	fi
 	echo "$underline"
 else
-	echo "INFO: flatpak not installed"
+	echo "${infoText} flatpak not installed"
 fi
 echo ""
 
@@ -227,6 +241,7 @@ cachePrepare() {
 	fi
 }
 cachePrepare &
+paccache_pid=$!
 
 
 ## == maintain ==
@@ -243,7 +258,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	if pacman -Q "pacman-contrib" &>/dev/null; then
 		:
 	else
-		echo -e "${bold}WARNING:${normal} package 'pacman-contrib' is missing, pacdiff/paccache will not work (${scriptName})"
+		echo -e "${bold}${warningText}${normal} package 'pacman-contrib' is missing, pacdiff/paccache will not work (${scriptName})"
 		echo "$underline"
 	fi
 
@@ -270,9 +285,11 @@ if [ $skipMaintenance -eq 0 ]; then
 	## cleaning the pacman/AUR cache
 	# look into '== prepare ==' of the 'system maintainance' section for the preparation steps
 
-	# read from the prepared pipe
+	# read from the prepared pipe, echo a msg if preparations are still running
+	stillRunning ${paccache_pid} "${infoText} Looking into the package cache..."
+	#stillRunning ${paccache_pid} "${infoText} Are there packages to clean from the cache..."
 	read cachePrep_return < "${cachePrep_pipe}"
-	read aurCaches < "${cachePrep_pipe}"
+	aurCaches=$(cat "${cachePrep_pipe}")
 	rm -f $cachePrep_pipe
 
 	if [ ${cachePrep_return} -eq 0 ]; then
