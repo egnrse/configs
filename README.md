@@ -377,6 +377,7 @@ an easer way to do this is using the filemanager `Nemo`:
 This will also change the mimeapps.list file.  
 u can find the mime-type of a file using `xdg-mime query filetype {FILE}`.
 Also look into [#set Standart Terminal Emulator](set-standart-terminal-emulator).  
+Sadly, some application (eg KDE stuff) breakes the hardlink (between this config and the actual file), so you might have to update the file in `~/.config/mimeapps.list`.  
 
 #### Dolphin
 *(/other/servicemenus/\*)*  
