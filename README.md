@@ -490,6 +490,30 @@ Follow the Arch Linux install in: `https://docs.lizardbyte.dev/projects/sunshine
 Then do: `sudo setcap -r $(readlink -f $(which sunshine))`  
 Install all dependencies that sunshine needs. Symlink all libs that have the wrong version to the installed one. (in `/usr/lib`: sudo ln -s ./lib\*.so ./lib\*.so.1.83.0)
 
+#### [Mailvelope](https://github.com/mailvelope/mailvelope) (browser extension)
+Connect to the local `gpgme` install:  
+- create one of the following files ([see also here](https://github.com/mailvelope/mailvelope/wiki/Creating-the-app-manifest-file-on-macOS-and-Linux)):
+
+```
+~/.mozilla/native-messaging-hosts/gpgmejson.json
+~/.waterfox/native-messaging-hosts/gpgmejson.json
+~/.config/google-chrome/NativeMessagingHosts/gpgmejson.json
+
+```
+with the following content (for firefox based):
+```
+{
+    "name": "gpgmejson",
+    "description": "JavaScript binding for GnuPG",
+    "path": "/usr/bin/gpgme-json",
+    "type": "stdio",
+    "allowed_extensions": ["jid1-AQqSMBYb0a8ADg@jetpack"]
+}
+```
+- reload the mailvelope extension
+- select under `Options > General > OpenPGP Preferences` GnuPG 
+- now you should see your keys under `Key Management` (if you select `GnuPG` and not `Main Keyring`)
+
 </details>
 
 ---
