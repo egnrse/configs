@@ -484,6 +484,17 @@ To force VLC to use wayland, you can change the line with `Exec=` in `/usr/share
 `Exec=env -u DISPLAY /usr/bin/vlc --started-from-file %U`  
 This will preserve the environment variable globally while unsetting it for VLC.  
 
+#### Flatpak
+Install software from flathub with `discover` (kde software), manage flatpak permissions graphically with Flatseal(flatpak).  
+Bellow some maybe useful flatpak commands:  
+```
+flatpak list
+flatpak run APP-ID
+flatpak run --command=COMMAND APP-ID ARGS
+flatpak install NAME
+
+```
+
 #### Sunshine
 The Flatpak doesn't have the right permission.  
 Follow the Arch Linux install in: `https://docs.lizardbyte.dev/projects/sunshine/latest/about/setup.html`  
@@ -554,7 +565,7 @@ bash-language-server (lsp)
 kio-admin ark dolphin-plugins archlinux-xdg-menu (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
-libreoffice-fresh torbrowser-launcher prismlauncher appimagelauncher nheko  
+libreoffice-fresh prismlauncher appimagelauncher nheko mission-center   
 strawberry vlc kalgebra kcalc godot-mono blender cuda
 
 #### from AUR
