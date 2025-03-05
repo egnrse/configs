@@ -562,7 +562,7 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 
 #### misc
 bash-language-server (lsp)  
-kio-admin ark dolphin-plugins archlinux-xdg-menu (dolphin stuff)  
+kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
 libreoffice-fresh prismlauncher appimagelauncher nheko mission-center   
@@ -574,7 +574,7 @@ spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)
 waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher  
+keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal  
 #### from somewhere else
 sunshine matlab  
 
