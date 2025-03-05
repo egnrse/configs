@@ -547,8 +547,8 @@ beeper-latest-bin<sup>AUR</sup>
 base-devel neovim vim git sudo grub openssh efibootmgr  
 man-db man-pages						(man pages)  
 ntfs-3g exfat-utils 					(filesystem types)  
-networkmanager blueman	    (internet/networking/bluetooth)  
-flatpak wget pacman-contrib yay<sup>AUR</sup>		(package manager)  
+networkmanager blueman waypipe	    (internet/networking/bluetooth)  
+flatpak wget pacman-contrib devtools yay<sup>AUR</sup>		(package managing)  
 pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
 polkit-kde-agent wl-clipboard trash-d<sup>AUR</sup> zsh zoxide fzf (utilities)  
@@ -562,7 +562,7 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 
 #### misc
 bash-language-server (lsp)  
-kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers (dolphin stuff)  
+kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
 libreoffice-fresh prismlauncher appimagelauncher nheko mission-center   
