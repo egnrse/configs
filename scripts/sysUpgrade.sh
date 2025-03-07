@@ -369,6 +369,7 @@ if [ $skipMaintenance -eq 0 ]; then
 			echo ""
 			# start nvim headless, sync plugins, exit nvim when done
 			nvim --headless "+Lazy! sync" +qa
+			echo ""
 		fi
 		echo "$underline"
 	fi
