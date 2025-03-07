@@ -30,6 +30,7 @@ TODO: make it more interactive (with an -a option?)
 
 - [alacritty](#alacritty): (/alacritty/)
 - [bash](#bash):      (/bash/)
+- [bottom](#bottom): (/bottom/)
 - [dunst](#dunst):     (/dunst/)
 - [git](#git):    (/other/.gitconfig)
 - [hypridle](#hypridle):  (/hypr/)
@@ -102,6 +103,23 @@ Some more infos are in the files.
 
 I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into autotrash<sup>AUR</sup>)
 </details>
+
+### [bottom](https://github.com/ClementTsang/bottom)
+*(/bottom/)*  
+Config for a graphical process/system monitor for the terminal. You can launch it by running `btm` or (within this config) by pressing `Ctr+Shift+Esc`.  
+
+<details><summary>Details</summary>
+#### Keymappings
+`?`     : open help menu  
+`e`     : focus/fullscreen current selection  
+`q`     : close  
+`Esc`   : unfullscreen / close dialogs, search  
+`+-=`   : zoom in/out/reset  
+in Processes:  
+`/`      : search  
+`dd`     : send a signal to the selected process  
+</details>
+
 
 ### [dunst](https://dunst-project.org/)
 *(/dunst/)*  
