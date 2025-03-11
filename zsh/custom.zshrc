@@ -77,7 +77,9 @@ autoload -Uz vcs_info				# version-control support
 zinit cdreplay -q
 
 ## custom completions (from commands that have a 'good' --help)
-compdef _gnu_generic trash sddm pipewire nwg-drawer wireplumber
+compdef _gnu_generic trash sddm pipewire nwg-drawer wireplumber gamescope
+# still to do but a start: 
+compdef _gnu_generic pw-cli pw-dump pw-config waypipe
 
 ## style
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

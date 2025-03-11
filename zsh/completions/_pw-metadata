@@ -1,0 +1,30 @@
+#compdef pw-metadata
+
+# Function to handle the main completions for pw-metadata
+_pw-metadata() {
+	_arguments \
+		'(-h --help)'{-h,--help}'[Show help]:->end' \
+		'(--version)'--version'[Show version]:->end' \
+		'(-r --remote)'{-r,--remote}'[Remote daemon name]' \
+		'(-l --list)'{-l,--list}'[List available metadata]:->end' \
+		'(-m --monitor)'{-m,--monitor}'[Monitor metadata]:->end' \
+		'(-d --delete)'{-d,--delete}'[Delete metadata]' \
+		'(-n --name)'{-n,--name}'[Metadata name (default: "default")]::arg:->name'
+
+	# handle args of the previous _arguments
+	# TODO: delete, remote
+	case $state in
+		end)
+			# last argument
+			return 0
+			;;
+		name)
+			_values "available metadata" $(pw-metadata --list|awk -F'"' '{print $2}')
+			# TODO: id [ key [ value [ type ] ] ] ] (missing)
+			;;
+	esac
+}
+compdef _pw-metadata pw-metadata
+
+
+
