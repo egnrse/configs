@@ -20,7 +20,19 @@ _mycmd() {
 				'(-n --name)'{-n,--name}'[Metadata name (default: "default")]::arg:->name'
             ;;
         options)
-            case $words[1] in
+			case $words[2] in
+				"")
+					;;
+				settings)
+                    _arguments \
+                        '--try[Enable verbose output]' \
+                        '--TRY222=[Set timeout]:timeout (seconds):'
+					;;
+				*)
+					return 0
+					;;
+			esac
+			case $words[1] in
                 -d|--delete)
                     _arguments \
                         '--verbose[Enable verbose output]' \
@@ -35,6 +47,7 @@ _mycmd() {
 					return 0
                     ;;
             esac
+
             ;;
     esac
 }
