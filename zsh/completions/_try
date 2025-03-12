@@ -1,0 +1,43 @@
+#compdef try
+
+_mycmd() {
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '1:subcommand:->subcmds' \
+        '*::options:->options'
+
+    case $state in
+        subcmds)
+			_arguments \
+				'(-h --help)'{-h,--help}'[Show help]:->end' \
+				'(--version)'--version'[Show version]:->end' \
+				'(-r --remote)'{-r,--remote}'[Remote daemon name]' \
+				'(-l --list)'{-l,--list}'[List available metadata]:->end' \
+				'(-m --monitor)'{-m,--monitor}'[Monitor metadata]:->end' \
+				'(-d --delete)'{-d,--delete}'[Delete metadata]' \
+				'(-n --name)'{-n,--name}'[Metadata name (default: "default")]::arg:->name'
+            ;;
+        options)
+            case $words[1] in
+                -d|--delete)
+                    _arguments \
+                        '--verbose[Enable verbose output]' \
+                        '--timeout=[Set timeout]:timeout (seconds):'
+                    ;;
+
+                -n|--name)
+					_values "available metadata" $(pw-metadata --list|awk -F'"' '{print $2}')
+                    ;;
+				*)
+					# last argument
+					return 0
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+compdef _mycmd try
+
