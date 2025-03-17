@@ -57,7 +57,7 @@ mkdir -p ${backup}
 
 
 # link folders to $config
-askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer rofi shell tofi waybar wlogout zsh
+askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
 
 # scripts
 chmod +x ${origin}scripts/*
@@ -104,6 +104,10 @@ ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
 
 # sshd
 sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
+
+# vim
+ln -s -i ${origin}other/.vimrc ${HOME}/
+
 
 # link roots nvim to ours?
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer
