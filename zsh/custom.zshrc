@@ -170,6 +170,17 @@ else
 fi
 
 
+## CUSTOM ENVIRONMENT VARIABLES
+################################
+# fetch the env file (if the file exists)
+customZshEnv_path=~/.config/shell/env.shrc
+if [ -f $customZshEnv_path ]; then
+	source $customZshEnv_path
+else
+	echo "custom.zshrc: env.shrc not found ($customZshEnv_path)"
+fi
+
+
 # SHELL INTEGRATION
 ################################
 eval "$(zoxide init --cmd cd zsh)"	# fuzzy finding for cd (needs zoxide)

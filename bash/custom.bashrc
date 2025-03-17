@@ -83,13 +83,11 @@ fi
 ## CUSTOM ENVIRONMENT VARIABLES
 ################################
 # fetch the env file (if the file exists)
-# currentDir gets the directory *this* file is in
-currentDir="$(dirname ${BASH_SOURCE[0]})"
-customBashEnv_path="${currentDir}/env.bashrc"
+customBashEnv_path=~/.config/shell/env.shrc
 if [ -f $customBashEnv_path ]; then
 	source $customBashEnv_path
 else
-	echo "custom.bashrc: env.bashrc not found ($customBashEnv_path)"
+	echo "custom.bashrc: env.shrc not found ($customBashEnv_path)"
 fi
 
 
