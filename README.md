@@ -294,6 +294,7 @@ This is a very simple setup that I use, when I can't use nvim. The Leader-Key is
 Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manager, it should autoinstall itself. This configs should work on Win10 and Linux.  
 
 <details><summary>some Settings</summary>
+	
 Currently, all settings are in one file (`~/.vimrc`)  
 Plugins:
 - [lightline](https://github.com/itchyny/lightline.vim) (statusline)
