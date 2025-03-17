@@ -290,12 +290,20 @@ TODO: make this a proper package (in AUR?)
 
 ### vim
 *(/other/.vimrc)*  
-This is a very simple setup that I use, when I can't use nvim.  
-Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manager, it should autoinstall itself. Should work on Win10 and Linux.  
+This is a very simple setup that I use, when I can't use nvim. The Leader-Key is Space. (meaning: some shortcuts start with the Space-Key)    
+Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manager, it should autoinstall itself. This configs should work on Win10 and Linux.  
+
+<details><summary>some Settings</summary>
+Currently, all settings are in one file (`~/.vimrc`)  
+Plugins:
+- [lightline](https://github.com/itchyny/lightline.vim) (statusline)
+- vim-markdown
+- [NERDTree](https://github.com/preservim/nerdtree) (file explorer) {Leader+E}
+</details>
 
 ### [waybar](https://github.com/Alexays/Waybar)
 *(/waybar/)*  
-A wayland statusbar, with some custom scripts for extra functionallity. U can right/left-click or scroll on many modules.  
+A wayland statusbar, with some custom scripts for extra functionality. U can right/left-click or scroll on many modules.  
 There is a custom script `reloadConfig.sh` that reloads the configuration, to easily test changes for waybar.
 There is also a custom wifimenu, a custom package update helper and many other features.  
 

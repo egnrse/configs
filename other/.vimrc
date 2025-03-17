@@ -1,13 +1,30 @@
+" vim config by egnrse
+" (https://github.com/egnrse/configs)
+" 
+" overview:
+" - general settings
+" - custom commands
+" - key mappings
+" - plugins (vim-plug)
+"
 "(use :set ff=unix for ^M errors)
+
+
+"====== GENERAL ======
+set number			"line numbers [nonumber]
+set relativenumber	"relative line numbers [nonumber]
 set tabstop=4		"tabs are shorter
 set shiftwidth=4
+set mouse=a			"mouse interaction (all)
 
-set number			"line numbers [nonumber]
 set hls				"search highlight [noh]
 set smartcase		"make search case insensitive for only lowercase search
-syntax on			"syntax highlighting
-set mouse=a			"mouse interaction (all)
+set smartindent		"automatically indent new lines
+
+set showcmd			"show keys pressed in the bottom right corner
 set visualbell
+"set cursorline		"highlight the current line
+syntax on			"syntax highlighting
 autocmd FileType * if &ft !=# 'c' | set smartindent | endif
 autocmd FileType c,cpp set cindent
 
@@ -18,10 +35,63 @@ set foldlevel=99	"start with open folds
 highlight Folded ctermbg=Black ctermfg=Grey guibg=Black guifg=Grey	"fold color
 
 
+"====== COMMANDS ======
+command W w
+command Wq wq
+command Q qa
+command Qa qa
+
+
+"====== KEYMAPPINGS ======
+let mapleader = " "
+
+"General
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+vnoremap <C-s> <Esc>:w<CR>gv
+"clipbard might be disabled (vim --version | grep clipboard)
+"vnoremap <C-c> "+y
+
+"Window Buffer
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader><Tab> :bnext<CR>
+nnoremap <leader>bp :bprevious<CR>
+nnoremap <leader><S-Tab> :bprevious<CR>
+nnoremap <leader>q :bd<CR>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bD :bd!<CR>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+"Window Size Managing
+"nnoremap <leader>| :vsplit<CR>	"does not work? creates many errors
+nnoremap <leader>h :vsplit<CR>
+nnoremap <leader>- :split<CR>
+nnoremap <leader>wm :only<CR>
+
+nnoremap <C-Left> <C-w><
+nnoremap <C-Right> <C-w>>
+nnoremap <C-Up> <C-w>+
+nnoremap <C-Down> <C-w>-
+
+"Terminal
+nnoremap <leader>th :horizontal terminal<CR>
+nnoremap <leader>tv :vertical terminal<CR>
+tnoremap <Esc><Esc> <C-\><C-n>
+
+"more keymaps under plugins (eg. FileManager)
+
+
 " ---------- vim only section (ignore in nvim) --------------
 if !has('nvim')
 
-"vim-plug :PlugInstall, :PlugClean
+
+"====== PLUGINS (vim-plug) ======
+" should autoinstall on first launch
+" :PlugInstall, :PlugClean
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
 	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -31,6 +101,7 @@ call plug#begin()
 	Plug 'itchyny/lightline.vim'	"status line
 	Plug 'godlygeek/tabular'		"markdown dependency
 	Plug 'preservim/vim-markdown'	"folding around titles
+	Plug 'preservim/nerdtree'		"file explorer
 call plug#end()
 "otherPlugins:
 "Plug 'dense-analysis/ale'
@@ -42,6 +113,16 @@ set laststatus=2
 "let g:vim_markdown_folding_level = 0
 "let g:vim_markdown_override_foldtext = 0
 "autocmd FileType markdown normal! zR	"open all folds on open
+
+"NERDTree
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+nnoremap <leader>e :NERDTreeToggle<CR>	"toggle filetree
+nnoremap <leader>r :NERDTreeFocus<CR>	"focus filetree
+
+
+
 
 endif
 " end of vim only section
