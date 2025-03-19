@@ -154,6 +154,7 @@ Many explanations are in the config files.
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and many parts will not work with out this dependency.  
 See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`  
+! This config DISABLES touch devices !  
 
 <details> <summary>Keymappings:</summary>
 
