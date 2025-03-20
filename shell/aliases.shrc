@@ -17,6 +17,8 @@ alias cls='clear'
 alias clsa='clear && lsa'
 alias clsA='clear && lsA'
 
+alias ctagsInit='ctags --extras=+q -R -f .tags .'
+
 # git
 alias gits='git status'
 alias gitlg='git log --oneline'
