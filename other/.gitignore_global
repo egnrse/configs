@@ -1,0 +1,8 @@
+# global gitignore by egnrse
+# activate it with 'git config --global core.excludesfile ~/.gitignore_global'
+
+# ctags/tags files
+tags
+.tags
+# swap file by vim
+*.swp

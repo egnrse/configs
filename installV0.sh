@@ -108,6 +108,8 @@ sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custo
 # vim
 ln -s -i ${origin}other/.vimrc ${HOME}/
 
+# git
+ln -s -i ${origin}other/.gitignore_global ${HOME}/
 
 # link roots nvim to ours?
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer

@@ -32,7 +32,7 @@ TODO: make it more interactive (with an -a option?)
 - [bash](#bash):      (/bash/)
 - [bottom](#bottom): (/bottom/)
 - [dunst](#dunst):     (/dunst/)
-- [git](#git):    (/other/.gitconfig)
+- [git](#git):    (/other/.git\*)
 - [hypridle](#hypridle):  (/hypr/)
 - [hyprland](#hyprland):  (/hypr/)  
 - [hyprlock](#hyprlock):  (/hypr/)
@@ -129,10 +129,12 @@ There is a custom script `restartDunst.sh` that restarts dunst and sends some no
 
 
 ### git
-*(/other/.gitconfig)*  
-Copy the parts that u like into `~/.gitconfig`. It has some useful aliases.  
-Replace the placeholders if needed (eg {email}, {computerName}).  
+*(/other/.gitconfig, /other/.gitignore_global)*  
+Copy the parts of `.gitconfig` that u like into `~/.gitconfig`. It has some useful aliases.  
+Replace the placeholders if needed (eg. {email}, {computerName}).  
 (fully replacing your old config-file is **not** recommended)  
+
+There is also a global `.gitignore` with explanations how to use/activate in the file.  
 
 
 ### hypridle
