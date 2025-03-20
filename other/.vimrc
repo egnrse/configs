@@ -60,7 +60,7 @@ vnoremap <C-s> <Esc>:w<CR>gv
 "vnoremap <C-c> "+y
 
 "Window Tabs
-nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>tn :tab split<CR>
 nnoremap <leader><Tab> :tabnext<CR>
 nnoremap <leader><S-Tab> :tabprevious<CR>
 nnoremap <leader>tp :tabprevious<CR>
@@ -120,6 +120,7 @@ call plug#begin()
 	Plug 'preservim/vim-markdown'	"folding around titles
 	Plug 'preservim/nerdtree'		"file explorer
 	Plug 'craigemery/vim-autotag'	"update ctags on save
+	Plug 'Raimondi/delimitMate'		"auto pairs
 call plug#end()
 "otherPlugins:
 "Plug 'dense-analysis/ale'
