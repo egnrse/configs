@@ -39,10 +39,14 @@ map("c", "<Tab>", "<C-z>")					--tab-autocompletation in commands (c)
 
 
 -- WINDOWS --
+-- Tabs
+map("n", "<leader>tn", "<CMD>tabnew<CR>")		--new (n)
+map("n", "<leader><Tab>", "<CMD>tabnext<CR>")	--next (n)
+map("n", "<leader><S-Tab>", "<CMD>tabp<CR>")	--previous (n)
+map("n", "<leader>tp", "<CMD>tabp<CR>")		    --previous (n)
+map("n", "<leader>td", "<CMD>tabclose<CR>")		--close (n)
 -- Buffer (Navigation)
-map("n", "<leader><Tab>", "<CMD>bnext<CR>") --next (n)
 map("n", "<leader>bn", "<CMD>bnext<CR>")	--next (n)
-map("n", "<leader><S-Tab>", "<CMD>bp<CR>")	--previous (n)
 map("n", "<leader>bp", "<CMD>bprevious<CR>")--previous (n)
 map("n", "<leader>q", "<CMD>bd<CR>")		--close (n)
 map("n", "<leader>bd", "<CMD>bd<CR>")		--close (n)
@@ -82,5 +86,6 @@ vim.api.nvim_create_user_command('E', ':NvimTreeToggle', {})
 -- Custom Commands
 vim.api.nvim_create_user_command('W', ':w', {})			--save
 vim.api.nvim_create_user_command('Wq', ':wq', {})		--save+close
-vim.api.nvim_create_user_command('WA', ':wq', {})		--save+close
+vim.api.nvim_create_user_command('Wqa', ':wqa', {})		--save+close all
+vim.api.nvim_create_user_command('WQ', ':wqa', {})		--save+close all
 vim.api.nvim_create_user_command('Q', ':qa', {})		--close all

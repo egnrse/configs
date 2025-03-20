@@ -38,6 +38,8 @@ highlight Folded ctermbg=Black ctermfg=Grey guibg=Black guifg=Grey	"fold color
 "====== COMMANDS ======
 command W w
 command Wq wq
+command Wqa wqa
+command WQ wqa
 command Q qa
 command Qa qa
 
@@ -52,11 +54,16 @@ vnoremap <C-s> <Esc>:w<CR>gv
 "clipbard might be disabled (vim --version | grep clipboard)
 "vnoremap <C-c> "+y
 
+"Window Tabs
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader><Tab> :tabnext<CR>
+nnoremap <leader><S-Tab> :tabprevious<CR>
+nnoremap <leader>tp :tabprevious<CR>
+nnoremap <leader>td :tabclose<CR>
+"nnoremap <leader>tD :tabclose<CR>
 "Window Buffer
 nnoremap <leader>bn :bnext<CR>
-nnoremap <leader><Tab> :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader><S-Tab> :bprevious<CR>
 nnoremap <leader>q :bd<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bD :bd!<CR>
