@@ -293,16 +293,70 @@ TODO: make this a proper package (in AUR?)
 
 ### vim
 *(/other/.vimrc)*  
-This is a very simple setup that I use, when I can't use nvim. The Leader-Key is Space. (meaning: some shortcuts start with the Space-Key)    
+This is a ~~very simple~~ setup that I use, when I can't use nvim. The Leader-Key is Space. (meaning: some shortcuts start with the Space-Key)    
 Copy the file to `~/`, some infos are in the file. I use Plug as a Plugin Manager, it should autoinstall itself. This configs should work on Win10 and Linux.  
 
-<details><summary>some Settings</summary>
+<details><summary>some Settings/usage Help</summary>
 	
 Currently, all settings are in one file (`~/.vimrc`)  
 Plugins:
 - [lightline](https://github.com/itchyny/lightline.vim) (statusline)
 - vim-markdown
 - [NERDTree](https://github.com/preservim/nerdtree) (file explorer) {Leader+E}
+- [vim-autotag](https://github.com/craigemery/vim-autotag) (update [ctags](#ctags) on file save)
+
+For how to use [ctags](https://github.com/universal-ctags/ctags) look into [#ctags](#ctags) under [Misc](#misc).  
+
+The config file explains it the best, but...  
+Some key mappings: (remember <leader> = Space)  
+`Ctr-s`         : save file (buffer)  
+`<leader>tn`    : new tab (functions like tabs in eg. vscode)  
+`<leader><Tab>` : switch to next tab (functions like tabs in eg. vscode)  
+`<leader>td`    : close tab (tab delete)  
+`<leader>tD`    : force close tab (tab delete!)  
+`<leader>bn`    : switch to next buffer(= open file) (in the current tab) (buffer next)  
+`<leader>bd`    : close current buffer (buffer delete)  
+`<leader>bD`    : force close current buffer (buffer delete!)  
+`Ctr- hjkl`     : move to the buffer window in this direction (like `Ctr-W hjl`)  
+`<leader>|`     : split window vertically (`Ctr-W v`)  
+`<leader>-`     : split window horizontally (`Ctr-W s`)  
+`<leader>wm`    : maximize window   
+`C-Arrows`      : resize current window  
+`<leader>th`    : open a terminal in a new horizontal split (terminal horizontal)  
+`<leader>tv`    : open a terminal in a new vertical split  
+`<Esc><Esc>`    : exit terminal mode, close popups  
+`<leader>}`     : open definition in a preview window (`Ctr-W }`)  
+`C-e`           : toggle filemanager  
+`:Q`            : close all (qa)  
+
+`/pattern`      : search for `pattern`  
+`*`             : search for focused word  
+`n/N`           : next/previous search result  
+`:noh`          : disables search highlighting (no highlight)  
+`Ctr-N`         : (cycle/show) autocompletion  
+`Ctr-P`         : cycle/show autocompletion from the back  
+`%`             : go to matching bracket  
+`gd/gD`         : go to declaration (local/global)  
+`Ctr-]`         : jump to tag (eg. function/variable definition)  
+`Ctr-T`         : jump back (from tags)  
+`50G`           : jump to line 50  
+`gg/G`          : jump to start/end of file  
+`Ctr-o`         : jump the jumplist back  
+`Ctr-i`         : jump the jumplist forward  
+`Ctr-W }`       : open definition in a preview window (close it with `Ctr-W z`)  
+`Ctr-W ]`       : open definition in a new window (switch window)  
+`Ctr-W n`       : open a new empty window  
+`Ctr-W c`       : close current window  
+`Ctr-W o`       : close (all) other windows  
+`Ctr-W r`       : rotate all windows  
+`Ctr-W :`       : same as typeing `:` (also works in the command line)  
+`[i`            : shows first mention in file in command line (show identifier)  
+`[I`            : shows ALL mentions in a file in the command line  
+`Ctr-R =`       : in INSERT mode, calculate the next thing u type and inserts it  
+`:%s/pat/rep/gc`: search and replace all instances of `pat` with `rep` (g: globally, c: ask before each (choice))  
+`K`             : open man/help page of focused command  
+`:ls/:tabs`     : list open buffer/tabs  
+
 </details>
 
 ### [waybar](https://github.com/Alexays/Waybar)
@@ -424,6 +478,17 @@ A secure'ish sshd config, put the config-file into `/etc/ssh/sshd_config.d/`. Yo
 You will need to change the allowed users if you want to connect with a different account than 'elia'. Only connections from localhost (127.0.0.1) and from a localnetwork ip address are allowed. I have a private [zerotier-one](https://www.zerotier.com/) network that I allow connections from too.  
 To setup your first connection, disalbe `PasswordAuthentication no` and `AuthenticationMethods publickey` as they only allow signing in with a publickey.  
 I used [ssh-audit](https://github.com/jtesta/ssh-audit) to try to make my system more secure.  
+
+#### [ctags](https://github.com/universal-ctags/ctags)
+*(none currently)*  
+A way to eg. jump to definitions in vim/nvim. Needs an implementation of `ctags` installed to work.  
+If u want to use it in a project, run the following in the root project folder:  
+```
+ctags --extras=+q -R -f .tags .
+
+```
+This genereates a `.tags` file, which is used by eg. vim. (-R: index subfolder recursively, +q: index class members)  
+(Also look at [its man page](https://man.archlinux.org/man/ctags.1.en))  
 
 #### 'old' folder
 *(/other/old/\*)*  

@@ -34,6 +34,11 @@ set foldmethod=syntax
 set foldlevel=99	"start with open folds
 highlight Folded ctermbg=Black ctermfg=Grey guibg=Black guifg=Grey	"fold color
 
+"ctags
+set tags+=./.tags;/	"search for '.tag' files also in parent directories
+
+" show preview in a popup not in a special window buffer
+"set previewpopup=height:10,width:60
 
 "====== COMMANDS ======
 command W w
@@ -60,13 +65,14 @@ nnoremap <leader><Tab> :tabnext<CR>
 nnoremap <leader><S-Tab> :tabprevious<CR>
 nnoremap <leader>tp :tabprevious<CR>
 nnoremap <leader>td :tabclose<CR>
-"nnoremap <leader>tD :tabclose<CR>
+nnoremap <leader>tD :tabclose!<CR>
+nnoremap <leader>tc :tabclose<CR>
 "Window Buffer
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>q :bd<CR>
-nnoremap <leader>bd :bd<CR>
-nnoremap <leader>bD :bd!<CR>
+nnoremap <leader>q :bdelete<CR>
+nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>bD :bdelete!<CR>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -74,7 +80,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 
 "Window Size Managing
-"nnoremap <leader>| :vsplit<CR>	"does not work? creates many errors
+nnoremap <leader>\| :vsplit<CR>
 nnoremap <leader>h :vsplit<CR>
 nnoremap <leader>- :split<CR>
 nnoremap <leader>wm :only<CR>
@@ -88,6 +94,10 @@ nnoremap <C-Down> <C-w>-
 nnoremap <leader>th :horizontal terminal<CR>
 nnoremap <leader>tv :vertical terminal<CR>
 tnoremap <Esc><Esc> <C-\><C-n>
+
+"Preview Buffer
+nnoremap <leader>} :ptag <C-r><C-w><CR>
+map <Esc><Esc> :pclose<CR>
 
 "more keymaps under plugins (eg. FileManager)
 
@@ -109,6 +119,7 @@ call plug#begin()
 	Plug 'godlygeek/tabular'		"markdown dependency
 	Plug 'preservim/vim-markdown'	"folding around titles
 	Plug 'preservim/nerdtree'		"file explorer
+	Plug 'craigemery/vim-autotag'	"update ctags on save
 call plug#end()
 "otherPlugins:
 "Plug 'dense-analysis/ale'
@@ -128,6 +139,9 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 nnoremap <leader>e :NERDTreeToggle<CR>	"toggle filetree
 nnoremap <leader>r :NERDTreeFocus<CR>	"focus filetree
 
+"vim-autotag
+let g:autotagTagsFile=".tags"
+"let g:autotagDisabled=""
 
 
 
