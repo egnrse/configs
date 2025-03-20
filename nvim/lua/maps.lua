@@ -72,8 +72,8 @@ local term = ""
 if vim.fn.has('win64') == 1 then
 	term = "powershell.exe"
 end
-map("n", "<leader>th", ":belowright split | terminal " .. term .."<CR>")	--open terminal horizontal
-map("n", "<leader>tv", ":belowright vsplit | terminal " .. term .."<CR>")	--open terminal vertical
+map("n", "<leader>th", ":belowright split | terminal " .. term .."<CR>i")	--open terminal horizontal
+map("n", "<leader>tv", ":belowright vsplit | terminal " .. term .."<CR>i")	--open terminal vertical
 map("t", "<Esc><Esc>", "<C-\\><C-n>")			-- switch from terminal-mode to normal-mode
 
 -- FileManager
@@ -82,6 +82,9 @@ map("n", "<leader>r", "<CMD>NvimTreeFocus<CR>")
 vim.cmd([[autocmd FileType NvimTree nmap <buffer> <space> <CR>]])	-- in nvim-tree map space to enter ('<CR>')
 vim.api.nvim_create_user_command('E', ':NvimTreeToggle', {})
 
+-- Preview Buffer
+map("n","<leader>}",":ptag <C-r><C-w><CR>")
+map("n","<Esc><Esc>",":pclose<CR>")
 
 -- Custom Commands
 vim.api.nvim_create_user_command('W', ':w', {})			--save
@@ -89,3 +92,4 @@ vim.api.nvim_create_user_command('Wq', ':wq', {})		--save+close
 vim.api.nvim_create_user_command('Wqa', ':wqa', {})		--save+close all
 vim.api.nvim_create_user_command('WQ', ':wqa', {})		--save+close all
 vim.api.nvim_create_user_command('Q', ':qa', {})		--close all
+vim.api.nvim_create_user_command('Qa', ':qa', {})		--close all
