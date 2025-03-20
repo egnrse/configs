@@ -156,6 +156,7 @@
 			"(.*) — System Monitor": "  System Monitor ($1)",
 			// settings
 			"(.*)  — System Settings": "  System Settings ($1)",
+			"(.*) (.+) — System Settings": "  System Settings$2 ($1)",
 
 			// ====== Other ======
 
