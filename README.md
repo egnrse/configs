@@ -658,7 +658,7 @@ wayland-protocols wayland-utils uwsm<sup>AUR</sup> (managing wayland-WM)
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### misc
-bash-language-server (lsp)  
+bash-language-server ctags (lsp)  
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
@@ -671,7 +671,7 @@ spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)
 waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal  
+keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp  
 #### from somewhere else
 sunshine matlab  
 
