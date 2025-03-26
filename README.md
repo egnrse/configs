@@ -7,7 +7,7 @@ Make sure to install the packages needed for this config. (some dependencies are
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm) many (hyprland) parts will break without this dependency.  
 
-I use an install script `./installV*.sh` to sym-link my local git with the config folders (mostly in `~/.config/`) and move some files around. [WIP]
+I use an install script `./installV*.sh` to (sym-)link my local git with the config folders (mostly in `~/.config/`) and move some files around. (Look at the security warning in the file!) [WIP]
 
 ![Preview](other/rice_pics/rice2025-01.png)
 

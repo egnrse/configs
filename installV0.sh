@@ -4,15 +4,24 @@
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
 # most things are symbolic links, exceptions: mimeapps.list
 #
-# after accepting, will move/link files to different parts on your pc too.
+# after accepting, will move/link files to different parts on your pc too. (mostly hardlinks)
+# 
+# [WARNING:] (security risk)
+#	Moves files to root locations without changing their ownership to root.
+#	To migitage this risk chown them to 'root:root' or similar.
+#	(eg. sshd/sddm/pacman-hook)
+#
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 
 set -x
 
+## CONSTANTS
 origin="$(pwd)/"
 config="$HOME/.config/"
 backup="${config}.bak/"
+
+## FUNCTIONS
 
 skip() {
 	var1=$1
@@ -53,8 +62,9 @@ askForLink() {
 	done
 }
 
-mkdir -p ${backup}
+## MOVE/CP FILES
 
+mkdir -p ${backup}
 
 # link folders to $config
 askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
@@ -77,22 +87,30 @@ fi
 echo ""
 
 ## DIFFERENT LOCATIONS
-# hard link files
+# create hardlinks
 echo "cp and move files to other locations too?"
 echo "press enter to continue (Ctr+C to exit)"
 read
+# sddm
 sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
+
+# v-editor
 sudo cp -l -i ${origin}other/v-editor /usr/local/bin/v && sudo chmod +x /usr/local/bin/v
 echo "dont forget to execute 'sudo visudo' and add 'Defaults env_keep += EDITOR'"
+
 # dolphin
 mkdir -p ~/.local/share/kio/servicemenus
 cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
 chmod +x ${origin}other/servicemenus/*
+
+sudo mkdir -p /etc/pacman.d/hooks
+sudo cp -l -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
 if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
 	:
 else
 	echo "install the 'archlinux-xdg-menu' packages, for some dolphin stuff to work"
 fi
+
 # wvkbd-laptop
 sudo cp -i ${origin}other/wvkbd-laptop /usr/local/bin/ 
 sudo +x /usr/local/share/bin/wvkbd-laptop
@@ -110,6 +128,7 @@ ln -s -i ${origin}other/.vimrc ${HOME}/
 
 # git
 ln -s -i ${origin}other/.gitignore_global ${HOME}/
+echo "add '.gitignore_global' with 'git config --global core.excludesfile ~/.gitignore_global'"
 
 # link roots nvim to ours?
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer
