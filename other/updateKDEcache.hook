@@ -1,0 +1,34 @@
+# updates the KService desktop-file system configuration cache (for the currently logged in user)
+# (by egnrse)
+#
+# HINT:
+#  does not fully work currently (prob. updates the root desktop cache). But speeds up the time needed for a manual rebuild of the cache.
+# 
+# depends on:
+# -'kservice'
+# -'archlinux-xdg-menu'
+# -'util-linux' (provides 'su')
+# -'coreutils' (provides 'logname')
+# put this file into '/etc/pacman.d/hooks/updateKDEcache.hook'
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Path
+Target = usr/share/applications/*.desktop
+# Target = usr/share/mime/packages/*.xml
+
+[Action]
+Description = Updating the Kservice desktop-file configuration cache...
+When = PostTransaction
+# does not work (updates the wrong one?, maybe roots cache)
+# ~/.cache/
+# lsA | grep ksyco
+#Exec = /bin/sh -c "sudo -u $(logname) echo /home/$(logname)/.cache/ksycoca6_en_* && env XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental 2>&1 | /usr/bin/grep -v 'kbuildsycoca6 running...' && exit 1 || exit 0"
+Exec = /bin/sh -c "sudo -u $(logname) env XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental 2>&1 | /usr/bin/grep -v 'kbuildsycoca6 running...' && exit 1 || exit 0"
+#Exec = /bin/sh -c "sudo -u $(logname) whoami"
+Depends = util-linux
+Depends = coreutils
+Depends = kservice
+Depends = archlinux-xdg-menu

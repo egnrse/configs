@@ -546,7 +546,8 @@ To build/update the KDE **desktop-entry cache** (that Dolphin needs to find prog
 - run: `XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental`
 (kbuildsycoca6 is part of the kservice package, which is a dependency of dolphin)  
 This fixes dolphin not finding programs.
-**this function is in the rightclick menu of dolphin** (if u put the files from `/other/servicemenus` in the correct place)
+**this function is in the rightclick menu of dolphin** (if u put the files from `/other/servicemenus` in the correct place)  
+There is also a pacmanhook (`/other/updateKDEcache.hook`) to speed up this process.  
 
 **Extensions**
 - `kio-admin` (sudo for dolphin)  
