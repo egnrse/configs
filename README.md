@@ -1,7 +1,7 @@
 # some of my configs [WIP]
 THIS IS STILL DEVELOPING and always will! PR/issues are very welcome.  
 
-This config is for my arch/[hyprland](https://hyprland.org/) setup. It is made for a Laptop (with touch) and a PC (in a multimonitor setup, with (sadly) a nvidia graphicscard). Some of those configs I use on my (dualbooted-)windows pc too. (eg. nvim/alacritty)  
+This config is for my arch/[hyprland](https://hyprland.org/) setup. It is made for a Laptop and a PC (in a multimonitor setup, with (sadly) a nvidia graphicscard). Some of those configs I use on my (dualbooted-)windows pc too. (eg. nvim/alacritty)  
 
 Make sure to install the packages needed for this config. (some dependencies are listed in each section, for a *fuller* list look into [#packages](#packages) in the [#Appendix](#appendix))  
 
@@ -151,7 +151,7 @@ This config is split into 4(+) parts:
 - look-feel.conf (animations, borders, gaps, ...)
 - window-rules.conf (rules on how windows/layers/workspaces/apps behave)  
 - maps.conf      (key mappings)
-- plugins.conf	 (plugins, including plugin keymappings)
+- plugins.conf	 (plugins, including plugin keymappings) (non are used currently)  
 Many explanations are in the config files.  
 
 This config uses the [Universal Wayland Session Manager (uwsm)](https://github.com/Vladimir-csp/uwsm)  and many parts will not work with out this dependency.  
@@ -188,22 +188,17 @@ Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightM
 
 <details><summary>Plugins/Extensions:</summary>
 
-#### [Hyprspace](https://github.com/KZDKM/Hyprspace)
-window overview (`SUPER+Tab`)(not used anymore)
-
-#### [hypergrass](https://github.com/horriblename/hyprgrass)
-better touch-screen support (install with hyprpm, see `./hypr/plugins.conf`)
-- swipe from the bottom to left edge: launch the [wvkbd-laptop](#onscreen-keyboard) keyboard
-- swipe from the bottom (towards the top): launch app drawer ([nwg-drawer](#nwg-drawer))
-- longpress with 2 fingers: movewindow
-- longpress with 3 fingers: resizewindow
-Needs: glm wvkbd-laptop nwg-drawer  
-
 #### [Hyprswitch](https://github.com/H3rmt/hyprswitch)
 *(/hyprswitch/)*  
 CLI/GUI to switch between window in hyprland (`hyprswitch`<sup>AUR</sup>)  
 The daemon should get started with hyprland. There is also a custom script `restartHyprswitch.sh` to (re-)start the hyprswitch daemon.
 Needs: egnrseTheme.css hyprswitch<sup>AUR</sup>  
+
+#### not used anymore:
+- [Hyprspace](https://github.com/KZDKM/Hyprspace)
+window overview (`SUPER+Tab`)(not used anymore)
+- [hypergrass](https://github.com/horriblename/hyprgrass)
+better touch-screen support (not used anymore)
 
 </details>
 
