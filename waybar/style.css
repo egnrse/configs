@@ -126,15 +126,15 @@ tooltip label {
 }
 @keyframes batteryCritical {
 	to {
-		background-color: @MainText;
-		color: @BgDark;
+		background-color: @Accent;
+		color: @Alert;
 	}
 }
 #battery.critical:not(.charging) {
-	color: #FFFFFF;
+	color: @MainText;
 	animation-name: batteryCritical;
-	animation-duration: 0.5s;
-	animation-timing-function: steps(10);
+	animation-duration: 3s;
+	animation-timing-function: steps(50);
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
