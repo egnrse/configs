@@ -91,6 +91,8 @@ pause() {
 			return 2;
 			;;
 	esac
+	echo "Skipping, because no correct option was provided."
+	return 1
 }
 
 # tests if a proccess with a given PID ($1) is running and displays $2 if so
