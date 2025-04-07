@@ -65,6 +65,44 @@
 			"FileZilla": "<span foreground='#BD0001'> </span> FileZilla",
 			"(.*) - FileZilla": "<span foreground='#BD0001'> </span> FileZilla ($1)",
 
+			// ====== Documents ======
+
+			"ONLYOFFICE Desktop Editors": 
+			"<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
+
+			"(.*).docx( — (.*))?": 
+			"<span foreground='#89b4fa'> </span> $1.docx",
+			"(.*).odt( — (.*))?": 
+			"<span foreground='#89b4fa'> </span> $1.odt",
+			"(.*).xlsx( — (.*))?": 
+			"<span foreground='#a6e3a1'> </span> $1.xlsx",
+			"(.*).ods( — (.*))?": 
+			"<span foreground='#a6e3a1'> </span> $1.ods",
+			"(.*).pptx( — (.*))?": 
+			"<span foreground='#fab387'> </span> $1.pptx",
+			"(.*).pdf": 
+			"<span foreground='#f38ba8'> </span> $1.pdf",
+
+			// ====== File Manager ======
+
+			"/": "  Files",
+			"(.*) (.*) Dolphin": "  Files ($1)",
+			//"(.*) (.*) Dolphin": "  File Manager - $1",
+
+			// ====== Games ======
+
+			"(.*)Steam(.*)": 
+			"<span foreground='#209aff'> </span> $1Steam$2",
+
+			"Minecraft(.*) (.*)": 
+			"<span foreground='#52A435'>󰍳 </span> Minecraft$1 $2",
+
+			"Prism Launcher (.*)":
+			"<span foreground='#4C7DBD'>󰍳 </span> Prism Launcher $1",
+			"(.*) — Prism Launcher (.*)":
+			"<span foreground='#4C7DBD'>󰍳 </span> $1 (Prism Launcher $2)",
+
+
 			// ====== Media ======
 
 			// also gets replaced within other replacements (eg. browsers)
@@ -110,30 +148,6 @@
 			"(.*)Discord(.*)": 
 			"<span foreground='#89b4fa'> </span> $1Discord$2",
 
-			// ====== Documents ======
-
-			"ONLYOFFICE Desktop Editors": 
-			"<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
-
-			"(.*).docx( — (.*))?": 
-			"<span foreground='#89b4fa'> </span> $1.docx",
-			"(.*).odt( — (.*))?": 
-			"<span foreground='#89b4fa'> </span> $1.odt",
-			"(.*).xlsx( — (.*))?": 
-			"<span foreground='#a6e3a1'> </span> $1.xlsx",
-			"(.*).ods( — (.*))?": 
-			"<span foreground='#a6e3a1'> </span> $1.ods",
-			"(.*).pptx( — (.*))?": 
-			"<span foreground='#fab387'> </span> $1.pptx",
-			"(.*).pdf": 
-			"<span foreground='#f38ba8'> </span> $1.pdf",
-
-			// ====== File Manager ======
-
-			"/": "  Files",
-			"(.*) (.*) Dolphin": "  Files ($1)",
-			//"(.*) (.*) Dolphin": "  File Manager - $1",
-
 			// ====== System ======
 
 			"Timeshift-gtk": 
@@ -166,11 +180,8 @@
 
 			// 󱍡 󰓜 
 			"(.*) — Discover$": "󰓜  $1 — Discover",
-
 			"FlatSeal": "󰬍  FlatSeal",
 
-			"(.*)Steam(.*)": 
-			"<span foreground='#209aff'> </span> $1Steam$2",
 			// eg. KeePassXC
 			"(.*) - KeePass(.*)": 
 			"  KeePass$2 ($1)",
