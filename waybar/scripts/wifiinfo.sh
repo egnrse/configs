@@ -42,8 +42,9 @@
 #   very good.  Example: "-40 dBm"
 #
 # - Signal: The signal quality, which is represented as a percentage,
-#   where higher numbers mean better signal.  Example: "100"
-#   indicates perfect signal strength.
+#   where higher numbers mean better signal. If there is no active
+#   connection, signal is -1. If the connection value cant be fetched,
+#   signal is -2.
 #
 # - Rx Rate (Receive Rate): The maximum data rate (in Mbit/s) at which
 #   the device can receive data from the Wi-Fi access point.  Example:
@@ -81,7 +82,7 @@ wifi_info=$(nmcli -t -f active,ssid,signal,security dev wifi | grep "^yes")
 # If no ESSID is found, set a default value
 if [ -z "$wifi_info" ]; then
   essid="No Connection"
-  signal=0
+  signal=-1
   tooltip="No Connection"
 else
   # Some defaults
@@ -140,6 +141,13 @@ else
 
     # Get the current Wi-Fi ESSID
     essid=$(echo "$wifi_info" | awk -F: '{print $2}')
+	# Deal with empty values
+    if [ -z ${security} ]; then 
+		security='N/A'
+	fi
+    if [ -z ${signal} ]; then 
+		signal='-2'
+	fi
 
     tooltip="${essid}\n"
     tooltip+="\nIP Address: ${ip_address}"
@@ -174,8 +182,10 @@ elif [ "$signal" -ge 40 ]; then
   icon="󰤢" # Weak signal
 elif [ "$signal" -ge 20 ]; then
   icon="󰤟" # Very weak signal
+elif [ "$signal" -ge 0 ]; then
+  icon="󰤯" # Nearly no signal
 else
-  icon="󰤮" # No signal
+  icon="󰤫" # No signal
 fi
 
 # Change "Wi-Fi" to "${essid}" to display network name
