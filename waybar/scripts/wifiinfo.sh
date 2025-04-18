@@ -185,7 +185,7 @@ elif [ "$signal" -ge 20 ]; then
 elif [ "$signal" -ge 0 ]; then
   icon="󰤯" # Nearly no signal
 else
-  icon="󰤫" # No signal
+  icon="󰤫" # Not connected
 fi
 
 # Change "Wi-Fi" to "${essid}" to display network name
