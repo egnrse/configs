@@ -1,0 +1,38 @@
+.\" v.1 - man page for v-editor
+.TH V 1
+.SH NAME
+v \- wrapper for $EDITOR
+.SH SYNOPSIS
+.B v
+[\fIoptions\fR] [\fIeditor_args\fR]
+.SH DESCRIPTION
+Start the programm stored in the $EDITOR environment variable with all given arguments (by calling "$EDITOR $@"). If $EDITOR is empty, will try to start vim.
+.\"
+.SH OPTIONS
+(Must be the first option provided. All arguments not listed here are parsed as editor arguments and forwarded to the editor.)
+.TP
+.B \-\-vhelp
+Shows help message and exit.
+.TP
+.B \-\-vversion
+Shows version info and exit.
+.\"
+.SH EDITOR_ARGUMENTS
+Depends on the editor you use. You can try to use 'v -h' or 'v --help'.
+.\"
+.SH EXAMPLES
+To use v-editor to open a file (or create a new one if your editor supports this)
+.IP "•"
+Make sure you either have set the $EDITOR environment variable to an editor (eg. nvim) or have vim installed.
+.IP "•"
+Most editors (eg. vim, nvim) support openening a file given directly as an argument. If your editor does that too, open eg. \fItest.txt\fR with:
+.EX
+\fBv\fR \fItest.txt\fR
+.EE
+.\"
+.SH AUTHOR
+Elia Nitsche <nitscheelia@gmail.com>
+.SH SEE ALSO
+.BR vim (1),
+.BR nvim (1)
+
