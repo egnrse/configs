@@ -94,10 +94,6 @@ read
 # sddm
 sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
 
-# v-editor
-sudo cp -l -i ${origin}other/v-editor /usr/local/bin/v && sudo chmod +x /usr/local/bin/v
-echo "dont forget to execute 'sudo visudo' and add 'Defaults env_keep += EDITOR'"
-
 # dolphin
 mkdir -p ~/.local/share/kio/servicemenus
 cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/

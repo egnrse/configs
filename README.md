@@ -43,7 +43,6 @@ TODO: make it more interactive (with an -a option?)
 - [sddm](#sddm): (/other/sddm.conf)
 - [systemd](#systemd)    (/environment.d/))
 - [tofi](#tofi):     (/tofi/)
-- [v-editor](#v)       (/other/v-editor)  
 - [vim](#vim):    (/other/.vimrc)  
 - [waybar](#waybar):    (/waybar/)
 - [wlogout](#wlogout):  (/wlogout/)  
@@ -276,15 +275,6 @@ Some environment variables for systemd. Prob. not well done currently. (!! is se
 *(/tofi/)*  
 A (very fast) wayland app launcher, with two themes. Select which one is active in `config`. `oldConf` has more explaining comments.  
 Needs: `/usr/share/fonts/TTF/DejaVuSansMNerdFont-Regular.ttf` (look into [Nerd-Font](#nerd-font))
-
-
-### v
-*(/other/v-editor)*  
-Use `v` in a console or script to launch the prefered editor (stored in *$EDITOR*).  
-Copy the file to `/usr/bin/`, rename it to `v` and make it executable. More explanations are in the file.  
-U can also use the alias in `bash/aliases.bashrc` for a simpler setup, with similar functionality.  
-TODO: make this a proper package (in AUR?)  
-
 
 ### vim
 *(/other/.vimrc)*  
@@ -662,7 +652,7 @@ libreoffice-fresh prismlauncher appimagelauncher nheko mission-center
 strawberry vlc kalgebra kcalc godot-mono blender cuda
 
 #### from AUR
-xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny (default terminal, win fonts)   
+xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
 spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)   
 waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
 #### from Flatpak
