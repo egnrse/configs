@@ -40,12 +40,15 @@ map("c", "<Tab>", "<C-z>")					--tab-autocompletation in commands (c)
 
 -- WINDOWS --
 -- Tabs
-map("n", "<leader>tn", "<CMD>tabnew<CR>")		--new (n)
+--map("n", "<leader>tn", "<CMD>tab split<CR>")	--new (n)
+map("n", "<leader>tN", "<CMD>tabnew<CR>")		--new (n)
+map("n", "<leader>tn", "<CMD>if tabpagenr() == tabpagenr('$') | tab split | else | tabnext | endif<CR>")	--split/next (n)
 map("n", "<leader><Tab>", "<CMD>tabnext<CR>")	--next (n)
 map("n", "<leader><S-Tab>", "<CMD>tabp<CR>")	--previous (n)
 map("n", "<leader>tp", "<CMD>tabp<CR>")		    --previous (n)
 map("n", "<leader>td", "<CMD>tabclose<CR>")		--close (n)
 -- Buffer (Navigation)
+map("n", "<leader>bN", "<CMD>enew<CR>")		--new (n)
 map("n", "<leader>bn", "<CMD>bnext<CR>")	--next (n)
 map("n", "<leader>bp", "<CMD>bprevious<CR>")--previous (n)
 map("n", "<leader>q", "<CMD>bd<CR>")		--close (n)
