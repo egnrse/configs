@@ -1,6 +1,7 @@
 -- bufferline
 return {
-	'akinsho/bufferline.nvim',
+	--'akinsho/bufferline.nvim',
+	'egnrse/bufferline.nvim',
 	version = "*",
 	dependencies = {
 		'nvim-tree/nvim-web-devicons',
@@ -16,8 +17,8 @@ return {
 						text_align = "right", -- or "left","center"
 						separator = true
 					}
-				}
-
+				},
+				mode = 'tabs'
 			}
 		}
 	end,
