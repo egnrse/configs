@@ -327,7 +327,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	if [ -n "${aurCacheDir}" ] && [ -n "${aurDeleteDir}" ]; then
 		echo "remove AUR directories without build packages:"
 		echo ${aurDeleteDir} | sed 's/ /\n/g' | sed 's/^/ /'	# display a nice list
-		pause skip && find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || rm -r {}" \;
+		pause skip && find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || rm -r -f {}" \;
 		echo "$underline"
 	else
 		((skippedCount++))
