@@ -17,8 +17,8 @@
 			"zsh": "  Terminal",
 			"Alacritty": "  Terminal (Alacritty)",
 			"(.*) — Konsole": "  Terminal ($1)",
-			"^elia@15cn1xxx:(.*)$": "  Terminal ($1)",
 			"^elia@.*:(.*)$": "  Terminal ($1)",
+			"^(?!elia@)(.*)@(.*):(.*)$": "  $1@$2 ($3)",
 
 			// ====== Browser ======
 
