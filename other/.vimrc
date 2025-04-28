@@ -121,6 +121,7 @@ call plug#begin()
 	Plug 'preservim/nerdtree'		"file explorer
 	Plug 'craigemery/vim-autotag'	"update ctags on save
 	Plug 'Raimondi/delimitMate'		"auto pairs
+	Plug 'michaelb/vim-tips'		"show a tip on startup
 call plug#end()
 "otherPlugins:
 "Plug 'dense-analysis/ale'

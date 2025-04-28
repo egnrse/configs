@@ -9,5 +9,7 @@ return {
 				css = {css = true},
 			})
 		end,
-	}
+	},
+	--show a tip on startup
+	'michaelb/vim-tips',
 }
