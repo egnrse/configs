@@ -112,6 +112,10 @@ stillRunning() {
 #
 # ====== START ======
 #
+
+# change terminal title
+echo -ne "\033]0;System Upgrade\a"
+
 echo "$underline"
 echo -e "Welcome to ${bold}sysUpgrade${normal} a system update helper!"
 echo "$underline"
@@ -121,13 +125,13 @@ echo ""
 if [ -n "$custom_aur_helper" ]; then
 	aur_helper=$custom_aur_helper
 	if [ -n "$1" ]; then
-		echo "${bold}${warningText}${normal} Using a custom aur_helper ($aur_helper), but an aur_helper was also given over \$1 ($1)."
+		echo -e "${bold}${warningText}${normal} Using a custom aur_helper ($aur_helper), but an aur_helper was also given over \$1 ($1)."
 		echo ""
 	fi
 elif [ -n "$1" ]; then
 	aur_helper=$1
 else
-	echo "${bold}${warningText}${normal} The installed aur_helper was not set!"
+	echo -e "${bold}${warningText}${normal} The installed aur_helper was not set!"
 	echo " Set it in the script OR give it as the first argument to this script."
 	echo ""
 fi

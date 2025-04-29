@@ -172,6 +172,9 @@
 			"(.*)  — System Settings": "  System Settings ($1)",
 			"(.*) (.+) — System Settings": "  System Settings$2 ($1)",
 
+			// sysUpgrade Helper (custom script)
+			"System Upgrade": "  System Upgrade",
+
 			// ====== Other ======
 
 			// calculator 󰃬
