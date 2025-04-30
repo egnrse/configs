@@ -14,6 +14,7 @@
 -- General Settings
 vim.o.number = true				-- line numbers
 vim.o.relativenumber = true		-- enable relative line numbers
+vim.o.expandtab = false			-- use tabs
 vim.o.tabstop = 4				-- number of spaces a tab represents
 vim.o.shiftwidth = 4			-- number of spaces for each indentation
 vim.o.mouse = a					-- allow all mouse interations
@@ -35,6 +36,14 @@ vim.env.LANG = "en_US.UTF-8"
 if vim.fn.executable("alacritty") == 1 then
 	vim.env.TERMINAL = "alacritty"
 end
+
+-- force tabs more aggressively
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		vim.opt_local.expandtab = false	-- use tabs instead of spaces
+	end,
+})
 
 require("config.lazy")	--plugins
 require("maps")			--keymappings
