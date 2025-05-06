@@ -58,6 +58,7 @@ return {
 			
 			-- custom mappings
 			map("n", "?", 	api.tree.toggle_help,			opts("Help"))
+			map("n", "t", 	api.node.open.tab,				opts("Open: New Tab"))
 			
 		end
 	}

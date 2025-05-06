@@ -28,6 +28,12 @@ vim.o.visualbell = true
 vim.o.cursorline = true			-- highlight the current line
 vim.o.termguicolors = true		-- enable 24-bit RGB colors
 
+-- when opening multiple files, open them in tabs instead
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	command = "tab all"
+})
+
 -- to initialize a project folder: 'ctags --extras=+q -R -f .tags .'
 vim.o.tags = "tags,./.tags;/"	-- search for '.tag' files (also in parent directories)
 
