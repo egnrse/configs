@@ -28,7 +28,7 @@ syntax on			"syntax highlighting
 autocmd FileType * if &ft !=# 'c' | set smartindent | endif
 autocmd FileType c,cpp set cindent
 
-autocmd VimEnter * ++once tab all	"when opening multiple files, open them in tabs instead
+"autocmd VimEnter * ++once tab all	"when opening multiple files, open them in tabs instead (does destroy syntax highlighting)
 
 "Folds
 "close: zc / open: zo / zR: open all folds
