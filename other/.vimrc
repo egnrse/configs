@@ -28,6 +28,10 @@ syntax on			"syntax highlighting
 autocmd FileType * if &ft !=# 'c' | set smartindent | endif
 autocmd FileType c,cpp set cindent
 
+set title			"enable terminal title setting
+"set titlestring=%F\ -\ VIM 
+set titlestring=Vim:\ %<%f titlelen=70	"relative filepath (truncated from the left)
+
 "autocmd VimEnter * ++once tab all	"when opening multiple files, open them in tabs instead (does destroy syntax highlighting)
 
 "Folds

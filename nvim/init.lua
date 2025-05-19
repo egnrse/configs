@@ -28,6 +28,10 @@ vim.o.visualbell = true
 vim.o.cursorline = true			-- highlight the current line
 vim.o.termguicolors = true		-- enable 24-bit RGB colors
 
+vim.o.title = true				-- set a custom title string
+vim.o.titlelen = 70				-- limit the max lenght of the title
+vim.o.titlestring = "Nvim: %<%f"-- relative filepath, truncated from the left
+
 -- when opening multiple files, open them in tabs instead (does sadly destroy syntax highlighting)
 --vim.api.nvim_create_autocmd("VimEnter", {
 --	once = true,
