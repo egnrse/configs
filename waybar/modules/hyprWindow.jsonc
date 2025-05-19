@@ -72,18 +72,29 @@
 			"ONLYOFFICE Desktop Editors": 
 			"<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
 
+			"LibreOffice":
+			"<span foreground='#00A500'> </span> LibreOffice",		// better visible
+			//"<span foreground='#606060'> </span> LibreOffice",	// more correct color
+
 			"(.*).docx( — (.*))?": 
-			"<span foreground='#89b4fa'> </span> $1.docx",
+			"<span foreground='#89b4fa'> </span> $3 ($1.docx)",
 			"(.*).odt( — (.*))?": 
-			"<span foreground='#89b4fa'> </span> $1.odt",
+			"<span foreground='#89b4fa'> </span> $3 ($1.odt)",
 			"(.*).xlsx( — (.*))?": 
-			"<span foreground='#a6e3a1'> </span> $1.xlsx",
+			"<span foreground='#a6e3a1'> </span> $3 ($1.xlsx)",
 			"(.*).ods( — (.*))?": 
-			"<span foreground='#a6e3a1'> </span> $1.ods",
+			"<span foreground='#a6e3a1'> </span> $3 ($1.ods)",
 			"(.*).pptx( — (.*))?": 
-			"<span foreground='#fab387'> </span> $1.pptx",
+			"<span foreground='#fab387'> </span> $3 ($1.pptx)",
 			"(.*).pdf": 
 			"<span foreground='#f38ba8'> </span> $1.pdf",
+
+			"Vim: (.*)":
+			"<span foreground='#BFBFBF'> </span> Vim ($1)",
+			//"<span foreground='#BFBFBF'> </span> $1",
+			"Nvim: (.*)":
+			"<span foreground='#4F9946'> </span> Neovim ($1)",
+
 
 			// ====== File Manager ======
 
@@ -173,9 +184,6 @@
 			// settings
 			"(.*)  — System Settings": "  System Settings ($1)",
 			"(.*) (.+) — System Settings": "  System Settings$2 ($1)",
-
-			// sysUpgrade Helper (custom script)
-			"System Upgrade": "  System Upgrade",
 
 			// ====== Other ======
 
