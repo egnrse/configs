@@ -113,8 +113,10 @@ stillRunning() {
 # ====== START ======
 #
 
-# change terminal title
-echo -ne "\033]0;System Upgrade\a"
+# change terminal title (choose one)
+echo -ne "\033]0;  System Upgrade\a"
+#echo -ne "\033]0;  System Upgrade\a"
+#echo -ne "\033]0;󰏔  System Upgrade\a"
 
 echo "$underline"
 echo -e "Welcome to ${bold}sysUpgrade${normal} a system update helper!"
