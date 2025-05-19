@@ -173,7 +173,7 @@ if [ "$upgrade" == "true" ]; then
 		# use xdg-terminal-exec
 			# save the output of the next command and show it in case of an error
 			output=$(
-				xdg-terminal-exec --title="System Upgrade" ${sysUpgrade_helper} ${aur_helper} \
+				xdg-terminal-exec ${sysUpgrade_helper} ${aur_helper} \
 			2>&1 )
 			returnVal=$?
 			;;
@@ -184,7 +184,7 @@ if [ "$upgrade" == "true" ]; then
 				## CHANGE ME
 				# this might need to change for different terminals	
 				#$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper}
-				$sysUpgrade_term --title "System Upgrade" -e ${sysUpgrade_helper} ${aur_helper} \
+				$sysUpgrade_term -e ${sysUpgrade_helper} ${aur_helper} \
 			2>&1 )
 			returnVal=$?
 			;;
