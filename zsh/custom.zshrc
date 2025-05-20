@@ -183,4 +183,4 @@ fi
 
 # SHELL INTEGRATION
 ################################
-source <(zoxide init --cmd cc zsh)	# fuzzy finding for cc (needs zoxide)
+source <(zoxide init --cmd jd zsh)	# fuzzy finding for jd (needs zoxide)
