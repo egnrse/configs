@@ -391,7 +391,7 @@ My config is split into two/three parts:
 
 some Features:  
 - `Shift+Tab`: fzf search completion
-- `cd dir`: smart cd with [zoxide](https://github.com/ajeetdsouza/zoxide) (remembers folders, so that u can directly cd to them)
+- `cc dir`: smart cd with [zoxide](https://github.com/ajeetdsouza/zoxide) (remembers folders, so that u can directly go to them)
 - press Esc twice to prepend `sudo` to a command
 
 <details><summary>More Info</summary>

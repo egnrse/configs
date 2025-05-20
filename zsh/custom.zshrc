@@ -183,4 +183,4 @@ fi
 
 # SHELL INTEGRATION
 ################################
-eval "$(zoxide init --cmd cd zsh)"	# fuzzy finding for cd (needs zoxide)
+source <(zoxide init --cmd cc zsh)	# fuzzy finding for cc (needs zoxide)
