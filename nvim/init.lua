@@ -21,6 +21,7 @@ vim.o.mouse = a					-- allow all mouse interations
 
 vim.o.hls = true				-- search highlighting [noh]
 vim.o.smartcase = true			-- make search case insensitive for only lowercase search
+vim.o.ignorecase = true			-- needed by the previous setting
 vim.o.smartindent = true		-- automatically indent new lines
 vim.o.wrap = true				-- line wrapping
 

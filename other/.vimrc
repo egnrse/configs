@@ -19,6 +19,7 @@ set mouse=a			"mouse interaction (all)
 
 set hls				"search highlight [noh]
 set smartcase		"make search case insensitive for only lowercase search
+set ignorecase		"needed by the previous setting
 set smartindent		"automatically indent new lines
 
 set showcmd			"show keys pressed in the bottom right corner
