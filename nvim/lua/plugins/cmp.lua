@@ -100,7 +100,7 @@ return {
 		config = function()
 			-- Configure LSP here after loading
 			local lspconfig = require('lspconfig')
-			lspconfig.bashls.setup{}
+			--lspconfig.bashls.setup{}
 		end 
 	},
 
