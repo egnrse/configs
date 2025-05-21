@@ -16,7 +16,7 @@
 	glog = log --oneline --graph --decorate --all
 	s = status
 	br = branch
-	diffs = diff --stagged
+	diffs = diff --staged
 [commit]
 	# add key with:
 	# git config --global user.signingkey <KeyID>
