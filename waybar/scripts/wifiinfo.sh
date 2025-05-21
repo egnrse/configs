@@ -142,10 +142,10 @@ else
     # Get the current Wi-Fi ESSID
     essid=$(echo "$wifi_info" | awk -F: '{print $2}')
 	# Deal with empty values
-    if [ -z ${security} ]; then 
+    if [ -z "${security}" ]; then 
 		security='N/A'
 	fi
-    if [ -z ${signal} ]; then 
+    if [ -z "${signal}" ]; then 
 		signal='-2'
 	fi
 
@@ -159,16 +159,16 @@ else
     # tooltip+="\nRSSI:        ${rssi}"
     tooltip+="\nStrength:   ${signal} / 100"
 
-    if [ -n "$rx_bitrate" ]; then
-      tooltip+="\nRx Rate:     ${rx_bitrate}"
-    fi
+    # if [ -n "$rx_bitrate" ]; then
+    #   tooltip+="\nRx Rate:    ${rx_bitrate}"
+    # fi
 
-    if [ -n "$tx_bitrate" ]; then
-      tooltip+="\nTx Rate:     ${tx_bitrate}"
-    fi
+    # if [ -n "$tx_bitrate" ]; then
+    #   tooltip+="\nTx Rate:    ${tx_bitrate}"
+    # fi
 
     if [ -n "$phy_mode" ]; then
-      tooltip+="\nPHY Mode:    ${phy_mode}"
+      tooltip+="\nPHY Mode:   ${phy_mode}"
     fi
   fi
 fi
@@ -188,5 +188,4 @@ else
   icon="󰤫" # Not connected
 fi
 
-# Change "Wi-Fi" to "${essid}" to display network name
 echo "{\"text\": \"${icon}\", \"tooltip\": \"${tooltip}\"}"
