@@ -183,4 +183,22 @@ fi
 
 # SHELL INTEGRATION
 ################################
-source <(zoxide init --cmd jd zsh)	# fuzzy finding for jd (needs zoxide)
+source <(zoxide init --cmd zoxide_cd zsh)	# fuzzy finding for jd (needs zoxide)
+# custom jd wrapper
+function jd() {
+	# run the real jd
+	zoxide_cd "$@"
+	local retValue=$?
+	if [[ $retValue -eq 0 ]]; then
+		print -r -- "$*" >> ~/.jd_history
+	fi
+	return $retValue
+}
+# enable jd autocompletion using .jd_history
+_jd_completions() {
+	local word
+	word="${words[2]}"
+	compadd -U -o nosort -a - < <(awk '{print $1}' ~/.jd_history | sort -u)
+}
+compdef _jd_completions jd
+
