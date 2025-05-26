@@ -52,6 +52,8 @@ end
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
 	callback = function()
+		-- skip some filetypes
+		if vim.bo.filetype == "yaml" then return end
 		vim.opt_local.expandtab = false	-- use tabs instead of spaces
 	end,
 })
