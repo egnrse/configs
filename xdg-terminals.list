@@ -1,8 +1,0 @@
-# preference list for xdg-terminal-exec
-# (https://github.com/Vladimir-csp/xdg-terminal-exec#configuration)
-# 
-# list of desktop entry ids (new-line separated)
-# comments start with '#'
-# the argument (to launch a program) of your terminal should be changed in its *.desktop file by using `[X-]TerminalArgExec=-e`
-# (usually found in `/usr/share/applications/`)
-Alacritty.desktop
