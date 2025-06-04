@@ -6,7 +6,7 @@
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 
-set -x
+#set -x
 
 ## CONSTANTS
 origin="$(pwd)/"
@@ -43,12 +43,31 @@ askForLink() {
 	done
 }
 
+testInstalled() {
+	if [ -z "$(command -v $1)" ]; then
+		if [ -z "$2" ]; then
+			echo $1 not installed
+		elif [ -z "$3" ]; then
+			echo "$1 not installed (needed for $2)"
+		else
+			echo "$1 not installed (optional for $2)"
+		fi
+	fi
+}
+
 ## TEST FOR INSTALLED SOFTWARE
 # TODO
-# if [ -n "$(command -v nvim)" ]; then : fi
+testInstalled bash
+testInstalled nvim
+testInstalled vim
+testInstalled curl vim
+testInstalled zsh
+testInstalled fzf zsh opt
+testInstalled zoxide zsh opt
+
 
 ## MOVE/CP FILES
-makedir -p ${config}
+mkdir -p ${config}
 # link folders to $config
 askForLink bash nvim shell zsh
 # vim
@@ -60,14 +79,14 @@ if skip "link ~/.gitignore_global"; then
 fi
 
 if skip "source bash in ~/.bashrc"; then
-	cat <<EOF >> ${HOME}/.zshrc
+	cat <<EOF >> ${HOME}/.bashrc
 # fetches the config file for bash (if it exists)
 # $customBashConfig_path is the path to the custom config file
 customBashConfig_path="$HOME/.config/bash/custom.bashrc"
-if [ -f "$customBashConfig_path" ]; then
-	source $customBashConfig_path
+if [ -f "\$customBashConfig_path" ]; then
+	source \$customBashConfig_path
 else
-	echo "path to config not found ($customBashConfig_path)"
+	echo "path to config not found (\$customBashConfig_path)"
 fi
 EOF
 fi
@@ -77,15 +96,15 @@ if skip "source zsh in ~/.zshrc"; then
 # fetch the custom config file for zsh (if it exists)
 # customZshConfig_path is the path to the config file
 customZshConfig_path="$HOME/.config/zsh/custom.zshrc"
-if [ -f "$customZshConfig_path" ]; then
-	source $customZshConfig_path
+if [ -f "\$customZshConfig_path" ]; then
+	source \$customZshConfig_path
 else
-	echo ".zshrc: path to config not found ($customZshConfig_path)"
+	echo ".zshrc: path to config not found (\$customZshConfig_path)"
 fi
 EOF
 fi
 
-if skip "zsh std shell"; then
+if skip "make zsh your standart shell"; then
 	zshPath=$(which zsh)
 	chsh -s ${zshPath}
 fi
