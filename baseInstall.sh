@@ -48,6 +48,7 @@ askForLink() {
 # if [ -n "$(command -v nvim)" ]; then : fi
 
 ## MOVE/CP FILES
+makedir -p ${config}
 # link folders to $config
 askForLink bash nvim shell zsh
 # vim
