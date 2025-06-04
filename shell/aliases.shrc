@@ -6,7 +6,7 @@
 # 
 
 # uncomment if u want the base functionality of `v-editor`, without doing it properly
-#alias v=$EDITOR
+alias v=$EDITOR
 
 
 # general commands
