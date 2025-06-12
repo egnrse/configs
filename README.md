@@ -4,7 +4,7 @@ Meant for a simple install in a shell environment (eg. for ssh usage).
 Get it with the steps bellow:
 ```sh
 git clone --single-branch --branch base https://github.com/egnrse/configs
-cd config
+cd configs
 ./baseInstall.sh
 ```
 
