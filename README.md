@@ -612,6 +612,7 @@ You can set multiple ones. The first (listed) portal which implements an interfa
 default=hyprland;gtk;kde
 ```
 You can see all installed portals in `/usr/share/xdg-desktop-portal/portals`. [more in the ArchWiki](https://wiki.archlinux.org/title/XDG_Desktop_Portal)  
+[Hyprland issue](https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/252)
 
 #### Matlab (deprecated)
 Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
