@@ -550,11 +550,6 @@ fix running shell-scripts with alacritty (needs the option -e):
 more in the [ArchWiki-Nemo](https://wiki.archlinux.org/title/Nemo)  
 
 
-#### Matlab
-Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
-I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
-
-
 #### Pacman / Steam
 In `/etc/pacman.conf` I enable `ParallelDownloads = 5` and the `multilib` library (multilib is required for the `steam` package).  
 Other nice options: Color
@@ -607,6 +602,21 @@ with the following content (for firefox based):
 - reload the mailvelope extension
 - select under `Options > General > OpenPGP Preferences` GnuPG 
 - now you should see your keys under `Key Management` (if you select `GnuPG` and not `Main Keyring`)
+
+
+#### xdg-desktop-portal
+Set you prefered portal in `/usr/share/xdg-desktop-portal/DESKTOP-portals.conf`, where `DESKTOP` is the name of the used compositor. (eg. `hyprland-portals.conf`)  
+You can set multiple ones. The first (listed) portal which implements an interface is used for that interface. The file should look like:
+```
+[preferred]
+default=hyprland;gtk;kde
+```
+You can see all installed portals in `/usr/share/xdg-desktop-portal/portals`. [more in the ArchWiki](https://wiki.archlinux.org/title/XDG_Desktop_Portal)  
+
+#### Matlab (deprecated)
+Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
+I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
+
 
 </details>
 
