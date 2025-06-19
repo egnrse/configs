@@ -201,7 +201,7 @@ better touch-screen support (not used anymore)
 
 </details>
 
-Hyprland needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst nemo nwg-drawer [wvkbd-laptop](#onscreen-keyboard) bottom pa-notify<sup>AUR</sup>  
+Hyprland needs: uwsm<sup>AUR</sup> alacritty tofi<sup>AUR</sup> waybar xdg-terminal-exec<sup>AUR</sup> wlogout<sup>AUR</sup> dunst dolphin nwg-drawer bottom pa-notify<sup>AUR</sup>  
 Works nicely with: hypridle hyprlock xdg-desktop-portal-hyprland  
 
 
@@ -660,8 +660,8 @@ bash-language-server ctags (lsp)
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip  
-libreoffice-fresh prismlauncher appimagelauncher nheko mission-center   
-strawberry vlc kalgebra kcalc godot-mono blender cuda
+libreoffice-fresh prismlauncher appimagelauncher nheko mission-center kdeconnect  
+strawberry vlc kalgebra kcalc godot-mono blender cuda  
 
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
