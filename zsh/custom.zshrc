@@ -189,16 +189,21 @@ function jd() {
 	# run the real jd
 	zoxide_cd "$@"
 	local retValue=$?
-	if [[ $retValue -eq 0 ]]; then
-		print -r -- "$*" >> ~/.jd_history
-	fi
+	#if [[ $retValue -eq 0 ]]; then
+	#	print -r -- "$*" >> ~/.jd_history
+	#fi
+	return $retValue
+}
+function jdi() {
+	zoxide_cdi "$@"
+	local retValue=$?
 	return $retValue
 }
 # enable jd autocompletion using .jd_history
-_jd_completions() {
-	local word
-	word="${words[2]}"
-	compadd -U -o nosort -a - < <(awk '{print $1}' ~/.jd_history | sort -u)
-}
-compdef _jd_completions jd
+#_jd_completions() {
+#	local word
+#	word="${words[2]}"
+#	compadd -U -o nosort -a - < <(awk '{print $1}' ~/.jd_history | sort -u)
+#}
+#compdef _jd_completions jd
 
