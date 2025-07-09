@@ -253,7 +253,7 @@
 		"format": "✗ {nr_failed}",
 		"format-ok": "✓",
 		"system": true,			// Monitor failed systemwide units.
-		"user": false			// Ignore failed user units.
+		"user": true			// Monitor failed user units.
 	},
 
 	// test script
