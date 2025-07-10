@@ -124,24 +124,45 @@
 			"(.*) - Youtube (.*)":
 			"<span foreground='#FF4D38'> </span> $1 $2",
 
+			"OBS(.*)": 
+			"<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
+
+			// Media player
 			"(.*)Spotify": 
 			"<span foreground='#a6e3a1'> </span> Spotify",
 			"(.*)Spotify Premium": 
 			"<span foreground='#a6e3a1'> </span> Spotify Premium",
 
-			"OBS(.*)": 
-			"<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
-
 			"(.*) — Strawberry Music Player": "🍓 Music ($1)",
 			"Strawberry Music Player": "🍓 Strawberry",
+
+			"Audacious": "󰯬  Audacious",
+			"Audacious (.*)": "󰯬  Audacious $1",
+			"(.*) - Audacious": "󰯬  $1",
+			"(.*) Audacious": "󰯬  Audacious $1",
 
 			"VLC media player": 
 			"<span foreground='#fab387'>󰕼 </span> VLC Media Player",
 			"(.*) - VLC media player": 
 			"<span foreground='#fab387'>󰕼 </span> $1",
 
+			// Media Creation
 			"GNU Image Manipulation Program": 
 			"<span foreground='#a6adc8'> </span> GNU Image Manipulation Program",
+
+			//Alternative Colors: #5C9FE2 #F92CFF
+			"Krita":
+			"<span foreground='#F92CFF'> </span> Krita",
+			"About Krita":
+			"<span foreground='#F92CFF'> </span> About Krita",
+			"(.*) — Krita":
+			"<span foreground='#F92CFF'> </span> Krita ($1)",
+
+			".*\\(Unsaved\\).* - Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender ([Unsaved])",
+			"\\* (.*) - Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender (*$1)",
+			"(?!^\\(Unsaved\\)|\\*)(.*) - Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender ($1)",
+			"Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender ($1)",
+
 
 			"qView": "  qView",
 			"nomacs (.*)": "  nomacs $1",
@@ -149,11 +170,6 @@
 			"(.*).jpg(.*)": "  $1.jpg$2",
 			"(.*).png(.*)": "  $1.png$2",
 			"(.*).svg(.*)": "  $1.svg$2",
-
-			".*\\(Unsaved\\).* - Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender ([Unsaved])",
-			"\\* (.*) - Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender (*$1)",
-			"(?!^\\(Unsaved\\)|\\*)(.*) - Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender ($1)",
-			"Blender (.*)": "<span foreground='#F4792B'>󰂫 </span> Blender ($1)",
 
 			// ====== Social ======
 
@@ -203,7 +219,8 @@
 			"  KeePass$2 ($1)",
 			"Joplin": 
 			"<span foreground='#209aff'>󰬑 </span> Joplin",
-			"(.*) - Anki": "<span foreground='#4599D4'>󰩴 </span> Anki ($1)"
+			"(.*) - Anki": "<span foreground='#4599D4'>󰩴 </span> Anki ($1)",
+			"Beeper": "<span foreground='#4753F4'>󰍥 </span> Beeper"
 		
 		}
 	}
