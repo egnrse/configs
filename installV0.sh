@@ -91,6 +91,11 @@ echo ""
 echo "cp and move files to other locations too?"
 echo "press enter to continue (Ctr+C to exit)"
 read
+
+# ssh
+ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
+echo "add the following to ~/.ssh/config: 'Include ~/.ssh/ssh_config'"
+
 # sddm
 sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
 

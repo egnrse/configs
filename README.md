@@ -41,6 +41,7 @@ TODO: make it more interactive (with an -a option?)
 - [rofi](#rofi):    (/rofi/)
 - [scripts](#scripts):  (/scripts/)  
 - [sddm](#sddm): (/other/sddm.conf)
+- [ssh](#ssh):  (/other/ssh_config)
 - [systemd](#systemd)    (/environment.d/))
 - [tofi](#tofi):     (/tofi/)
 - [vim](#vim):    (/other/.vimrc)  
@@ -266,6 +267,13 @@ Copy the config to `/etc/sddm.conf.d/sddm.conf`. If there are other config files
 A easy way to style sddm is with the KDE-System-Settings.  
 (TODO: look into QtQuick for theme design, fix onscreen-keyboard env? kde_wayland?)  
 Needs: breeze (the theme used)  
+
+### ssh
+*(/other/ssh_config)*  
+Some custom ssh settings. Needs to be included in `~/.ssh/config` (after copying the file).
+```
+Include ~/.ssh/ssh_config
+```
 
 ### systemd
 *(/environment.d/)*  

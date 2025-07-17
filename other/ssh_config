@@ -1,0 +1,11 @@
+# custom ssh config by egnrse
+# (https://github.com/egnrse/configs)
+#
+# add the following to  ~/.ssh/config:
+# 'Include ~/.ssh/ssh_config'
+
+# add keys to ssh-agents, when they are first used
+AddKeysToAgent yes
+
+
+# vim: set filetype=sshconfig :
