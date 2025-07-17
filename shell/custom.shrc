@@ -1,0 +1,38 @@
+# custom.shrc
+#
+# a custom config file for bash/zsh (extends .bashrc/.zshrc)
+# (https://github.com/egnrse/configs)
+# (by egnrse)
+# 
+
+## ENVIRONMENT VARIABLES
+################################
+# fetch the env file (if the file exists)
+customShellEnv_path=~/.config/shell/env.shrc
+if [ -f $customShellEnv_path ]; then
+	source $customShellEnv_path
+else
+	echo "custom.shrc: env.shrc not found ($customShellEnv_path)"
+fi
+
+## ALIASES
+################################
+# fetch the aliases file (if the file exists)
+customShellAliases_path=~/.config/shell/aliases.shrc
+if [ -f $customShellAliases_path ]; then
+	source $customShellAliases_path
+else
+	echo "custom.shrc: aliases.shrc not found ($customShellAliases_path)"
+fi
+
+
+## AUTOSTART STUFF
+################################
+# check if ssh-agent is running or start it
+# (stores the created environment variables in a file)
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+	ssh-agent -t 3h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [ ! -f "$SSH_AUTH_SOCK" ]; then
+	source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi

@@ -20,6 +20,7 @@ THIS IS STILL DEVELOPING and always will! PR/issues are very welcome.
 - [bash](#bash):      (/bash/)
 - [git](#git):    (/other/.git\*)
 - [neovim](#nvim): (/nvim/)  
+- [ssh](#ssh):  (/other/ssh_config)
 - [vim](#vim):    (/other/.vimrc)  
 - [zsh](#zsh): (/zsh/)
 
@@ -62,6 +63,13 @@ Replace the placeholders if needed (eg. {email}, {computerName}).
 (fully replacing your old config-file is **not** recommended)  
 
 There is also a global `.gitignore` with explanations how to use/activate in the file.  
+
+### ssh
+*(/other/ssh_config)*  
+Some custom ssh settings. Needs to be included in `~/.ssh/config` (after copying the file).
+```
+Include ~/.ssh/ssh_config
+```
 
 ### vim
 *(/other/.vimrc)*  

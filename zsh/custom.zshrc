@@ -159,25 +159,14 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 
-## CUSTOM ENVIRONMENT VARIABLES
+## CUSTOM GENERAL
 ################################
-# fetch the env file (if the file exists)
-customZshEnv_path=~/.config/shell/env.shrc
-if [ -f $customZshEnv_path ]; then
-	source $customZshEnv_path
+# fetch the aliases file (if the file exists)
+customZshCustom_path=~/.config/shell/custom.shrc
+if [ -f $customZshCustom_path ]; then
+	source $customZshCustom_path
 else
-	echo "custom.zshrc: env.shrc not found ($customZshEnv_path)"
-fi
-
-
-## ALIASES
-################################
-# fetch the aliases file (if the file exists) from ~/.config/shell/
-customZshAliases_path=~/.config/shell/aliases.shrc
-if [ -f $customZshAliases_path ]; then
-	source $customZshAliases_path
-else
-	echo "custom.zshrc: aliases.shrc not found ($customZshAliases_path)"
+	echo "custom.zshrc: custom.shrc not found ($customZshCustom_path)"
 fi
 
 

@@ -59,6 +59,7 @@ testInstalled() {
 # TODO
 testInstalled bash
 testInstalled nvim
+testInstalled ssh-agent ssh
 testInstalled vim
 testInstalled curl vim
 testInstalled zsh
@@ -77,6 +78,12 @@ if skip "link ~/.gitignore_global"; then
 	ln -s -i ${origin}other/.gitignore_global ${HOME}/
 	echo "add '.gitignore_global' with 'git config --global core.excludesfile ~/.gitignore_global'"
 fi
+# ssh
+if skip "link ~/.ssh/ssh_config"; then
+	ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
+	echo "add the following to ~/.ssh/config: 'Include ~/.ssh/ssh_config'"
+fi
+
 
 if skip "source bash in ~/.bashrc"; then
 	cat <<EOF >> ${HOME}/.bashrc
