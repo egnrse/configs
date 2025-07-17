@@ -67,22 +67,12 @@ shopt -s cdable_vars
 #export dTU="${data}/Documents#2/TU/"
 
 
-## CUSTOM ENVIRONMENT VARIABLES
-################################
-# fetch the env file (if the file exists)
-customBashEnv_path=~/.config/shell/env.shrc
-if [ -f $customBashEnv_path ]; then
-	source $customBashEnv_path
-else
-	echo "custom.bashrc: env.shrc not found ($customBashEnv_path)"
-fi
-
-## ALIASES
+## CUSTOM GENERAL
 ################################
 # fetch the aliases file (if the file exists)
-customBashAliases_path=~/.config/shell/aliases.shrc
-if [ -f $customBashAliases_path ]; then
-	source $customBashAliases_path
+customBashCustom_path=~/.config/shell/custom.shrc
+if [ -f $customBashCustom_path ]; then
+	source $customBashCustom_path
 else
-	echo "custom.bashrc: aliases.shrc not found ($customBashAliases_path)"
+	echo "custom.bashrc: custom.shrc not found ($customBashCustom_path)"
 fi

@@ -1,0 +1,28 @@
+# custom.shrc
+#
+# a custom config file for bash/zsh (extends .bashrc/.zshrc)
+# (https://github.com/egnrse/configs)
+# (by egnrse)
+# 
+
+## ENVIRONMENT VARIABLES
+################################
+# fetch the env file (if the file exists)
+customShellEnv_path=~/.config/shell/env.shrc
+if [ -f $customShellEnv_path ]; then
+	source $customShellEnv_path
+else
+	echo "custom.shrc: env.shrc not found ($customShellEnv_path)"
+fi
+
+## ALIASES
+################################
+# fetch the aliases file (if the file exists)
+customShellAliases_path=~/.config/shell/aliases.shrc
+if [ -f $customShellAliases_path ]; then
+	source $customShellAliases_path
+else
+	echo "custom.shrc: aliases.shrc not found ($customShellAliases_path)"
+fi
+
+
