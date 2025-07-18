@@ -539,14 +539,16 @@ To build/update the KDE **desktop-entry cache** (that Dolphin needs to find prog
 - have the `archlinux-xdg-menu` package installed
 - run: `XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental`
 (kbuildsycoca6 is part of the kservice package, which is a dependency of dolphin)  
-This fixes dolphin not finding programs.
-**this function is in the rightclick menu of dolphin** (if u put the files from `/other/servicemenus` in the correct place)  
-There is also a pacmanhook (`/other/updateKDEcache.hook`) to speed up this process.  
+
+This fixes dolphin not finding programs. **This function is in the rightclick menu of dolphin** (if u put the files from `/other/servicemenus` in the correct place).  
+There is also a pacman-hook (`/other/updateKDEcache.hook`) to speed up this process.  
 
 **Extensions**
 - `kio-admin` (sudo for dolphin)  
 - `ark` (zip/tar support)  
 - `dolphin-plugins` (git/mercurial/dropbox support, needs to be activated within the *Context Menu* Settings)  
+
+(see more in the [AchWiki Article](https://wiki.archlinux.org/title/Dolphin))
 
 To launch Dolphin (from the terminal) in the current directory use: `dolphin .`
 
