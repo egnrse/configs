@@ -28,3 +28,8 @@ alias gitbr='git branch'
 
 # delete
 alias rm='rm -I'
+
+# docker
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" -a'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
