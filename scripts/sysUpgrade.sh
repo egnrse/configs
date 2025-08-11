@@ -189,7 +189,7 @@ if command -v "flatpak" &>/dev/null; then
 	flatpakUpdatePrep_return=$(cat "$flatpakUpdatePrep_pipe")
 	rm -f $flatpakUpdatePrep_pipe
 	
-	if [ "$flatpakUpdatePrep_return" -ge 1 ]; then
+	if [ "${flatpakUpdatePrep_return:-2}" -ge 1 ]; then
 		echo -e "starting ${bold}flatpak${normal} updates"
 		pause skip
 		if [ $? -eq 0 ]; then
@@ -303,7 +303,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	aurCaches=$(cat "${cachePrep_pipe}")
 	rm -f $cachePrep_pipe
 
-	if [ ${cachePrep_return} -eq 0 ]; then
+	if [ ${cachePrep_return:-0} -eq 0 ]; then
 		# something to do
 		echo "cleaning pacman cache (paccache)"
 		pause skip
