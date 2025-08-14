@@ -21,6 +21,10 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
 ## plugin keybinds
+# set the widgets in case they dont exist (supresses errors)
+zle -N autosuggest-clear
+zle -N fzf-tab-complete
+
 bindkey '^e' autosuggest-clear
 # autosuggest-accept autosuggest-execute
 
