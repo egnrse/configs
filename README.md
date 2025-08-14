@@ -129,12 +129,16 @@ There is a custom script `restartDunst.sh` that restarts dunst and sends some no
 
 
 ### git
-*(/other/.gitconfig, /other/.gitignore_global)*  
-Copy the parts of `.gitconfig` that u like into `~/.gitconfig`. It has some useful aliases.  
-Replace the placeholders if needed (eg. {email}, {computerName}).  
-(fully replacing your old config-file is **not** recommended)  
+*(/other/.gitconfig, /other/.gitignore_global, /other/.gitconfig_custom)*  
+Source `.gitconfig_custom` in your `~/.gitconfig`:
+```
+[include]
+	path = ~/.gitconfig_custom
+```
+It has useful aliases, a global .gitignore and other misc settings.
 
-There is also a global `.gitignore` with explanations how to use/activate in the file.  
+A example `~/.gitconfig` is in `/other/.gitconfig`. Replace the placeholders if needed (eg. {email}, {computerName}).  
+(fully replacing your old config-file is **not** recommended)  
 
 
 ### hypridle
