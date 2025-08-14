@@ -1,23 +1,10 @@
 # gitconfig by egnrse
 # (https://github.com/egnrse)
-[init]
-	defaultBranch = main
 [user]
 #	email = {email}
 #	name = {computerName}
+#	signingkey = {KeyID}
+# add key with:
+#	git config --global user.signingkey <KeyID>
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore_global
-[alias]
-	lg = log --oneline
-	logg = log --stat	# show simple diffs
-	loggg = log -p		# show diffs
-	glg = log --oneline --graph --decorate
-	glog = log --oneline --graph --decorate --all
-	s = status
-	br = branch
-	diffs = diff --staged
-[commit]
-	# add key with:
-	# git config --global user.signingkey <KeyID>
-	gpgsign = true
