@@ -1,0 +1,8 @@
+# maps.inputrc
+#
+# a custom keymappings file for bash (replaces .inputrc)
+# (https://github.com/egnrse/configs)
+# (by egnrse)
+
+# double-esc prepends sudo to the current line
+"\e\e": "\C-asudo \C-e"

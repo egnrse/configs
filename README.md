@@ -31,10 +31,11 @@ THIS IS STILL DEVELOPING and always will! PR/issues are very welcome.
 </details>
 
 ### bash
-*(/bash/)*  
-My config is split into two/three parts:  
+*(/bash/ /shell/\*)*  
+My config is split into multiple parts:  
 - custom.bashrc (general settings)  
-- aliases.bashrc (aliases for commands)  
+- maps.inputrc (custom key mappings)
+- ../shell/\* (settings used by all shells)  
 - [~/.bashrc (for device specific settings, not fully in this git)]  
 
 <details><summary>More Info</summary>
@@ -145,9 +146,11 @@ Some key mappings: (remember <leader> = Space)
 
 ### zsh
 *(/zsh/)*  
-My config is split into two/three parts:  
+My config is split into multiple parts:  
 - custom.zshrc (general settings)
-- aliases.shrc (aliases for commands)
+- maps.shrc (custom key mappings)
+- completions/\* (custom completion functions)
+- ../shell/\* (settings used by all shells)  
 - [~/.zshrc (for device specific settings)]
 
 some Features:  
