@@ -79,10 +79,10 @@ to `%APPDATA%\alacritty\alacritty.toml`
 
 
 ### bash
-*(/bash/)*  
+*(/bash/ /shell/\*)*  
 My config is split into two/three parts:  
 - custom.bashrc (general settings)  
-- aliases.bashrc (aliases for commands)  
+- ../shell/\* (settings used by all shells)  
 - [~/.bashrc (for device specific settings, not fully in this git)]  
 
 <details><summary>More Info</summary>
@@ -396,9 +396,11 @@ Needs: egnrseTheme.css hyprland uwsm hyprlock
 
 ### zsh
 *(/zsh/)*  
-My config is split into two/three parts:  
+My config is split into multiple parts:  
 - custom.zshrc (general settings)
-- aliases.shrc (aliases for commands)
+- maps.shrc (custom key mappings)
+- completions/\* (custom completion functions)
+- ../shell/\* (settings used by all shells)  
 - [~/.zshrc (for device specific settings)]
 
 some Features:  
