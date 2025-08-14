@@ -1,10 +1,10 @@
  #!/bin/env bash
 
-# [WIP] be carful with this script !
+# [WIP] be careful with this script !
 # install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
 # most things are symbolic links, exceptions: mimeapps.list
 #
-# after accepting, will move/link files to different parts on your pc too. (mostly hardlinks)
+# after accepting, will move/link files to different parts on your pc too. (some hardlinks)
 # 
 # [WARNING:] (security risk)
 #	Moves files to root locations without changing their ownership to root.
@@ -86,15 +86,56 @@ fi
 
 echo ""
 
+
 ## DIFFERENT LOCATIONS
-# create hardlinks
+# ssh
+sshConfigFile="${HOME}/.ssh/config"
+if skip "link ~/.ssh/ssh_config"; then
+	ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
+	if grep "Include ~/.ssh/ssh_config" ${sshConfigFile} >/dev/null; then
+		echo " Skipping: already sourced in ${sshConfigFile}"
+	else
+		skip " source the custom ssh config in ${sshConfigFile}" && echo "Include ~/.ssh/ssh_config" >> ${sshConfigFile}
+	fi
+fi
+
+# vim
+skip "link ~/.vimrc" && ln -s -i ${origin}other/.vimrc ${HOME}/
+
+# git
+gitConfigFile="${HOME}/.gitconfig"
+if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
+	ln -s -i ${origin}other/.gitconfig_custom ${HOME}/
+	ln -s -i ${origin}other/.gitignore_global ${HOME}/
+	if grep "path = ~/.gitconfig_custom" ${gitConfigFile} >/dev/null; then
+		echo " Skipping: already sourced in ${gitConfigFile}"
+	else
+		if skip "source .gitconfig_custom in ${gitConfigFile}"; then
+			tmpFile='/tmp/install.sh-gitconfig'
+			{
+				printf '[include]\n'
+				printf '	path = ~/.gitconfig_custom\n'
+				cat ${gitConfigFile}
+			} > ${tmpFile} && mv ${tmpFile} ${gitConfigFile}
+		else
+			echo "Add the following to your ~/.gitconfig to source the files manually:"
+			printf '[include]\n'
+			printf '	path = ~/.gitconfig_custom\n'
+			echo ""
+			echo "Or only add '.gitignore_global' with 'git config --global core.excludesfile ~/.gitignore_global'"
+		fi
+	fi
+fi
+
+echo ""
+
+
+## NOT ASKED AGAIN
 echo "cp and move files to other locations too?"
 echo "press enter to continue (Ctr+C to exit)"
+echo " You will not be asked again!"
 read
 
-# ssh
-ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
-echo "add the following to ~/.ssh/config: 'Include ~/.ssh/ssh_config'"
 
 # sddm
 sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
@@ -123,13 +164,6 @@ ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
 
 # sshd
 sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
-
-# vim
-ln -s -i ${origin}other/.vimrc ${HOME}/
-
-# git
-ln -s -i ${origin}other/.gitignore_global ${HOME}/
-echo "add '.gitignore_global' with 'git config --global core.excludesfile ~/.gitignore_global'"
 
 # link roots nvim to ours?
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer

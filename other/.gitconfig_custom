@@ -1,0 +1,24 @@
+# gitconfig extension by egnrse
+# (https://github.com/egnrse)
+#
+# can be included with the following in ~/.gitconfig:
+# [include]
+# 	path = ~/.gitconfig_custom
+
+[core]
+	excludesfile = ~/.gitignore_global
+[alias]
+	lg = log --oneline
+	logg = log --stat	# show simple diffs
+	loggg = log -p		# show diffs
+	glg = log --oneline --graph --decorate
+	glog = log --oneline --graph --decorate --all
+	s = status
+	br = branch
+	diffs = diff --staged
+[init]
+	defaultBranch = main
+[commit]
+	# add key with:
+	# git config --global user.signingkey <KeyID>
+	gpgsign = true
