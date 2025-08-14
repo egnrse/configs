@@ -5,8 +5,9 @@
 # (by egnrse)
 #
 # custom.bashrc:	general settings are here
-# ../shell/aliases.shrc:	shell aliases 
-# 
+# maps.inputrc:		key mappings are here (sourced by this file)
+# ../shell/*: 		settings for all shells
+#  
 ## ENVIRONMENT VARIABLES
 # since using uwsm, many apps will not see env-variables exported from .bashrc
 # (see `https://github.com/Vladimir-csp/uwsm` 4-environments-and-shell-profile)
@@ -76,3 +77,9 @@ if [ -f $customBashCustom_path ]; then
 else
 	echo "custom.bashrc: custom.shrc not found ($customBashCustom_path)"
 fi
+
+## KEYBINDINGS
+################################
+export INPUTRC="$HOME/.config/bash/maps.inputrc"
+bind -f "${INPUTRC}"
+

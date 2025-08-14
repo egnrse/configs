@@ -80,8 +80,9 @@ to `%APPDATA%\alacritty\alacritty.toml`
 
 ### bash
 *(/bash/ /shell/\*)*  
-My config is split into two/three parts:  
+My config is split into multiple parts:  
 - custom.bashrc (general settings)  
+- maps.inputrc (custom key mappings)
 - ../shell/\* (settings used by all shells)  
 - [~/.bashrc (for device specific settings, not fully in this git)]  
 
