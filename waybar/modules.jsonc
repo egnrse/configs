@@ -179,10 +179,10 @@
 		"return-type": "json",
 		"format": "{}",	
 		"on-click": "uwsm app -- ~/.local/share/bin/scripts/packageUpdates.sh -u",	// launch upgrade script
-		"on-click-right": "~/.local/share/bin/scripts/packageUpdates.sh",			// update update count
-		"interval": 3600,	// look for updates every 1h
+		"on-click-right": "kill -USR1 \"$(head -n1 /tmp/packageUpdates.sh-managementFile)\"",	// update update count
 		"tooltip": true,
-		"signal": 20, // I'm not sure what this does
+		"restart-interval": 30,
+		//"signal": 10,	// update the module with USR1 (= 10)
 		"min-length": 2,
 		"max-length": 2
 	},

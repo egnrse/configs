@@ -3,19 +3,24 @@
 # checks packages for updates (official-/pacman-, AUR- and flatpak-packages)
 # returns the result in a json, that works for waybar
 # helps with updating packages if '-u' is given or $1 is "up"/"update"/"upgrade" (runs $sysUpgrade_helper)
-# Needs:
+#
+# Custom Signals:
+# 	USR1: check for updates now
+# 	USR2: reread the managementFile
+#
+# Dependencies:
 # 	pacman-contrib (for checkupdates)
+# 	sed (for file parsing)
 # 	[xdg-terminal-exec (from AUR)]
 # 	[an aur_helper (eg. yay)]
 #	[flatpak]
 #	[sysUpgrade.sh (a custom script)]
 #
 #	by egnrse (https://github.com/egnrse/configs)
-#	(maybe original?: https://github.com/sejjy/mechabar/)
 
 # ====== SETTINGS ======
-# if this script does not find your aur_helper, u can set one here
-custom_aur_helper=""
+# time between checks (in sec)
+sleepTime="3600"
 
 # how many updates must be available to show the update icon
 show_when=10
@@ -23,6 +28,15 @@ show_when=10
 show_hints=1
 # if set to 1 will not show deprecated warnings
 ignore_deprecated=0
+
+# what to show when searching for updates (needs to be an escaped json)
+searchingJson="{\"text\":\"?\", \"tooltip\":\"Searching for updates\"}"
+
+# minimal wait time between two checks (in sec)
+minimalWaitTime="4"
+
+# if this script does not find your aur_helper, u can set one here
+custom_aur_helper=""
 
 # the terminal you want to use to launch the system upgrade helper
 # if not set will try to use 'xdg-terminal-exec' falling back to $TERMINAL
@@ -33,6 +47,9 @@ sysUpgrade_helper="$HOME/.local/share/bin/scripts/sysUpgrade.sh"
 
 # used for notifications
 scriptName="packageUpdates.sh"
+
+# management file for multiple instances (head node PID,date of last check,output json,children PIDs)
+managementFile="/tmp/${scriptName}-managementFile"
 
 # ==== SETTINGS END ====
 
@@ -82,6 +99,9 @@ if [ ! -f /etc/arch-release ]; then
 	exit 1
 fi
 
+
+# ==== some functions ====
+
 # test if a package is installed
 # (with pacman, flatpak or if the command can be found)
 # returns 0 if it was found or 1 else
@@ -116,6 +136,26 @@ get_aur_helper() {
 	fi
 	echo ${aur_helper}
 	return 0
+}
+
+# (over-)write a line in a file
+# usage: writeLine <text to write> <line number> <target file>
+writeLine() {
+	local text=$1
+	local line=$2
+	local file=$3
+
+	# make sure the file exists
+	if ! [ -f "$file" ]; then
+		echo "" >> $file
+	fi
+	# append empty lines until the file is long enough
+	while [ $(wc -l < "$file") -lt "$line" ]; do
+		echo "" >> ${file}
+	done
+	# replace the specified line (make the string save first)
+	escaped_text=$(printf '%s\n' "$text" | sed 's/[&/\]/\\&/g')
+	sed -i "${line}s/.*/${escaped_text}/" ${file}
 }
 
 # test which terminal to use to launch the system upgrade helper (only used for '-u'/'upgrade')
@@ -208,52 +248,171 @@ if [ "$upgrade" == "true" ]; then
 fi
 
 
-# ====== CHECK ======
-# check for Official/Pacman updates
-official_updates=0
-# test if checkupdates is available
-if command -v "checkupdates" >/dev/null 2>&1; then
-	official_updates=$(checkupdates | wc -l)
-else
-	echo -e "${scriptName}: checkupdates not found\n This script will not check for official/pacman updates without it."
-	notify-send "${scriptName}: checkupdates not found"\
-		"This script will not check for official/pacman updates without it." &
-fi
-
-# check for AUR updates
-if [ $? -eq 0 ]; then
-	aur_updates=$(${aur_helper} -Qua | wc -l)
-else
-	aur_updates=0
-fi
-
-# check for Flatpak updates
-pacman -Qs flatpak >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-	flatpak_updates=$(flatpak remote-ls --updates | wc -l)
-else
-	flatpak_updates=0
-fi
-
-
-# ====== OUTPUT ======
-# module and tooltip (for waybar)
-total_updates=$((official_updates + aur_updates + flatpak_updates))
-if [ $total_updates -eq 0 ]; then
-	tooltip="Packages are up to date"
-else
-	if [ -z "$aur_helper" ]; then
-		aur_helper="not found"
+# ====== CHECK FOR UPDATES ======
+# check for updates (echos a waybar json)
+checkUpdates() {
+	## CHECK
+	# check for Official/Pacman updates
+	official_updates=0
+	# test if checkupdates is available
+	if command -v "checkupdates" >/dev/null 2>&1; then
+		official_updates=$(checkupdates | wc -l)
+	else
+		echo -e "${scriptName}: checkupdates not found\n This script will not check for official/pacman updates without it."
+		notify-send "${scriptName}: checkupdates not found"\
+			"This script will not check for official/pacman updates without it." &
 	fi
-	tooltip="Official:  $official_updates\nAUR ($aur_helper): $aur_updates\nFlatpak:   $flatpak_updates"
-	if [ $show_hints -eq 1 ]; then
-		tooltip="${tooltip}\n<span font_size='80%'>(click to upgrade)</span>"
+
+	# check for AUR updates
+	if [ $? -eq 0 ]; then
+		aur_updates=$(${aur_helper} -Qua | wc -l)
+	else
+		aur_updates=0
 	fi
-fi
-if [ $total_updates -ge $show_when ]; then
-	text="󰞒"
+
+	# check for Flatpak updates
+	pacman -Qs flatpak >/dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		flatpak_updates=$(flatpak remote-ls --updates | wc -l)
+	else
+		flatpak_updates=0
+	fi
+
+	## OUTPUT
+	# module and tooltip (for waybar)
+	total_updates=$((official_updates + aur_updates + flatpak_updates))
+	if [ $total_updates -eq 0 ]; then
+		tooltip="Packages are up to date"
+	else
+		if [ -z "$aur_helper" ]; then
+			aur_helper="not found"
+		fi
+		tooltip="Official:  $official_updates\nAUR ($aur_helper): $aur_updates\nFlatpak:   $flatpak_updates"
+		if [ $show_hints -eq 1 ]; then
+			tooltip="${tooltip}\n<span font_size='80%'>(click to upgrade)</span>"
+		fi
+	fi
+	if [ $total_updates -ge $show_when ]; then
+		text="󰞒"
+	else
+		text="󰸟"
+	fi
+
+	echo "{\"text\":\"${text}\", \"tooltip\":\"${tooltip}\"}"
+
+}
+
+# check $managementFile for head nodes PID
+checkHead() {
+	headNode=0	# if we are the head node (0:no, 1:yes)
+	if [ -f "$managementFile" ]; then
+		local headPID="$(head -n1 ${managementFile})"
+		if [ "$headPID" = "$$" ]; then
+			headNode=1
+		# check if the head nodes PID is up to date
+		elif ! kill -0 "$headPID" 2>/dev/null; then
+			sed -i "1s/.*/$$/" ${managementFile}
+			headNode=1
+		fi
+	else
+		writeLine "$$" 1 ${managementFile}
+		headNode=1
+	fi	
+	if [ "$headNode" -eq 1 ]; then
+		trap 'checkUpdatesTest signal' USR1	# search for new updates
+		trap 'rm -f "$managementFile"' EXIT
+	fi
+	# sadly inverted return values
+	return $headNode
+}
+
+# add selfs PID to the managementFile as a child node
+addChildPID() {
+	while [ $(wc -l < "$managementFile") -lt "4" ]; do
+		echo "" >> ${managementFile}
+	done
+	# append PID of self to children list
+	PID="$$"
+	sed -i "4s/$/ $PID/" "${managementFile}"
+}
+
+# send USR2 to all children (updates the childrens PID list in the managementFile)
+updateChildren() {
+	children=$(sed -n '4p' "$managementFile")
+
+	for child in $children; do
+		# check if they still exists
+		if kill -0 "$child" 2>/dev/null; then
+			kill -USR2 $child
+		else
+			# delete the PID and remove leftover spaces
+			sed -i "4s/\b$child\b//g;4s/  */ /g;4s/^ *//;4s/ *$//" "${managementFile}"
+		fi
+	done
+}
+
+# read data in managementFile and update self acordingly
+readManagementFile() {
+	if [ "$headNode" -eq 1 ]; then
+		# check for a faulty failover
+		if checkHead; then
+			addChildPID
+		fi
+	fi
+	updatesJson=$(sed -n '3p' "$managementFile")
+	echo $updatesJson
+}
+
+# check if we should check for updates 
+checkUpdatesTest() {
+	lastUpdateTime=$(sed -n '2p' "$managementFile")
+	lastUpdateTime=${lastUpdateTime:-0}
+	nowTime=$(date +%s)
+	diffTime=$(( nowTime - lastUpdateTime ))
+	#echo $diffTime
+	
+	if [ "$diffTime" -gt $minimalWaitTime ]; then
+		writeLine "$(date +%s)" 2 ${managementFile}
+		
+		# only show the question mark
+		if [[ "$1" = "signal" || "$1" = "started" ]]; then
+			writeLine "$searchingJson" 3 ${managementFile}
+			updateChildren
+			echo $searchingJson
+		fi
+
+		updatesJson="$(checkUpdates)"
+		writeLine "$updatesJson" 3 ${managementFile}
+		updateChildren
+		echo "$updatesJson"
+	fi
+}
+
+# ====== startup ======
+headNode=0	# if we are the head node (0:no, 1:yes)
+
+checkHead
+if [ "$headNode" -eq 0 ]; then
+	addChildPID
+	readManagementFile
 else
-	text="󰸟"
+	checkUpdatesTest started
 fi
 
-echo "{\"text\":\"${text}\", \"tooltip\":\"${tooltip}\"}"
+trap 'readManagementFile' USR2	# look for updates in the managementFile
+
+
+while true; do
+	if [ "$headNode" -eq 1 ]; then
+		checkUpdatesTest
+	fi
+	if checkHead; then
+		# look if we are in the file
+		if ! grep -qw "$$" "${managementFile}"; then
+			addChildPID
+		fi
+	fi
+	sleep $sleepTime &
+	wait $!
+done
+

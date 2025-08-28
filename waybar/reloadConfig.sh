@@ -8,9 +8,16 @@
 
 logfile=~/.config/waybar/waybar.log
 
-killall -SIGUSR2 waybar
-# test if if was succesfull
-if [ $? -eq 0 ]; then
+if [ "$1" = "hard" ]; then
+	killall waybar
+	retVal=1
+else
+	killall -SIGUSR2 waybar # send waybar the update signal
+	retVal=$?
+fi
+
+# test if if was succesful
+if [ $retVal -eq 0 ]; then
 	notify-send -u low "waybar config reloaded" &
 else
 	hyprctl dispatch exec "waybar >> ${logfile} 2>&1"
