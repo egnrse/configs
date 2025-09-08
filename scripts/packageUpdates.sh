@@ -360,7 +360,7 @@ readManagementFile() {
 		fi
 	fi
 	updatesJson=$(sed -n '3p' "$managementFile")
-	echo $updatesJson
+	echo "$updatesJson"
 }
 
 # check if we should check for updates 
