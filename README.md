@@ -168,7 +168,7 @@ See `https://wiki.hyprland.org/Useful-Utilities/Systemd-start/`
 #### Keymappings
 `SUPER+CTR+L`   : close/exit/logout-menu (wlogout)  
 `SUPER+Q`       : opens $terminal (alacritty)  
-`SUPER+E`       : opens File Browser (nemo)  
+`SUPER+E`       : opens File Browser (dolphin)  
 `SUPER+R`       : run a program (tofi)  
 `SUPER+C`       : close active window  
   
@@ -457,7 +457,7 @@ Needs: xdg-terminal-exec<sup>AUR</sup>
 #### mimeapps.list
 *(/mimeapps.list)*  
 Set your default applications here (for different filetypes). You can also do this with the KDE-System-Settings or  
-an easer way to do this is using the filemanager `Nemo`:  
+an easer way to do this is using a filemanager like `Nemo`:  
 `Right Click a file > select *Open With* > *Other Application...* > ` select the application u like and press *Set as default*  
 This will also change the mimeapps.list file.  
 u can find the mime-type of a file using `xdg-mime query filetype {FILE}`.
