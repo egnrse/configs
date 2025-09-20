@@ -128,7 +128,8 @@ call plug#begin()
 	Plug 'preservim/nerdtree'		"file explorer
 	Plug 'craigemery/vim-autotag'	"update ctags on save
 	Plug 'Raimondi/delimitMate'		"auto pairs
-	Plug 'michaelb/vim-tips'		"show a tip on startup
+	"Plug 'michaelb/vim-tips'		"show a tip on startup
+	"Plug 'isobit/vim-caddyfile' 	"caddyfile syntax highlighting
 call plug#end()
 "otherPlugins:
 "Plug 'dense-analysis/ale'

@@ -107,7 +107,7 @@ gitConfigFile="${HOME}/.gitconfig"
 if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 	ln -s -i ${origin}other/.gitconfig_custom ${HOME}/
 	ln -s -i ${origin}other/.gitignore_global ${HOME}/
-	if grep "path = ~/.gitconfig_custom" ${gitConfigFile} >/dev/null; then
+	if cat "${gitConfigFile}" >/dev/null 2>&1 && grep "path = ~/.gitconfig_custom" "${gitConfigFile}" >/dev/null; then
 		echo " Skipping: already sourced in ${gitConfigFile}"
 	else
 		if skip "source .gitconfig_custom in ${gitConfigFile}"; then
@@ -115,8 +115,8 @@ if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 			{
 				printf '[include]\n'
 				printf '	path = ~/.gitconfig_custom\n'
-				cat ${gitConfigFile}
-			} > ${tmpFile} && mv ${tmpFile} ${gitConfigFile}
+				cat "${gitConfigFile}" 2>/dev/null
+			} > ${tmpFile} && mv ${tmpFile} "${gitConfigFile}"
 		else
 			echo "Add the following to your ~/.gitconfig to source the files manually:"
 			printf '[include]\n'
