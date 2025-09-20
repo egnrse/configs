@@ -30,10 +30,15 @@ fi
 ################################
 # check if ssh-agent is running or start it
 # (stores the created environment variables in a file)
-AGENT_ENV_PATH=${XDG_RUNTIME_DIR:-/dev/null}/ssh-agent.env
+AGENT_FILE="ssh-agent.env"
+if [ -n "${XDG_RUNTIME_DIR}" ]; then
+	AGENT_ENV_PATH="${XDG_RUNTIME_DIR}/${AGENT_FILE}"
+else
+	AGENT_ENV_PATH="/dev/null"
+fi
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
 	ssh-agent -t 3h > "${AGENT_ENV_PATH}"
 fi
-if [ ! -f "$SSH_AUTH_SOCK" ]; then
+if [ -f "$SSH_AUTH_SOCK" ]; then
 	source "${AGENT_ENV_PATH}" >/dev/null 2>&1
 fi
