@@ -70,7 +70,14 @@ unsetopt beep						# disable beep on error
 setopt glob_dots 					# include hidden files in the completion
 setopt prompt_subst					# enable substitution in prompts
 
-autoload -Uz compinit && compinit	# load completions
+# load full completions at first tab
+autoload -Uz compinit && compinit -C
+compinit_lazy() {
+	compinit
+	unfunction compinit_lazy
+}
+zle -N expand-or-complete compinit_lazy
+
 autoload -Uz vcs_info				# version-control support
 
 # load zinit plugins completion
