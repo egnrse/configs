@@ -33,6 +33,7 @@ alias gitbr='git branch'
 alias rm='rm -I'
 
 # docker (add your user to the 'docker' group to use docker without sudo)
+COMPOSE_CMD="docker-compose"
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" -a'
-alias dcu='docker compose up -d'
-alias dcd='docker compose down'
+alias dcu="$COMPOSE_CMD up -d"
+alias dcd="$COMPOSE_CMD down"
