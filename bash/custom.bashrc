@@ -16,7 +16,7 @@
 #
 # tl;dr:
 # 	don't put environment-variables here
-# 	(except only bash shells need them)
+# 	(except if only bash shells need them)
 #
 ################################################
 ########## put this into your .bashrc ##########
@@ -34,25 +34,35 @@
 ################################################
 
 
-# if running interactively
-if [[ $- = *i* ]]; then
-	alias ls='ls --color=auto'
-	alias grep='grep --color=auto'
-	PS1='[\u@\h \W]\$ '
-fi
+case $- in
+	# if running interactively
+	*i*)
+		alias ls='ls --color=auto'
+		alias grep='grep --color=auto'
+		PS1='[\u@\h \W]\$ '
+	
+		# command (c) and file (f) completion after a command
+		complete -c man command which
+		complete -cf sudo exec
+	
+		## COLORS
+		################################
+		# fix colors on windows drives (all files have 777 as permission)
+		# just changes the color of 777 files in general for the ls command
+		export LS_COLORS="ow=01;31:$LS_COLORS"
+	
+		## KEYBINDINGS
+		################################
+		export INPUTRC="$HOME/.config/bash/maps.inputrc"
+		bind -f "${INPUTRC}"
+		;;
 
-# command (c) and file (f) completion after a command
-complete -c man command which
-complete -cf sudo exec
+	*)
+		;;
+esac
 
 # remove all but the last identical command from the bash history
 export HISTCONTROL=erasedups
-
-## COLORS
-################################
-# fix colors on windows drives (all files have 777 as permission)
-# just changes the color of 777 files in general for the ls command
-export LS_COLORS="ow=01;31:$LS_COLORS"
 
 # make variables usable in cd calls (eg. `cd data`)
 shopt -s cdable_vars
@@ -70,16 +80,11 @@ shopt -s cdable_vars
 
 ## CUSTOM GENERAL
 ################################
-# fetch the aliases file (if the file exists)
+# fetch the general shell file (if the file exists)
 customBashCustom_path=~/.config/shell/custom.shrc
 if [ -f $customBashCustom_path ]; then
 	source $customBashCustom_path
 else
 	echo "custom.bashrc: custom.shrc not found ($customBashCustom_path)"
 fi
-
-## KEYBINDINGS
-################################
-export INPUTRC="$HOME/.config/bash/maps.inputrc"
-bind -f "${INPUTRC}"
 
