@@ -73,8 +73,9 @@ setopt prompt_subst					# enable substitution in prompts
 # load full completions at first tab
 autoload -Uz compinit && compinit -C
 compinit_lazy() {
-	compinit
 	unfunction compinit_lazy
+	compinit
+	zle expand-or-complete
 }
 zle -N expand-or-complete compinit_lazy
 
