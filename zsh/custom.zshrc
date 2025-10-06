@@ -71,23 +71,43 @@ setopt glob_dots 					# include hidden files in the completion
 setopt prompt_subst					# enable substitution in prompts
 
 # load full completions at first tab
-autoload -Uz compinit && compinit -C
+#autoload -Uz compinit && compinit -C # adding this line destroys 'fzf-tab-complete'
+compinit_loaded=""
+
 compinit_lazy() {
-	unfunction compinit_lazy
-	compinit
-	zle expand-or-complete
+	if [ -z "$compinit_loaded" ]; then
+		compinit_loaded="1"
+
+		## the prints dont fully work (part stay visible)
+		local loading_text="(loading completions)"
+		local length_text=$(printf "${loading_text}" | wc --chars)
+		#printf "\e[90m${loading_text}\e[0m"
+		#printf "\e[${length_text}D"
+
+		autoload -Uz compinit && compinit
+
+		# load zinit plugins completion
+		zinit cdreplay -q
+		
+		## custom completions (from commands that have a 'good' --help)
+		compdef _gnu_generic trash sddm pipewire nwg-drawer wireplumber gamescope rm
+		# still to do but a start: 
+		compdef _gnu_generic pw-cli pw-dump pw-config waypipe prismlauncher playit rustc
+		
+		#printf "\e[${length_text}C"
+		#printf "%${length_text}s" | tr ' ' '\b'
+
+		zle expand-or-complete
+	else
+		# for some reason fzf-tab-complete goes here
+		zle expand-or-complete
+	fi
 }
 zle -N expand-or-complete compinit_lazy
+#zle -N fzf-tab-complete compinit_lazy # just here to make it look more sensible
 
 autoload -Uz vcs_info				# version-control support
 
-# load zinit plugins completion
-zinit cdreplay -q
-
-## custom completions (from commands that have a 'good' --help)
-compdef _gnu_generic trash sddm pipewire nwg-drawer wireplumber gamescope rm
-# still to do but a start: 
-compdef _gnu_generic pw-cli pw-dump pw-config waypipe prismlauncher playit rustc
 
 ## style
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
