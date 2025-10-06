@@ -84,6 +84,10 @@ if [ $(skip "hardlink mimeapps.list") ]; then
 	ln ${origin}mimeapps.list ${config}
 fi
 
+# create/link log folder
+mkdir ${origin}/log
+askForLink log
+
 echo ""
 
 

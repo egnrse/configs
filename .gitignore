@@ -4,3 +4,4 @@ try*.*
 *.lnk
 *.log
 *.swp
+logs/

@@ -679,11 +679,12 @@ hunspell-en_US speech-dispatcher (waterfox)
 unzip zip  
 libreoffice-fresh prismlauncher appimagelauncher nheko mission-center kdeconnect  
 strawberry vlc kalgebra kcalc godot-mono blender cuda  
-
+syncthing
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
 spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)   
 waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
+syncthingtray
 #### from Flatpak
 (replace '\_' with spaces)  
 keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp  
