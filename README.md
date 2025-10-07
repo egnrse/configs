@@ -684,7 +684,7 @@ syncthing
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
 spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)   
 waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
-syncthingtray
+syncthingtray-qt6
 #### from Flatpak
 (replace '\_' with spaces)  
 keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp  
