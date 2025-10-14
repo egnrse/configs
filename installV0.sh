@@ -62,6 +62,46 @@ askForLink() {
 	done
 }
 
+## install packages
+pkgs="base-devel neovim vim git sudo grub openssh efibootmgr man-db man-pages" # basics
+pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
+pkgs+=" networkmanager blueman waypipe" # network
+pkgs+=" flatpak wget pacman-contrib devtools" # package management
+pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
+pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags" # cli
+pkgs+=" syncthing zip unzip"
+
+pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
+pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
+pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
+pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect strawberry vlc kalgebra kcalc godot-mono blender cuda" # more gui
+pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
+
+pkgs_aur="xdg-terminal-exec-git hyprswitch ianny v-editor-git" # hyprswitch > hyprshell
+pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
+pkgs_aur+=" beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6" # gui
+
+pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Studio io.github.dimtpap.coppwr net.cozic.joplin_desktop net.veloren.airshipper org.gimp.GIMP org.keepassxc.KeePassXC org.musescore.MuseScore org.torproject.torbrowser-launcher"
+# yay
+if skip "install some packages"; then
+	sudo pacman -Syu --needed $pkgs
+	skip "install gui packages" && sudo pacman -Syu --needed $pkgs_gui
+	if skip "install AUR packages"; then
+		if ! command -v yay; then
+			sudo pacman -S --needed git base-devel
+			git clone https://aur.archlinux.org/yay.git
+			cd yay
+			makepkg -si
+		fi
+		yay -S --needed $pkgs_aur
+	fi
+	if skip "install flatpak packages"; then
+		flatpak install -y --noninteractive flathub $pkgs_flatpak
+	fi
+fi
+exit 1 #dev
+
+
 ## MOVE/CP FILES
 
 mkdir -p ${backup}

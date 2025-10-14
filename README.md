@@ -656,38 +656,34 @@ beeper-latest-bin<sup>AUR</sup>
 <details> <summary>Some of the packages I use:</summary>
 
 #### basics
-base-devel neovim vim git sudo grub openssh efibootmgr  
-man-db man-pages						(man pages)  
-ntfs-3g exfat-utils 					(filesystem types)  
-networkmanager blueman waypipe	    (internet/networking/bluetooth)  
+base-devel neovim vim git sudo grub openssh efibootmgr man-db man-pages  
+ntfs-3g exfat-utils btrfs-prrogs grub-btrfs		(filesystem)  
+networkmanager blueman waypipe	    (network)  
 flatpak wget pacman-contrib devtools yay<sup>AUR</sup>		(package managing)  
-pipewire pipewire-docs wireplumber wireplumber-docs helvum pwvucontrol<sup>AUR</sup> (audio)  
-waybar dunst rofi-wayland nwg-drawer hypridle hyprlock wlogout<sup>AUR</sup> tofi<sup>AUR</sup> (statusbar, notifications, app-launcher, lock screen)  
-polkit-kde-agent wl-clipboard trash-d<sup>AUR</sup> zsh zoxide fzf (utilities)  
-firefox alacritty konsole dolphin  
-ttf-dejavu-nerd fastfetch rclone zerotier-one  
+pipewire pipewire-docs wireplumber wireplumber-docs (audio)  
+wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags  (cli)   
+waybar dunst rofi-wayland nwg-drawer hypridle hyprlock helvum polkit-kde-agent firefox alacritty konsole dolphin (gui)  
+pwvucontrol<sup>AUR</sup> wlogout<sup>AUR</sup> tofi<sup>AUR</sup> trash-d<sup>AUR</sup> 
 
 #### window manager
 plasma-meta hyprland sddm (kde, tiling WM, login)  
-wayland-protocols wayland-utils uwsm<sup>AUR</sup> (managing wayland-WM)  
+wayland-protocols wayland-utils uwsm (managing wayland-WM)  
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### misc
-bash-language-server ctags (lsp)  
+bash-language-server (lsp)  
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
-unzip zip  
-libreoffice-fresh prismlauncher appimagelauncher nheko mission-center kdeconnect  
+unzip zip syncthing  
+libreoffice-fresh prismlauncher mission-center kdeconnect  
 strawberry vlc kalgebra kcalc godot-mono blender cuda  
-syncthing
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
-spotify vesktop beeper-latest-bin anki-bin (discord client, msg client)   
-waterfox-bin thorium-browser-bin  pa-notify (browser, notification on loudness change)   
-syncthingtray-qt6
+spotify beeper-latest-bin anki-bin (discord client, msg client)  
+waterfox-bin pa-notify syncthingtray-qt6  
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp  
+keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp vesktop musescore  
 #### from somewhere else
 sunshine matlab  
 
