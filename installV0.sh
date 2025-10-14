@@ -1,10 +1,14 @@
  #!/bin/env bash
 
 # [WIP] be careful with this script !
-# install links from $origin to $config for *all* things in this git (and move the old files to  $backup)
-# most things are symbolic links, exceptions: mimeapps.list
+# this script does:
+# - install packages (from pacman/AUR/flatpak)
+# - install stuff from $origin to $config (and move the previous files to $backup)
+# - install stuff from $origin to other places
+# - source/include some files
 #
-# after accepting, will move/link files to different parts on your pc too. (some hardlinks)
+# you will be asked before most actions
+# most things are symbolic links
 # 
 # [WARNING:] (security risk)
 #	Moves files to root locations without changing their ownership to root.
@@ -98,6 +102,8 @@ if skip "install some packages"; then
 			git clone https://aur.archlinux.org/yay.git
 			cd yay
 			makepkg -si
+			cd ..
+			skip "remove yay install dir" && rm -rf ./yay
 		fi
 		yay -S --needed $pkgs_aur
 	fi
@@ -141,6 +147,7 @@ echo ""
 # ssh
 sshConfigFile="${HOME}/.ssh/config"
 if skip "link ~/.ssh/ssh_config"; then
+	mkdir -p ${HOME}/.ssh/
 	ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
 	if grep "Include ~/.ssh/ssh_config" ${sshConfigFile} >/dev/null; then
 		echo " Skipping: already sourced in ${sshConfigFile}"
@@ -161,6 +168,7 @@ if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 		echo " Skipping: already sourced in ${gitConfigFile}"
 	else
 		if skip "source .gitconfig_custom in ${gitConfigFile}"; then
+			touch ${gitConfigFile}
 			tmpFile='/tmp/install.sh-gitconfig'
 			{
 				printf '[include]\n'
@@ -180,8 +188,8 @@ fi
 # sddm
 if skip "link sddm config"; then
 	sudo chown root:root ${origin}other/sddm.conf
-	sudo mkdir /etc/sddm.conf.d/
-	sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
+	sudo mkdir -p /etc/sddm.conf.d/
+	sudo ln -s -i ${origin}other/sddm.conf /etc/sddm.conf.d/
 fi
 
 # dolphin
@@ -193,7 +201,7 @@ fi
 if skip "create pacman hooks for dolphin "; then
 	sudo chown root:root ${origin}other/updateKDEcache.hook
 	sudo mkdir -p /etc/pacman.d/hooks
-	sudo cp -l -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
+	sudo ln -s -l -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
 	if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
 		:
 	else
@@ -202,7 +210,10 @@ if skip "create pacman hooks for dolphin "; then
 fi
 
 # screenshot
-skip "link screenshot.desktop" && ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
+if skip "link screenshot.desktop"; then
+	mkdir -p ${HOME}/.local/share/applications/
+	ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
+fi
 
 # sshd
 if skip "link sshd config"; then
