@@ -96,10 +96,9 @@ if skip "install some packages"; then
 		yay -S --needed $pkgs_aur
 	fi
 	if skip "install flatpak packages"; then
-		flatpak install -y --noninteractive flathub $pkgs_flatpak
+		flatpak install -y flathub $pkgs_flatpak
 	fi
 fi
-exit 1 #dev
 
 
 ## MOVE/CP FILES
