@@ -121,12 +121,12 @@ if skip "link/copy ~/.config stuff"; then
 	askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
 	
 	# scripts
-	chmod +x ${origin}scripts/*
 	#ln -s -i ${origin}scripts ${config}		# deprecated
 	if skip "link ${HOME}/.local/share/bin/scripts"; then
+		chmod +x ${origin}scripts/*
 		mkdir -p ${HOME}/.local/share/bin/
 		ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
-	if
+	fi
 	
 	# files
 	askForLink egnrseTheme.css egnrseTheme.css egnrseTheme.conf xdg-terminals.list
