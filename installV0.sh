@@ -21,14 +21,20 @@ origin="$(pwd)/"
 config="$HOME/.config/"
 backup="${config}.bak/"
 
+bold="\e[1m"
+normal="\e[0m"
+green="\e[32m"
+purple="\e[95m"
+
 ## FUNCTIONS
 
 skip() {
-	var1=$1
+	var1="$1"
 	if [ -z "$1" ]; then
 		var1=" continue [y] or skip [n]"
 	fi
-	read -p "$var1 (Y/n): " pause_answer
+	#read -p "$var1 (Y/n): " pause_answer
+	read -p "$(printf "%b" "$var1 ${purple}${bold}(Y/n): "${normal})" pause_answer
 	case $pause_answer in
 		[Yy]*|"")
 			return 0;
@@ -62,8 +68,8 @@ askForLink() {
 	done
 }
 
-## install packages
-pkgs="base-devel neovim vim git sudo grub openssh efibootmgr man-db man-pages" # basics
+## INSTALL PACKAGES ##################################
+pkgs="base-devel neovim vi vim git sudo grub openssh efibootmgr man-db man-pages" # basics
 pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
 pkgs+=" networkmanager blueman waypipe" # network
 pkgs+=" flatpak wget pacman-contrib devtools" # package management
@@ -82,7 +88,7 @@ pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
 pkgs_aur+=" beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6" # gui
 
 pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Studio io.github.dimtpap.coppwr net.cozic.joplin_desktop net.veloren.airshipper org.gimp.GIMP org.keepassxc.KeePassXC org.musescore.MuseScore org.torproject.torbrowser-launcher"
-# yay
+
 if skip "install some packages"; then
 	sudo pacman -Syu --needed $pkgs
 	skip "install gui packages" && sudo pacman -Syu --needed $pkgs_gui
@@ -101,36 +107,37 @@ if skip "install some packages"; then
 fi
 
 
-## MOVE/CP FILES
+## MOVE/CP FILES ##################################
+if skip "link/copy ~/.config stuff"; then
+	mkdir -p ${backup}
+	
+	# link folders to $config
+	askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
+	
+	# scripts
+	chmod +x ${origin}scripts/*
+	#ln -s -i ${origin}scripts ${config}		# deprecated
+	skip "link ${HOME}/.local/share/bin/scripts" && ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
+	
+	# files
+	askForLink egnrseTheme.css egnrseTheme.css egnrseTheme.conf xdg-terminals.list
+	# egnrseTheme.sh ?
+	
+	# cp mimeapps.list
+	if [ $(skip "copy mimeapps.list") ]; then
+		cp -r --update ${config}mimeapps.list ${backup}
+		cp ${origin}mimeapps.list ${config}
+	fi
 
-mkdir -p ${backup}
-
-# link folders to $config
-askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
-
-# scripts
-chmod +x ${origin}scripts/*
-#ln -s -i ${origin}scripts ${config}		# deprecated
-skip "link ${HOME}/.local/share/bin/scripts" && ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
-
-# files
-askForLink egnrseTheme.css egnrseTheme.css egnrseTheme.conf xdg-terminals.list
-# egnrseTheme.sh ?
-
-# hardlink mimeapps.list!
-if [ $(skip "hardlink mimeapps.list") ]; then
-	cp -r --update ${config}mimeapps.list ${backup}
-	ln ${origin}mimeapps.list ${config}
+	# create/link log folder
+	#mkdir ${origin}/log
+	#askForLink log
 fi
-
-# create/link log folder
-mkdir ${origin}/log
-askForLink log
 
 echo ""
 
 
-## DIFFERENT LOCATIONS
+## DIFFERENT LOCATIONS ##################################
 # ssh
 sshConfigFile="${HOME}/.ssh/config"
 if skip "link ~/.ssh/ssh_config"; then
@@ -170,45 +177,94 @@ if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 	fi
 fi
 
+# sddm
+if skip "link sddm config"; then
+	sudo chown root:root ${origin}other/sddm.conf
+	sudo mkdir /etc/sddm.conf.d/
+	sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
+fi
+
+# dolphin
+if skip "link dolphin servicemenus"; then
+	mkdir -p ~/.local/share/kio/servicemenus
+	cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
+	chmod +x ${origin}other/servicemenus/*
+fi
+if skip "create pacman hooks for dolphin "; then
+	sudo chown root:root ${origin}other/updateKDEcache.hook
+	sudo mkdir -p /etc/pacman.d/hooks
+	sudo cp -l -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
+	if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
+		:
+	else
+		echo "install the 'archlinux-xdg-menu' packages, for some dolphin stuff to work"
+	fi
+fi
+
+# screenshot
+skip "link screenshot.desktop" && ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
+
+# sshd
+if skip "link sshd config"; then
+	sudo chown root:root ${origin}other/50-custom-sshd.conf
+	sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
+fi
+
 echo ""
 
 
-## NOT ASKED AGAIN
-echo "cp and move files to other locations too?"
-echo "press enter to continue (Ctr+C to exit)"
-echo " You will not be asked again!"
-read
-
-
-# sddm
-sudo cp -l -i ${origin}other/sddm.conf /etc/sddm.conf.d/
-
-# dolphin
-mkdir -p ~/.local/share/kio/servicemenus
-cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
-chmod +x ${origin}other/servicemenus/*
-
-sudo mkdir -p /etc/pacman.d/hooks
-sudo cp -l -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
-if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
-	:
+## SOURCE/CHANGE STUFF ##################################
+if skip "source bash in ~/.bashrc"; then
+	if grep "source \$customBashConfig_path" ${HOME}/.bashrc >/dev/null; then
+		echo " Skipping: already sourced"
+	else
+		cat <<EOF >> ${HOME}/.bashrc
+# fetches the config file for bash (if it exists)
+# $customBashConfig_path is the path to the custom config file
+customBashConfig_path="$HOME/.config/bash/custom.bashrc"
+if [ -f "\$customBashConfig_path" ]; then
+	source \$customBashConfig_path
 else
-	echo "install the 'archlinux-xdg-menu' packages, for some dolphin stuff to work"
+	echo "path to config not found (\$customBashConfig_path)"
+fi
+EOF
+	fi
 fi
 
-# wvkbd-laptop
-sudo cp -i ${origin}other/wvkbd-laptop /usr/local/bin/ 
-sudo +x /usr/local/share/bin/wvkbd-laptop
-sudo mkdir -p /usr/local/share/applications/
-sudo cp -l -i ${origin}other/wvkbd-laptop.desktop /usr/local/share/applications/
+if skip "source zsh in ~/.zshrc"; then
+	if grep "source \$customZshConfig_path" ${HOME}/.zshrc >/dev/null; then
+		echo " Skipped: already sourced"
+	else
+		cat <<EOF >> ${HOME}/.zshrc
+# fetch the custom config file for zsh (if it exists)
+# customZshConfig_path is the path to the config file
+customZshConfig_path="$HOME/.config/zsh/custom.zshrc"
+if [ -f "\$customZshConfig_path" ]; then
+	source \$customZshConfig_path
+else
+	echo ".zshrc: path to config not found (\$customZshConfig_path)"
+fi
+EOF
+	fi
+fi
 
-# screenshot
-ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
+if skip "make zsh your standart shell"; then
+	zshPath=$(which zsh)
+	chsh -s ${zshPath}
+fi
 
-# sshd
-sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
+echo ""
 
-# link roots nvim to ours?
+
+## NOT ASKED AGAIN ##################################
+#echo "cp and move files to other locations too?"
+#echo "press enter to continue (Ctr+C to exit)"
+#echo " You will not be asked again!"
+#read
+
+
+
+# link roots nvim to ours? (just a bad idea)
 #read -p "do you want to link the nvim configs to root? [y/N]: " answer
 #case $answer in
 #	[Yy]*)
