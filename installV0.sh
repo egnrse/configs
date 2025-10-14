@@ -195,13 +195,13 @@ fi
 # dolphin
 if skip "link dolphin servicemenus"; then
 	mkdir -p ~/.local/share/kio/servicemenus
-	cp -l -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
+	ln -s -i ${origin}other/servicemenus/* ~/.local/share/kio/servicemenus/
 	chmod +x ${origin}other/servicemenus/*
 fi
 if skip "create pacman hooks for dolphin "; then
 	sudo chown root:root ${origin}other/updateKDEcache.hook
 	sudo mkdir -p /etc/pacman.d/hooks
-	sudo ln -s -l -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
+	sudo ln -s -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
 	if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
 		:
 	else
