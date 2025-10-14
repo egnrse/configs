@@ -662,7 +662,7 @@ networkmanager blueman waypipe	    (network)
 flatpak wget pacman-contrib devtools yay<sup>AUR</sup>		(package managing)  
 pipewire pipewire-docs wireplumber wireplumber-docs (audio)  
 wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags  (cli)   
-waybar dunst rofi-wayland nwg-drawer hypridle hyprlock helvum polkit-kde-agent firefox alacritty konsole dolphin (gui)  
+waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin (gui)  
 pwvucontrol<sup>AUR</sup> wlogout<sup>AUR</sup> tofi<sup>AUR</sup> trash-d<sup>AUR</sup> 
 
 #### window manager

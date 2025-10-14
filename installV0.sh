@@ -82,7 +82,7 @@ pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-ner
 pkgs+=" syncthing zip unzip"
 
 pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
-pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
+pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
 pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
 pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect strawberry vlc kalgebra kcalc godot-mono blender cuda" # more gui
 pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
@@ -123,7 +123,10 @@ if skip "link/copy ~/.config stuff"; then
 	# scripts
 	chmod +x ${origin}scripts/*
 	#ln -s -i ${origin}scripts ${config}		# deprecated
-	skip "link ${HOME}/.local/share/bin/scripts" && ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
+	if skip "link ${HOME}/.local/share/bin/scripts"; then
+		mkdir -p ${HOME}/.local/share/bin/
+		ln -s -i ${origin}scripts ${HOME}/.local/share/bin/
+	if
 	
 	# files
 	askForLink egnrseTheme.css egnrseTheme.css egnrseTheme.conf xdg-terminals.list
@@ -263,6 +266,9 @@ if skip "make zsh your standart shell"; then
 	zshPath=$(which zsh)
 	chsh -s ${zshPath}
 fi
+
+skip "activate system unit: sddm" && sudo systemctl enable sddm
+skip "activate system unit: bluetooth" && sudo systemctl enable bluetooth
 
 echo ""
 
