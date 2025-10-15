@@ -224,6 +224,13 @@ if skip "link sshd config"; then
 	sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
 fi
 
+# systemd user services
+if skip "link systemd user services"; then
+	mkdir -p $HOME/.config/systemd/user
+	ln -s -i ${origin}other/*.service $HOME/.config/systemd/user/
+	echo "start them with 'systemctl --user start --now <NAME>'"
+fi
+
 echo ""
 
 

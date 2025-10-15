@@ -1,0 +1,16 @@
+# creates a ssh tunnel to a i2p-router at egnrse.eu:4444
+# belongs into '~/.config/systemd/user/i2p-tunnel.service'
+# (by egnrse)
+[Unit]
+Description=SSH tunnel to I2P router
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ssh -N -L 4444:127.0.0.1:4444 egnrse.eu -i /home/elia/.ssh/hetzner2025archPC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
+
+# vim: set filetype=systemd:

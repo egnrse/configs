@@ -20,7 +20,6 @@ Clone the repo into a folder of your choosing and run the install script `./inst
 (!! the script is very fragile, change the variables in the script and look what it does !!)  
 (most old files that the script will find it will move to ~/.config/.bak/)  
 Currently some files still need to be moved manually. Most of them are files outside of `~/.config/`.  
-TODO: make it more interactive (with an -a option?)  
 
 [the old method can be found here](#old-setup-method-git-config)
 
@@ -282,7 +281,8 @@ Include ~/.ssh/ssh_config
 
 ### systemd
 *(/environment.d/)*  
-Some environment variables for systemd. Prob. not well done currently. (!! is setting wayland variables !!)
+Some environment variables for systemd. Prob. not well done currently. (!! is setting wayland variables !!)  
+There are systemd service files in this git too (eg. `./other/i2p-tunnel.service`).  
 
 ### [tofi](https://github.com/philj56/tofi)
 *(/tofi/)*  
