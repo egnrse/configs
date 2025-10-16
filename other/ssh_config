@@ -7,5 +7,8 @@
 # add keys to ssh-agents, when they are first used
 AddKeysToAgent yes
 
+# ignore post qantum warning
+Match host egnrse.eu
+	WarnWeakCrypto no
 
 # vim: set filetype=sshconfig :
