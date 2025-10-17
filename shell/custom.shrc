@@ -39,6 +39,6 @@ fi
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
 	ssh-agent -t 3h > "${AGENT_ENV_PATH}"
 fi
-if [ -f "$SSH_AUTH_SOCK" ]; then
+if [ -f "${AGENT_ENV_PATH}" ]; then
 	source "${AGENT_ENV_PATH}" >/dev/null 2>&1
 fi
