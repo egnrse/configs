@@ -228,7 +228,8 @@ fi
 if skip "link systemd user services"; then
 	mkdir -p $HOME/.config/systemd/user
 	ln -s -i ${origin}other/*.service $HOME/.config/systemd/user/
-	echo "start them with 'systemctl --user start --now <NAME>'"
+	systemctl --user daemon-reload
+	echo "start them with 'systemctl --user enable --now <NAME>'"
 fi
 
 echo ""
