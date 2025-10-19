@@ -232,6 +232,12 @@ if skip "link systemd user services"; then
 	echo "start them with 'systemctl --user enable --now <NAME>'"
 fi
 
+# log file
+if skip "add/link log file"; then
+	mkdir -p ${origin}log
+	ln -s -i ${origin}log ${config}log
+fi
+
 echo ""
 
 

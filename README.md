@@ -717,6 +717,24 @@ to unlock pw-protected keys this must exist: `export GPG_TTY=$(tty)`
 `git log --show-signature -1` : show signiture of the last commit  
 `git tag -s v1.5 -m 'my signed 1.5 tag'` : sign a tag (did not try)  
 
+#### move gpg key
+Export Key:
+```
+gpg --list-secret-keys --keyid-format=long
+gpg --export-secret-keys KEYID > ~/private.key
+```
+Import Key:
+```sh
+gpg --import ~/private.key
+gpg --edit-key KEYID
+gpg> trust
+# choose 5 = ultimate
+gpg> quit
+
+# delete the file savely
+shred -u ~/private.key
+```
+
 <details> <summary>
 	
 ### old setup method (git ~/.config)
