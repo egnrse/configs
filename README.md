@@ -676,7 +676,7 @@ kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libapp
 hunspell-en_US speech-dispatcher (waterfox)  
 unzip zip syncthing  
 libreoffice-fresh prismlauncher mission-center kdeconnect  
-strawberry vlc kalgebra kcalc godot-mono blender cuda  
+audacious vlc kalgebra kcalc godot-mono blender cuda  
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
 spotify beeper-latest-bin anki-bin (discord client, msg client)  

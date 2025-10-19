@@ -84,7 +84,7 @@ pkgs+=" syncthing zip unzip"
 pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
 pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
 pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
-pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect strawberry vlc kalgebra kcalc godot-mono blender cuda" # more gui
+pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect audacious vlc kalgebra kcalc godot-mono blender cuda" # more gui
 pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
 
 pkgs_laptop="brightnessctl power-profiles-daemon"
