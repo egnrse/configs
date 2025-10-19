@@ -286,6 +286,7 @@ fi
 
 skip "activate system unit: sddm" && sudo systemctl enable sddm
 skip "activate system unit: bluetooth" && sudo systemctl enable bluetooth
+skip "activate system unit: ianny" && systemctl --user enable app-io.github.zefr0x.ianny@autostart.service 
 
 echo ""
 
