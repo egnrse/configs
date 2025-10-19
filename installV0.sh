@@ -87,6 +87,8 @@ pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbna
 pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect strawberry vlc kalgebra kcalc godot-mono blender cuda" # more gui
 pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
 
+pkgs_laptop="brightnessctl power-profiles-daemon"
+
 pkgs_aur="xdg-terminal-exec-git hyprswitch ianny v-editor-git" # hyprswitch > hyprshell
 pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
 pkgs_aur+=" beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6" # gui
@@ -96,6 +98,7 @@ pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Stu
 if skip "install some packages"; then
 	sudo pacman -Syu --needed $pkgs
 	skip "install gui packages" && sudo pacman -Syu --needed $pkgs_gui
+	skip "install laptop packages" && sudo pacman -Syu --needed $pkgs_laptop
 	if skip "install AUR packages"; then
 		if ! command -v yay; then
 			sudo pacman -S --needed git base-devel
