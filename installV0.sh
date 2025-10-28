@@ -181,6 +181,7 @@ if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 				printf '	path = ~/.gitconfig_custom\n'
 				cat "${gitConfigFile}" 2>/dev/null
 			} > ${tmpFile} && mv ${tmpFile} "${gitConfigFile}"
+			rm -f "${tmpFile}"
 		else
 			echo "Add the following to your ~/.gitconfig to source the files manually:"
 			printf '[include]\n'
