@@ -1,7 +1,7 @@
 -- render markdown within nvim
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
-	dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
+	dependencies = { {'nvim-treesitter/nvim-treesitter', branch = "main"}, 'echasnovski/mini.nvim' },
 	ft = { "markdown", "norg", "rmd", "org" },
 	config = function()
 		require('render-markdown').setup({
