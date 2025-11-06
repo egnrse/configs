@@ -1,4 +1,4 @@
- #!/bin/env bash
+ #!/usr/bin/env bash
 
 # [WIP] be careful with this script !
 # this script does:

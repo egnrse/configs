@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # copy the local DB folder ($localPath) with the DB folder from google drive 
 # (ONLY copies 'KeePassElia2023_06.kbdx')

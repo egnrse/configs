@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # helps with upgrading packages (for official-/pacman-, AUR- and flatpak-packages)
 # also helps with some system maintenance:

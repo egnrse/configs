@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # updates the KService desktop-file system configuration cache
 # (by egnrse)
 #

@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # restart hyprswitch (the daemon)
 # (https://github.com/egnrse/configs)

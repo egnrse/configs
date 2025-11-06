@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # copy part of the screen into the system clipboard
 # Needs: grim slurp wl-clipboard
 # (by egnrse)

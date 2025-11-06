@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # restart nwg-drawer
 # by egnrse (https://github.com/egnrse/configs)

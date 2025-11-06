@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # copy the DB folder from google drive into the local DB folder ($localPath)
 # by egnrse

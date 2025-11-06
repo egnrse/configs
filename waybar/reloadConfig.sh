@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # reload the config for waybar
 # (https://github.com/egnrse/configs)

@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # launches wlogout with custom styling, or closes it if it is already running
 # in one of two modes (selected with arg $1):

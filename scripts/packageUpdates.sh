@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # checks packages for updates (official-/pacman-, AUR- and flatpak-packages)
 # returns the result in a json, that works for waybar

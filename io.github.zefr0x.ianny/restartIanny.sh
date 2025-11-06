@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # restart ianny
 # (https://github.com/egnrse/configs)
