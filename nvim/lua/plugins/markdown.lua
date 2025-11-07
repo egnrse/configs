@@ -1,8 +1,10 @@
 -- render markdown within nvim
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
-	dependencies = { {'nvim-treesitter/nvim-treesitter', branch = "main"}, 'echasnovski/mini.nvim' },
+	dependencies = { {'nvim-treesitter/nvim-treesitter', branch = "main"}, 'nvim-mini/mini.nvim' },
 	ft = { "markdown", "norg", "rmd", "org" },
+	---@module 'render-markdown'
+    ---@type render.md.UserConfig
 	config = function()
 		require('render-markdown').setup({
 			-- Whether Markdown should be rendered by default or not
@@ -32,7 +34,7 @@ return {
 			-- Set enabled to false in order to disable
 			injections = {
 				gitcommit = {
-					enabled = true,
+					enabled = false,
 					query = [[
 					((message) @injection.content
 					(#set! injection.combined)
@@ -84,28 +86,38 @@ return {
 				render = function() end,
 			},
 			heading = {
+				-- Useful context to have when evaluating values.
+				-- | level    | the number of '#' in the heading marker         |
+				-- | sections | for each level how deeply nested the heading is |
+
 				-- Turn on / off heading icon & background rendering
 				enabled = false,
+				-- Additional modes to render headings.
+				render_modes = false,
+				-- Turn on / off atx heading rendering.
+				atx = true,
+				-- Turn on / off setext heading rendering.
+				setext = true,
+				-- Turn on / off sign column related rendering.
 				-- Turn on / off any sign column related rendering
 				sign = false,
-				-- Determines how icons fill the available space:
-				--  right:   '#'s are concealed and icon is appended to right side
-				--  inline:  '#'s are concealed and icon is inlined on left side
-				--  overlay: icon is left padded with spaces and inserted on left hiding any additional '#'
-				position = 'overlay',
 				-- Replaces '#+' of 'atx_h._marker'
 				-- The number of '#' in the heading determines the 'level'
 				-- The 'level' is used to index into the list using a cycle
 				--icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
 				icons = {},
-				-- Added to the sign column if enabled
-				-- The 'level' is used to index into the list using a cycle
+				-- Determines how icons fill the available space.
+				-- | right   | '#'s are concealed and icon is appended to right side                      |
+				-- | inline  | '#'s are concealed and icon is inlined on left side                        |
+				-- | overlay | icon is left padded with spaces and inserted on left hiding additional '#' |
+				position = 'overlay',
+				-- Added to the sign column if enabled.
+				-- Output is evaluated by `cycle(value, context.level)`.
 				signs = { '󰫎 ' },
-				-- Width of the heading background:
-				--  block: width of the heading text
-				--  full:  full width of the window
-				-- Can also be a list of the above values in which case the 'level' is used
-				-- to index into the list using a clamp
+				-- Width of the heading background.
+				-- | block | width of the heading text |
+				-- | full  | full width of the window  |
+				-- Can also be a list of the above values evaluated by `clamp(value, context.level)`.
 				width = {'full','full','block','block','block','block'},
 				-- Amount of margin to add to the left of headings
 				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
@@ -155,116 +167,188 @@ return {
 					'RenderMarkdownH5',
 					'RenderMarkdownH6',
 				},
+				-- Define custom heading patterns which allow you to override various properties based on
+				-- the contents of a heading.
+				-- The key is for healthcheck and to allow users to change its values, value type below.
+				-- | pattern    | matched against the heading text @see :h lua-patterns |
+				-- | icon       | optional override for the icon                        |
+				-- | background | optional override for the background                  |
+				-- | foreground | optional override for the foreground                  |
+				custom = {},
 			},
 			paragraph = {
-				-- Turn on / off paragraph rendering
+				-- Useful context to have when evaluating values.
+				-- | text | text value of the node |
+
+				-- Turn on / off paragraph rendering.
 				enabled = true,
-				-- Amount of margin to add to the left of paragraphs
-				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
+				-- Additional modes to render paragraphs.
+				render_modes = false,
+				-- Amount of margin to add to the left of paragraphs.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
+				-- Output is evaluated depending on the type.
+				-- | function | `value(context)` |
+				-- | number   | `value`          |
 				left_margin = 0,
-				-- Minimum width to use for paragraphs
+				-- Amount of padding to add to the first line of each paragraph.
+				-- Output is evaluated using the same logic as 'left_margin'.
+				indent = 0,
+				-- Minimum width to use for paragraphs.
 				min_width = 0,
 			},
 			code = {
-				-- Turn on / off code block & inline code rendering
+				-- Turn on / off code block & inline code rendering.
 				enabled = true,
-				-- Turn on / off any sign column related rendering
+				-- Additional modes to render code blocks.
+				render_modes = false,
+				-- Turn on / off sign column related rendering.
 				sign = true,
-				-- Determines how code blocks & inline code are rendered:
-				--  none:     disables all rendering
-				--  normal:   adds highlight group to code blocks & inline code, adds padding to code blocks
-				--  language: adds language icon to sign column if enabled and icon + name above code blocks
-				--  full:     normal + language
-				style = 'full',
-				-- Determines where language icon is rendered:
-				--  right: right side of code block
-				--  left:  left side of code block
+				-- Whether to conceal nodes at the top and bottom of code blocks.
+				conceal_delimiters = true,
+				-- Turn on / off language heading related rendering.
+				language = true,
+				-- Determines where language icon is rendered.
+				-- | right | right side of code block |
+				-- | left  | left side of code block  |
 				position = 'left',
-				-- Amount of padding to add around the language
-				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
-				language_pad = 0,
-				-- Whether to include the language name next to the icon
+				-- Whether to include the language icon above code blocks.
+				language_icon = true,
+				-- Whether to include the language name above code blocks.
 				language_name = true,
-				-- A list of language names for which background highlighting will be disabled
-				-- Likely because that language has background highlights itself
-				-- Or a boolean to make behavior apply to all languages
-				-- Borders above & below blocks will continue to be rendered
+				-- Whether to include the language info above code blocks.
+				language_info = true,
+				-- Amount of padding to add around the language.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
+				language_pad = 0,
+				-- A list of language names for which background highlighting will be disabled.
+				-- Likely because that language has background highlights itself.
+				-- Use a boolean to make behavior apply to all languages.
+				-- Borders above & below blocks will continue to be rendered.
 				disable_background = { 'diff' },
-				-- Width of the code block background:
-				--  block: width of the code block
-				--  full:  full width of the window
-				width = 'block',
-				-- Amount of margin to add to the left of code blocks
-				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
-				-- Margin available space is computed after accounting for padding
+				-- Width of the code block background.
+				-- | block | width of the code block  |
+				-- | full  | full width of the window |
+				width = 'full',
+				-- Amount of margin to add to the left of code blocks.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
+				-- Margin available space is computed after accounting for padding.
 				left_margin = 0,
-				-- Amount of padding to add to the left of code blocks
-				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
-				left_pad = 0.04,
-				-- Amount of padding to add to the right of code blocks when width is 'block'
-				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
-				right_pad = 0.04,
-				-- Minimum width to use for code blocks when width is 'block'
+				-- Amount of padding to add to the left of code blocks.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
+				left_pad = 0,
+				-- Amount of padding to add to the right of code blocks when width is 'block'.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
+				right_pad = 0,
+				-- Minimum width to use for code blocks when width is 'block'.
 				min_width = 0,
-				-- Determines how the top / bottom of code block are rendered:
-				--  none:  do not render a border
-				--  thick: use the same highlight as the code body
-				--  thin:  when lines are empty overlay the above & below icons
-				border = 'thin',
-				-- Used above code blocks for thin border
+				-- Determines how the top / bottom of code block are rendered.
+				-- | none  | do not render a border                               |
+				-- | thick | use the same highlight as the code body              |
+				-- | thin  | when lines are empty overlay the above & below icons |
+				-- | hide  | conceal lines unless language name or icon is added  |
+				border = 'hide',
+				-- Used above code blocks to fill remaining space around language.
+				language_border = '█',
+				-- Added to the left of language.
+				language_left = '',
+				-- Added to the right of language.
+				language_right = '',
+				-- Used above code blocks for thin border.
 				above = '▄',
-				-- Used below code blocks for thin border
+				-- Used below code blocks for thin border.
 				below = '▀',
-				-- Highlight for code blocks
+				-- Turn on / off inline code related rendering.
+				inline = true,
+				-- Icon to add to the left of inline code.
+				inline_left = '',
+				-- Icon to add to the right of inline code.
+				inline_right = '',
+				-- Padding to add to the left & right of inline code.
+				inline_pad = 0,
+				-- Highlight for code blocks.
 				highlight = 'RenderMarkdownCode',
-				-- Highlight for inline code
-				highlight_inline = 'RenderMarkdownCodeInline',
-				-- Highlight for language, overrides icon provider value
+				-- Highlight for code info section, after the language.
+				highlight_info = 'RenderMarkdownCodeInfo',
+				-- Highlight for language, overrides icon provider value.
 				highlight_language = nil,
+				-- Highlight for border, use false to add no highlight.
+				highlight_border = 'RenderMarkdownCodeBorder',
+				-- Highlight for language, used if icon provider does not have a value.
+				highlight_fallback = 'RenderMarkdownCodeFallback',
+				-- Highlight for inline code.
+				highlight_inline = 'RenderMarkdownCodeInline',
+				-- Determines how code blocks & inline code are rendered.
+				-- | none     | { enabled = false }                           |
+				-- | normal   | { language = false }                          |
+				-- | language | { disable_background = true, inline = false } |
+				-- | full     | uses all default values                       |
+				style = 'full',
 			},
 			dash = {
-				-- Turn on / off thematic break rendering
+				-- Useful context to have when evaluating values.
+				-- | width | width of the current window |
+
+				-- Turn on / off thematic break rendering.
 				enabled = true,
-				-- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'
-				-- The icon gets repeated across the window's width
+				-- Additional modes to render dash.
+				render_modes = false,
+				-- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'.
+				-- The icon gets repeated across the window's width.
 				icon = '─',
-				-- Width of the generated line:
-				--  <number>: a hard coded width value, if a floating point value < 1 is provided it is
-				--            treated as a percentage of the available window space
-				--  full:     full width of the window
+				-- Width of the generated line.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
+				-- Output is evaluated depending on the type.
+				-- | function | `value(context)`    |
+				-- | number   | `value`             |
+				-- | full     | width of the window |
 				width = 'full',
-				-- Amount of margin to add to the left of dash
-				-- If a floating point value < 1 is provided it is treated as a percentage of the available window space
+				-- Amount of margin to add to the left of dash.
+				-- If a float < 1 is provided it is treated as a percentage of available window space.
 				left_margin = 0,
-				-- Highlight for the whole line generated from the icon
+				-- Highlight for the whole line generated from the icon.
 				highlight = 'RenderMarkdownDash',
 			},
 			bullet = {
+				-- Useful context to have when evaluating values.
+				-- | level | how deeply nested the list is, 1-indexed          |
+				-- | index | how far down the item is at that level, 1-indexed |
+				-- | value | text value of the marker node                     |
+
 				-- Turn on / off list bullet rendering
 				enabled = true,
-				-- Replaces '-'|'+'|'*' of 'list_item'
-				-- How deeply nested the list is determines the 'level', how far down at that level determines the 'index'
-				-- If a function is provided both of these values are passed in using 1 based indexing
-				-- If a list is provided we index into it using a cycle based on the level
-				-- If the value at that level is also a list we further index into it using a clamp based on the index
-				-- If the item is a 'checkbox' a conceal is used to hide the bullet instead
+				-- Additional modes to render list bullets
+				render_modes = false,
+				-- Replaces '-'|'+'|'*' of 'list_item'.
+				-- If the item is a 'checkbox' a conceal is used to hide the bullet instead.
+				-- Output is evaluated depending on the type.
+				-- | function   | `value(context)`                                    |
+				-- | string     | `value`                                             |
+				-- | string[]   | `cycle(value, context.level)`                       |
+				-- | string[][] | `clamp(cycle(value, context.level), context.index)` |
 				icons = { '●', '○', '◆', '◇' },
-				-- Replaces 'n.'|'n)' of 'list_item'
-				-- How deeply nested the list is determines the 'level', how far down at that level determines the 'index'
-				-- If a function is provided both of these values are passed in using 1 based indexing
-				-- If a list is provided we index into it using a cycle based on the level
-				-- If the value at that level is also a list we further index into it using a clamp based on the index
-				ordered_icons = function(level, index, value)
-					value = vim.trim(value)
-					local value_index = tonumber(value:sub(1, #value - 1))
-					return string.format('%d.', value_index > 1 and value_index or index)
+				-- Replaces 'n.'|'n)' of 'list_item'.
+				-- Output is evaluated using the same logic as 'icons'.
+				ordered_icons = function(ctx)
+					local value = vim.trim(ctx.value)
+					local index = tonumber(value:sub(1, #value - 1))
+					return ('%d.'):format(index > 1 and index or ctx.index)
 				end,
-				-- Padding to add to the left of bullet point
+				-- Padding to add to the left of bullet point.
+				-- Output is evaluated depending on the type.
+				-- | function | `value(context)` |
+				-- | integer  | `value`          |
 				left_pad = 0,
-				-- Padding to add to the right of bullet point
+				-- Padding to add to the right of bullet point.
+				-- Output is evaluated using the same logic as 'left_pad'.
 				right_pad = 0,
-				-- Highlight for the bullet icon
+				-- Highlight for the bullet icon.
+				-- Output is evaluated using the same logic as 'icons'.
 				highlight = 'RenderMarkdownBullet',
+				-- Highlight for item associated with the bullet point.
+				-- Output is evaluated using the same logic as 'icons'.
+				scope_highlight = {},
+				-- Priority to assign to scope highlight.
+				scope_priority = nil,
 			},
 			-- Checkboxes are a special instance of a 'list_item' that start with a 'shortcut_link'
 			-- There are two special states for unchecked & checked defined in the markdown grammar
