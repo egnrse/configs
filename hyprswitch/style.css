@@ -53,7 +53,7 @@
     border: var(--border-size) solid @green;
 }
 
-/* running GUI programs grouped by workspace (includes title and icon) */
+/* running (GUI) programs grouped by workspace (includes title and icon) */
 .client {
 	font-size: 15px;
     background: @TextDark;
@@ -79,27 +79,9 @@
     background: @Background;
 }
 
-/* disabled currently, a number uniqe to eather clients or workspaces */
+/* disabled currently, a number unique to eather clients or workspaces */
 .index {
     background: @FocusBg;
     color: @FocusFg;
 	border: var(--border-size) solid @TextDark;
-}
-
-
-/* did not test those yet */
-.launcher {
-    background: pink;
-}
-.launcher-entry {
-    background: greenyellow;
-}
-.launcher-list {
-    background: blue;
-}
-.launcher-item {
-    background: red;
-}
-.launcher-item-selected {
-    background-color: aqua;
 }
