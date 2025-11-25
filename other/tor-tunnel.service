@@ -6,7 +6,7 @@ Description=SSH tunnel to I2P router
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/ssh -N -L 9050:127.0.0.1:9050 egnrse.eu -i /home/elia/.ssh/hetzner2025archPC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes
+ExecStart=/usr/bin/ssh -N -L 9050:127.0.0.1:9050 proxy-user@egnrse.eu -i /home/elia/.ssh/proxyUser2025archPC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes
 Restart=always
 RestartSec=10
 
