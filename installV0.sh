@@ -229,8 +229,15 @@ if skip "link sshd config"; then
 	sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
 fi
 
+# systemd services
+if skip "link logind config"; then
+	sudo chown root:root ${origin}other/custom-logind.conf
+	sudo mkdir -p /etc/systemd/logind.conf.d
+	sudo ln -s -i ${origin}other/custom-logind.conf /etc/systemd/logind.conf.d/custom-logind.conf
+	sudo systemctl reload systemd-logind.service
+fi
+
 # systemd user services
-skip "start hypridle service" && systemctl --user enable --now hypridle.service
 if skip "link systemd user services"; then
 	mkdir -p $HOME/.config/systemd/user
 	ln -s -i ${origin}other/*.service $HOME/.config/systemd/user/
@@ -290,6 +297,7 @@ fi
 skip "activate system unit: sddm" && sudo systemctl enable sddm
 skip "activate system unit: bluetooth" && sudo systemctl enable bluetooth
 skip "activate system unit: ianny" && systemctl --user enable app-io.github.zefr0x.ianny@autostart.service 
+skip "activate & start system user unit: hypridle" && systemctl --user enable --now hypridle.service
 
 echo ""
 

@@ -481,6 +481,11 @@ You will need to change the allowed users if you want to connect with a differen
 To setup your first connection, disalbe `PasswordAuthentication no` and `AuthenticationMethods publickey` as they only allow signing in with a publickey.  
 I used [ssh-audit](https://github.com/jtesta/ssh-audit) to try to make my system more secure.  
 
+#### logind service
+*(/other/custom-logind.conf)*  
+Set some custom logind settings. There you can eg. change the lid close behaviour.  
+(The locking on sleep is managed by hypridle though.)  
+
 #### [ctags](https://github.com/universal-ctags/ctags)
 *(none currently)*  
 A way to eg. jump to definitions in vim/nvim. Needs an implementation of `ctags` installed to work.  
