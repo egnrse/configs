@@ -145,6 +145,7 @@ A example `~/.gitconfig` is in `/other/.gitconfig`. Replace the placeholders if 
 *(/hypr/hypridle.conf)*  
 An idle deamon. To start it automatically on system startup (with systemd) run:  
 `systemctl --user enable --now hypridle.service`  
+After changing the config-file you must run `systemctl --user restart hypridle.service` to reload them.  
 Needs: [hyprland](#hyprland) [hyprlock](#hyprlock)  
 
 ### [hyprland](https://hyprland.org/)

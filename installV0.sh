@@ -230,6 +230,7 @@ if skip "link sshd config"; then
 fi
 
 # systemd user services
+skip "start hypridle service" && systemctl --user enable --now hypridle.service
 if skip "link systemd user services"; then
 	mkdir -p $HOME/.config/systemd/user
 	ln -s -i ${origin}other/*.service $HOME/.config/systemd/user/
