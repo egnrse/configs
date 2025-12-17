@@ -16,6 +16,8 @@ set relativenumber	"relative line numbers [nonumber]
 set tabstop=4		"tabs are shorter
 set shiftwidth=4
 set mouse=a			"mouse interaction (all)
+set modeline		"activate modeline (eg. # vim: set ts=2 sw=2 sts=2 et:)
+set modelines=5
 
 set hls				"search highlight [noh]
 set smartcase		"make search case insensitive for only lowercase search
@@ -157,3 +159,4 @@ let g:autotagTagsFile=".tags"
 
 endif
 " end of vim only section
+" vim: set ts=4 sw=4 noet :

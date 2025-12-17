@@ -18,6 +18,8 @@ vim.o.expandtab = false			-- use tabs
 vim.o.tabstop = 4				-- number of spaces a tab represents
 vim.o.shiftwidth = 4			-- number of spaces for each indentation
 vim.o.mouse = a					-- allow all mouse interations
+vim.o.modeline = true			-- activate modeline (eg. # vim: set ts=2 sw=2 sts=2 et:)
+vim.o.modelines = 5				-- lines from start/end of file to search for modeline
 
 vim.o.hls = true				-- search highlighting [noh]
 vim.o.smartcase = true			-- make search case insensitive for only lowercase search
