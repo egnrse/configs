@@ -72,7 +72,19 @@ askForLink() {
 	done
 }
 
-## INSTALL PACKAGES ##################################
+# link $1 (from $3) to $2 (and make the file and link root owned)
+rootLink() {
+	file="$1"
+	to="$2/"
+	from="${3:-${origin}other/}/"
+
+	sudo chown root:root ${from}${file}
+	sudo mkdir -p ${to}
+	sudo ln -s -i ${from}${file} ${to}${file}
+}
+
+
+## INSTALL PACKAGES #####################################
 pkgs="base-devel neovim vi vim git sudo grub openssh efibootmgr man-db man-pages" # basics
 pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
 pkgs+=" networkmanager blueman waypipe" # network
@@ -250,6 +262,16 @@ if skip "add/link log file"; then
 	mkdir -p ${origin}log
 	ln -s -i ${origin}log ${config}log
 fi
+
+
+if skip "link sysctl config"; then
+	rootLink 99-custom-sysctl.conf /etc/sysctl.d
+
+	#file="99-custom-sysctl.conf"
+	#sudo chown root:root ${origin}other/${file}
+	#sudo ln -s -i ${origin}other/${file} /etc/sysctl.d/${file}
+fi
+
 
 echo ""
 
