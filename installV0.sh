@@ -85,6 +85,7 @@ rootLink() {
 
 
 ## INSTALL PACKAGES #####################################
+aur_handler="yay"
 pkgs="base-devel neovim vi vim git sudo grub openssh efibootmgr man-db man-pages" # basics
 pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
 pkgs+=" networkmanager blueman waypipe" # network
@@ -113,15 +114,15 @@ if skip "install some packages"; then
 	skip "install gui packages" && sudo pacman -Syu --needed $pkgs_gui
 	skip "install laptop packages" && sudo pacman -Syu --needed $pkgs_laptop
 	if skip "install AUR packages"; then
-		if ! command -v yay; then
+		if ! command -v ${aur_handler}; then
 			sudo pacman -S --needed git base-devel
-			git clone https://aur.archlinux.org/yay.git
-			cd yay
+			git clone https://aur.archlinux.org/${aur_handler}.git
+			cd ${aur_handler}
 			makepkg -si
 			cd ..
-			skip "remove yay install dir" && rm -rf ./yay
+			skip "remove ${aur_handler} install dir" && rm -rf ./${aur_handler}
 		fi
-		yay -S --needed $pkgs_aur
+		${aur_handler} -S --needed $pkgs_aur
 	fi
 	if skip "install flatpak packages"; then
 		flatpak install -y flathub $pkgs_flatpak
@@ -129,7 +130,7 @@ if skip "install some packages"; then
 fi
 
 
-## MOVE/CP FILES ##################################
+## MOVE/CP FILES ########################################
 if skip "link/copy ~/.config stuff"; then
 	mkdir -p ${backup}
 	
@@ -153,10 +154,6 @@ if skip "link/copy ~/.config stuff"; then
 		cp -r --update ${config}mimeapps.list ${backup}
 		cp ${origin}mimeapps.list ${config}
 	fi
-
-	# create/link log folder
-	#mkdir ${origin}/log
-	#askForLink log
 fi
 
 echo ""
@@ -205,13 +202,6 @@ if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 	fi
 fi
 
-# sddm
-if skip "link sddm config"; then
-	sudo chown root:root ${origin}other/sddm.conf
-	sudo mkdir -p /etc/sddm.conf.d/
-	sudo ln -s -i ${origin}other/sddm.conf /etc/sddm.conf.d/
-fi
-
 # dolphin
 if skip "link dolphin servicemenus"; then
 	mkdir -p ~/.local/share/kio/servicemenus
@@ -219,9 +209,7 @@ if skip "link dolphin servicemenus"; then
 	chmod +x ${origin}other/servicemenus/*
 fi
 if skip "create pacman hooks for dolphin "; then
-	sudo chown root:root ${origin}other/updateKDEcache.hook
-	sudo mkdir -p /etc/pacman.d/hooks
-	sudo ln -s -i ${origin}other/updateKDEcache.hook /etc/pacman.d/hooks/
+	rootLink updateKDEcache.hook /etc/pacman.d/hooks
 	if pacman -Q archlinux-xdg-menu >/dev/null 2>&1; then
 		:
 	else
@@ -235,20 +223,6 @@ if skip "link screenshot.desktop"; then
 	ln -s -i ${origin}other/screenshot.desktop ${HOME}/.local/share/applications/
 fi
 
-# sshd
-if skip "link sshd config"; then
-	sudo chown root:root ${origin}other/50-custom-sshd.conf
-	sudo ln -s -i ${origin}other/50-custom-sshd.conf /etc/ssh/sshd_config.d/50-custom-sshd.conf
-fi
-
-# systemd services
-if skip "link logind config"; then
-	sudo chown root:root ${origin}other/custom-logind.conf
-	sudo mkdir -p /etc/systemd/logind.conf.d
-	sudo ln -s -i ${origin}other/custom-logind.conf /etc/systemd/logind.conf.d/custom-logind.conf
-	sudo systemctl reload systemd-logind.service
-fi
-
 # systemd user services
 if skip "link systemd user services"; then
 	mkdir -p $HOME/.config/systemd/user
@@ -258,18 +232,32 @@ if skip "link systemd user services"; then
 fi
 
 # log file
-if skip "add/link log file"; then
+if skip "add/link log folder"; then
 	mkdir -p ${origin}log
-	ln -s -i ${origin}log ${config}log
+	ln -s -i ${origin}log ${config}
 fi
 
 
+## ROOT FILES #####
+# sddm
+if skip "link sddm config"; then
+	rootLink sddm.conf /etc/sddm.conf.d
+fi
+
+# sshd
+if skip "link sshd config"; then
+	rootLink 50-custom-sshd.conf /etc/ssh/sshd_config.d
+fi
+
+# sysctl
 if skip "link sysctl config"; then
 	rootLink 99-custom-sysctl.conf /etc/sysctl.d
+fi
 
-	#file="99-custom-sysctl.conf"
-	#sudo chown root:root ${origin}other/${file}
-	#sudo ln -s -i ${origin}other/${file} /etc/sysctl.d/${file}
+# systemd services
+if skip "link logind config"; then
+	rootLink custom-logind.conf /etc/systemd/logind.conf.d
+	sudo systemctl reload systemd-logind.service
 fi
 
 
@@ -324,7 +312,7 @@ skip "activate & start system user unit: hypridle" && systemctl --user enable --
 echo ""
 
 
-## NOT ASKED AGAIN ##################################
+## NOT ASKED AGAIN ######################################
 #echo "cp and move files to other locations too?"
 #echo "press enter to continue (Ctr+C to exit)"
 #echo " You will not be asked again!"
