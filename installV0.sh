@@ -10,15 +10,13 @@
 # you will be asked before most actions
 # most things are symbolic links
 # 
-# [WARNING:] (security risk)
-#	Moves files to root locations without changing their ownership to root.
-#	To migitage this risk chown them to 'root:root' or similar.
-#	(eg. sshd/sddm/pacman-hook)
+# env vars:
+# 	SILENT:	be less verbose (if not empty)
+# 	SKIP=n:	will skip the first n asked steps
 #
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 
-set -x
 
 ## CONSTANTS
 origin="$(pwd)/"
@@ -30,9 +28,24 @@ normal="\e[0m"
 green="\e[32m"
 purple="\e[95m"
 
-## FUNCTIONS
 
+## ENV VARIABLES
+skip_amount=0
+if [[ "$SKIP" =~ ^[0-9]+$ ]]; then
+	skip_amount=${SKIP}
+fi
+if [ -z "$SILENT" ]; then
+	set -x
+fi
+
+
+## FUNCTIONS
 skip() {
+	if [ "$skip_amount" -ge 1 ]; then
+		skip_amount=$((skip_amount -1))
+		echo -e "${purple}${bold}skipping:${normal} '$1'"
+		return 1
+	fi
 	var1="$1"
 	if [ -z "$1" ]; then
 		var1=" continue [y] or skip [n]"
@@ -85,31 +98,31 @@ rootLink() {
 
 
 ## INSTALL PACKAGES #####################################
-aur_handler="yay"
-pkgs="base-devel neovim vi vim git sudo grub openssh efibootmgr man-db man-pages" # basics
-pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
-pkgs+=" networkmanager blueman waypipe" # network
-pkgs+=" flatpak wget pacman-contrib devtools" # package management
-pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
-pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags" # cli
-pkgs+=" syncthing zip unzip"
-
-pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
-pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
-pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
-pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda" # more gui
-pkgs_gui+=" audacity audacious vlc" # audio
-pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
-
-pkgs_laptop="brightnessctl power-profiles-daemon"
-
-pkgs_aur="xdg-terminal-exec-git hyprswitch ianny v-editor-git" # hyprswitch > hyprshell
-pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
-pkgs_aur+=" beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6" # gui
-
-pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Studio io.github.dimtpap.coppwr net.cozic.joplin_desktop net.veloren.airshipper org.gimp.GIMP org.keepassxc.KeePassXC org.musescore.MuseScore org.torproject.torbrowser-launcher"
-
 if skip "install some packages"; then
+	aur_handler="yay"
+	pkgs="base-devel neovim vi vim git sudo grub openssh efibootmgr man-db man-pages" # basics
+	pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
+	pkgs+=" networkmanager blueman waypipe" # network
+	pkgs+=" flatpak wget pacman-contrib devtools" # package management
+	pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
+	pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags" # cli
+	pkgs+=" syncthing zip unzip"
+
+	pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
+	pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
+	pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
+	pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda" # more gui
+	pkgs_gui+=" audacity audacious vlc" # audio
+	pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
+
+	pkgs_laptop="brightnessctl power-profiles-daemon"
+
+	pkgs_aur="xdg-terminal-exec-git hyprswitch ianny v-editor-git" # hyprswitch > hyprshell
+	pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
+	pkgs_aur+=" beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6" # gui
+
+	pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Studio io.github.dimtpap.coppwr net.cozic.joplin_desktop net.veloren.airshipper org.gimp.GIMP org.keepassxc.KeePassXC org.musescore.MuseScore org.torproject.torbrowser-launcher"
+
 	sudo pacman -Syu --needed $pkgs
 	skip "install gui packages" && sudo pacman -Syu --needed $pkgs_gui
 	skip "install laptop packages" && sudo pacman -Syu --needed $pkgs_laptop
