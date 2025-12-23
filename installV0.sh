@@ -105,7 +105,7 @@ if skip "install some packages"; then
 	pkgs+=" networkmanager blueman waypipe" # network
 	pkgs+=" flatpak wget pacman-contrib devtools" # package management
 	pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
-	pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags" # cli
+	pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags lazygit" # cli
 	pkgs+=" syncthing zip unzip"
 
 	pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
@@ -148,7 +148,7 @@ if skip "link/copy ~/.config stuff"; then
 	mkdir -p ${backup}
 	
 	# link folders to $config
-	askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
+	askForLink alacritty bash bottom dunst environment.d hypr hyprswitch io.github.zefr0x.ianny lazygit nvim nwg-drawer pipewire rofi shell tofi waybar wlogout zsh
 	
 	# scripts
 	#ln -s -i ${origin}scripts ${config}		# deprecated

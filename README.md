@@ -35,6 +35,7 @@ Currently some files still need to be moved manually. Most of them are files out
 - [hypridle](#hypridle):  (/hypr/)
 - [hyprland](#hyprland):  (/hypr/)  
 - [hyprlock](#hyprlock):  (/hypr/)
+- [lazygit](#lazygit): (/lazygit/)
 - [neovim](#nvim): (/nvim/)  
 - [nwg-drawer](#nwg-drawer):    (/nwg-drawer/)
 - [rofi](#rofi):    (/rofi/)
@@ -219,6 +220,10 @@ A screen lock config. It needs `egnrseTheme.conf` for the colors.
 *(/io.github.zefr0x.ianny/)*  
 Utility that periodically informs the user to take breaks. Change the reminder periods in `./io.github.zefr0x.ianny/config.toml`.  
 Should get started with hyprland. There is also a custom script `restartIanny.sh` to (re-)start Ianny.  
+
+### lazygit
+*(/lazygit/)*  
+A powerful keyboard focused git TUI.
 
 ### [nvim](https://neovim.io/)
 *(/nvim/)*  
@@ -680,7 +685,7 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 bash-language-server (lsp)  
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
-unzip zip syncthing  
+unzip zip syncthing lazygit  
 libreoffice-fresh prismlauncher mission-center kdeconnect  
 audacious vlc kalgebra kcalc godot-mono blender cuda  
 #### from AUR
