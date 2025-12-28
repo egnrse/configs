@@ -241,9 +241,11 @@ Some explanations of the settings are in the files. The setup Leader-Key is Spac
   - nvim-autopairs (autocomplete brackes and more)
   - nvim-lint (linting (eg. marking wrong code) WIP)
   - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) (file explorer) {Leader+E}
+  - nvim-treesitter (better syntax highlighting/indentation (requires `curl`,`tar`,`tree-sitter-cli`))
   - misc (eg. nvim-colorizer)
 
-Linting is still a WIP. You might need a bash-language-server.  
+Linting/LSP is still a WIP. You might need a bash-language-server.  
+Needs: curl,tar,tree-sitter-cli
 
 ### [nwg-drawer](https://github.com/nwg-piotr/nwg-drawer)
 *(/nwg-drawer/)*  
@@ -685,7 +687,7 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 bash-language-server (lsp)  
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
-unzip zip syncthing lazygit  
+unzip zip syncthing lazygit tar tree-sitter-cli  
 libreoffice-fresh prismlauncher mission-center kdeconnect  
 audacious vlc kalgebra kcalc godot-mono blender cuda  
 #### from AUR

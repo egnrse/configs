@@ -106,7 +106,7 @@ if skip "install some packages"; then
 	pkgs+=" flatpak wget pacman-contrib devtools" # package management
 	pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
 	pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags lazygit" # cli
-	pkgs+=" syncthing zip unzip"
+	pkgs+=" syncthing zip unzip tar tree-sitter-cli"
 
 	pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
 	pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui

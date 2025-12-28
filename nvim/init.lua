@@ -41,6 +41,10 @@ vim.o.titlestring = "Nvim: %<%f"-- relative filepath, truncated from the left
 --	command = "tab all"
 --})
 
+-- Folds
+-- close: zc / open: zo / zR: open all folds
+vim.o.foldlevel=99 			-- start with folds open
+
 -- to initialize a project folder: 'ctags --extras=+q -R -f .tags .'
 vim.o.tags = "tags,./.tags;/"	-- search for '.tag' files (also in parent directories)
 
