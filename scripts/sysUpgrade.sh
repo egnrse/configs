@@ -124,6 +124,7 @@ echo "$underline"
 echo ""
 
 ## get aur_helper
+aur_helper=""
 if [ -n "$custom_aur_helper" ]; then
 	aur_helper=$custom_aur_helper
 	if [ -n "$1" ]; then
@@ -230,8 +231,12 @@ fi
 
 # background part
 cachePrepare() {
-	# list all AUR package directories (with a '-c' prefix, ignore errors)
-	aurCaches=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec echo -c {} \; 2>/dev/null)
+	if [ -n "${aur_helper}" ]; then
+		# list all AUR package directories (with a '-c' prefix, ignore errors)
+		aurCaches=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec echo -c {} \; 2>/dev/null)
+	else
+		aurCaches=""
+	fi
 
 	# write color and bold escape sequences to the string (for comparisons)
 	returnNothingTodo=$(echo -e '\E[1m\E[32m==>\E(B\E[m\E[1m no candidate packages found for pruning\E(B\E[m')
@@ -329,14 +334,16 @@ if [ $skipMaintenance -eq 0 ]; then
 	## removing AUR directories without build packages inside
 	# Needs: $aurCacheDir from 'cleaning the pacman/AUR cache'
 	# search for '*.pkg.tar.zst' within directories in ${aurCacheDir}
-	aurDeleteDir=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || echo {}" \;)
-	if [ -n "${aurCacheDir}" ] && [ -n "${aurDeleteDir}" ]; then
-		echo "remove AUR directories without build packages:"
-		echo ${aurDeleteDir} | sed 's/ /\n/g' | sed 's/^/ /'	# display a nice list
-		pause skip && find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || rm -r -f {}" \;
-		echo "$underline"
-	else
-		((skippedCount++))
+	if [ -n "${aur_helper}" ]; then
+		aurDeleteDir=$(find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || echo {}" \;)
+		if [ -n "${aurCacheDir}" ] && [ -n "${aurDeleteDir}" ]; then
+			echo "remove AUR directories without build packages:"
+			echo ${aurDeleteDir} | sed 's/ /\n/g' | sed 's/^/ /'	# display a nice list
+			pause skip && find ${aurCacheDir} -mindepth 1 -maxdepth 1 -type d -exec bash -c "compgen -G {}/*.pkg.tar.zst > /dev/null || rm -r -f {}" \;
+			echo "$underline"
+		else
+			((skippedCount++))
+		fi
 	fi
 
 
