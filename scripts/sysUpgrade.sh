@@ -381,26 +381,38 @@ if [ $skipMaintenance -eq 0 ]; then
 	## neovim updates
 	# check if nvim is installed
 	if [ $(command -v nvim) > /dev/null ]; then
+		# for error detection with grep
+		nvimError="Error detected while processing command line:"
+
+		# check if nvim starts silently
+		nvimOutput="$(nvim --headless +qa 2>&1)"
+		if [ -n "${nvimOutput}" ]; then
+			echo "WARNING: 'nvim' does not start silently:"
+			echo ""
+			echo "$nvimOutput"
+			echo ""
+			echo "$underline"
+		fi
 		# check if nvim accepts the command 'Lazy!'
-		if [ -z "$(nvim --headless '+Lazy!' +qa)" ]; then
+		if [ -z "$(nvim --headless '+Lazy!' +qa 2>&1 | grep "${nvimError}")" ]; then
 			echo "update Lazy and Lazy plugins (nvim pluginmanager)"
 			pause skip
 			if [ $? -eq 0 ]; then
 				echo ""
 				# start nvim headless, sync plugins, exit nvim when done
-				nvim --headless "+Lazy! sync" +qa
+				nvim --headless "+Lazy! sync" +qa 2>&1
 				echo ""
 			fi
 			echo "$underline"
 		fi
 		# check if nvim accepts the command 'TSLog'
-		if [ -z "$(nvim --headless '+TSLog' +qa)" ]; then
-			echo "update nvim-treesitter parsers (nvim)"
+		if [ -z "$(nvim --headless '+TSLog' +qa 2>&1 | grep "${nvimError}")" ]; then
+			echo "update nvim-treesitter parsers (nvim ':TSUpdate')"
 			pause skip
 			if [ $? -eq 0 ]; then
 				echo ""
 				# start nvim headless, update parsers, exit nvim when done
-				nvim --headless "+TSUpdate" +qa
+				nvim --headless "+TSUpdate" +qa 2>&1
 				echo ""
 			fi
 			echo "$underline"
@@ -408,6 +420,7 @@ if [ $skipMaintenance -eq 0 ]; then
 	else
 		# nvim not installed
 		echo "nvim missing: skipping neovim based updates"
+		((skippedCount++))
 	fi
 	
 
