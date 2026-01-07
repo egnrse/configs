@@ -105,15 +105,15 @@ if skip "install some packages"; then
 	pkgs+=" networkmanager blueman waypipe" # network
 	pkgs+=" flatpak wget pacman-contrib devtools" # package management
 	pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
-	pkgs+=" wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags lazygit" # cli
-	pkgs+=" syncthing zip unzip tar tree-sitter-cli"
+	pkgs+=" wl-clipboard zsh zoxide fzf rclone ttf-dejavu-nerd ctags" # cli
+	pkgs+=" syncthing zip unzip tar tree-sitter-cli lazygit zerotier-one fastfetch"
 
 	pkgs_gui="plasma-meta hyprland sddm wayland-protocols wayland-utils uwsm xdg-desktop-portal-hyprland xdg-desktop-portal-gtk" # gui meta
 	pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
 	pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
-	pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda" # more gui
-	pkgs_gui+=" audacity audacious vlc" # audio
 	pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
+	pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc" # more gui
+	pkgs_gui+=" audacity audacious vlc" # audio
 
 	pkgs_laptop="brightnessctl power-profiles-daemon"
 
@@ -121,7 +121,7 @@ if skip "install some packages"; then
 	pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
 	pkgs_aur+=" beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6" # gui
 
-	pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Studio io.github.dimtpap.coppwr net.cozic.joplin_desktop net.veloren.airshipper org.gimp.GIMP org.keepassxc.KeePassXC org.musescore.MuseScore org.torproject.torbrowser-launcher"
+	pkgs_flatpak+="com.github.tchx84.Flatseal dev.vencord.Vesktop com.obsproject.Studio io.github.dimtpap.coppwr net.cozic.joplin_desktop net.veloren.airshipper org.gimp.GIMP org.musescore.MuseScore org.torproject.torbrowser-launcher"
 
 	sudo pacman -Syu --needed $pkgs
 	skip "install gui packages" && sudo pacman -Syu --needed $pkgs_gui

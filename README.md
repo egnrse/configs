@@ -655,13 +655,14 @@ I used the installer for linux from: [mathworks-download](https://de.mathworks.c
 ---
 
 ### cool/useful Packages
-zerotier-one  
-joplin-desktop<sup>AUR</sup>  
-beeper-latest-bin<sup>AUR</sup>  
-[coppwr](https://dimtpap.ovh/coppwr) (flathub)  
-[sonusmix<sup>AUR</sup>](https://codeberg.org/sonusmix/sonusmix)  
-[xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)  
-[ssh-audit](https://github.com/jtesta/ssh-audit)  
+- zerotier-one  
+- joplin-desktop<sup>AUR</sup>  
+- beeper-v4-bin<sup>AUR</sup>  
+- [coppwr](https://dimtpap.ovh/coppwr) (flathub)  
+- [sonusmix<sup>AUR</sup>](https://codeberg.org/sonusmix/sonusmix)  
+- [xdg-terminal-exec-mkhl<sup>AUR</sup>](https://codeberg.org/mkhl/xdg-terminal-exec) (feels slower than xdg-terminal-exec though)  
+- [ssh-audit](https://github.com/jtesta/ssh-audit)  
+- ddrescue / testdisk ([photorec](https://www.cgsecurity.org/wiki/PhotoRec_Step_By_Step))
 
 ---
 	
@@ -674,7 +675,9 @@ ntfs-3g exfat-utils btrfs-prrogs grub-btrfs		(filesystem)
 networkmanager blueman waypipe	    (network)  
 flatpak wget pacman-contrib devtools yay<sup>AUR</sup>		(package managing)  
 pipewire pipewire-docs wireplumber wireplumber-docs (audio)  
-wl-clipboard zsh zoxide fzf fastfetch rclone zerotier-one ttf-dejavu-nerd ctags  (cli)   
+wl-clipboard zsh zoxide fzf rclone ttf-dejavu-nerd ctags (cli)   
+syncthing zip unzip tar tree-sitter-cli lazygit zerotier-one fastfetch  
+
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin (gui)  
 pwvucontrol<sup>AUR</sup> wlogout<sup>AUR</sup> tofi<sup>AUR</sup> trash-d<sup>AUR</sup> 
 
@@ -684,21 +687,18 @@ wayland-protocols wayland-utils uwsm (managing wayland-WM)
 xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-desktop-portal/hyprland-portals.conf)  
 
 #### misc
-bash-language-server (lsp)  
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
-unzip zip syncthing lazygit tar tree-sitter-cli  
-libreoffice-fresh prismlauncher mission-center kdeconnect  
-audacious vlc kalgebra kcalc godot-mono blender cuda  
+libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc  
+audacity audacious vlc (audio)  
+
+brightnessctl power-profiles-daemon (laptop)  
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch ianny v-editor-git (default terminal, win fonts)   
-spotify beeper-latest-bin anki-bin (discord client, msg client)  
-waterfox-bin pa-notify syncthingtray-qt6  
+beeper-v4-bin anki-bin waterfox-bin pa-notify syncthingtray-qt6  
 #### from Flatpak
 (replace '\_' with spaces)  
-keepassXC joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp vesktop musescore  
-#### from somewhere else
-sunshine matlab  
+joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp vesktop musescore  
 
 </details>
 
