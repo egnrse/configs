@@ -1,4 +1,5 @@
 # The base of my configs
+## !! This branch is STALE, I now rebase base onto main. !!
 Meant for a simple install in a shell environment (eg. for ssh usage).
 
 Get it with the steps bellow:
