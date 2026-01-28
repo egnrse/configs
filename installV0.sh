@@ -103,7 +103,7 @@ if skip "install some packages"; then
 	pkgs="base-devel neovim vi vim git sudo grub openssh efibootmgr man-db man-pages" # basics
 	pkgs+=" ntfs-3g exfat-utils btrfs-progs grub-btrfs" # filesystem
 	pkgs+=" networkmanager blueman waypipe" # network
-	pkgs+=" flatpak wget pacman-contrib devtools" # package management
+	pkgs+=" flatpak wget pacman-contrib devtools reflector" # package management
 	pkgs+=" pipewire pipewire-docs wireplumber wireplumber-docs" # audio
 	pkgs+=" wl-clipboard zsh zoxide fzf rclone ttf-dejavu-nerd ctags" # cli
 	pkgs+=" syncthing zip unzip tar tree-sitter-cli lazygit zerotier-one fastfetch"
@@ -267,6 +267,12 @@ if skip "link sysctl config"; then
 	rootLink 99-custom-sysctl.conf /etc/sysctl.d
 fi
 
+
+if skip "link reflector config"; then
+	sudo mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.bak
+	sudo cp ${origin}other/reflector.conf /etc/xdg/reflector
+fi
+
 # systemd services
 if skip "link logind config"; then
 	rootLink custom-logind.conf /etc/systemd/logind.conf.d
@@ -321,6 +327,7 @@ skip "activate system unit: sddm" && sudo systemctl enable sddm
 skip "activate system unit: bluetooth" && sudo systemctl enable bluetooth
 skip "activate system unit: ianny" && systemctl --user enable app-io.github.zefr0x.ianny@autostart.service 
 skip "activate & start system user unit: hypridle" && systemctl --user enable --now hypridle.service
+skip "activate system unit: reflector.timer" && sudo systemctl enable reflector.timer
 
 echo ""
 

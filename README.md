@@ -504,6 +504,10 @@ ctags --extras=+q -R -f .tags .
 This genereates a `.tags` file, which is used by eg. vim. (-R: index subfolder recursively, +q: index class members)  
 (Also look at [its man page](https://man.archlinux.org/man/ctags.1.en))  
 
+#### reflector
+*(/other/reflector.conf)*
+Update `/etc/pacman.d/mirrorlist` automatically every monday with fast mirrors. You might want to update the countries in the config file. (there are custom zsh completions for reflector in this repo)
+
 #### 'old' folder
 *(/other/old/\*)*  
 Everything in here is not in active use anymore with no idea if I will need it for sth. later on.  

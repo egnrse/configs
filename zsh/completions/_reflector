@@ -1,0 +1,62 @@
+#compdef reflector
+# zsh completion for reflector
+# (by egnrse)
+
+
+local folder="$HOME/.cache/reflector-complete"
+local date=$(date +%Y%V)
+
+_reflector_countries() {
+	local file="$folder/countrylist.$date"
+	mkdir -p "$folder"
+
+	local countries
+	if [[ -r "$file" ]]; then
+		countries=("${(@f)$(<"$file")}")
+	else
+		rm -f "$folder"/countrylist.*
+		countries=("${(@f)$(reflector --list-countries | sed -e '1,2d' -e 's|^\(.*[a-z]\)[ ]*[A-Z][A-Z].*$|\1|')}")
+		print -l -- $countries > "$file"
+	fi
+
+	_values "countries" $countries
+}
+
+_reflector_protocols() {
+	_values "protocol" https http rsync
+}
+
+_reflector_sort() {
+	_values "sort key" age rate country score delay
+}
+
+_reflector_numbers_0_9() { _values "number" {0..9} }
+_reflector_numbers_0_99() { _values "number" {0..99} }
+_reflector_numbers_0_100() { _values "percent" {0..100} }
+
+_arguments -s -S \
+	'(-h --help)'{-h,--help}'[show this help message and exit]' \
+	'--connection-timeout[seconds before connection times out (default: 5)]:seconds:_reflector_numbers_0_99' \
+	'--download-timeout[seconds before download times out (default: 5)]:seconds:_reflector_numbers_0_99' \
+	'--cache-timeout[cache timeout in seconds (default: 300)]:seconds:_reflector_numbers_0_99' \
+	'--list-countries[display table of available countries]' \
+	'--url[URL to mirrorstatus JSON]:url:_urls' \
+	'--save[save mirrorlist to file]:file:_files' \
+	'--sort[sort mirrorlist by key]:key:_reflector_sort' \
+	'--threads[number of threads for rating]:n:_reflector_numbers_0_99' \
+	'--verbose[print extra information to stderr]' \
+	'--info[print mirror information instead of mirrorlist]' \
+	'(-a --age)'{-a,--age}'[only mirrors synchronized in last n hours]:hours:_reflector_numbers_0_99' \
+	'--delay[only mirrors with sync delay <= n hours]:hours:_reflector_numbers_0_99' \
+	'(-c --country)'{-c,--country}'[restrict mirrors to countries (name or code, comma-separated)]:country:_reflector_countries' \
+	'(-f --fastest)'{-f,--fastest}'[return n fastest mirrors]:n:_reflector_numbers_0_99' \
+	'(-i --include)'{-i,--include}'[include servers matching regex]:regex:' \
+	'(-x --exclude)'{-x,--exclude}'[exclude servers matching regex]:regex:' \
+	'(-l --latest)'{-l,--latest}'[limit to n most recently synchronized]:n:_reflector_numbers_0_99' \
+	'--score[limit to n servers with highest score]:n:_reflector_numbers_0_99' \
+	'(-n --number)'{-n,--number}'[return at most n mirrors]:n:_reflector_numbers_0_99' \
+	'(-p --protocol)'{-p,--protocol}'[match protocol (https,http,ftp,rsync), comma-separated]:protocol:_reflector_protocols' \
+	'--completion-percent[minimum completion percent (0-100)]:percent:_reflector_numbers_0_100' \
+	'--isos[only mirrors that host ISOs]' \
+	'--ipv4[only mirrors that support IPv4]' \
+	'--ipv6[only mirrors that support IPv6]'
