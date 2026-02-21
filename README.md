@@ -504,6 +504,11 @@ ctags --extras=+q -R -f .tags .
 This genereates a `.tags` file, which is used by eg. vim. (-R: index subfolder recursively, +q: index class members)  
 (Also look at [its man page](https://man.archlinux.org/man/ctags.1.en))  
 
+
+#### disable debug pkgs
+*(/other/makepkg.conf)*  
+By disableing `debug` in the `OPTIONS` array in `/etc/makepkg.conf`.
+
 #### reflector
 *(/other/reflector.conf)*
 Update `/etc/pacman.d/mirrorlist` automatically every monday with fast mirrors. You might want to update the countries in the config file. (there are custom zsh completions for reflector in this repo)

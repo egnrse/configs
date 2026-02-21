@@ -267,6 +267,10 @@ if skip "link sysctl config"; then
 	rootLink 99-custom-sysctl.conf /etc/sysctl.d
 fi
 
+# makepkg
+if skip "link makepkg config"; then
+	rootLink makepkg.conf /etc
+fi
 
 if skip "link reflector config"; then
 	sudo mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.bak
