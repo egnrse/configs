@@ -416,8 +416,9 @@ if [ $skipMaintenance -eq 0 ]; then
 				if [ $? -eq 0 ]; then
 					echo ""
 					# as 'TSUpdate' is not blocking, check manually every so often if the update is done
-					maxTime=6000	# max wait time (ms)
-					stepTime=1000	# how long to wait in one interation (ms)
+					maxTime=8000	# max wait time (ms)
+					stepTime=600	# how long to wait in one interation (ms)
+					stepMultiplier=16	# how much to increase the step time (divided by ten)
 					elapsed=0		# counts the elapsed time (ms)
 					while [ $elapsed -lt $maxTime ]; do
 						nvimOut=$(nvim --headless "+TSUpdate" "+sleep ${stepTime}m" +qa 2>&1 | tee /dev/tty)
@@ -427,8 +428,11 @@ if [ $skipMaintenance -eq 0 ]; then
 						fi
 						echo ""
 						elapsed=$((elapsed+stepTime))
+						stepTime=$((stepTime*stepMultiplier/10))
+						echo "$elapsed ($stepTime)"
 					done
 				fi
+				echo ""
 				echo "$underline"
 			else
 				((skippedCount++))
