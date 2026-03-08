@@ -407,6 +407,7 @@ if [ $skipMaintenance -eq 0 ]; then
 		fi
 		# check if nvim accepts the command 'TSLog'
 		if [ -z "$(nvim --headless '+TSLog' +qa 2>&1 | grep "${nvimError}")" ]; then
+
 			tsuDone="up-to-date"	# for detecting if parsers are up to date
 			# check if TSUpdate is up to date
 			nvimOut=$(nvim --headless "+TSUpdate" +qa 2>&1)
@@ -415,24 +416,10 @@ if [ $skipMaintenance -eq 0 ]; then
 				pause skip
 				if [ $? -eq 0 ]; then
 					echo ""
-					# as 'TSUpdate' is not blocking, check manually every so often if the update is done
-					maxTime=8000	# max wait time (ms)
-					stepTime=600	# how long to wait in one interation (ms)
-					stepMultiplier=16	# how much to increase the step time (divided by ten)
-					elapsed=0		# counts the elapsed time (ms)
-					while [ $elapsed -lt $maxTime ]; do
-						nvimOut=$(nvim --headless "+TSUpdate" "+sleep ${stepTime}m" +qa 2>&1 | tee /dev/tty)
-						# check if we are done
-						if grep -q "${tsuDone}" <<< "$nvimOut"; then
-							break
-						fi
-						echo ""
-						elapsed=$((elapsed+stepTime))
-						stepTime=$((stepTime*stepMultiplier/10))
-						echo "$elapsed ($stepTime)"
-					done
+					maxTime=$((30*1000)) # timeout 30 sec
+					nvimOut=$(nvim --headless "+lua require('nvim-treesitter').update():wait(${maxTime})" +qa 2>&1 | tee /dev/tty)
+					echo ""
 				fi
-				echo ""
 				echo "$underline"
 			else
 				((skippedCount++))
