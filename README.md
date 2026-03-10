@@ -550,9 +550,21 @@ To let the `KeepassXC-Browser` Plugin find KeepassXC u can copy the `native-mess
 Activate **Hardware video acceleration** on nvidia with `libva-nvidia-driver` (We need the VA-API). Test if it worked with 'vainfo' from `libva-utils` (see [Wiki](https://wiki.archlinux.org/title/Hardware_video_acceleration#Verification)). Set in `about:config` in waterfox `media.ffmpeg.vaapi.enabled` to `true` (see [here](https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration)).  
 Disable `Ctr+Q` for close: `about:config` > `browser.quitShortcut.disabled`= `true`  
 
+<details>
+<summary>more settings</summary>
+
+about:config
+```conf
+privacy.fingerprintingProtection: true
+privacy.resistFingerprinting: true
+privacy.resistFingerprinting.exemptedDomains: `*.example.invalid, *.roll20.net`
+```
+
+</details>
+
 #### [Thorium](https://thorium.rocks/)
-thorium-browser-bin<sup>AUR</sup>
-To active native wayland use `--ozone-platform-hint=auto` as a startup flag or set `Preferred Ozone platform` to auto within the `chrome://flags/` menu (put the previous thing into the URL field of thorioum).  
+thorium-browser-bin<sup>AUR</sup>  
+To active native wayland use `--ozone-platform-hint=auto` as a startup flag or set `Preferred Ozone platform` to auto within the `chrome://flags/` menu (put the previous thing into the URL field of thorium).  
 
 
 #### Dolphin (filemanager)
