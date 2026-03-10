@@ -654,6 +654,18 @@ default=hyprland;gtk;kde
 You can see all installed portals in `/usr/share/xdg-desktop-portal/portals`. [more in the ArchWiki](https://wiki.archlinux.org/title/XDG_Desktop_Portal)  
 [Hyprland issue](https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/252)
 
+#### zinit completions errors
+If you see errors similar to:
+```
+compinit:527: no such file or directory: /home/elia/.local/share/zinit/completions/_android
+```
+You can solve this by forcing zinit to regenerate the completions:
+```sh
+rm -rf ~/.local/share/zinit/completions
+zinit compinit
+```
+
+
 #### Matlab (deprecated)
 Look into the file [/other/matlabStart.sh](./other/matlabStart.sh) and look into [ArchWiki-Matlab](https://wiki.archlinux.org/title/MATLAB).  
 I used the installer for linux from: [mathworks-download](https://de.mathworks.com/downloads/).
