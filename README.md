@@ -513,6 +513,15 @@ By disableing `debug` in the `OPTIONS` array in `/etc/makepkg.conf`.
 *(/other/reflector.conf)*
 Update `/etc/pacman.d/mirrorlist` automatically every monday with fast mirrors. You might want to update the countries in the config file. (there are custom zsh completions for reflector in this repo)
 
+#### faillock
+*(/other/faillock.conf)*  
+Some changes to the locking of users on failed login. (eg. lock after 5 failed logins (default 3))
+
+To reset the current failed count, use:
+```sh
+faillock --user $USER --reset
+```
+
 #### 'old' folder
 *(/other/old/\*)*  
 Everything in here is not in active use anymore with no idea if I will need it for sth. later on.  

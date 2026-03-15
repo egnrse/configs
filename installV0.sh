@@ -262,6 +262,7 @@ if skip "link/chmod root files"; then
 	askRootLink 50-custom-sshd.conf /etc/ssh/sshd_config.d "custom sshd config"
 	askRootLink 99-custom-sysctl.conf /etc/sysctl.d "sysctl config"
 	askRootLink makepkg.conf /etc
+	askRootLink faillock.conf /etc/security
 
 	if skip "link reflector config"; then
 		sudo mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.bak
