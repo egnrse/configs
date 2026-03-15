@@ -216,6 +216,14 @@ Works nicely with: hypridle hyprlock xdg-desktop-portal-hyprland
 *(/hypr/hyprlock.conf)*  
 A screen lock config. It needs `egnrseTheme.conf` for the colors.  
 
+It works with `fprint` to allow fingerprint authentication.
+
+If you use hyprland with permission, make sure to allow hyprlock to screencopy (else u might get locked out)!
+```yml
+permission = /usr/bin/hyprlock, screencopy, allow
+```
+
+
 ### [ianny](https://github.com/zefr0x/ianny)
 *(/io.github.zefr0x.ianny/)*  
 Utility that periodically informs the user to take breaks. Change the reminder periods in `./io.github.zefr0x.ianny/config.toml`.  
