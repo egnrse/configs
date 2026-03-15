@@ -95,6 +95,11 @@ rootLink() {
 	sudo mkdir -p ${to}
 	sudo ln -s -i ${from}${file} ${to}${file}
 }
+ askRootLink() {	
+	if skip "root-link ${3:-$1}"; then
+		rootLink $1 $2
+	fi
+ }
 
 
 ## INSTALL PACKAGES #####################################
@@ -251,38 +256,24 @@ if skip "add/link log folder"; then
 fi
 
 
-## ROOT FILES #####
-# sddm
-if skip "link sddm config"; then
-	rootLink sddm.conf /etc/sddm.conf.d
-fi
+## ROOT FILES ###########################################
+if skip "link/chmod root files"; then
+	askRootLink sddm.conf /etc/sddm.conf.d
+	askRootLink 50-custom-sshd.conf /etc/ssh/sshd_config.d "custom sshd config"
+	askRootLink 99-custom-sysctl.conf /etc/sysctl.d "sysctl config"
+	askRootLink makepkg.conf /etc
 
-# sshd
-if skip "link sshd config"; then
-	rootLink 50-custom-sshd.conf /etc/ssh/sshd_config.d
-fi
+	if skip "link reflector config"; then
+		sudo mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.bak
+		sudo cp ${origin}other/reflector.conf /etc/xdg/reflector
+	fi
 
-# sysctl
-if skip "link sysctl config"; then
-	rootLink 99-custom-sysctl.conf /etc/sysctl.d
+	# systemd services
+	if skip "link logind config"; then
+		rootLink custom-logind.conf /etc/systemd/logind.conf.d
+		sudo systemctl reload systemd-logind.service
+	fi
 fi
-
-# makepkg
-if skip "link makepkg config"; then
-	rootLink makepkg.conf /etc
-fi
-
-if skip "link reflector config"; then
-	sudo mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.bak
-	sudo cp ${origin}other/reflector.conf /etc/xdg/reflector
-fi
-
-# systemd services
-if skip "link logind config"; then
-	rootLink custom-logind.conf /etc/systemd/logind.conf.d
-	sudo systemctl reload systemd-logind.service
-fi
-
 
 echo ""
 
