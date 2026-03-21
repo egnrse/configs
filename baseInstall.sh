@@ -1,6 +1,6 @@
  #!/bin/env bash
 
-# [WIP] be carful with this script !
+# [WIP] be careful with this script !
 # install (symbolic) links from $origin to $config (and $HOME) for *all* things in this git
 # 
 # (https://github.com/egnrse/configs)
@@ -43,6 +43,9 @@ askForLink() {
 	done
 }
 
+# test if $1 is available as a command
+# $2: what config $1 is needed for (eg. 'zsh')
+# $3: set if $1 is optional for $2
 testInstalled() {
 	if [ -z "$(command -v $1)" ]; then
 		if [ -z "$2" ]; then
@@ -102,14 +105,22 @@ if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
 fi
 
 # ssh
+sshConfigFile="${HOME}/.ssh/config"
 if skip "link ~/.ssh/ssh_config"; then
 	ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
-	echo "add the following to ~/.ssh/config: 'Include ~/.ssh/ssh_config'"
+	if grep "Include ~/.ssh/ssh_config" ${sshConfigFile} >/dev/null; then
+		echo " Skipping: already sourced in ${sshConfigFile}"
+	else
+		skip " source the custom ssh config in ${sshConfigFile}" && echo "Include ~/.ssh/ssh_config" >> ${sshConfigFile}
+	fi
 fi
 
 ## SOURCE/CHANGE STUFF
 if skip "source bash in ~/.bashrc"; then
-	cat <<EOF >> ${HOME}/.bashrc
+	if grep "source \$customBashConfig_path" ${HOME}/.bashrc >/dev/null; then
+		echo " Skipping: already sourced"
+	else
+		cat <<EOF >> ${HOME}/.bashrc
 # fetches the config file for bash (if it exists)
 # $customBashConfig_path is the path to the custom config file
 customBashConfig_path="$HOME/.config/bash/custom.bashrc"
@@ -119,10 +130,14 @@ else
 	echo "path to config not found (\$customBashConfig_path)"
 fi
 EOF
+	fi
 fi
 
 if skip "source zsh in ~/.zshrc"; then
-	cat <<EOF >> ${HOME}/.zshrc
+	if grep "source \$customZshConfig_path" ${HOME}/.zshrc >/dev/null; then
+		echo " Skipped: already sourced"
+	else
+		cat <<EOF >> ${HOME}/.zshrc
 # fetch the custom config file for zsh (if it exists)
 # customZshConfig_path is the path to the config file
 customZshConfig_path="$HOME/.config/zsh/custom.zshrc"
@@ -132,6 +147,7 @@ else
 	echo ".zshrc: path to config not found (\$customZshConfig_path)"
 fi
 EOF
+	fi
 fi
 
 if skip "make zsh your standart shell"; then
