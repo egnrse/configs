@@ -16,6 +16,7 @@ alias cd..='cd ..'
 alias cls='clear'
 alias clsa='clear && lsa'
 alias clsA='clear && lsA'
+alias clearclear='clear'
 
 if command -v ctags >/dev/null; then
 	# run ctags: include class functions, look in subfolders, save to '.tags', start from .
