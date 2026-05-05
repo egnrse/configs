@@ -151,7 +151,7 @@
 			"paused": "⏸"
 		},
 		"dynamic-len": 40,
-		"dynamic-order": ["title","artist","length","position","album"],
+		"dynamic-order": ["title","artist","length","position"],
 		"title-len": 25,
 		"artist-len": 15
 
