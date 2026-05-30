@@ -216,6 +216,30 @@ git rebase -i --autosquash HEAD~5
 git push --force-with-lease
 ```
 
+
+### OpenBSD Notes
+There are some changes that need to happen to be able to run this in OpenBSD.
+- in [baseInstall.sh](./baseInstall.sh), set `lnFlag` to empty.
+- in [bash/custom.bashrc](./bash/custom.bashrc) remove or comment out:
+```sh
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+```
+- in [shell/aliases.shrc](./shell/aliases.shrc) remove or comment out:
+```sh
+alias rm='rm -I'
+```
+- to fix bash login shells, add `~/.bash_profile`
+```sh
+# ~/.bash_profile
+
+# load bashrc for interactive shells
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+```
+
+
 ---
 
 ### other useful (git) commands:

@@ -1,4 +1,4 @@
- #!/bin/env bash
+ #!/usr/bin/env bash
 
 # [WIP] be careful with this script !
 # install (symbolic) links from $origin to $config (and $HOME) for *all* things in this git
@@ -11,6 +11,8 @@
 ## CONSTANTS
 origin="$(pwd)/"
 config="$HOME/.config/"
+
+lnFlag="-i" 	# remove this on openBSD
 
 ## FUNCTIONS
 
@@ -33,7 +35,7 @@ skip() {
 # links $1 from $origin to $config
 linkTo() {
 	linkName=$1
-	ln -s -i ${origin}$linkName ${config}
+	ln -s ${lnFlag} ${origin}$linkName ${config}
 }
 
 # ask for each input and call linkTo() if yes was selected
@@ -77,13 +79,13 @@ mkdir -p ${config}
 askForLink bash nvim shell zsh
 
 # vim
-skip "link ~/.vimrc" && ln -s -i ${origin}other/.vimrc ${HOME}/
+skip "link ~/.vimrc" && ln -s ${lnFlag} ${origin}other/.vimrc ${HOME}/
 
 # git
 gitConfigFile="${HOME}/.gitconfig"
 if skip "link ~/.gitconfig_custom and ~/.gitignore_global"; then
-	ln -s -i ${origin}other/.gitconfig_custom ${HOME}/
-	ln -s -i ${origin}other/.gitignore_global ${HOME}/
+	ln -s ${lnFlag} ${origin}other/.gitconfig_custom ${HOME}/
+	ln -s ${lnFlag} ${origin}other/.gitignore_global ${HOME}/
 	if cat "${gitConfigFile}" >/dev/null 2>&1 && grep "path = ~/.gitconfig_custom" "${gitConfigFile}" >/dev/null; then
 		echo " Skipping: already sourced in ${gitConfigFile}"
 	else
@@ -107,7 +109,7 @@ fi
 # ssh
 sshConfigFile="${HOME}/.ssh/config"
 if skip "link ~/.ssh/ssh_config"; then
-	ln -s -i ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
+	ln -s ${lnFlag} ${origin}other/ssh_config ${HOME}/.ssh/ssh_config
 	if grep "Include ~/.ssh/ssh_config" ${sshConfigFile} >/dev/null; then
 		echo " Skipping: already sourced in ${sshConfigFile}"
 	else
