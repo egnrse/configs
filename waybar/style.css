@@ -213,7 +213,7 @@ tooltip label {
 	animation-name: bluetoothDiscovering;
 	animation-duration: 1s;
 	animation-timing-function: steps(20);
-	animation-iteration-count: infinite;
+	animation-iteration-count: 50;
 	animation-direction: alternate;
 }
 #bluetooth.no-controller {

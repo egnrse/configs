@@ -144,11 +144,11 @@
 		"format": "{player_icon} {dynamic}|",
 		"format-paused": "{status_icon} <i>{dynamic}</i>|",
 		"player-icons": {
-			"default": "▶",
-			"mpv": "🎵"
+			"default": "󰐊",
+			"mpv": "󰝚"
 		},
 		"status-icons": {
-			"paused": "⏸"
+			"paused": "󰏤"
 		},
 		"dynamic-len": 40,
 		"dynamic-order": ["title","artist","length","position"],
