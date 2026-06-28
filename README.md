@@ -110,6 +110,7 @@ I use `trash-d`<sup>AUR</sup> as a drop in replacement for `rm` (TODO: look into
 Config for a graphical process/system monitor for the terminal. You can launch it by running `btm` or (within this config) by pressing `Ctr+Shift+Esc`.  
 
 <details><summary>Details</summary>
+
 #### Keymappings
 `?`     : open help menu  
 `e`     : focus/fullscreen current selection  
@@ -119,6 +120,7 @@ Config for a graphical process/system monitor for the terminal. You can launch i
 in Processes:  
 `/`      : search  
 `dd`     : send a signal to the selected process  
+
 </details>
 
 
