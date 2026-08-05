@@ -741,7 +741,7 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 #### misc
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
-libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc  
+libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc noto-fonts-cjk  
 audacity audacious vlc (audio)  
 
 brightnessctl power-profiles-daemon (laptop)  

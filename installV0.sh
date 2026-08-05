@@ -117,7 +117,7 @@ if skip "install some packages"; then
 	pkgs_gui+=" waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin" # gui
 	pkgs_gui+=" kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage" # dolpin stuff
 	pkgs_gui+=" hunspell-en_US speech-dispatcher" # waterfox/firefox
-	pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc" # more gui
+	pkgs_gui+=" libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc noto-fonts-cjk" # more gui
 	pkgs_gui+=" audacity audacious vlc" # audio
 
 	pkgs_laptop="brightnessctl power-profiles-daemon"
