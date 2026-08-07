@@ -20,7 +20,7 @@ fi
 if [ $retVal -eq 0 ]; then
 	notify-send -u low "waybar config reloaded" &
 else
-	hyprctl dispatch exec "waybar >> ${logfile} 2>&1"
+	hyprctl dispatch "hl.dsp.exec_cmd([[waybar >> ${logfile} 2>&1]])"
 	# waybar &	# use this if u dont have hyprctl
 	notify-send -u low "waybar started & config reloaded" & 
 fi

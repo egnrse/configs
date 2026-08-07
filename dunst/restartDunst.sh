@@ -8,7 +8,7 @@ logfile=$HOME/.config/dunst/dunst.log
 
 killall dunst
 sleep 0.5
-hyprctl dispatch exec "uwsm app -- dunst >> ${logfile} 2>&1"
+hyprctl dispatch "hl.dsp.exec_cmd([[uwsm app -- dunst >> ${logfile} 2>&1]])"
 #dunst &	# use this if u dont have hyprctl
 
 # send notifications

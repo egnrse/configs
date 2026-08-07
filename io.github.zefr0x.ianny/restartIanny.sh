@@ -14,6 +14,6 @@ fi
 
 killall ianny
 sleep 0.5
-hyprctl dispatch exec "ianny >> ${logfile} 2>&1"
+hyprctl dispatch "hl.dsp.exec_cmd([[ianny >> ${logfile} 2>&1]])"
 # ianny  &	# use this if u dont have hyprctl
 notify-send -u low "ianny restarted" & 

@@ -12,7 +12,8 @@ vars.logPath = os.getenv("HOME") .. "/.config" -- path for log files
 
 -- Set programs that you use
 --local terminal = alacritty
-vars.terminal = "uwsm app -- alacritty"
+vars.terminalClean = "alacritty"
+vars.terminal = "uwsm app -- " .. vars.terminalClean
 vars.fileManager = "uwsm app -- dolphin"             -- alternative: nautilus -w
 vars.menu = "tofi-drun"                              -- app launcher
 vars.menuClose = "pkill tofi"                        -- close app launcher
@@ -26,6 +27,6 @@ vars.onScreenKeyboardClose = "pkill wvkbd"
 
 -- GUI window switcher
 vars.windowSwitchInit = "uwsm app -- hyprswitch init --show-title --size-factor 6 --workspaces-per-row 3 --custom-css " .. os.getenv("HOME") .. "/.config/hyprswitch/style.css >> " .. vars.logPath .. "/hyprswitch/hyprswitch.log 2>&1"
-vars.windowSwitchRun = "hyprswitch gui --mod-key super --key tab --max-switch-offset 0 --include-special-workspaces --switch-type workspace"
+vars.windowSwitchRun = "hyprswitch gui --mod-key " .. vars.mainMod .. " --key TAB --max-switch-offset 0 --include-special-workspaces --switch-type workspace"
 
 return vars

@@ -15,8 +15,6 @@ args="-r -c 8 -spacing 10 -fm dolpin -term $TERMINAL -wm 'hyprland' -nofs"
 killall nwg-drawer
 sleep 0.5
 # start in the background
-#hyprctl dispatch exec -- nwg-drawer -r
-#hyprctl dispatch exec -- nwg-drawer -r -c 8 -spacing 10 -wm 'hyprland'
-hyprctl dispatch exec "uwsm app -- nwg-drawer ${args} >> ${logfile} 2>&1"
+hyprctl dispatch "hl.dsp.exec_cmd([[uwsm app -- nwg-drawer ${args} >> ${logfile} 2>&1]])"
 
 notify-send -u low "nwg-drawer (maybe) started in the background" "look into '${logfile}' for more information"&

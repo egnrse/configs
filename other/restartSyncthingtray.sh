@@ -10,6 +10,6 @@ flags="--replace"
 
 killall $program
 sleep 0.5
-hyprctl dispatch exec "uwsm app -- $program $flags >> ${logfile} 2>&1"
+hyprctl dispatch "hl.dsp.exec_cmd([[uwsm app -- $program $flags >> ${logfile} 2>&1]])"
 # hyprswitch init  &	# use this if u dont have hyprctl
 notify-send -u low "$program restarted" & 
