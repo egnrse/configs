@@ -137,7 +137,7 @@ hl.config({
 		workspace_back_and_forth = false,
 		workspace_center_on = 0,		-- Whether switching workspaces should center the cursor on the workspace (0) or on the last active window for that workspace (1)
 		focus_preferred_method = 0,		--  0: history (recent have priority), 1: length (longer shared edges have priority)
-		window_direction_monitor_fallback = false,
+		window_direction_monitor_fallback = true,
 		allow_pin_fullscreen = true,
 	},
 	xwayland = {
