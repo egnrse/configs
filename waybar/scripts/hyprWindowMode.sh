@@ -59,7 +59,7 @@ if [ "$args1" == "toggle" ]; then
 		notify-send -u low -a ${scriptName} -t ${notification_time} "${scriptName}: nothing to toggle" &
 		exit 1
 	fi
-	hyprctl dispatch togglefloating
+	hyprctl dispatch 'hl.dsp.window.float()'
 	varExit=$?
 	if [ $varExit -eq 0 ]; then
 		notify-send -u low -a ${scriptName} -t ${notification_time} "${scriptName}: toggle floating" &
