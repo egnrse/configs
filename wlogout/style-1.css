@@ -45,10 +45,10 @@ button:hover#lock {
 	background-size: 32%;
 }
 button:hover#logout {
-	background-size: 32%;
+	background-size: 31%;
 }
 button:hover#suspend {
-	background-size: 29%;
+	background-size: 27%;
 }
 
 
@@ -62,7 +62,7 @@ button:focus#logout {
 }
 button:focus#suspend {
 	background-image: url("$HOME/.config/wlogout/icons/suspend-black.png");
-	background-size: 29%;
+	background-size: 27%;
 }
 button:focus#shutdown {
 	background-image: url("$HOME/.config/wlogout/icons/shutdown-black.png");
