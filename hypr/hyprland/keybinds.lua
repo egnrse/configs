@@ -17,17 +17,17 @@ local vars = require("hyprland.vars")
 local mainMod = vars.mainMod
 
 -- ========== GENERAL ==========
+hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(vars.terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(vars.fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(vars.menuClose .. " || " .. vars.menu)) -- close $menu if it is open, else open it
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(vars.drawer))
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd(vars.drawer))
 
 hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd(vars.windowSwitchRun))
 
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(vars.sysMonitor))
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd(vars.powerMenu))
-hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
 -- Close all open layer surfaces on SUPER release
 hl.bind("SUPER + SUPER_L", function()
@@ -35,7 +35,7 @@ hl.bind("SUPER + SUPER_L", function()
     hl.dispatch(hl.dsp.exec_cmd(vars.drawerClose))
     hl.dispatch(hl.dsp.exec_cmd("pkill wlogout"))
     hl.dispatch(hl.dsp.exec_cmd("pkill rofi"))
-    hl.dispatch(hl.dsp.exec_cmd("hyprswitch close"))	-- does not work
+    hl.dispatch(hl.dsp.exec_cmd("hyprswitch close"))	-- does not work as we are in a submap
 end, { release = true })
 
 
@@ -48,7 +48,7 @@ hl.bind("ALT + Tab", function()
 end)
 
 hl.bind("ALT + SHIFT + Tab", function()
-    hl.dispatch(hl.dsp.window.cycle_next({"prev"}))
+    hl.dispatch(hl.dsp.window.cycle_next({next=false}))
     hl.dispatch(hl.dsp.window.bring_to_top())
 end)
 
@@ -57,12 +57,6 @@ hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-
--- Directional Focus (Vim Controls)
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "down" }))
 
 
 -- ========== LOOK / WINDOW ==========
