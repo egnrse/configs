@@ -41,6 +41,7 @@
 		"custom/spacer",
 
 		"custom/update",		// system update
+		"custom/hyprsunset",
 		"custom/wifi",			// wi-fi
 		"bluetooth",			// bluetooth
 

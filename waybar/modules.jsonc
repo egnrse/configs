@@ -32,6 +32,19 @@
 		"on-click": "~/.config/waybar/scripts/hyprWindowMode.sh toggle",
 		"tooltip": true
 	},
+	"custom/hyprsunset": {
+		"exec": "~/.config/waybar/scripts/hyprsunset.sh",
+		"return-type": "json",
+		"format": "{}",
+		"on-click": "~/.config/waybar/scripts/hyprsunset.sh toggle",
+		"on-click-right": "~/.config/waybar/scripts/hyprsunset.sh reset",
+		"on-scroll-up": "~/.config/waybar/scripts/hyprsunset.sh up",
+		"on-scroll-down": "~/.config/waybar/scripts/hyprsunset.sh down",
+		"tooltip": true,
+		"min-length": 2,
+		"max-length": 2,
+		"interval": 1,
+	},
 
 
 	// === computer === 
