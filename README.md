@@ -728,7 +728,7 @@ networkmanager blueman waypipe	    (network)
 flatpak wget pacman-contrib devtools yay<sup>AUR</sup>		(package managing)  
 pipewire pipewire-docs wireplumber wireplumber-docs (audio)  
 wl-clipboard zsh zoxide fzf rclone ttf-dejavu-nerd ctags (cli)   
-syncthing zip unzip tar tree-sitter-cli lazygit zerotier-one fastfetch  
+syncthing zip unzip tar tree-sitter-cli lazygit zerotier-one fastfetch bc  
 
 waybar dunst rofi-wayland nwg-drawer hypridle hyprlock hyprsunset helvum polkit-kde-agent firefox alacritty konsole dolphin (gui)  
 pwvucontrol<sup>AUR</sup> wlogout<sup>AUR</sup> tofi<sup>AUR</sup> trash-d<sup>AUR</sup> 
