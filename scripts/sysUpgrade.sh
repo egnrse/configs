@@ -8,6 +8,7 @@
 # 	- AUR cache cleaning (paccache, only tested with yay)
 # 	- update zinit (zsh pluginmanager)
 # 	- update lazy (nvim pluginmanager)
+# 	- update hardware drivers (fwupdmgr)
 # args: $1=aur_helper
 # Needs:
 # 	pacman-contrib (for pacdiff, paccache)
@@ -16,6 +17,7 @@
 #	[flatpak]
 #	[zsh] (and zinit (a zsh plugin manager))
 #	[nvim] (and lazy (a nvim pluginmanager))
+#	[fwupdmgr, jq] (for driver updates)
 # 
 # 	(this script is used by the packageUpdates.sh script)
 #	by egnrse (https://github.com/egnrse/configs)
@@ -430,7 +432,48 @@ if [ $skipMaintenance -eq 0 ]; then
 		echo "nvim missing: skipping neovim based updates"
 		((skippedCount++))
 	fi
-	
+
+
+	## firmware updates (fwupdmgr)
+	# check if fwupdmgr is installed
+	if [ ! $(command -v fwupdmgr) >/dev/null ]; then
+		echo "fwupdmgr missing: skipping firmware updates"
+		((skippedCount++))
+	elif [ ! $(command -v jq) >/dev/null ]; then
+		echo "jq missing: skipping firmware updates"
+		((skippedCount++))
+	else
+		echo "check for firmware updates (fwupdmgr)"
+		pause skip
+		if [ $? -eq 0 ]; then
+			echo ""
+
+			# refresh metadata
+			echo "refreshing metadata..."
+			firmRefExit=0
+			firmRef=$(fwupdmgr refresh --json) || firmRefExit=$?
+			if [ "${firmRefExit}" -ne 0 ] && [ "${firmRefExit}" -ne 2 ]; then
+				echo "error fetching metadata (${firmRefExit}):"
+				echo "${firmRef}"
+			fi
+
+			# check for available updates
+			firmUpExit=0
+			firmUpJson=$(fwupdmgr get-updates --json 2>/dev/null) || firmUpExit=$?
+			firmUpDevices=$(echo "${firmUpJson}" | jq ".Devices[]?")
+			if [ "${firmUpExit}" -eq 2 ] || [ -z "${firmUpDevices}" ]; then
+				echo "no firmware updates available"
+			elif [ $firmUpExit -ne 0 ]; then
+				echo "error checking for updates (${firmUpExit}):"
+				echo "${firmUpJson}"
+			else
+				echo ""
+				fwupdmgr update
+			fi
+		fi
+		echo "$underline"
+	fi
+
 
 	## how many task where automatically skipped, because there was nothing to do
 	if [ ${skippedCount} -ge 1 ]; then
