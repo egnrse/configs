@@ -741,13 +741,13 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk (set them in /usr/share/xdg-d
 #### misc
 kio-admin ark dolphin-plugins archlinux-xdg-menu kdegraphics-thumbnailers libappimage (dolphin stuff)  
 hunspell-en_US speech-dispatcher (waterfox)  
-libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc noto-fonts-cjk anki  
+libreoffice-fresh prismlauncher mission-center kdeconnect kalgebra kcalc godot-mono blender cuda keepassxc noto-fonts-cjk anki syncthingtray  
 audacity audacious vlc (audio)  
 
 brightnessctl power-profiles-daemon (laptop)  
 #### from AUR
 xdg-terminal-exec ttf-ms-win10-auto hyprswitch v-editor-git (default terminal, win fonts)   
-beeper-v4-bin waterfox-bin pa-notify syncthingtray-qt6  
+beeper-v4-bin waterfox-bin pa-notify  
 #### from Flatpak
 (replace '\_' with spaces)  
 joplin bottles OBS_Studio moonlight coppwr tor_browser_launcher flatseal gimp vesktop musescore  

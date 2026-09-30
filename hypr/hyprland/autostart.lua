@@ -34,7 +34,7 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd("uwsm app -- nwg-drawer -r -c 8 -spacing 10 -fm dolphin -term " .. vars.terminalClean .. " -wm 'hyprland' -nofs >> " .. logPath .. "/nwg-drawer/nwg-drawer.log 2>&1")
 
 	-- Syncthing Tray
-	hl.exec_cmd("uwsm app -- syncthingtray-qt6 --wait >> " .. logPath .. "/log/syncthingtray.log 2>&1")
+	hl.exec_cmd("uwsm app -- syncthingtray --wait >> " .. logPath .. "/log/syncthingtray.log 2>&1")
 
 	-- KDEConnect Indicator
 	hl.exec_cmd("uwsm app -- kdeconnect-indicator >> " .. logPath .. "/kdeconnect/kdeconnect.log 2>&1")
