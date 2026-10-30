@@ -71,8 +71,6 @@ hl.config({
 		preserve_split = true,
 		smart_split = false,
 		smart_resizing = false,
-
-		special_scale_factor = 1,
 	},
 })
 
