@@ -172,8 +172,8 @@ ZSH_HIGHLIGHT_STYLES[default]='none'
 
 ## HISTORY
 ################################
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 HISTFILE=~/.history
 # history file interactions
 setopt appendhistory
@@ -200,6 +200,7 @@ fi
 
 # SHELL INTEGRATION
 ################################
+source <(fzf --zsh)
 source <(zoxide init --cmd zoxide_cd zsh)	# fuzzy finding for jd (needs zoxide)
 # custom jd wrapper
 function jd() {
