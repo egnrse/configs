@@ -122,7 +122,7 @@ if skip "install some packages"; then
 
 	pkgs_laptop="brightnessctl power-profiles-daemon"
 
-	pkgs_aur="xdg-terminal-exec-git hyprswitch v-editor-git" # hyprswitch > hyprshell
+	pkgs_aur="xdg-terminal-exec-git hyprswitch v-editor-git"
 	pkgs_aur+=" pwvucontrol wlogout tofi trash-d"
 	pkgs_aur+=" beeper-v4-bin waterfox-bin pa-notify" # gui
 
@@ -323,6 +323,7 @@ skip "activate system unit: sddm" && sudo systemctl enable sddm
 skip "activate system unit: bluetooth" && sudo systemctl enable bluetooth
 skip "activate system unit: ianny" && systemctl --user enable app-io.github.zefr0x.ianny@autostart.service 
 skip "activate & start system user unit: hypridle" && systemctl --user enable --now hypridle.service
+skip "activate & start system user unit: hyprswitch" && sudo systemctl --user enable --now hyprswitch.service
 skip "activate system unit: reflector.timer" && sudo systemctl enable reflector.timer
 
 echo ""

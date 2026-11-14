@@ -27,9 +27,6 @@ hl.on("hyprland.start", function ()
 	-- Blue light filter
 	hl.exec_cmd("uwsm app -- hyprsunset")
 
-	-- GUI Window Switcher daemon
-	hl.exec_cmd(vars.windowSwitchInit)
-
 	-- Background instance of nwg-drawer
 	hl.exec_cmd("uwsm app -- nwg-drawer -r -c 8 -spacing 10 -fm dolphin -term " .. vars.terminalClean .. " -wm 'hyprland' -nofs >> " .. logPath .. "/nwg-drawer/nwg-drawer.log 2>&1")
 

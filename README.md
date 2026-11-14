@@ -196,10 +196,10 @@ Move windows with `SUPER+LeftMouse`/`SUPER+Space`, resize them with`SUPER+RightM
 
 <details><summary>Plugins/Extensions:</summary>
 
-#### [Hyprswitch](https://github.com/H3rmt/hyprswitch)
+#### [Hyprswitch](https://github.com/egnrse/hyprswitch)
 *(/hyprswitch/)*  
 CLI/GUI to switch between window in hyprland (`hyprswitch`<sup>AUR</sup>)  
-The daemon should get started with hyprland. There is also a custom script `restartHyprswitch.sh` to (re-)start the hyprswitch daemon.
+Enable/start the daemon with: `systemctl --user enable --now hyprswitch`  
 Needs: egnrseTheme.css hyprswitch<sup>AUR</sup>  
 
 #### not used anymore:

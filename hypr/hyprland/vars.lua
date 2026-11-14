@@ -26,7 +26,6 @@ vars.onScreenKeyboard = "uwsm app -- wvkbd-laptop"
 vars.onScreenKeyboardClose = "pkill wvkbd"
 
 -- GUI window switcher
-vars.windowSwitchInit = "uwsm app -- hyprswitch init --show-title --size-factor 6 --workspaces-per-row 3 --custom-css " .. os.getenv("HOME") .. "/.config/hyprswitch/style.css >> " .. vars.logPath .. "/hyprswitch/hyprswitch.log 2>&1"
 vars.windowSwitchRun = "hyprswitch gui --mod-key " .. vars.mainMod .. " --key TAB --max-switch-offset 0 --include-special-workspaces --switch-type workspace"
 
 return vars

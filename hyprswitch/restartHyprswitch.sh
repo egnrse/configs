@@ -4,6 +4,9 @@
 # (https://github.com/egnrse/configs)
 # (by egnrse)
 
+echo "DEPRECATED: instead use: 'systemctl --user restart hyprswitch'"
+exit 5
+
 logfile=~/.config/hyprswitch/hyprswitch.log
 
 killall hyprswitch
