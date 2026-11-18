@@ -323,7 +323,7 @@ skip "activate system unit: sddm" && sudo systemctl enable sddm
 skip "activate system unit: bluetooth" && sudo systemctl enable bluetooth
 skip "activate system unit: ianny" && systemctl --user enable app-io.github.zefr0x.ianny@autostart.service 
 skip "activate & start system user unit: hypridle" && systemctl --user enable --now hypridle.service
-skip "activate & start system user unit: hyprswitch" && sudo systemctl --user enable --now hyprswitch.service
+skip "activate & start system user unit: hyprswitch" && systemctl --user enable --now hyprswitch.service
 skip "activate system unit: reflector.timer" && sudo systemctl enable reflector.timer
 
 echo ""
